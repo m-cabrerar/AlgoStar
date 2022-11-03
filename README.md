@@ -10,7 +10,7 @@ administración de un imperio.
 ## Grupo {N}
 
 * **Mateo Cabrera Rodríguez** - [m-cabrerar](https://github.com/m-cabrerar)
-* **Integrante 2** - [integrante2](https://github.com/integrante2)
+* **Camila Gonzalez Alejo** - [c-gonzalez-a](https://github.com/c-gonzalez-a)
 * **Integrante 3** - [integrante3](https://github.com/integrante3)
 * **Integrante 4** - [integrante4](https://github.com/integrante4)
 
