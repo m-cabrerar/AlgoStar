@@ -11,7 +11,7 @@ administración de un imperio.
 
 * **Mateo Cabrera Rodríguez** - [m-cabrerar](https://github.com/m-cabrerar)
 * **Camila Gonzalez Alejo** - [c-gonzalez-a](https://github.com/c-gonzalez-a)
-* **Integrante 3** - [integrante3](https://github.com/integrante3)
+* **Paz Blanco Pilar** - [ppazb](https://github.com/ppazb)
 * **Integrante 4** - [integrante4](https://github.com/integrante4)
 
 Corrector: **{Corrector}**
