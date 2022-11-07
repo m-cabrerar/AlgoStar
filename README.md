@@ -7,14 +7,14 @@ AlgoStar es un juego similar al famoso StarCraft pero no en tiempo real sino por
 El mismo es un juego de guerra de estrategia y se basa en la construcción y
 administración de un imperio.
 
-## Grupo {N}
+## Grupo {3}
 
 * **Mateo Cabrera Rodríguez** - [m-cabrerar](https://github.com/m-cabrerar)
 * **Camila Gonzalez Alejo** - [c-gonzalez-a](https://github.com/c-gonzalez-a)
 * **Paz Blanco Pilar** - [ppazb](https://github.com/ppazb)
 * **Ana Victoria Zarate Cruz** - [anitazarate](https://github.com/anitazarate)
 
-Corrector: **{Corrector}**
+Corrector: **Alejo Villores**
 
 ## Aplicación
 
