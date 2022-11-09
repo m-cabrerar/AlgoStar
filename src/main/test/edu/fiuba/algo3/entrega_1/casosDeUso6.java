@@ -15,17 +15,17 @@ public class casosDeUso6 {
         //Arrange
         x = ;
         y= ;
-        Coordenada coordenadaMoho = new Coordenada (x,y);
-        Mapa tablero = new Tablero(DimensionX,DimensionY);
+        Casilla casillaMoho = new Moho (x,y);
+        Mapa tablero = new Mapa(DimensionX,DimensionY);
         //poner en el tablero moho en la coordenada correspondiente
-        Collection coordenadasAdyacentes = coordenadaMoho.adyacentes() //uso collection pero quizas hay algo mejor
+        Collection casillasAdyacentes = casillaMoho.adyacentes(); //Todo uso collection provisoriamente
 
         //Act
         tablero.pasarTurno();
         //Assert
 
-        for (Coordenada coordenada : coordenadasAdyacentes) {
-           //Chequear que en esa coordenada de mapa sea un moho
+        for (Casilla casilla : casillasAdyacentes) {
+            assertEquals(casilla.getClass(), Moho.class);
         }
     }
 }
