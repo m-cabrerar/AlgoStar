@@ -15,10 +15,12 @@ public class casosDeUso6 {
         //Arrange
         x = ;
         y= ;
-        Casilla casillaMoho = new Moho (x,y);
         Mapa tablero = new Mapa(DimensionX,DimensionY);
-        //poner en el tablero moho en la coordenada correspondiente
+        Casilla casillaMoho = new Moho ();
+        tablero.agregarCasilla(x,y,casillaMoho);
+
         Collection casillasAdyacentes = casillaMoho.adyacentes(); //Todo uso collection provisoriamente
+        //Esto por ahi haya q pregutarselo al tablero. 
 
         //Act
         tablero.pasarTurno();
