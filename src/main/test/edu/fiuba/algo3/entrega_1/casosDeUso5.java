@@ -81,7 +81,7 @@ public class casosDeUso5 {
 
     //INTENTO CONSTRUIR SOBRE UN NODO DE GAS Y NO SE PUEDE
     @Test
-    public void test06ConstruyoUnCriaderoEnUnNodoMineralYDaError(){
+    public void test06ConstruyoUnCriaderoEnUnNodoDeGasYDaError(){
         //ARRANGE
         String mensaje = "No se puede construir un Criadero en este casillero";
         Casillero casillero = new NodoGas();
@@ -94,7 +94,7 @@ public class casosDeUso5 {
         assertEquals(mensaje, exception.getMessage());
     }
     @Test
-    public void test07ConstruyoUnaReservaDeReproduccionEnUnNodoMineralYDaError(){
+    public void test07ConstruyoUnaReservaDeReproduccionEnUnNodoDeGasYDaError(){
         //ARRANGE
         String mensaje = "No se puede construir una Reserva de Reproduccion en este casillero";
         Casillero casillero = new NodoGas();
@@ -107,7 +107,7 @@ public class casosDeUso5 {
         assertEquals(mensaje, exception.getMessage());
     }
     @Test
-    public void test08ConstruyoUnExtractorEnUnNodoMineralYDaError(){
+    public void test08ConstruyoUnExtractorEnUnNodoDeGasYDaError(){
         //ARRANGE
         String mensaje = "No se puede construir un Extractor en este casillero";
         Casillero casillero = new NodoGas();
@@ -120,7 +120,7 @@ public class casosDeUso5 {
         assertEquals(mensaje, exception.getMessage());
     }
     @Test
-    public void test09ConstruyoUnCriaderoEnUnNodoMineralYDaError(){
+    public void test09ConstruyoUnCriaderoEnUnNodoDeGasYDaError(){
         //ARRANGE
         String mensaje = "No se puede construir una Guarida en este casillero";
         Casillero casillero = new NodoGas();
@@ -133,7 +133,7 @@ public class casosDeUso5 {
         assertEquals(mensaje, exception.getMessage());
     }
     @Test
-    public void test10ConstruyoUnCriaderoEnUnNodoMineralYDaError(){
+    public void test10ConstruyoUnCriaderoEnUnUnNodoDeGasYDaError(){
         //ARRANGE
         String mensaje = "No se puede construir una Espiral en este casillero";
         Casillero casillero = new NodoGas();
