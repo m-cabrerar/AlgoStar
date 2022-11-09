@@ -13,7 +13,7 @@ public class casosDeUso3 {
         Casillero casillero = new NodoGas();
         Banco banco = new Banco(99,99);
         //ACT
-        Asimilador asimilador = Asimilador.construir(casillero,banco);
+        Asimilador asimilador = new Asimilador(casillero, banco);
         //ASSERT
         assertTrue(casillero.estaOcupado());
     }
@@ -26,7 +26,7 @@ public class casosDeUso3 {
         Banco banco = new Banco(99,99);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            Asimilador asimilador = Asimilador.construir(casillero,banco);
+            Asimilador asimilador = new Asimilador(casillero, banco);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
@@ -38,7 +38,7 @@ public class casosDeUso3 {
         Casillero casillero = new NodoGas();
         Banco banco = new Banco(99,99);
         //ACT
-        Extractor extractor = Extractor.construir(casillero,banco);
+        Extractor extractor = new Extractor(casillero, banco);
         //ASSERT
         assertTrue(casillero.estaOcupado());
     }
@@ -51,7 +51,7 @@ public class casosDeUso3 {
         Banco banco = new Banco(99,99);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            Extractor extractor = Extractor.construir(casillero,banco);
+            Extractor extractor = new Extractor(casillero, banco);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
@@ -65,7 +65,7 @@ public class casosDeUso3 {
         Banco banco = new Banco(99,99);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            Criadero criadero = Criadero.construir(casillero,banco);
+            Criadero criadero = new Criadero(casillero, banco);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
@@ -79,7 +79,7 @@ public class casosDeUso3 {
         Banco banco = new Banco(99,99);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            Pilon pilon = Pilon.construir(casillero,banco);
+            Pilon pilon = new Pilon(casillero, banco);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
@@ -93,7 +93,7 @@ public class casosDeUso3 {
         Banco banco = new Banco(99,99);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            NexoMineral nexo = NexoMineral.construir(casillero,banco);
+            NexoMineral nexo = new NexoMineral(casillero, banco);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
@@ -107,7 +107,7 @@ public class casosDeUso3 {
         Banco banco = new Banco(99,99);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            Acceso acceso = Acceso.construir(casillero,banco);
+            Acceso acceso = new Acceso(casillero, banco);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
@@ -121,49 +121,7 @@ public class casosDeUso3 {
         Banco banco = new Banco(99,99);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            PuertoEstelar puerto = PuertoEstelar.construir(casillero,banco);
-        });
-        //ASSERT
-        assertEquals(mensaje, exception.getMessage());
-    }
-
-    @Test
-    public void test10ConstruirUnReservaDeProduccionSobreElGasLanzaError(){
-        //ARRANGE
-        String mensaje = "No se puede construir una reserva de produccion en este casillero";
-        Casillero casillero = new NodoGas();
-        Banco banco = new Banco(99,99);
-        //ACT
-        Exception exception = assertThrows(Exception.class, () -> {
-            ReservaDeProduccion reserva = ReservaDeProduccion.construir(casillero,banco);
-        });
-        //ASSERT
-        assertEquals(mensaje, exception.getMessage());
-    }
-
-    @Test
-    public void test11ConstruirUnaGuaridaSobreElGasLanzaError(){
-        //ARRANGE
-        String mensaje = "No se puede construir una guarida en este casillero";
-        Casillero casillero = new NodoGas();
-        Banco banco = new Banco(99,99);
-        //ACT
-        Exception exception = assertThrows(Exception.class, () -> {
-            Guarida guarida = Guarida.construir(casillero,banco);
-        });
-        //ASSERT
-        assertEquals(mensaje, exception.getMessage());
-    }
-
-    @Test
-    public void test12ConstruirUnEspiralSobreElGasLanzaError(){
-        //ARRANGE
-        String mensaje = "No se puede construir una espiral en este casillero";
-        Casillero casillero = new NodoGas();
-        Banco banco = new Banco(99,99);
-        //ACT
-        Exception exception = assertThrows(Exception.class, () -> {
-            Espiral espiral = Espiral.construir(casillero,banco);
+            PuertoEstelar puerto = new PuertoEstelar(casillero, banco);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
