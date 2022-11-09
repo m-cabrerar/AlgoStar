@@ -74,12 +74,11 @@ Casillero <|-- NodoDeGas
 Casillero <|-- Moho
 Casillero <|-- NodoMineral
 
-Banco o-- Gas
-Banco o-- Mineral
+Banco "1" o-- "0..*" Gas
+Banco "1" o-- "0..*" Mineral
 
-Mapa *-- Casillero
+Mapa "1" *-- "*" Casillero
 
 Edificio ..> Banco
 Edificio ..> Casillero
-
 @enduml
