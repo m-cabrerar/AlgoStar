@@ -12,7 +12,9 @@ public class casosDeUso2 {
     public void test01ConstruyoUnCriaderoQueEstaraListoEn4Turnos() {
 
         //ARRANGE
-        Criadero criadero = Criadero.inicializar();
+        Casillero casillero = new Moho();
+        Banco banco = new Banco(100,100);
+        Edificio criadero = Criadero.construir(casillero, banco);
         
         //ACT
         criadero.pasarTurno();
@@ -21,23 +23,388 @@ public class casosDeUso2 {
         criadero.pasarTurno();
 
         //ASSERT
-        //chequeo que este listo para uso
+        assertDoesNotThrow(criadero.recibirDanio(5));
+
     }
 
     @Test
-    public void test02ConstruyoUnNexoMineralQueEstaraListoEn4Turnos(){
+    public void test02ConstruyoUnCriaderoQueNoSePuedeUsarPasados3Turnos() {
 
         //ARRANGE
-        NexoMineral nexo = NexoMineral.inicializar();
-
+        String mensaje = "Tu Criadero ha sido destruido";
+        Casillero casillero = new Moho();
+        Banco banco = new Banco(100,100);
+        Edificio criadero = Criadero.construir(casillero, banco);
+        
         //ACT
-        nexo.pasarTurno();
-        nexo.pasarTurno();
-        nexo.pasarTurno();
-        nexo.pasarTurno();
+        criadero.pasarTurno();
+        criadero.pasarTurno();
+        criadero.pasarTurno();
+        Exception exception = assertThrows(Exception.class, () -> {
+            criadero.recibirDanio(5);
+        });
 
         //ASSERT
+        assertEquals(mensaje, exception.getMessage());
 
     }
 
+    @Test
+    public void test03ConstruyoUnaRerservaDeReproduccionQueEstaraListoEn12Turnos() {
+
+        //ARRANGE
+        Casillero casillero = new Moho();
+        Banco banco = new Banco(300,300);
+        Edificio reserva = ReservaDeReproduccion.construir(casillero, banco);
+        
+        //ACT
+        for(int i=0; i<12; i++){
+            reserva.pasarTurno();
+        }
+
+        //ASSERT
+        assertDoesNotThrow(reserva.recibirDanio(5) );
+
+    }
+
+    @Test
+    public void test04ConstruyoUnaReservaDeReproduccionQueNoSePuedeUsarPasados11Turnos() {
+
+        //ARRANGE
+        String mensaje = "Tu Reserva de Produccion ha sido destruido";
+        Casillero casillero = new Moho();
+        Banco banco = new Banco(300,300);
+        Edificio reserva = ReservaDeReproduccion.construir(casillero, banco);
+        
+        //ACT
+        for(int i=0; i<11; i++){
+            reserva.pasarTurno();
+        }
+        Exception exception = assertThrows(Exception.class, () -> {
+            reserva.recibirDanio(5);
+        });
+
+        //ASSERT
+        assertEquals(mensaje, exception.getMessage());
+
+    }
+
+    @Test
+    public void test05ConstruyoUnExtractorQueEstaraListoEn6Turnos() {
+
+        //ARRANGE
+        Casillero casillero = new NodoDeGas();
+        Banco banco = new Banco(300,300);
+        Edificio extractor = Extractor.construir(casillero, banco);
+        
+        //ACT
+        for(int i=0; i<6; i++){
+            extractor.pasarTurno();
+        }
+
+        //ASSERT
+        assertDoesNotThrow(extractor.recibirDanio(5) );
+
+    }
+
+    @Test
+    public void test06ConstruyoUnExtractorQueNoSePuedeUsarPasados5Turnos() {
+
+        //ARRANGE
+        String mensaje = "Tu Extractor ha sido destruido";
+        Casillero casillero = new NodoDeGas();
+        Banco banco = new Banco(300,300);
+        Edificio extractor = Extractor.construir(casillero, banco);
+        
+        //ACT
+        for(int i=0; i<5; i++){
+            extractor.pasarTurno();
+        }
+        Exception exception = assertThrows(Exception.class, () -> {
+            extractor.recibirDanio(5);
+        });
+
+        //ASSERT
+        assertEquals(mensaje, exception.getMessage());
+
+    }
+
+    @Test
+    public void test07ConstruyoUnaGuaridaQueEstaraListoEn12Turnos() {
+
+        //ARRANGE
+        Casillero casillero = new Moho();
+        Banco banco = new Banco(300,300);
+        Edificio guarida = Guarida.construir(casillero, banco);
+        
+        //ACT
+        for(int i=0; i<12; i++){
+            guarida.pasarTurno();
+        }
+
+        //ASSERT
+        assertDoesNotThrow(guarida.recibirDanio(5) );
+
+    }
+
+    @Test
+    public void test08ConstruyoUnaGuaridaQueNoSePuedeUsarPasados11Turnos() {
+
+        //ARRANGE
+        String mensaje = "Tu Guarida ha sido destruida";
+        Casillero casillero = new Moho();
+        Banco banco = new Banco(300,300);
+        Edificio guarida = Guarida.construir(casillero, banco);
+        
+        //ACT
+        for(int i=0; i<11; i++){
+            guarida.pasarTurno();
+        }
+        Exception exception = assertThrows(Exception.class, () -> {
+            guarida.recibirDanio(5);
+        });
+
+        //ASSERT
+        assertEquals(mensaje, exception.getMessage());
+
+    }
+
+    @Test
+    public void test09ConstruyoUnEspiralQueEstaraListoEn10Turnos() {
+
+        //ARRANGE
+        Casillero casillero = new Moho();
+        Banco banco = new Banco(300,300);
+        Edificio espiral = Espiral.construir(casillero, banco);
+        
+        //ACT
+        for(int i=0; i<10; i++){
+            espiral.pasarTurno();
+        }
+
+        //ASSERT
+        assertDoesNotThrow(espiral.recibirDanio(5) );
+
+    }
+
+    @Test
+    public void test10ConstruyoUnEspiralQueNoSePuedeUsarPasados9Turnos() {
+
+        //ARRANGE
+        String mensaje = "Tu Espiral ha sido destruido";
+        Casillero casillero = new Moho();
+        Banco banco = new Banco(300,300);
+        Edificio espiral = Espiral.construir(casillero, banco);
+        
+        //ACT
+        for(int i=0; i<9; i++){
+            espiral.pasarTurno();
+        }
+        Exception exception = assertThrows(Exception.class, () -> {
+            espiral.recibirDanio(5);
+        });
+
+        //ASSERT
+        assertEquals(mensaje, exception.getMessage());
+
+    }
+
+    @Test
+    public void test11ConstruyoUnNexoMineralQueEstaraListoEn4Turnos() {
+
+        //ARRANGE
+        Casillero casillero = new Casillero(); //que debera tener energia o estar en rango
+        Banco banco = new Banco(300,300);
+        Edificio nexo = NexoMineral.construir(casillero, banco);
+        
+        //ACT
+        for(int i=0; i<4; i++){
+            nexo.pasarTurno();
+        }
+
+        //ASSERT
+        assertDoesNotThrow(nexo.recibirDanio(5) );
+
+    }
+
+    @Test
+    public void test12ConstruyoUnNexoMineralQueNoSePuedeUsarPasados3Turnos() {
+
+        //ARRANGE
+        String mensaje = "Tu Nexo Mineral ha sido destruido";
+        Casillero casillero = new Casillero();
+        Banco banco = new Banco(300,300);
+        Edificio nexo = NexoMineral.construir(casillero, banco);
+        
+        //ACT
+        for(int i=0; i<3; i++){
+            nexo.pasarTurno();
+        }
+        Exception exception = assertThrows(Exception.class, () -> {
+            nexo.recibirDanio(5);
+        });
+
+        //ASSERT
+        assertEquals(mensaje, exception.getMessage());
+
+    }
+
+    @Test
+    public void test13ConstruyoUnPilonQueEstaraListoEn5Turnos() {
+
+        //ARRANGE
+        Casillero casillero = new Casillero(); //que debera tener energia o estar en rango
+        Banco banco = new Banco(300,300);
+        Edificio pilon = Pilon.construir(casillero, banco);
+        
+        //ACT
+        for(int i=0; i<5; i++){
+            pilon.pasarTurno();
+        }
+
+        //ASSERT
+        assertDoesNotThrow(pilon.recibirDanio(5) );
+
+    }
+
+    @Test
+    public void test14ConstruyoUnPilonQueNoSePuedeUsarPasados4Turnos() {
+
+        //ARRANGE
+        String mensaje = "Tu Pilon ha sido destruido";
+        Casillero casillero = new Casillero();
+        Banco banco = new Banco(300,300);
+        Edificio pilon = Pilon.construir(casillero, banco);
+        
+        //ACT
+        for(int i=0; i<4; i++){
+            pilon.pasarTurno();
+        }
+        Exception exception = assertThrows(Exception.class, () -> {
+            pilon.recibirDanio(5);
+        });
+
+        //ASSERT
+        assertEquals(mensaje, exception.getMessage());
+
+    }
+
+    @Test
+    public void test15ConstruyoUnAsimiladorQueEstaraListoEn6Turnos() {
+
+        //ARRANGE
+        Casillero casillero = new NodoDeGas(); //que debera tener energia o estar en rango
+        Banco banco = new Banco(300,300);
+        Edificio asimilador = Asimilador.construir(casillero, banco);
+        
+        //ACT
+        for(int i=0; i<6; i++){
+            asimilador.pasarTurno();
+        }
+
+        //ASSERT
+        assertDoesNotThrow(asimilador.recibirDanio(5) );
+
+    }
+
+    @Test
+    public void test16ConstruyoUnAsimiladorQueNoSePuedeUsarPasados5Turnos() {
+
+        //ARRANGE
+        String mensaje = "Tu Asimilador ha sido destruido";
+        Casillero casillero = new NodoDeGas();
+        Banco banco = new Banco(300,300);
+        Edificio asimilador = Asimilador.construir(casillero, banco);
+        
+        //ACT
+        for(int i=0; i<5; i++){
+            asimilador.pasarTurno();
+        }
+        Exception exception = assertThrows(Exception.class, () -> {
+            asimilador.recibirDanio(5);
+        });
+
+        //ASSERT
+        assertEquals(mensaje, exception.getMessage());
+
+    }
+
+    @Test
+    public void test17ConstruyoUnAccesoQueEstaraListoEn8Turnos() {
+
+        //ARRANGE
+        Casillero casillero = new Casillero(); //que debera tener energia o estar en rango
+        Banco banco = new Banco(300,300);
+        Edificio acceso = Acceso.construir(casillero, banco);
+        
+        //ACT
+        for(int i=0; i<8; i++){
+            acceso.pasarTurno();
+        }
+
+        //ASSERT
+        assertDoesNotThrow(acceso.recibirDanio(5) );
+
+    }
+
+    @Test
+    public void test18ConstruyoUnAccesoQueNoSePuedeUsarPasados7Turnos() {
+
+        //ARRANGE
+        String mensaje = "Tu Acceso ha sido destruido";
+        Casillero casillero = new Casillero();
+        Banco banco = new Banco(300,300);
+        Edificio acceso = Acceso.construir(casillero, banco);
+        
+        //ACT
+        for(int i=0; i<7; i++){
+            acceso.pasarTurno();
+        }
+        Exception exception = assertThrows(Exception.class, () -> {
+            acceso.recibirDanio(5);
+        });
+
+        //ASSERT
+        assertEquals(mensaje, exception.getMessage());
+    }
+
+    @Test
+    public void test19ConstruyoUnPuertoEstelarQueEstaraListoEn10Turnos() {
+
+        //ARRANGE
+        Casillero casillero = new Casillero(); //que debera tener energia o estar en rango
+        Banco banco = new Banco(300,300);
+        Edificio puerto = PuertoEstelar.construir(casillero, banco);
+        
+        //ACT
+        for(int i=0; i<10; i++){
+            puerto.pasarTurno();
+        }
+
+        //ASSERT
+        assertDoesNotThrow(puerto.recibirDanio(5) );
+
+    }
+
+    @Test
+    public void test20ConstruyoUnPuertoEstelarQueNoSePuedeUsarPasados9Turnos() {
+
+        //ARRANGE
+        String mensaje = "Tu Puerto Estelar ha sido destruido";
+        Casillero casillero = new Casillero();
+        Banco banco = new Banco(300,300);
+        Edificio puerto = PuertoMineral.construir(casillero, banco);
+        
+        //ACT
+        for(int i=0; i<9; i++){
+            puerto.pasarTurno();
+        }
+        Exception exception = assertThrows(Exception.class, () -> {
+            puerto.recibirDanio(5);
+        });
+
+        //ASSERT
+        assertEquals(mensaje, exception.getMessage());
+
+    }
 }
