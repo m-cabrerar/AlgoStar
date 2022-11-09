@@ -4,7 +4,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class casosDeUso2 {
-    
+    /* Verificar que cada edificio / construcción tarde en construirse lo que dice que tarda y que
+     *recién están “operativos” cuando ya se terminaron de construir.
+     */
     @Test
     public void test01ConstruyoUnCriaderoQueEstaraListoEn4Turnos() {
 
