@@ -2,6 +2,7 @@ package edu.fiuba.algo3.entrega_1;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class casosDeUso1 {
     /*Criadero se inicia con 3 larvas, se consume una para engendrar un zángano, le quedan 2 y
@@ -13,24 +14,75 @@ public class casosDeUso1 {
     public void test01ConsumoLaLarvaDeUnCriaderoParaEngendrarZanganoYCuandoPasaElTurnoTengo3OtraVez() {
         
         //ARRANGE
+        String mensaje = "Ya no quedan larvas disponibles";
         Criadero criadero = Criadero.inicializar();
-        criadero.pasarTurno();
-        criadero.pasarTurno();
-        criadero.pasarTurno();
-        criadero.pasarTurno();
 
         //ACT
         criadero.engendrarZangano();
-        
-        //ASSERT
         criadero.pasarTurno();
 
-        criadero.engendrarZangano();
-        criadero.engendrarZangano();
-        criadero.engendrarZangano();
+        Exception exception = assertThrows(Exception.class, () -> {
+            criadero.engendrarZangano();
+            criadero.engendrarZangano();
+            criadero.engendrarZangano();
+            criadero.engendrarZangano();
+        });
 
-       //falta chequear que no lance error o no se que 
+        //ASSERT
+        assertEquals(mensaje, exception.getMessage());
+ 
     }
 
+    @Test
+    public void test02Consumo2LarvasDeUnCriaderoParaEngendrarZanganosYCuandoPasan2TurnosTengo3OtraVez() {
+        
+        //ARRANGE
+        String mensaje = "Ya no quedan larvas disponibles";
+        Criadero criadero = Criadero.inicializar();
+
+        //ACT
+        criadero.engendrarZangano();
+        criadero.engendrarZangano();
+        criadero.pasarTurno();
+        criadero.pasarTurno();
+
+        Exception exception = assertThrows(Exception.class, () -> {
+            criadero.engendrarZangano();
+            criadero.engendrarZangano();
+            criadero.engendrarZangano();
+            criadero.engendrarZangano();
+        });
+
+        //ASSERT
+        assertEquals(mensaje, exception.getMessage());
+ 
+    }
+
+    @Test
+    public void test03Consumo3LarvasDeUnCriaderoParaEngendrarZanganosYCuandoPasan3TurnosTengo3OtraVez() {
+        
+        //ARRANGE
+        String mensaje = "Ya no quedan larvas disponibles";
+        Criadero criadero = Criadero.inicializar();
+
+        //ACT
+        criadero.engendrarZangano();
+        criadero.engendrarZangano();
+        criadero.engendrarZangano();
+        criadero.pasarTurno();
+        criadero.pasarTurno();
+        criadero.pasarTurno();
+
+        Exception exception = assertThrows(Exception.class, () -> {
+            criadero.engendrarZangano();
+            criadero.engendrarZangano();
+            criadero.engendrarZangano();
+            criadero.engendrarZangano();
+        });
+
+        //ASSERT
+        assertEquals(mensaje, exception.getMessage());
+ 
+    }    
     
 }

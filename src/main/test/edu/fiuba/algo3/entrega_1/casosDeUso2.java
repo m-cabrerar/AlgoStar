@@ -2,6 +2,7 @@ package edu.fiuba.algo3.entrega_1;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class casosDeUso2 {
     /* Verificar que cada edificio / construcción tarde en construirse lo que dice que tarda y que
