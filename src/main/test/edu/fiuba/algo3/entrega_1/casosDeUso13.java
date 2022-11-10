@@ -7,8 +7,8 @@ public class casosDeUso13 {
 
         //ARRANGE
         Casillero casillero = new Moho();
-        Banco banco = new Banco(300,300);
-        Edificio criadero = new Criadero(casillero, banco);
+        Inventario inventario = new Inventario(300,300);
+        Edificio criadero = new Criadero(casillero, inventario);
 
         //ACT
         for(int i=0; i<4; i++){
@@ -17,7 +17,7 @@ public class casosDeUso13 {
         criadero.recibirDanio(1000);
 
         //ASSERT
-        assertDoesNotThrow( new Criadero(casillero, banco) );
+        assertDoesNotThrow( new Criadero(casillero, inventario) );
 
     }
 }

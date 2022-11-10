@@ -18,8 +18,8 @@ public class casosDeUso9 {
         casillero.energizar();
         casillero.energizar();
         Edificio.pilon(casillero);
-        Banco banco = new Banco(200,200);
-        Edificio edificio (otroCasillero, banco)
+        Inventario inventario = new Inventario(200,200);
+        Edificio edificio (otroCasillero, inventario)
         //ACT
         pilon.recibirDanio(600);
         //Assert

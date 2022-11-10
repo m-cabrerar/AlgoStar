@@ -15,8 +15,8 @@ public class casosDeUso10 {
         //ARRANGE
         Casillero casillero = new Casillero();
         Casillero.setTipoCasillero(new Moho());
-        Banco banco = new Banco(200,200);
-        Criadero criadero = new Criadero(casillero, banco);
+        Inventario inventario = new Inventario(200,200);
+        Criadero criadero = new Criadero(casillero, inventario);
         //ACT
         criadero.recibirDanio(50);
         criadero.pasarTurno();
@@ -32,8 +32,8 @@ public class casosDeUso10 {
         //ARRANGE
         Casillero casillero = new Casillero();
         Casillero.setTipoCasillero(new Moho());
-        Banco banco = new Banco(200,200);
-        Extractor extractor = new Extractor(casillero, banco);
+        Inventario inventario = new Inventario(200,200);
+        Extractor extractor = new Extractor(casillero, inventario);
         //ACT
         extractor.recibirDanio(50);
         extractor.pasarTurno();
@@ -51,8 +51,8 @@ public class casosDeUso10 {
         //ARRANGE
         Casillero casillero = new Casillero();
         Casillero.setTipoCasillero(new Moho());
-        Banco banco = new Banco(200,200);
-        ReservaDeReproduccion reservaDeReproduccion = new ReservaDeReproduccion(casillero, banco);
+        Inventario inventario = new Inventario(200,200);
+        ReservaDeReproduccion reservaDeReproduccion = new ReservaDeReproduccion(casillero, inventario);
         //ACT
         reservaDeReproduccion.recibirDanio(50);
         reservaDeReproduccion.pasarTurno();
@@ -70,8 +70,8 @@ public class casosDeUso10 {
         //ARRANGE
         Casillero casillero = new Casillero();
         Casillero.setTipoCasillero(new Moho());
-        Banco banco = new Banco(200,200);
-        Guarida guarida = new Guarida(casillero, banco);
+        Inventario inventario = new Inventario(200,200);
+        Guarida guarida = new Guarida(casillero, inventario);
         //ACT
         guarida.recibirDanio(50);
         guarida.pasarTurno();
@@ -89,8 +89,8 @@ public class casosDeUso10 {
         //ARRANGE
         Casillero casillero = new Casillero();
         Casillero.setTipoCasillero(new Moho());
-        Banco banco = new Banco(200,200);
-        Espiral espiral = new Espiral(casillero, banco);
+        Inventario inventario = new Inventario(200,200);
+        Espiral espiral = new Espiral(casillero, inventario);
         //ACT
         espiral.recibirDanio(50);
         espiral.pasarTurno();

@@ -18,8 +18,8 @@ public class casosDeUso14 {
         Mapa mapa = new Mapa(dimensionX, dimensionY);
         Casillero casillero = mapa.obtenerCasillero(1, 1);
         casillero.setTipoCasillero(new Moho());
-        Banco banco = new Banco(300, 300);
-        Edificio pilon = new Pilon(mapa.adyacentes(casillero)[0], banco);
+        Inventario inventario = new Inventario(300, 300);
+        Edificio pilon = new Pilon(mapa.adyacentes(casillero)[0], inventario);
         //ACT
         estaEnergizado = casillero.tieneEnergia();
         //ASSERT
@@ -33,11 +33,11 @@ public class casosDeUso14 {
         Mapa mapa = new Mapa(dimensionX, dimensionY);
         Casillero casillero = mapa.obtenerCasillero(1, 1);
         casillero.setTipoCasillero(new Moho());
-        Banco banco = new Banco(300, 300);
-        Edificio pilon = new Pilon(mapa.adyacentes(casillero)[0], banco);
+        Inventario inventario = new Inventario(300, 300);
+        Edificio pilon = new Pilon(mapa.adyacentes(casillero)[0], inventario);
         //ACT
         Exception exception = assertThrows(NoSePuedeConstruirEnCasilleroConMohoException.class, () -> {
-            new Acceso(casillero, banco);
+            new Acceso(casillero, inventario);
         });
         //ASSERT
         assertEquals(expectedMessage, exception.getMessage());
@@ -50,11 +50,11 @@ public class casosDeUso14 {
         Mapa mapa = new Mapa(dimensionX, dimensionY);
         Casillero casillero = mapa.obtenerCasillero(1, 1);
         casillero.setTipoCasillero(new Moho());
-        Banco banco = new Banco(300, 300);
-        Edificio pilon = new Pilon(mapa.adyacentes(casillero)[0], banco);
+        Inventario inventario = new Inventario(300, 300);
+        Edificio pilon = new Pilon(mapa.adyacentes(casillero)[0], inventario);
         //ACT
         Exception exception = assertThrows(NoSePuedeConstruirEnCasilleroConMohoException.class, () -> {
-            new PuertoEstelar(casillero, banco);
+            new PuertoEstelar(casillero, inventario);
         });
         //ASSERT
         assertEquals(expectedMessage, exception.getMessage());
@@ -65,13 +65,13 @@ public class casosDeUso14 {
         //ARRANGE
         Mapa mapa = new Mapa(dimensionX, dimensionY);
         Casillero casillero = mapa.obtenerCasillero(1, 1);
-        Edificio pilon = new Pilon(mapa.adyacentes(casillero)[0], banco);
+        Edificio pilon = new Pilon(mapa.adyacentes(casillero)[0], inventario);
         casillero.setTipoCasillero(new Moho());
-        Banco banco = new Banco(300, 300);
+        Inventario inventario = new Inventario(300, 300);
         //ACT
         mapa.pasarTurno();
         pilon.recibirDanio(1000);
         //ASSERT
-        assertDoesNotThrow(new Criadero(casillero, banco));
+        assertDoesNotThrow(new Criadero(casillero, inventario));
     }
 }

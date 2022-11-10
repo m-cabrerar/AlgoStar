@@ -17,8 +17,8 @@ public void test01NexoMineralRecibeDanioYRecuperaEscudo(){
         Casillero casillero = new Casillero();
         when(mockedCasillero.estaOcupado()).thenReturn(false);
         when(mockedCasillero.tieneEnergia()).thenReturn(true);
-        Banco banco = new Banco(200,200);
-        Acceso acceso = new Acceso(casillero, banco);
+        Inventario inventario = new Inventario(200,200);
+        Acceso acceso = new Acceso(casillero, inventario);
         //ACT
         acceso.recibirDanio(300);
         for(int i=0; i<30; i++){
@@ -35,8 +35,8 @@ public void test01NexoMineralRecibeDanioYRecuperaEscudo(){
         Casillero mockedCasillero = mock(Casillero.class);
         when(mockedCasillero.estaOcupado()).thenReturn(false);
         when(mockedCasillero.tieneEnergia()).thenReturn(true);
-        Banco banco = new Banco(200,200);
-        Pilon pilon = new Pilon(casillero, banco);
+        Inventario inventario = new Inventario(200,200);
+        Pilon pilon = new Pilon(casillero, inventario);
         //ACT
         pilon.recibirDanio(350);
         for(int i=0; i<35; i++){
@@ -53,8 +53,8 @@ public void test01NexoMineralRecibeDanioYRecuperaEscudo(){
         Casillero mockedCasillero = mock(Casillero.class);
         when(mockedCasillero.estaOcupado()).thenReturn(false);
         when(mockedCasillero.tieneEnergia()).thenReturn(true);
-        Banco banco = new Banco(200,200);
-        Asimilador asimilador = new Asimilador(casillero, banco);
+        Inventario inventario = new Inventario(200,200);
+        Asimilador asimilador = new Asimilador(casillero, inventario);
         //ACT
         asimilador.recibirDanio(500);
         for(int i=0; i<50; i++){
@@ -71,8 +71,8 @@ public void test01NexoMineralRecibeDanioYRecuperaEscudo(){
         Casillero mockedCasillero = mock(Casillero.class);
         when(mockedCasillero.estaOcupado()).thenReturn(false);
         when(mockedCasillero.tieneEnergia()).thenReturn(true);
-        Banco banco = new Banco(200,200);
-        Acceso acceso = new Acceso(casillero, banco);
+        Inventario inventario = new Inventario(200,200);
+        Acceso acceso = new Acceso(casillero, inventario);
         //ACT
         acceso.recibirDanio(550);
         for(int i=0; i<55; i++){
@@ -89,8 +89,8 @@ public void test01NexoMineralRecibeDanioYRecuperaEscudo(){
         Casillero mockedCasillero = mock(Casillero.class);
         when(mockedCasillero.estaOcupado()).thenReturn(false);
         when(mockedCasillero.tieneEnergia()).thenReturn(true);
-        Banco banco = new Banco(200,200);
-        PuertoEstelar puertoEstelar = new PuertoEstelar(casillero, banco);
+        Inventario inventario = new Inventario(200,200);
+        PuertoEstelar puertoEstelar = new PuertoEstelar(casillero, inventario);
         //ACT
         puertoEstelar.recibirDanio(650);
         for(int i=0; i<65; i++){

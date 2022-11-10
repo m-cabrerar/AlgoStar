@@ -16,15 +16,15 @@ public class casosDeUso4 {
         //ARRANGE
         String mensaje = "El extractor no tiene zanganos trabajando";
         Casillero casillero = new NodoDeGas();
-        Banco banco = new Banco(300,300);
-        Edificio extractor = new Extractor(casillero, banco);
+        Inventario inventario = new Inventario(300,300);
+        Edificio extractor = new Extractor(casillero, inventario);
 
         //ACT
         for(int i=0; i<6; i++){
             extractor.pasarTurno();
         }
         Exception exception = assertThrows(Exception.class, () -> {
-            extractor.extraerGas(); //esto creo que habria que mandarselo a una metodo del banco para agregar
+            extractor.extraerGas(); //esto creo que habria que mandarselo a una metodo del inventario para agregar
         });
 
         //ASSERT
@@ -38,8 +38,8 @@ public class casosDeUso4 {
         //ARRANGE
         Gas gasEsperado = new Gas(10);
         Casillero casillero = new NodoDeGas();
-        Banco banco = new Banco(300,300);
-        Edificio extractor = new Extractor(casillero, banco);
+        Inventario inventario = new Inventario(300,300);
+        Edificio extractor = new Extractor(casillero, inventario);
 
         //ACT
         for(int i=0; i<6; i++){
@@ -59,8 +59,8 @@ public class casosDeUso4 {
         //ARRANGE
         Gas gasEsperado = new Gas(20);
         Casillero casillero = new NodoDeGas();
-        Banco banco = new Banco(300,300);
-        Edificio extractor = new Extractor(casillero, banco);
+        Inventario inventario = new Inventario(300,300);
+        Edificio extractor = new Extractor(casillero, inventario);
 
         //ACT
         for(int i=0; i<6; i++){
@@ -80,8 +80,8 @@ public class casosDeUso4 {
         //ARRANGE
         Gas gasEsperado = new Gas(30);
         Casillero casillero = new NodoDeGas();
-        Banco banco = new Banco(300,300);
-        Edificio extractor = new Extractor(casillero, banco);
+        Inventario inventario = new Inventario(300,300);
+        Edificio extractor = new Extractor(casillero, inventario);
 
         //ACT
         for(int i=0; i<6; i++){
@@ -102,8 +102,8 @@ public class casosDeUso4 {
         //ARRANGE
         String mensaje = "El extractor ya tiene 3 zanganos trabajando duro";
         Casillero casillero = new NodoDeGas();
-        Banco banco = new Banco(300,300);
-        Edificio extractor = new Extractor(casillero, banco);
+        Inventario inventario = new Inventario(300,300);
+        Edificio extractor = new Extractor(casillero, inventario);
 
         //ACT
         for(int i=0; i<6; i++){
@@ -113,7 +113,7 @@ public class casosDeUso4 {
         extractor.agregarZangano();
         extractor.agregarZangano();
         Exception exception = assertThrows(Exception.class, () -> {
-            extractor.agregarZangano(); //esto creo que habria que mandarselo a una metodo del banco para agregar
+            extractor.agregarZangano(); //esto creo que habria que mandarselo a una metodo del inventario para agregar
         });
 
         //ASSERT
