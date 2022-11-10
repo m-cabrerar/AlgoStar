@@ -6,6 +6,8 @@ public class casosDeUso10 {
     /*Verificar que al dañar una construcción zerg, la misma recupera la vida por turnos hasta
      *volver a tener el 100%.
      */
+
+    // Asumo que los edificios Zerg recuperan 10 de vida por turno.
     @Test
     public void test01CriaderoRecibeDanioYRecuperaVida(){
         //ARRANGE
@@ -35,6 +37,8 @@ public class casosDeUso10 {
         extractor.pasarTurno();
         extractor.pasarTurno();
         extractor.pasarTurno();
+        extractor.pasarTurno();
+        extractor.pasarTurno();
         extractor.recibirDanio(999);
         //ASSERT
         assertTrue(casillero.estaOcupado());
@@ -49,6 +53,8 @@ public class casosDeUso10 {
         ReservaDeReproduccion reservaDeReproduccion = new ReservaDeReproduccion(casillero, banco);
         //ACT
         reservaDeReproduccion.recibirDanio(50);
+        reservaDeReproduccion.pasarTurno();
+        reservaDeReproduccion.pasarTurno();
         reservaDeReproduccion.pasarTurno();
         reservaDeReproduccion.pasarTurno();
         reservaDeReproduccion.pasarTurno();
@@ -69,6 +75,8 @@ public class casosDeUso10 {
         guarida.pasarTurno();
         guarida.pasarTurno();
         guarida.pasarTurno();
+        guarida.pasarTurno();
+        guarida.pasarTurno();
         guarida.recibirDanio(1249);
         //ASSERT
         assertTrue(casillero.estaOcupado());
@@ -83,6 +91,8 @@ public class casosDeUso10 {
         Espiral espiral = new Espiral(casillero, banco);
         //ACT
         espiral.recibirDanio(50);
+        espiral.pasarTurno();
+        espiral.pasarTurno();
         espiral.pasarTurno();
         espiral.pasarTurno();
         espiral.pasarTurno();

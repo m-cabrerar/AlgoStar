@@ -6,7 +6,8 @@ public class casosDeUso11 {
     /*Verificar que al dañar una construcción protoss sin quitarle _todo el escudo, la misma
      *recupera su escudo por turnos hasta volver a tener el 100% del mismo
      */
-    
+
+    // Asumo que los edificios Protoss recuperan 10 de escudo por turno.
     @Test
     public void test01AccesoRecibeDanioYRecuperaEscudo(){
         //ARRANGE
@@ -16,6 +17,8 @@ public class casosDeUso11 {
         Acceso acceso = new Acceso(casillero, banco);
         //ACT
         acceso.recibirDanio(50);
+        acceso.pasarTurno();
+        acceso.pasarTurno();
         acceso.pasarTurno();
         acceso.pasarTurno();
         acceso.pasarTurno();
@@ -36,6 +39,8 @@ public class casosDeUso11 {
         nexoMineral.pasarTurno();
         nexoMineral.pasarTurno();
         nexoMineral.pasarTurno();
+        nexoMineral.pasarTurno();
+        nexoMineral.pasarTurno();
         nexoMineral.recibirDanio(499);
         //ASSERT
         assertTrue(casillero.estaOcupado());
@@ -50,6 +55,8 @@ public class casosDeUso11 {
         Pilon pilon = new Pilon(casillero, banco);
         //ACT
         pilon.recibirDanio(50);
+        pilon.pasarTurno();
+        pilon.pasarTurno();
         pilon.pasarTurno();
         pilon.pasarTurno();
         pilon.pasarTurno();
@@ -70,6 +77,8 @@ public class casosDeUso11 {
         puertoEstelar.pasarTurno();
         puertoEstelar.pasarTurno();
         puertoEstelar.pasarTurno();
+        puertoEstelar.pasarTurno();
+        puertoEstelar.pasarTurno();
         puertoEstelar.recibirDanio(1199);
         //ASSERT
         assertTrue(casillero.estaOcupado());
@@ -84,6 +93,8 @@ public class casosDeUso11 {
         Asimilador asimilador = new Asimilador(casillero, banco);
         //ACT
         asimilador.recibirDanio(50);
+        asimilador.pasarTurno();
+        asimilador.pasarTurno();
         asimilador.pasarTurno();
         asimilador.pasarTurno();
         asimilador.pasarTurno();
