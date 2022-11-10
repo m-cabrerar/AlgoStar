@@ -2,10 +2,9 @@
 title Classes - AlgoStars
 
 class Jugador {
- - Inventario: inventario
 }
 
-class Edificio {
+interface Edificio {
     -vida
     -ubicacion: Casillero
     {abstract}+ pasarTurno()
@@ -15,7 +14,8 @@ class Edificio {
     + destruir()
 }
 
-class EdificioConstruido{
+class EdificioConcreto{
++construir()
 }
 
 class EdificioEnConstruccion {
@@ -40,7 +40,7 @@ class EdificioZerg {
 class Casillero {
     + tieneEnergia()
     + pasarTurno()
-    - estado
+    - estaOcupado
 }
 
 class Mineral {
@@ -63,50 +63,34 @@ class Moho {
 }
 
 class Inventario {
- - Collection: Edificios
 }
 
+interface TipoCasillero{}
 
-class ReservaDeReproduccion {
-}
-class Extractor {
- + 
-}
-class Criadero {
- + engendrarZangano()
- - sacarLarva()
- + pasarTurno()
- - regenerarLarva()
-}
-class Larva {
-}
-class Zangano{
- + transformar(Larva)
-}
-Larva <.. Zangano
-Criadero o-- Larva
 
-Casillero <|-- NodoDeGas
-Casillero <|-- Moho
-Casillero <|-- NodoMineral
+
+Casillero --> TipoCasillero
+
+NodoGas <- TipoCasillero
+TipoCasillero --> NodoMineral
+TipoCasillero --> CasilleroVacio
+TipoCasillero -> Moho
 
 Inventario o-- Gas
 Inventario o-- Mineral
 
-Mapa "1" *-- "*" Casillero
+Mapa "1" *- "*" Casillero
+Casillero -> Mapa
 
-Edificio ..> Inventario
-Edificio ..> Casillero
+Edificio "*"--o "1" Inventario
+Edificio "1"-->"1" Casillero
 
 
-Edificio <|... EdificioConstruido
+Edificio <|... EdificioConcreto
 Edificio <|... EdificioEnConstruccion
-EdificioConstruido <|... EdificioZerg
-EdificioConstruido <|... EdificioProto
+EdificioConcreto <|... EdificioZerg
+EdificioConcreto <|... EdificioProto
 
-EstadoEnergetico <|.. Energizado
-EstadoEnergetico <|.. NoEnergizado
 
 Jugador "1" o--> "1" Inventario
-Jugador "1" o--> "*" Edificio
 @enduml

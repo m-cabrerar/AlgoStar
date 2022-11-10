@@ -1,15 +1,16 @@
 @startuml
-title Classes - AlgoStars
-
 class Edificio {
     -vida
     -ubicacion: Casillero
-    + pasarTurno()
-    + recibirDaño(daño)
-    + construir(Billetera, Casillero)
+    + {abstract} pasarTurno()
+    + {abstract} recibirDaño(daño)
+
     + destruir()
 }
 
+class EdificioConcreto{
+ + {abstract} construir(Billetera, Casillero)
+}
 
 class EdificioEnConstruccion {
     - vaASer: Edificio
@@ -23,62 +24,52 @@ class EdificioProto {
     + recibirDaño(daño)
     + pasarTurno()
     '+ estaActivo()'
+    '+ setEstadoEnergetico(estado)'
 }
 
 class EdificioZerg {
     + pasarTurno()
 }
 
-
-Edificio <|... EdificioProto
-Edificio <|... EdificioZerg
-EdificioEnConstruccion o- Edificio
-
-
-class Casillero {
-    + tieneEnergia()
-    + pasarTurno()
-    - estado
-}
-
-class Mineral {
-    - cantidad
-}
-class Gas {
-    - cantidad
-}
-
-class Moho {
-    + pasarTurno()
-    + tieneEnergia()
-}
-
-
-/'
 class Criadero {
  + engendrarZangano()
- - sacarLarva()
- + pasarTurno()
- - regenerarLarva()
 }
-class Larva {
+
+class ReservaDeReproduccion {}
+
+class Extractor {
+ + agregarZangano()
+ + extraerGas()
 }
-class Zangano{
- + transformar(Larva)
-}
-Larva <.. Zangano
-Criadero o-- Larva
-'/
 
-Casillero <|-- NodoDeGas
-Casillero <|-- Moho
-Casillero <|-- NodoMineral
+class Guarida {}
 
-Inventario "1" o-- "0..*" Gas
-Inventario "1" o-- "0..*" Mineral
+class Espiral {}
 
-Mapa "1" *-- "*" Casillero
+Criadero -|>  EdificioZerg
+EdificioZerg <|- ReservaDeReproduccion
+EdificioZerg <|-- Extractor
+EdificioZerg <|-- Guarida
+EdificioZerg <|-- Espiral
 
-Edificio ..> Inventario
-Edificio ..> Casillero
+class NexoMineral {}
+
+class Pilon {}
+
+class Asimilador {}
+
+class Acceso {}
+
+class PuertoEstelar {}
+
+NexoMineral -|> EdificioProto
+EdificioProto <|- Pilon
+EdificioProto <|-- Asimilador
+EdificioProto <|-- Acceso
+EdificioProto <|-- PuertoEstelar
+
+Edificio <|... EdificioConcreto
+Edificio <|... EdificioEnConstruccion
+EdificioConcreto<|... EdificioZerg
+EdificioConcreto<|... EdificioProto
 @enduml
