@@ -2,6 +2,8 @@ package edu.fiuba.algo3.entrega_1;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class casosDeUso11 {
     /*Verificar que al dañar una construcción protoss sin quitarle _todo el escudo, la misma
      *recupera su escudo por turnos hasta volver a tener el 100% del mismo
@@ -11,8 +13,9 @@ public class casosDeUso11 {
     @Test
     public void test01AccesoRecibeDanioYRecuperaEscudo(){
         //ARRANGE
-        Casillero casillero = new Casillero();
-        Casillero.setTipoCasillero(new Moho());
+        Casillero mockedCasillero = mock(Casillero.class);
+        when(mockedCasillero.estaOcupado()).thenReturn(false);
+        when(mockedCasillero.tieneEnergia()).thenReturn(true);
         Banco banco = new Banco(200,200);
         Acceso acceso = new Acceso(casillero, banco);
         //ACT
@@ -30,8 +33,9 @@ public class casosDeUso11 {
     @Test
     public void test02NexoMineralRecibeDanioYRecuperaEscudo(){
         //ARRANGE
-        Casillero casillero = new Casillero();
-        Casillero.setTipoCasillero(new Moho());
+        Casillero mockedCasillero = mock(Casillero.class);
+        when(mockedCasillero.estaOcupado()).thenReturn(false);
+        when(mockedCasillero.tieneEnergia()).thenReturn(true);
         Banco banco = new Banco(200,200);
         NexoMineral nexoMineral = new NexoMineral(casillero, banco);
         //ACT
@@ -49,8 +53,9 @@ public class casosDeUso11 {
     @Test
     public void test03PilonRecibeDanioYRecuperaEscudo(){
         //ARRANGE
-        Casillero casillero = new Casillero();
-        Casillero.setTipoCasillero(new Moho());
+        Casillero mockedCasillero = mock(Casillero.class);
+        when(mockedCasillero.estaOcupado()).thenReturn(false);
+        when(mockedCasillero.tieneEnergia()).thenReturn(true);
         Banco banco = new Banco(200,200);
         Pilon pilon = new Pilon(casillero, banco);
         //ACT
@@ -68,8 +73,9 @@ public class casosDeUso11 {
     @Test
     public void test04PuertoEstelarRecibeDanioYRecuperaEscudo(){
         //ARRANGE
-        Casillero casillero = new Casillero();
-        Casillero.setTipoCasillero(new Moho());
+        Casillero mockedCasillero = mock(Casillero.class);
+        when(mockedCasillero.estaOcupado()).thenReturn(false);
+        when(mockedCasillero.tieneEnergia()).thenReturn(true);
         Banco banco = new Banco(200,200);
         PuertoEstelar puertoEstelar = new PuertoEstelar(casillero, banco);
         //ACT
@@ -87,8 +93,9 @@ public class casosDeUso11 {
     @Test
     public void test05AsimiladorRecibeDanioYRecuperaEscudo(){
         //ARRANGE
-        Casillero casillero = new Casillero();
-        Casillero.setTipoCasillero(new Moho());
+        Casillero mockedCasillero = mock(Casillero.class);
+        when(mockedCasillero.estaOcupado()).thenReturn(false);
+        when(mockedCasillero.tieneEnergia()).thenReturn(true);
         Banco banco = new Banco(200,200);
         Asimilador asimilador = new Asimilador(casillero, banco);
         //ACT
