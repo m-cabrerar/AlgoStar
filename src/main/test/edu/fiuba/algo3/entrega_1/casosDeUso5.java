@@ -11,8 +11,64 @@ public class casosDeUso5 {
      */
     //Todo pasar a Mock el banco que siempre pueda pagar.
 
-    /*********************Edificios Que Necesitan Moho**************************/
-    /* INTENTO CONSTRUIR SOBRE NODO MINERAL Y NO SE PUEDE. */
+    @Test
+    public void test01NoSePuedeConstruirUnAccesoFueraDelRangoDelPilon(){
+        //ARRANGE
+        Casillero mockedCasillero = mock(Casillero.class);
+        when(mockedCasillero.estaOcupado()).thenReturn(false);
+        when(mockedCasillero.tieneEnergia()).thenReturn(false);
+        Banco banco = new Banco(200,200);
+        //ACT
+        Exception exception = assertThrows(Exception.class, () -> {
+            Acceso acceso = new Acceso(casillero, banco);
+        });
+        //ASSERT
+        assertEquals(mensaje, exception.getMessage());
+    }
+
+    @Test
+    public void test02NoSePuedeConstruirUnPuertoEstelarFueraDelRangoDelPilon(){
+        //ARRANGE
+        Casillero mockedCasillero = mock(Casillero.class);
+        when(mockedCasillero.estaOcupado()).thenReturn(false);
+        when(mockedCasillero.tieneEnergia()).thenReturn(false);
+        Banco banco = new Banco(200,200);
+        //ACT
+        Exception exception = assertThrows(Exception.class, () -> {
+            PuertoEstelar puertoEstelar = new PuertoEstelar(casillero, banco);
+        });
+        //ASSERT
+        assertEquals(mensaje, exception.getMessage());
+    }
+
+    @Test
+    public void test03SePuedeConstruirUnAccesoDentroDelRangoDelPilon(){
+        //ARRANGE
+        Casillero mockedCasillero = mock(Casillero.class);
+        when(mockedCasillero.estaOcupado()).thenReturn(false);
+        when(mockedCasillero.tieneEnergia()).thenReturn(true);
+        Banco banco = new Banco(200,200);
+        //ACT
+        Acceso acceso = new Acceso(casillero, banco);
+        //ASSERT
+        assertTrue(casillero.estaOcupado());
+    }
+
+    @Test
+    public void test04SePuedeConstruirUnPuertoEstelarDentroDelRangoDelPilon(){
+        //ARRANGE
+        Casillero mockedCasillero = mock(Casillero.class);
+        when(mockedCasillero.estaOcupado()).thenReturn(false);
+        when(mockedCasillero.tieneEnergia()).thenReturn(true);
+        Banco banco = new Banco(200,200);
+        //ACT
+        PuertoEstelar puertoEstelar = new PuertoEstelar(casillero, banco);
+        //ASSERT
+        assertTrue(casillero.estaOcupado());
+    }
+    /*
+    *//*********************Edificios Que Necesitan Moho**************************//*
+    *//* INTENTO CONSTRUIR SOBRE NODO MINERAL Y NO SE PUEDE. *//*
     @Test
     public void test01ConstruyoUnCriaderoEnUnNodoMineralYDaError(){
         //ARRANGE
@@ -145,5 +201,5 @@ public class casosDeUso5 {
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
     }
-
+*/
 }
