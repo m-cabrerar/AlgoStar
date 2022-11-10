@@ -5,23 +5,24 @@ class Jugador {
 }
 
 interface Edificio {
-    -vida
-    -ubicacion: Casillero
+
     {abstract}+ pasarTurno()
     + recibirDaño(daño)
-    + setEstadoEnergetico(estado)?
-    + construir(Inventario, Casillero)
-    + destruir()
 }
 
 class EdificioConcreto{
-+construir()
+    -vida
+    {abstract}+ pasarTurno()
+    + recibirDaño(daño)
+    + construir(Inventario, Casillero)
 }
 
 class EdificioEnConstruccion {
+    -vida
+    + pasarTurno()
+    + recibirDaño(daño)
     - vaASer: Edificio
     - turnosRestantes
-    + pasarTurno()
 }
 
 class EdificioProto {
@@ -40,7 +41,18 @@ class EdificioZerg {
 class Casillero {
     + tieneEnergia()
     + pasarTurno()
+    + setTipoCasillero(tipoCelda:TipoCasillero)
+    + contagiarMoho(casillero, rango)
+    + sumarEnergia(casillero, rango)
     - estaOcupado
+    - energia
+    - coordenadaX
+    - coordenadaY
+}
+
+class Mapa {
+    + contagiarMoho(x, y, rango)
+    + sumarEnergia(x, y, rango)
 }
 
 class Mineral {
@@ -61,11 +73,26 @@ class Moho {
     + pasarTurno()
     + tieneEnergia()
 }
+class CasilleroVacio{
+    + pasarTurno()
+    + tieneEnergia()
+}
+class NodoGas{
+    + pasarTurno()
+    + tieneEnergia()
+}
+class NodoMineral{
+    + pasarTurno()
+    + tieneEnergia()
+}
 
 class Inventario {
 }
 
-interface TipoCasillero{}
+interface TipoCasillero{
+{abstract}+ pasarTurno()
+{abstract}+ tieneEnergia()
+}
 
 
 
@@ -90,6 +117,7 @@ Edificio <|... EdificioConcreto
 Edificio <|... EdificioEnConstruccion
 EdificioConcreto <|... EdificioZerg
 EdificioConcreto <|... EdificioProto
+
 
 
 Jugador "1" o--> "1" Inventario
