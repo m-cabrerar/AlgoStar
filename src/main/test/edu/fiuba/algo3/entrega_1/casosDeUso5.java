@@ -14,6 +14,7 @@ public class casosDeUso5 {
     @Test
     public void test01NoSePuedeConstruirUnAccesoFueraDelRangoDelPilon(){
         //ARRANGE
+        String mensaje = "No se puede construir en este tipo de casillero";
         Casillero mockedCasillero = mock(Casillero.class);
         when(mockedCasillero.estaOcupado()).thenReturn(false);
         when(mockedCasillero.tieneEnergia()).thenReturn(false);
@@ -29,6 +30,7 @@ public class casosDeUso5 {
     @Test
     public void test02NoSePuedeConstruirUnPuertoEstelarFueraDelRangoDelPilon(){
         //ARRANGE
+        String mensaje = "No se puede construir en este tipo de casillero";
         Casillero mockedCasillero = mock(Casillero.class);
         when(mockedCasillero.estaOcupado()).thenReturn(false);
         when(mockedCasillero.tieneEnergia()).thenReturn(false);
