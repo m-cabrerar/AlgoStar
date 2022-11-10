@@ -17,8 +17,8 @@ public class casosDeUso15 {
         int unidadesRecolecto = 10;
         Gas gasEsperado = new Gas(unidadesGas);
         Casillero casillero = new NodoDeGas();
-        Banco banco = new Banco(300,300);
-        Edificio extractor = Extractor.construir(casillero, banco);
+        Inventario inventario = new Inventario(300,300);
+        Edificio extractor = Extractor.construir(casillero, inventario);
 
         //ACT
         for(int i=0; i<6; i++){
@@ -45,8 +45,8 @@ public class casosDeUso15 {
         int unidadesRecolecto = 20;
         Gas gasEsperado = new Mineral(unidadesGas);
         Casillero casillero = new NodoDeGas();
-        Banco banco = new Banco(300,300);
-        Edificio asimilador = Asimilador.construir(casillero, banco);
+        Inventario inventario = new Inventario(300,300);
+        Edificio asimilador = Asimilador.construir(casillero, inventario);
 
         //ACT
         for(int i=0; i<6; i++){
@@ -72,8 +72,8 @@ public class casosDeUso15 {
         int unidadesRecolecto = 10;
         Mineral mineralEsperado = new Mineral(unidadesMineral);
         Casillero casillero = new NodoMineral();
-        Banco banco = new Banco(300,300);
-        Edificio nexoMineral = NexoMineral.construir(casillero, banco);
+        Inventario inventario = new Inventario(300,300);
+        Edificio nexoMineral = NexoMineral.construir(casillero, inventario);
 
         //ACT
         for(int i=0; i<4; i++){

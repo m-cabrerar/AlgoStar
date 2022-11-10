@@ -11,7 +11,7 @@ public class casosDeUso8 {
      */
 
     //TODO CAMBIAR CASILLERO POR UN MOCK DEL MISMO ASI ME ASEGURO Q NO SALTA POR REGLA PILONES.
-    //TODO Cambiar banco por mock que siempre diga q no se puede
+    //TODO Cambiar inventario por mock que siempre diga q no se puede
     //TODO tambien cambiar casillero de Zerg por mock
 
     //**************************PROTOSS ********************************
@@ -20,10 +20,10 @@ public class casosDeUso8 {
         //ARRANGE
         String mensaje = "No se tienen los fondos para construir un asimilador";
         Casillero casillero = new NodoMineral();
-        Banco banco = new Banco(0,0);
+        Inventario inventario = new Inventario(0,0);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            Asimilador asimilador = new Asimilador(casillero, banco);
+            Asimilador asimilador = new Asimilador(casillero, inventario);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
@@ -34,10 +34,10 @@ public class casosDeUso8 {
         //ARRANGE
         String mensaje = "No se tienen los fondos para construir un Nexo Mineral";
         Casillero casillero = new NodoMineral();
-        Banco banco = new Banco(0,0);
+        Inventario inventario = new Inventario(0,0);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            NexoMineral nexoMineral = new NexoMineral(casillero, banco);
+            NexoMineral nexoMineral = new NexoMineral(casillero, inventario);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
@@ -48,10 +48,10 @@ public class casosDeUso8 {
         //ARRANGE
         String mensaje = "No se tienen los fondos para construir un Pilon";
         Casillero casillero = new NodoMoho();
-        Banco banco = new Banco(0,0);
+        Inventario inventario = new Inventario(0,0);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            Pilon pilon = new Pilon(casillero, banco);
+            Pilon pilon = new Pilon(casillero, inventario);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
@@ -62,10 +62,10 @@ public class casosDeUso8 {
         //ARRANGE
         String mensaje = "No se tienen los fondos para construir un Acceso";
         Casillero casillero = new Moho();
-        Banco banco = new Banco(0,0);
+        Inventario inventario = new Inventario(0,0);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            Acceso acceso = new Acceso(casillero, banco);
+            Acceso acceso = new Acceso(casillero, inventario);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
@@ -75,10 +75,10 @@ public class casosDeUso8 {
         //ARRANGE
         String mensaje = "No se tienen los fondos para construir un PuertoEstelar";
         Casillero casillero = new Moho();
-        Banco banco = new Banco(0,0);
+        Inventario inventario = new Inventario(0,0);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            PuertoEstelar puertoEstelar = new PuertoEstelar(casillero, banco);
+            PuertoEstelar puertoEstelar = new PuertoEstelar(casillero, inventario);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
@@ -90,10 +90,10 @@ public class casosDeUso8 {
         //ARRANGE
         String mensaje = "No se tienen los fondos para construir un Criadero";
         Casillero casillero = new Moho(); //Cambiar a mock
-        Banco banco = new Banco(0,0);
+        Inventario inventario = new Inventario(0,0);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            Criadero criadero = new Criadero(casillero, banco);
+            Criadero criadero = new Criadero(casillero, inventario);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
@@ -103,10 +103,10 @@ public class casosDeUso8 {
         //ARRANGE
         String mensaje = "No se tienen los fondos para construir una Reserva de Reproduccion";
         Casillero casillero = new Moho();
-        Banco banco = new Banco(0,0);
+        Inventario inventario = new Inventario(0,0);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            ReservaDeReproduccion reserva = new ReservaDeReproduccion(casillero, banco);
+            ReservaDeReproduccion reserva = new ReservaDeReproduccion(casillero, inventario);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
@@ -116,10 +116,10 @@ public class casosDeUso8 {
         //ARRANGE
         String mensaje = "No se tienen los fondos para construir un Extractor";
         Casillero casillero = new Moho();
-        Banco banco = new Banco(0,0);
+        Inventario inventario = new Inventario(0,0);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            Extractor extractor = new Extractor(casillero, banco);
+            Extractor extractor = new Extractor(casillero, inventario);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
@@ -130,10 +130,10 @@ public class casosDeUso8 {
         //ARRANGE
         String mensaje = "No se tienen los fondos para construir una guarida";
         Casillero casillero = new Moho();
-        Banco banco = new Banco(0,0);
+        Inventario inventario = new Inventario(0,0);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            Guarida guarida = new Guarida(casillero, banco);
+            Guarida guarida = new Guarida(casillero, inventario);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
@@ -144,10 +144,10 @@ public class casosDeUso8 {
         //ARRANGE
         String mensaje = "No se tienen los fondos para construir";
         Casillero casillero = new Moho();
-        Banco banco = new Banco(0,0);
+        Inventario inventario = new Inventario(0,0);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            Espiral espiral = new Espiral(casillero, banco);
+            Espiral espiral = new Espiral(casillero, inventario);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());

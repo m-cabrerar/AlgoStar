@@ -16,8 +16,8 @@ public class casosDeUso11 {
         Casillero mockedCasillero = mock(Casillero.class);
         when(mockedCasillero.estaOcupado()).thenReturn(false);
         when(mockedCasillero.tieneEnergia()).thenReturn(true);
-        Banco banco = new Banco(200,200);
-        Acceso acceso = new Acceso(casillero, banco);
+        Inventario inventario = new Inventario(200,200);
+        Acceso acceso = new Acceso(casillero, inventario);
         //ACT
         acceso.recibirDanio(50);
         acceso.pasarTurno();
@@ -36,8 +36,8 @@ public class casosDeUso11 {
         Casillero mockedCasillero = mock(Casillero.class);
         when(mockedCasillero.estaOcupado()).thenReturn(false);
         when(mockedCasillero.tieneEnergia()).thenReturn(true);
-        Banco banco = new Banco(200,200);
-        NexoMineral nexoMineral = new NexoMineral(casillero, banco);
+        Inventario inventario = new Inventario(200,200);
+        NexoMineral nexoMineral = new NexoMineral(casillero, inventario);
         //ACT
         nexoMineral.recibirDanio(50);
         nexoMineral.pasarTurno();
@@ -56,8 +56,8 @@ public class casosDeUso11 {
         Casillero mockedCasillero = mock(Casillero.class);
         when(mockedCasillero.estaOcupado()).thenReturn(false);
         when(mockedCasillero.tieneEnergia()).thenReturn(true);
-        Banco banco = new Banco(200,200);
-        Pilon pilon = new Pilon(casillero, banco);
+        Inventario inventario = new Inventario(200,200);
+        Pilon pilon = new Pilon(casillero, inventario);
         //ACT
         pilon.recibirDanio(50);
         pilon.pasarTurno();
@@ -76,8 +76,8 @@ public class casosDeUso11 {
         Casillero mockedCasillero = mock(Casillero.class);
         when(mockedCasillero.estaOcupado()).thenReturn(false);
         when(mockedCasillero.tieneEnergia()).thenReturn(true);
-        Banco banco = new Banco(200,200);
-        PuertoEstelar puertoEstelar = new PuertoEstelar(casillero, banco);
+        Inventario inventario = new Inventario(200,200);
+        PuertoEstelar puertoEstelar = new PuertoEstelar(casillero, inventario);
         //ACT
         puertoEstelar.recibirDanio(50);
         puertoEstelar.pasarTurno();
@@ -96,8 +96,8 @@ public class casosDeUso11 {
         Casillero mockedCasillero = mock(Casillero.class);
         when(mockedCasillero.estaOcupado()).thenReturn(false);
         when(mockedCasillero.tieneEnergia()).thenReturn(true);
-        Banco banco = new Banco(200,200);
-        Asimilador asimilador = new Asimilador(casillero, banco);
+        Inventario inventario = new Inventario(200,200);
+        Asimilador asimilador = new Asimilador(casillero, inventario);
         //ACT
         asimilador.recibirDanio(50);
         asimilador.pasarTurno();

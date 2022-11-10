@@ -15,15 +15,15 @@ public class casosDeUso16 {
         //ARRANGE
         String mensaje = "No se puede construir sobre otra construccion";
         Casillero casillero = new NodoDeGas();
-        Banco banco = new Banco(300,300);
-        Edificio asimilador = new Asimilador(casillero, banco);
+        Inventario inventario = new Inventario(300,300);
+        Edificio asimilador = new Asimilador(casillero, inventario);
 
         //ACT
         for(int i=0; i<6; i++){
             asimilador.pasarTurno();
         }
         Exception exception = assertThrows(Exception.class, () -> {
-            Edificio asimilador = new Asimilador(casillero, banco);
+            Edificio asimilador = new Asimilador(casillero, inventario);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
@@ -34,7 +34,7 @@ public class casosDeUso16 {
         //ARRANGE
         String mensaje = "No se puede construir en un mineral donde estan trabajando";
         Casillero casillero = new NodoMineral();
-        Banco banco = new Banco(300,300);
+        Inventario inventario = new Inventario(300,300);
         Criadero criadero = Criadero.inicializar();
 
 
@@ -45,7 +45,7 @@ public class casosDeUso16 {
 
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            Edificio nexoMineral = new NexoMineral(casillero, banco);
+            Edificio nexoMineral = new NexoMineral(casillero, inventario);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
@@ -56,8 +56,8 @@ public class casosDeUso16 {
         //ARRANGE
         String mensaje = "No se puede extraer donde hay construcciones";
         Casillero casillero = new NodoMineral();
-        Banco banco = new Banco(300,300);
-        Edificio nexoMineral = new NexoMineral(casillero, banco);
+        Inventario inventario = new Inventario(300,300);
+        Edificio nexoMineral = new NexoMineral(casillero, inventario);
         for(int i=0; i<6; i++){
             nexoMineral.pasarTurno();
         }

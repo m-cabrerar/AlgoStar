@@ -12,9 +12,9 @@ public class casosDeUso3 {
         //ARRANGE
         Casillero casillero = new Casillero();
         casillero.setTipoCasillero(new NodoDeGas());
-        Banco banco = new Banco(200,200);
+        Inventario inventario = new Inventario(200,200);
         //ACT
-        Asimilador asimilador = new Asimilador(casillero, banco);
+        Asimilador asimilador = new Asimilador(casillero, inventario);
         //ASSERT
         assertTrue(casillero.estaOcupado());
     }
@@ -25,10 +25,10 @@ public class casosDeUso3 {
         String mensaje = "No se puede construir un asimilador en este casillero";
         Casillero casillero = new Casillero();
         casillero.setTipoCasillero(new NodoMineral());
-        Banco banco = new Banco(200,200);
+        Inventario inventario = new Inventario(200,200);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            Asimilador asimilador = new Asimilador(casillero, banco);
+            Asimilador asimilador = new Asimilador(casillero, inventario);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
@@ -39,9 +39,9 @@ public class casosDeUso3 {
         //ARRANGE
         Casillero casillero = new Casillero();
         casillero.setTipoCasillero(new NodoDeGas());
-        Banco banco = new Banco(200,200);
+        Inventario inventario = new Inventario(200,200);
         //ACT
-        Extractor extractor = new Extractor(casillero, banco);
+        Extractor extractor = new Extractor(casillero, inventario);
         //ASSERT
         assertTrue(casillero.estaOcupado());
     }
@@ -52,10 +52,10 @@ public class casosDeUso3 {
         String mensaje = "No se puede construir un extractor en este casillero";
         Casillero casillero = new Casillero();
         casillero.setTipoCasillero(new NodoMineral());
-        Banco banco = new Banco(200,200);
+        Inventario inventario = new Inventario(200,200);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            Extractor extractor = new Extractor(casillero, banco);
+            Extractor extractor = new Extractor(casillero, inventario);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
@@ -67,10 +67,10 @@ public class casosDeUso3 {
         String mensaje = "No se puede construir un criadero en este casillero";
         Casillero casillero = new Casillero();
         casillero.setTipoCasillero(new NodoDeGas());
-        Banco banco = new Banco(200,200);
+        Inventario inventario = new Inventario(200,200);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            Criadero criadero = new Criadero(casillero, banco);
+            Criadero criadero = new Criadero(casillero, inventario);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
@@ -82,10 +82,10 @@ public class casosDeUso3 {
         String mensaje = "No se puede construir un pilon en este casillero";
         Casillero casillero = new Casillero();
         casillero.setTipoCasillero(new NodoDeGas());
-        Banco banco = new Banco(200,200);
+        Inventario inventario = new Inventario(200,200);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            Pilon pilon = new Pilon(casillero, banco);
+            Pilon pilon = new Pilon(casillero, inventario);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
@@ -97,10 +97,10 @@ public class casosDeUso3 {
         String mensaje = "No se puede construir un nexo mineral en este casillero";
         Casillero casillero = new Casillero();
         casillero.setTipoCasillero(new NodoDeGas());
-        Banco banco = new Banco(200,200);
+        Inventario inventario = new Inventario(200,200);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            NexoMineral nexo = new NexoMineral(casillero, banco);
+            NexoMineral nexo = new NexoMineral(casillero, inventario);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
@@ -112,10 +112,10 @@ public class casosDeUso3 {
         String mensaje = "No se puede construir un acceso en este casillero";
         Casillero casillero = new Casillero();
         casillero.setTipoCasillero(new NodoDeGas());
-        Banco banco = new Banco(200,200);
+        Inventario inventario = new Inventario(200,200);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            Acceso acceso = new Acceso(casillero, banco);
+            Acceso acceso = new Acceso(casillero, inventario);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
@@ -127,10 +127,10 @@ public class casosDeUso3 {
         String mensaje = "No se puede construir un puerto estelar en este casillero";
         Casillero casillero = new Casillero();
         casillero.setTipoCasillero(new NodoDeGas());
-        Banco banco = new Banco(200,200);
+        Inventario inventario = new Inventario(200,200);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            PuertoEstelar puerto = new PuertoEstelar(casillero, banco);
+            PuertoEstelar puerto = new PuertoEstelar(casillero, inventario);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());

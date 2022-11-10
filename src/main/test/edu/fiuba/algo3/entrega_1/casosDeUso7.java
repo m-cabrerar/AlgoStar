@@ -14,8 +14,8 @@ public class casosDeUso7 {
         //Arrange
         Mineral mineralEsperado = new Mineral(10);
         Casillero casillero = new NodoMineral();
-        Banco banco = new Banco(50,0);
-        Edificio nexoMineral = NexoMineral.construir(casillero, banco);
+        Inventario inventario = new Inventario(50,0);
+        Edificio nexoMineral = NexoMineral.construir(casillero, inventario);
 
         //ACT
         for(int i=0; i<6; i++){

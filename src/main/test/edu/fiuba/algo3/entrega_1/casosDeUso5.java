@@ -9,7 +9,7 @@ public class casosDeUso5 {
     /* Verificar que no se puedan construir edificios fuera del rango de un pilon o fuera del
      *moho.
      */
-    //Todo pasar a Mock el banco que siempre pueda pagar.
+    //Todo pasar a Mock el inventario que siempre pueda pagar.
 
     @Test
     public void test01NoSePuedeConstruirUnAccesoFueraDelRangoDelPilon(){
@@ -18,10 +18,10 @@ public class casosDeUso5 {
         Casillero mockedCasillero = mock(Casillero.class);
         when(mockedCasillero.estaOcupado()).thenReturn(false);
         when(mockedCasillero.tieneEnergia()).thenReturn(false);
-        Banco banco = new Banco(200,200);
+        Inventario inventario = new Inventario(200,200);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            Acceso acceso = new Acceso(casillero, banco);
+            Acceso acceso = new Acceso(casillero, inventario);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
@@ -34,10 +34,10 @@ public class casosDeUso5 {
         Casillero mockedCasillero = mock(Casillero.class);
         when(mockedCasillero.estaOcupado()).thenReturn(false);
         when(mockedCasillero.tieneEnergia()).thenReturn(false);
-        Banco banco = new Banco(200,200);
+        Inventario inventario = new Inventario(200,200);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            PuertoEstelar puertoEstelar = new PuertoEstelar(casillero, banco);
+            PuertoEstelar puertoEstelar = new PuertoEstelar(casillero, inventario);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
@@ -49,9 +49,9 @@ public class casosDeUso5 {
         Casillero mockedCasillero = mock(Casillero.class);
         when(mockedCasillero.estaOcupado()).thenReturn(false);
         when(mockedCasillero.tieneEnergia()).thenReturn(true);
-        Banco banco = new Banco(200,200);
+        Inventario inventario = new Inventario(200,200);
         //ACT
-        Acceso acceso = new Acceso(casillero, banco);
+        Acceso acceso = new Acceso(casillero, inventario);
         //ASSERT
         assertTrue(casillero.estaOcupado());
     }
@@ -62,9 +62,9 @@ public class casosDeUso5 {
         Casillero mockedCasillero = mock(Casillero.class);
         when(mockedCasillero.estaOcupado()).thenReturn(false);
         when(mockedCasillero.tieneEnergia()).thenReturn(true);
-        Banco banco = new Banco(200,200);
+        Inventario inventario = new Inventario(200,200);
         //ACT
-        PuertoEstelar puertoEstelar = new PuertoEstelar(casillero, banco);
+        PuertoEstelar puertoEstelar = new PuertoEstelar(casillero, inventario);
         //ASSERT
         assertTrue(casillero.estaOcupado());
     }
@@ -76,10 +76,10 @@ public class casosDeUso5 {
         //ARRANGE
         String mensaje = "No se puede construir un Criadero en este casillero";
         Casillero casillero = new NodoMineral();
-        Banco banco = new Banco(200,200);
+        Inventario inventario = new Inventario(200,200);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            Criadero criadero = new Criadero(casillero, banco);
+            Criadero criadero = new Criadero(casillero, inventario);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
@@ -89,10 +89,10 @@ public class casosDeUso5 {
         //ARRANGE
         String mensaje = "No se puede construir una Reserva de Reproduccion en este casillero";
         Casillero casillero = new NodoMineral();
-        Banco banco = new Banco(200,200);
+        Inventario inventario = new Inventario(200,200);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            ReservaDeReproduccion reserva = new ReservaDeReproduccion (casillero, banco);
+            ReservaDeReproduccion reserva = new ReservaDeReproduccion (casillero, inventario);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
@@ -102,10 +102,10 @@ public class casosDeUso5 {
         //ARRANGE
         String mensaje = "No se puede construir un Extractor en este casillero";
         Casillero casillero = new NodoMineral();
-        Banco banco = new Banco(200,200);
+        Inventario inventario = new Inventario(200,200);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            Extractor extractor = new Extractor(casillero, banco);
+            Extractor extractor = new Extractor(casillero, inventario);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
@@ -115,10 +115,10 @@ public class casosDeUso5 {
         //ARRANGE
         String mensaje = "No se puede construir una Guarida en este casillero";
         Casillero casillero = new NodoMineral();
-        Banco banco = new Banco(200,200);
+        Inventario inventario = new Inventario(200,200);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            Guarida guarida = new Guarida(casillero, banco);
+            Guarida guarida = new Guarida(casillero, inventario);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
@@ -128,10 +128,10 @@ public class casosDeUso5 {
         //ARRANGE
         String mensaje = "No se puede construir una Espiral en este casillero";
         Casillero casillero = new NodoMineral();
-        Banco banco = new Banco(200,200);
+        Inventario inventario = new Inventario(200,200);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            Espiral espiral = new Espiral(casillero, banco);
+            Espiral espiral = new Espiral(casillero, inventario);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
@@ -143,10 +143,10 @@ public class casosDeUso5 {
         //ARRANGE
         String mensaje = "No se puede construir un Criadero en este casillero";
         Casillero casillero = new NodoGas();
-        Banco banco = new Banco(200,200);
+        Inventario inventario = new Inventario(200,200);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            Criadero criadero = new Criadero(casillero, banco);
+            Criadero criadero = new Criadero(casillero, inventario);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
@@ -156,10 +156,10 @@ public class casosDeUso5 {
         //ARRANGE
         String mensaje = "No se puede construir una Reserva de Reproduccion en este casillero";
         Casillero casillero = new NodoGas();
-        Banco banco = new Banco(200,200);
+        Inventario inventario = new Inventario(200,200);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            ReservaDeReproduccion reserva = new ReservaDeReproduccion (casillero, banco);
+            ReservaDeReproduccion reserva = new ReservaDeReproduccion (casillero, inventario);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
@@ -169,10 +169,10 @@ public class casosDeUso5 {
         //ARRANGE
         String mensaje = "No se puede construir un Extractor en este casillero";
         Casillero casillero = new NodoGas();
-        Banco banco = new Banco(200,200);
+        Inventario inventario = new Inventario(200,200);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            Extractor extractor = new Extractor(casillero, banco);
+            Extractor extractor = new Extractor(casillero, inventario);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
@@ -182,10 +182,10 @@ public class casosDeUso5 {
         //ARRANGE
         String mensaje = "No se puede construir una Guarida en este casillero";
         Casillero casillero = new NodoGas();
-        Banco banco = new Banco(200,200);
+        Inventario inventario = new Inventario(200,200);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            Guarida guarida = new Guarida(casillero, banco);
+            Guarida guarida = new Guarida(casillero, inventario);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
@@ -195,10 +195,10 @@ public class casosDeUso5 {
         //ARRANGE
         String mensaje = "No se puede construir una Espiral en este casillero";
         Casillero casillero = new NodoGas();
-        Banco banco = new Banco(200,200);
+        Inventario inventario = new Inventario(200,200);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            Espiral espiral = new Espiral(casillero, banco);
+            Espiral espiral = new Espiral(casillero, inventario);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());

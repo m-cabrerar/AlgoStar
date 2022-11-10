@@ -58,7 +58,7 @@ class Moho {
     + tieneEnergia()
 }
 
-class Banco {
+class Inventario {
 }
 
 
@@ -85,12 +85,12 @@ Casillero <|-- NodoDeGas
 Casillero <|-- Moho
 Casillero <|-- NodoMineral
 
-Banco o-- Gas
-Banco o-- Mineral
+Inventario o-- Gas
+Inventario o-- Mineral
 
 Mapa *-- Casillero
 
-Edificio ..> Banco
+Edificio ..> Inventario
 Edificio ..> Casillero
 
 
