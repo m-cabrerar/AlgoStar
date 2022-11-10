@@ -1,13 +1,17 @@
 @startuml
 title Classes - AlgoStars
 
+class Jugador {
+ - Inventario: inventario
+}
+
 class Edificio {
     -vida
     -ubicacion: Casillero
     {abstract}+ pasarTurno()
     + recibirDaño(daño)
     + setEstadoEnergetico(estado)?
-    + construir(Billetera, Casillero)
+    + construir(Inventario, Casillero)
     + destruir()
 }
 
@@ -59,6 +63,7 @@ class Moho {
 }
 
 class Inventario {
+ - Collection: Edificios
 }
 
 
@@ -88,7 +93,7 @@ Casillero <|-- NodoMineral
 Inventario o-- Gas
 Inventario o-- Mineral
 
-Mapa *-- Casillero
+Mapa "1" *-- "*" Casillero
 
 Edificio ..> Inventario
 Edificio ..> Casillero
@@ -101,4 +106,7 @@ EdificioConstruido <|... EdificioProto
 
 EstadoEnergetico <|.. Energizado
 EstadoEnergetico <|.. NoEnergizado
+
+Jugador "1" o--> "1" Inventario
+Jugador "1" o--> "*" Edificio
 @enduml
