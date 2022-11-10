@@ -14,7 +14,7 @@ public class casosDeUso2 {
         //ARRANGE
         Casillero casillero = new Moho();
         Banco banco = new Banco(100,100);
-        Edificio criadero = Criadero.construir(casillero, banco);
+        Edificio criadero = new Criadero(casillero, banco);
         
         //ACT
         criadero.pasarTurno();
@@ -34,7 +34,7 @@ public class casosDeUso2 {
         String mensaje = "Tu Criadero ha sido destruido";
         Casillero casillero = new Moho();
         Banco banco = new Banco(100,100);
-        Edificio criadero = Criadero.construir(casillero, banco);
+        Edificio criadero = new Criadero(casillero, banco);
         
         //ACT
         criadero.pasarTurno();
@@ -55,7 +55,7 @@ public class casosDeUso2 {
         //ARRANGE
         Casillero casillero = new Moho();
         Banco banco = new Banco(300,300);
-        Edificio reserva = ReservaDeReproduccion.construir(casillero, banco);
+        Edificio reserva = new ReservaDeReproduccion(casillero, banco);
         
         //ACT
         for(int i=0; i<12; i++){
@@ -74,7 +74,7 @@ public class casosDeUso2 {
         String mensaje = "Tu Reserva de Produccion ha sido destruido";
         Casillero casillero = new Moho();
         Banco banco = new Banco(300,300);
-        Edificio reserva = ReservaDeReproduccion.construir(casillero, banco);
+        Edificio reserva = new ReservaDeReproduccion(casillero, banco);
         
         //ACT
         for(int i=0; i<11; i++){
@@ -95,7 +95,7 @@ public class casosDeUso2 {
         //ARRANGE
         Casillero casillero = new NodoDeGas();
         Banco banco = new Banco(300,300);
-        Edificio extractor = Extractor.construir(casillero, banco);
+        Edificio extractor = new Extractor(casillero, banco);
         
         //ACT
         for(int i=0; i<6; i++){
@@ -114,7 +114,7 @@ public class casosDeUso2 {
         String mensaje = "Tu Extractor ha sido destruido";
         Casillero casillero = new NodoDeGas();
         Banco banco = new Banco(300,300);
-        Edificio extractor = Extractor.construir(casillero, banco);
+        Edificio extractor = new Extractor(casillero, banco);
         
         //ACT
         for(int i=0; i<5; i++){
@@ -135,7 +135,7 @@ public class casosDeUso2 {
         //ARRANGE
         Casillero casillero = new Moho();
         Banco banco = new Banco(300,300);
-        Edificio guarida = Guarida.construir(casillero, banco);
+        Edificio guarida = new Guarida(casillero, banco);
         
         //ACT
         for(int i=0; i<12; i++){
@@ -154,7 +154,7 @@ public class casosDeUso2 {
         String mensaje = "Tu Guarida ha sido destruida";
         Casillero casillero = new Moho();
         Banco banco = new Banco(300,300);
-        Edificio guarida = Guarida.construir(casillero, banco);
+        Edificio guarida = new Guarida(casillero, banco);
         
         //ACT
         for(int i=0; i<11; i++){
@@ -175,7 +175,7 @@ public class casosDeUso2 {
         //ARRANGE
         Casillero casillero = new Moho();
         Banco banco = new Banco(300,300);
-        Edificio espiral = Espiral.construir(casillero, banco);
+        Edificio espiral = new Espiral(casillero, banco);
         
         //ACT
         for(int i=0; i<10; i++){
@@ -194,7 +194,7 @@ public class casosDeUso2 {
         String mensaje = "Tu Espiral ha sido destruido";
         Casillero casillero = new Moho();
         Banco banco = new Banco(300,300);
-        Edificio espiral = Espiral.construir(casillero, banco);
+        Edificio espiral = new Espiral(casillero, banco);
         
         //ACT
         for(int i=0; i<9; i++){
@@ -215,7 +215,7 @@ public class casosDeUso2 {
         //ARRANGE
         Casillero casillero = new Casillero(); //que debera tener energia o estar en rango
         Banco banco = new Banco(300,300);
-        Edificio nexo = NexoMineral.construir(casillero, banco);
+        Edificio nexo = new NexoMineral(casillero, banco);
         
         //ACT
         for(int i=0; i<4; i++){
@@ -234,7 +234,7 @@ public class casosDeUso2 {
         String mensaje = "Tu Nexo Mineral ha sido destruido";
         Casillero casillero = new Casillero();
         Banco banco = new Banco(300,300);
-        Edificio nexo = NexoMineral.construir(casillero, banco);
+        Edificio nexo = new NexoMineral(casillero, banco);
         
         //ACT
         for(int i=0; i<3; i++){
@@ -255,7 +255,7 @@ public class casosDeUso2 {
         //ARRANGE
         Casillero casillero = new Casillero(); //que debera tener energia o estar en rango
         Banco banco = new Banco(300,300);
-        Edificio pilon = Pilon.construir(casillero, banco);
+        Edificio pilon = new Pilon(casillero, banco);
         
         //ACT
         for(int i=0; i<5; i++){
@@ -274,7 +274,7 @@ public class casosDeUso2 {
         String mensaje = "Tu Pilon ha sido destruido";
         Casillero casillero = new Casillero();
         Banco banco = new Banco(300,300);
-        Edificio pilon = Pilon.construir(casillero, banco);
+        Edificio pilon = new Pilon(casillero, banco);
         
         //ACT
         for(int i=0; i<4; i++){
@@ -295,7 +295,7 @@ public class casosDeUso2 {
         //ARRANGE
         Casillero casillero = new NodoDeGas(); //que debera tener energia o estar en rango
         Banco banco = new Banco(300,300);
-        Edificio asimilador = Asimilador.construir(casillero, banco);
+        Edificio asimilador = new Asimilador(casillero, banco);
         
         //ACT
         for(int i=0; i<6; i++){
@@ -314,7 +314,7 @@ public class casosDeUso2 {
         String mensaje = "Tu Asimilador ha sido destruido";
         Casillero casillero = new NodoDeGas();
         Banco banco = new Banco(300,300);
-        Edificio asimilador = Asimilador.construir(casillero, banco);
+        Edificio asimilador = new Asimilador(casillero, banco);
         
         //ACT
         for(int i=0; i<5; i++){
@@ -335,7 +335,7 @@ public class casosDeUso2 {
         //ARRANGE
         Casillero casillero = new Casillero(); //que debera tener energia o estar en rango
         Banco banco = new Banco(300,300);
-        Edificio acceso = Acceso.construir(casillero, banco);
+        Edificio acceso = new Acceso(casillero, banco);
         
         //ACT
         for(int i=0; i<8; i++){
@@ -354,7 +354,7 @@ public class casosDeUso2 {
         String mensaje = "Tu Acceso ha sido destruido";
         Casillero casillero = new Casillero();
         Banco banco = new Banco(300,300);
-        Edificio acceso = Acceso.construir(casillero, banco);
+        Edificio acceso = new Acceso(casillero, banco);
         
         //ACT
         for(int i=0; i<7; i++){
@@ -374,7 +374,7 @@ public class casosDeUso2 {
         //ARRANGE
         Casillero casillero = new Casillero(); //que debera tener energia o estar en rango
         Banco banco = new Banco(300,300);
-        Edificio puerto = PuertoEstelar.construir(casillero, banco);
+        Edificio puerto = new PuertoEstelar(casillero, banco);
         
         //ACT
         for(int i=0; i<10; i++){
@@ -393,7 +393,7 @@ public class casosDeUso2 {
         String mensaje = "Tu Puerto Estelar ha sido destruido";
         Casillero casillero = new Casillero();
         Banco banco = new Banco(300,300);
-        Edificio puerto = PuertoMineral.construir(casillero, banco);
+        Edificio puerto = new PuertoMineral(casillero, banco);
         
         //ACT
         for(int i=0; i<9; i++){

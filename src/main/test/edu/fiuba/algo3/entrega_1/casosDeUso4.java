@@ -17,7 +17,7 @@ public class casosDeUso4 {
         String mensaje = "El extractor no tiene zanganos trabajando";
         Casillero casillero = new NodoDeGas();
         Banco banco = new Banco(300,300);
-        Edificio extractor = Extractor.construir(casillero, banco);
+        Edificio extractor = new Extractor(casillero, banco);
 
         //ACT
         for(int i=0; i<6; i++){
@@ -39,7 +39,7 @@ public class casosDeUso4 {
         Gas gasEsperado = new Gas(10);
         Casillero casillero = new NodoDeGas();
         Banco banco = new Banco(300,300);
-        Edificio extractor = Extractor.construir(casillero, banco);
+        Edificio extractor = new Extractor(casillero, banco);
 
         //ACT
         for(int i=0; i<6; i++){
@@ -60,7 +60,7 @@ public class casosDeUso4 {
         Gas gasEsperado = new Gas(20);
         Casillero casillero = new NodoDeGas();
         Banco banco = new Banco(300,300);
-        Edificio extractor = Extractor.construir(casillero, banco);
+        Edificio extractor = new Extractor(casillero, banco);
 
         //ACT
         for(int i=0; i<6; i++){
@@ -81,7 +81,7 @@ public class casosDeUso4 {
         Gas gasEsperado = new Gas(30);
         Casillero casillero = new NodoDeGas();
         Banco banco = new Banco(300,300);
-        Edificio extractor = Extractor.construir(casillero, banco);
+        Edificio extractor = new Extractor(casillero, banco);
 
         //ACT
         for(int i=0; i<6; i++){
@@ -103,7 +103,7 @@ public class casosDeUso4 {
         String mensaje = "El extractor ya tiene 3 zanganos trabajando duro";
         Casillero casillero = new NodoDeGas();
         Banco banco = new Banco(300,300);
-        Edificio extractor = Extractor.construir(casillero, banco);
+        Edificio extractor = new Extractor(casillero, banco);
 
         //ACT
         for(int i=0; i<6; i++){
