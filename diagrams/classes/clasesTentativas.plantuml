@@ -27,11 +27,8 @@ class EdificioEnConstruccion {
 
 class EdificioProto {
     - escudo
-    - estadoEnergetico
     + recibirDaño(daño)
     + pasarTurno()
-    '+ estaActivo()'
-    + setEstadoEnergetico(estado)
 }
 
 class EdificioZerg {
