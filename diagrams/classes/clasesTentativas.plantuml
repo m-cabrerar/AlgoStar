@@ -1,0 +1,104 @@
+@startuml
+title Classes - AlgoStars
+
+class Edificio {
+    -vida
+    -ubicacion: Casillero
+    {abstract}+ pasarTurno()
+    + recibirDaño(daño)
+    + setEstadoEnergetico(estado)?
+    + construir(Billetera, Casillero)
+    + destruir()
+}
+
+class EdificioConstruido{
+}
+
+class EdificioEnConstruccion {
+    - vaASer: Edificio
+    - turnosRestantes
+    + pasarTurno()
+}
+
+class EdificioProto {
+    - escudo
+    - estadoEnergetico
+    + recibirDaño(daño)
+    + pasarTurno()
+    '+ estaActivo()'
+    + setEstadoEnergetico(estado)
+}
+
+class EdificioZerg {
+    + pasarTurno()
+}
+
+class Casillero {
+    + tieneEnergia()
+    + pasarTurno()
+    - estado
+}
+
+class Mineral {
+ - cantidad
+ + agregar(int: cantidad)
+ + total()
+ + sumar(Mineral: mineral)
+}
+
+class Gas {
+ - cantidad
+ + agregar(int: cantidad)
+ + total()
+ + sumar(Gas: gas)
+}
+
+class Moho {
+    + pasarTurno()
+    + tieneEnergia()
+}
+
+class Banco {
+}
+
+
+class ReservaDeReproduccion {
+}
+class Extractor {
+ + 
+}
+class Criadero {
+ + engendrarZangano()
+ - sacarLarva()
+ + pasarTurno()
+ - regenerarLarva()
+}
+class Larva {
+}
+class Zangano{
+ + transformar(Larva)
+}
+Larva <.. Zangano
+Criadero o-- Larva
+
+Casillero <|-- NodoDeGas
+Casillero <|-- Moho
+Casillero <|-- NodoMineral
+
+Banco o-- Gas
+Banco o-- Mineral
+
+Mapa *-- Casillero
+
+Edificio ..> Banco
+Edificio ..> Casillero
+
+
+Edificio <|... EdificioConstruido
+Edificio <|... EdificioEnConstruccion
+EdificioConstruido <|... EdificioZerg
+EdificioConstruido <|... EdificioProto
+
+EstadoEnergetico <|.. Energizado
+EstadoEnergetico <|.. NoEnergizado
+@enduml
