@@ -39,8 +39,8 @@ public class casosDeUso16 {
 
 
         //Supuesto
-        Zangano zangano = criadero.engendrarZangano();
-        zangano.recolectarMineral(casillero);
+        criadero.engendrarZangano();
+        criadero.enviarZanganoAExtraerMineral(Casillero)
         //TODO ZANGANO EXTRAER MINERAL EN ESA CASILLA
 
         //ACT
@@ -63,11 +63,11 @@ public class casosDeUso16 {
         }
 
         Criadero criadero = Criadero.inicializar();
-        Zangano zangano = criadero.engendrarZangano();
+        criadero.engendrarZangano();
 
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            zangano.recolectarMineral(casillero);
+            criadero.enviarZanganoAExtraerMineral(Casillero)
             //TODO ZANGANO EXTRAER MINERAL EN ESA CASILLA
         });
         //ASSERT
