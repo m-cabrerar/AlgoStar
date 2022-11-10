@@ -14,7 +14,7 @@ public class casosDeUso13 {
         for(int i=0; i<4; i++){
             criadero.pasarTurno();
         }
-        criadero.destruir();
+        criadero.recibirDanio(1000);
 
         //ASSERT
         assertDoesNotThrow( new Criadero(casillero, banco) );
