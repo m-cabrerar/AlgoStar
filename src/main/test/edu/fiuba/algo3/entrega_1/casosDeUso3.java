@@ -10,7 +10,8 @@ public class casosDeUso3 {
     @Test
     public void test01ConstruyoUnAsimiladorSobreElGas(){
         //ARRANGE
-        Casillero casillero = new NodoGas();
+        Casillero casillero = new Casillero();
+        casillero.setTipoCasillero(new NodoDeGas());
         Banco banco = new Banco(200,200);
         //ACT
         Asimilador asimilador = new Asimilador(casillero, banco);
@@ -22,7 +23,8 @@ public class casosDeUso3 {
     public void test02ConstruirUnAsimiladorSobreOtroCasilleroLanzaError(){
         //ARRANGE
         String mensaje = "No se puede construir un asimilador en este casillero";
-        Casillero casillero = new NodoMineral();
+        Casillero casillero = new Casillero();
+        casillero.setTipoCasillero(new NodoMineral());
         Banco banco = new Banco(200,200);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
@@ -35,7 +37,8 @@ public class casosDeUso3 {
     @Test
     public void test03ConstruyoUnExtractorSobreElGas(){
         //ARRANGE
-        Casillero casillero = new NodoGas();
+        Casillero casillero = new Casillero();
+        casillero.setTipoCasillero(new NodoDeGas());
         Banco banco = new Banco(200,200);
         //ACT
         Extractor extractor = new Extractor(casillero, banco);
@@ -47,7 +50,8 @@ public class casosDeUso3 {
     public void test04ConstruirUnExtractorSobreOtroCasilleroLanzaError(){
         //ARRANGE
         String mensaje = "No se puede construir un extractor en este casillero";
-        Casillero casillero = new NodoMineral();
+        Casillero casillero = new Casillero();
+        casillero.setTipoCasillero(new NodoMineral());
         Banco banco = new Banco(200,200);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
@@ -61,7 +65,8 @@ public class casosDeUso3 {
     public void test05ConstruirUnCriaderoSobreElGasLanzaError(){
         //ARRANGE
         String mensaje = "No se puede construir un criadero en este casillero";
-        Casillero casillero = new NodoGas();
+        Casillero casillero = new Casillero();
+        casillero.setTipoCasillero(new NodoDeGas());
         Banco banco = new Banco(200,200);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
@@ -75,7 +80,8 @@ public class casosDeUso3 {
     public void test06ConstruirUnPilonSobreElGasLanzaError(){
         //ARRANGE
         String mensaje = "No se puede construir un pilon en este casillero";
-        Casillero casillero = new NodoGas();
+        Casillero casillero = new Casillero();
+        casillero.setTipoCasillero(new NodoDeGas());
         Banco banco = new Banco(200,200);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
@@ -89,7 +95,8 @@ public class casosDeUso3 {
     public void test07ConstruirUnNexoMineralSobreElGasLanzaError(){
         //ARRANGE
         String mensaje = "No se puede construir un nexo mineral en este casillero";
-        Casillero casillero = new NodoGas();
+        Casillero casillero = new Casillero();
+        casillero.setTipoCasillero(new NodoDeGas());
         Banco banco = new Banco(200,200);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
@@ -103,7 +110,8 @@ public class casosDeUso3 {
     public void test08ConstruirUnAccesoSobreElGasLanzaError(){
         //ARRANGE
         String mensaje = "No se puede construir un acceso en este casillero";
-        Casillero casillero = new NodoGas();
+        Casillero casillero = new Casillero();
+        casillero.setTipoCasillero(new NodoDeGas());
         Banco banco = new Banco(200,200);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
@@ -117,7 +125,8 @@ public class casosDeUso3 {
     public void test09ConstruirUnPuertoEstelarSobreElGasLanzaError(){
         //ARRANGE
         String mensaje = "No se puede construir un puerto estelar en este casillero";
-        Casillero casillero = new NodoGas();
+        Casillero casillero = new Casillero();
+        casillero.setTipoCasillero(new NodoDeGas());
         Banco banco = new Banco(200,200);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
