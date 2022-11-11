@@ -1,8 +1,9 @@
 package edu.fiuba.algo3.entrega_1;
+
+import edu.fiuba.algo3.modelo.Criadero;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
+import static org.junit.jupiter.api.Assertions.*;
 public class casosDeUso16 {
     /*- Verificar que no se pueda construir sobre un volcán con una edificación ya existente
      * (propia o del enemigo)
@@ -37,7 +38,7 @@ public class casosDeUso16 {
         Casillero casillero = new Casillero();
         Casillero.setTipoCasillero(new NodoMineral());
         Inventario inventario = new Inventario(300,300);
-        Criadero criadero = Criadero.inicializar();
+        Criadero criadero = new Criadero(casillero,inventario);
 
 
         //Supuesto
@@ -65,7 +66,7 @@ public class casosDeUso16 {
             nexoMineral.pasarTurno();
         }
 
-        Criadero criadero = Criadero.inicializar();
+        Criadero criadero = new Criadero(casillero,inventario);
         criadero.engendrarZangano();
 
         //ACT
