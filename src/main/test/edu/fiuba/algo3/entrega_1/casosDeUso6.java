@@ -12,19 +12,22 @@ public class casosDeUso6 {
         //Arrange
         x = ;
         y= ;
+        Casillero casillero = new Casillero();
+        casillero.setTipoCasillero(new Moho());
+        Inventario inventario = new Inventario(200,200);
         Mapa mapa = new Mapa(DimensionX,DimensionY);
-
         tablero.agregarCasilla(x,y,casillaMoho);
-
         Collection casillasAdyacentes = mapa.adyacentes(x,y); //Todo uso collection provisoriamente
-        //Esto por ahi haya q pregutarselo al tablero. 
 
         //Act
         tablero.pasarTurno();
+        for (Casilla casilla : casillasAdyacentes) {
+            new Criadero(casillero, inventario)
+        }
         //Assert
 
         for (Casilla casilla : casillasAdyacentes) {
-            assertEquals(casilla.getClass(), Moho.class);
+            assertTrue(casilla.estaOcupado());
         }
     }
 }
