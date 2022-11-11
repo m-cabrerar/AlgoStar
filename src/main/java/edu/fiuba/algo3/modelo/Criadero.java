@@ -5,7 +5,7 @@ public class Criadero extends EdificioConcreto{
     private int cantidadLarvas;
     private int cantidadZanganos;
 
-    public Criadero(Casillero casillero, Inventario inventario) {
+    public Criadero Criadero(Casillero unCasillero, Inventario unInventario) {
         super();
         cantidadLarvas = 3;
         cantidadZanganos = 0;
