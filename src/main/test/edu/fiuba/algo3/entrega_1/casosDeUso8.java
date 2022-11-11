@@ -19,7 +19,8 @@ public class casosDeUso8 {
     public void test01NoPuedoConstruirUnAsimiladorSinLosRecursos(){
         //ARRANGE
         String mensaje = "No se tienen los fondos para construir un asimilador";
-        Casillero casillero = new NodoMineral();
+        Casillero casillero = new Casillero();
+        Casillero.setTipoCasillero(new NodoMineral());
         Inventario inventario = new Inventario(0,0);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
@@ -33,7 +34,8 @@ public class casosDeUso8 {
     public void test02NoPuedoConstruirUnNexoMineralSinLosRecursos(){
         //ARRANGE
         String mensaje = "No se tienen los fondos para construir un Nexo Mineral";
-        Casillero casillero = new NodoMineral();
+        Casillero casillero = new Casillero();
+        Casillero.setTipoCasillero(new NodoMineral());
         Inventario inventario = new Inventario(0,0);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
@@ -47,7 +49,8 @@ public class casosDeUso8 {
     public void test03NoPuedoConstruirUnPilonSinLosRecursos(){
         //ARRANGE
         String mensaje = "No se tienen los fondos para construir un Pilon";
-        Casillero casillero = new NodoMoho();
+        Casillero casillero = new Casillero();
+        Casillero.setTipoCasillero(new Moho());
         Inventario inventario = new Inventario(0,0);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
@@ -61,7 +64,8 @@ public class casosDeUso8 {
     public void test04NoPuedoConstruirUnAccesoSinLosRecursos(){
         //ARRANGE
         String mensaje = "No se tienen los fondos para construir un Acceso";
-        Casillero casillero = new Moho();
+        Casillero casillero = new Casillero();
+        Casillero.setTipoCasillero(new Moho());
         Inventario inventario = new Inventario(0,0);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
@@ -74,7 +78,8 @@ public class casosDeUso8 {
     public void test05NoPuedoConstruirUnPuertoEstelarSinLosRecursos(){
         //ARRANGE
         String mensaje = "No se tienen los fondos para construir un PuertoEstelar";
-        Casillero casillero = new Moho();
+        Casillero casillero = new Casillero();
+        Casillero.setTipoCasillero(new Moho());
         Inventario inventario = new Inventario(0,0);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
@@ -89,7 +94,8 @@ public class casosDeUso8 {
     public void test06NoPuedoConstruirUnCriaderoSinLosRecursos(){
         //ARRANGE
         String mensaje = "No se tienen los fondos para construir un Criadero";
-        Casillero casillero = new Moho(); //Cambiar a mock
+        Casillero casillero = new Casillero();
+        Casillero.setTipoCasillero(new Moho());
         Inventario inventario = new Inventario(0,0);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
@@ -102,7 +108,8 @@ public class casosDeUso8 {
     public void test07NoPuedoConstruirUnaReservaDeReproduccionSinLosRecursos(){
         //ARRANGE
         String mensaje = "No se tienen los fondos para construir una Reserva de Reproduccion";
-        Casillero casillero = new Moho();
+        Casillero casillero = new Casillero();
+        Casillero.setTipoCasillero(new Moho());
         Inventario inventario = new Inventario(0,0);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
@@ -115,7 +122,8 @@ public class casosDeUso8 {
     public void test08NoPuedoConstruirUnExtractorSinLosRecursos(){
         //ARRANGE
         String mensaje = "No se tienen los fondos para construir un Extractor";
-        Casillero casillero = new Moho();
+        Casillero casillero = new Casillero();
+        Casillero.setTipoCasillero(new Moho());
         Inventario inventario = new Inventario(0,0);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
@@ -129,7 +137,8 @@ public class casosDeUso8 {
     public void test09NoPuedoConstruirUnaGuaridaSinLosRecursos(){
         //ARRANGE
         String mensaje = "No se tienen los fondos para construir una guarida";
-        Casillero casillero = new Moho();
+        Casillero casillero = new Casillero();
+        Casillero.setTipoCasillero(new Moho());
         Inventario inventario = new Inventario(0,0);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
@@ -143,7 +152,8 @@ public class casosDeUso8 {
     public void test09NoPuedoConstruirUnaEspiralSinLosRecursos(){
         //ARRANGE
         String mensaje = "No se tienen los fondos para construir";
-        Casillero casillero = new Moho();
+        Casillero casillero = new Casillero();
+        Casillero.setTipoCasillero(new Moho());
         Inventario inventario = new Inventario(0,0);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {

@@ -70,7 +70,8 @@ public class casosDeUso15 {
         int unidadesMineral = 2000;
         int unidadesRecolecto = 10;
 
-        Casillero casillero = new NodoMineral();
+        Casillero casillero = new Casillero();
+        Casillero.setTipoCasillero(new NodoMineral());
         Inventario inventario = new Inventario(300,300);
         Edificio nexoMineral = NexoMineral.construir(casillero, inventario);
 

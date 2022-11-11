@@ -12,7 +12,8 @@ public class casosDeUso2 {
     public void test01ConstruyoUnCriaderoQueEstaraListoEn4Turnos() {
 
         //ARRANGE
-        Casillero casillero = new Moho();
+        Casillero casillero = new Casillero();
+        Casillero.setTipoCasillero(new Moho());
         Inventario inventario = new Inventario(100,100);
         Edificio criadero = new Criadero(casillero, inventario);
         
@@ -32,7 +33,8 @@ public class casosDeUso2 {
 
         //ARRANGE
         String mensaje = "Tu Criadero ha sido destruido";
-        Casillero casillero = new Moho();
+        Casillero casillero = new Casillero();
+        Casillero.setTipoCasillero(new Moho());
         Inventario inventario = new Inventario(100,100);
         Edificio criadero = new Criadero(casillero, inventario);
         
@@ -53,7 +55,8 @@ public class casosDeUso2 {
     public void test03ConstruyoUnaRerservaDeReproduccionQueEstaraListoEn12Turnos() {
 
         //ARRANGE
-        Casillero casillero = new Moho();
+        Casillero casillero = new Casillero();
+        Casillero.setTipoCasillero(new Moho());
         Inventario inventario = new Inventario(300,300);
         Edificio reserva = new ReservaDeReproduccion(casillero, inventario);
         
@@ -72,7 +75,8 @@ public class casosDeUso2 {
 
         //ARRANGE
         String mensaje = "Tu Reserva de Produccion ha sido destruido";
-        Casillero casillero = new Moho();
+        Casillero casillero = new Casillero();
+        Casillero.setTipoCasillero(new Moho());
         Inventario inventario = new Inventario(300,300);
         Edificio reserva = new ReservaDeReproduccion(casillero, inventario);
         
@@ -93,7 +97,8 @@ public class casosDeUso2 {
     public void test05ConstruyoUnExtractorQueEstaraListoEn6Turnos() {
 
         //ARRANGE
-        Casillero casillero = new NodoDeGas();
+        Casillero casillero = new Casillero();
+        Casillero.setTipoCasillero(new NodoDeGas());
         Inventario inventario = new Inventario(300,300);
         Edificio extractor = new Extractor(casillero, inventario);
         
@@ -112,7 +117,8 @@ public class casosDeUso2 {
 
         //ARRANGE
         String mensaje = "Tu Extractor ha sido destruido";
-        Casillero casillero = new NodoDeGas();
+        Casillero casillero = new Casillero();
+        Casillero.setTipoCasillero(new NodoDeGas());
         Inventario inventario = new Inventario(300,300);
         Edificio extractor = new Extractor(casillero, inventario);
         
@@ -133,7 +139,8 @@ public class casosDeUso2 {
     public void test07ConstruyoUnaGuaridaQueEstaraListoEn12Turnos() {
 
         //ARRANGE
-        Casillero casillero = new Moho();
+        Casillero casillero = new Casillero();
+        Casillero.setTipoCasillero(new Moho());
         Inventario inventario = new Inventario(300,300);
         Edificio guarida = new Guarida(casillero, inventario);
         
@@ -152,7 +159,8 @@ public class casosDeUso2 {
 
         //ARRANGE
         String mensaje = "Tu Guarida ha sido destruida";
-        Casillero casillero = new Moho();
+        Casillero casillero = new Casillero();
+        Casillero.setTipoCasillero(new Moho());
         Inventario inventario = new Inventario(300,300);
         Edificio guarida = new Guarida(casillero, inventario);
         
@@ -173,7 +181,8 @@ public class casosDeUso2 {
     public void test09ConstruyoUnEspiralQueEstaraListoEn10Turnos() {
 
         //ARRANGE
-        Casillero casillero = new Moho();
+        Casillero casillero = new Casillero();
+        Casillero.setTipoCasillero(new Moho());
         Inventario inventario = new Inventario(300,300);
         Edificio espiral = new Espiral(casillero, inventario);
         
@@ -192,7 +201,8 @@ public class casosDeUso2 {
 
         //ARRANGE
         String mensaje = "Tu Espiral ha sido destruido";
-        Casillero casillero = new Moho();
+        Casillero casillero = new Casillero();
+        Casillero.setTipoCasillero(new Moho());
         Inventario inventario = new Inventario(300,300);
         Edificio espiral = new Espiral(casillero, inventario);
         
@@ -293,7 +303,8 @@ public class casosDeUso2 {
     public void test15ConstruyoUnAsimiladorQueEstaraListoEn6Turnos() {
 
         //ARRANGE
-        Casillero casillero = new NodoDeGas(); //que debera tener energia o estar en rango
+        Casillero casillero = new Casillero();
+        Casillero.setTipoCasillero(new NodoDeGas());//que debera tener energia o estar en rango
         Inventario inventario = new Inventario(300,300);
         Edificio asimilador = new Asimilador(casillero, inventario);
         
@@ -312,7 +323,8 @@ public class casosDeUso2 {
 
         //ARRANGE
         String mensaje = "Tu Asimilador ha sido destruido";
-        Casillero casillero = new NodoDeGas();
+        Casillero casillero = new Casillero();
+        Casillero.setTipoCasillero(new NodoDeGas());
         Inventario inventario = new Inventario(300,300);
         Edificio asimilador = new Asimilador(casillero, inventario);
         

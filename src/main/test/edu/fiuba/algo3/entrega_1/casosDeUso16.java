@@ -14,7 +14,8 @@ public class casosDeUso16 {
     public void Test01NoPuedoConstruirUnAsimiladorSobreOtro() {
         //ARRANGE
         String mensaje = "No se puede construir sobre otra construccion";
-        Casillero casillero = new NodoDeGas();
+        Casillero casillero = new Casillero();
+        Casillero.setTipoCasillero(new NodoGas());
         Inventario inventario = new Inventario(300,300);
         Edificio asimilador = new Asimilador(casillero, inventario);
 
@@ -33,7 +34,8 @@ public class casosDeUso16 {
     public void Test02NoPuedoConstruirUnNexoMineralSobreUnNodoConZangano() {
         //ARRANGE
         String mensaje = "No se puede construir en un mineral donde estan trabajando";
-        Casillero casillero = new NodoMineral();
+        Casillero casillero = new Casillero();
+        Casillero.setTipoCasillero(new NodoMineral());
         Inventario inventario = new Inventario(300,300);
         Criadero criadero = Criadero.inicializar();
 
@@ -55,7 +57,8 @@ public class casosDeUso16 {
     public void Test03NoPuedoMandarUnZanganoARecolectarDondeHayUnNexoMineral() {
         //ARRANGE
         String mensaje = "No se puede extraer donde hay construcciones";
-        Casillero casillero = new NodoMineral();
+        Casillero casillero = new Casillero();
+        Casillero.setTipoCasillero(new NodoMineral());
         Inventario inventario = new Inventario(300,300);
         Edificio nexoMineral = new NexoMineral(casillero, inventario);
         for(int i=0; i<6; i++){
