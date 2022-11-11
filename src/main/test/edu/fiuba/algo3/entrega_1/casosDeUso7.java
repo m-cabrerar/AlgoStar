@@ -1,19 +1,40 @@
 package edu.fiuba.algo3.entrega_1;
 
+import edu.fiuba.algo3.modelo.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
 
 public class casosDeUso7 {
     /*Verificar la recolección de minerales para ambas razas.*/
+    //ARRANGE
+    @Test
+    public void Test01ProtossIntentaRecolectarCuandoNodoMinealVacio(){
+        String mensajeError = "Nodo Mineral Agotado, no es posible extraer mas"
+        Casillero casillero = new Casillero();
+        Casillero.setTipoCasillero(new NodoMineral());
+        Inventario inventario = new Inventario(0,0);
+        EdificioProtoss nexoMineral = new NexoMineral(casillero, inventario);
+
+        //ACT
+        Exception exception = assertThrows(Exception.class, () -> {
+            nexoMineral.extraerMineral();
+        });
+
+        //ASSERT
+        assertEquals(mensaje, exception.getMessage());
+    }
 
     @Test
-    public void Test01ProtossNexoMineralRecolecta10mineralEnUnTurno(){
+    public void Test02ProtossNexoMineralRecolecta10mineralEnUnTurno(){
         /*se asume que se recolecta 10 mineral por turno. Después se corroborará*/
         //Arrange
-        Mineral mineralEsperado = new Mineral(10);
-        Casillero casillero = new NodoMineral();
+        //Mineral mineralEsperado = new Mineral(10);//
+        Casillero mockedNodoMineral = mock(Casillero.class);
+        when(mockedNodoMineral.extraerMineral()).thenReturn(true);
         Inventario inventario = new Inventario(50,0);
         Edificio nexoMineral = NexoMineral.construir(casillero, inventario);
 
@@ -21,14 +42,16 @@ public class casosDeUso7 {
         for(int i=0; i<6; i++){
             nexoMineral.pasarTurno();
         }
-        Mineral mineralObtenido = nexoMineral.extraerMineral();
+        nexoMineral.extraerMineral();
 
         //ASSERT
-        assertEquals(mineralObtenido.total(), mineralEsperado.total());
+        assertEquals(inventario.mineral, 10);
+
+        verify(mockedNodoMineral,times(1)).extraerMineral();
     }
 
     @Test
-    public void ProtossNoPuedeExtraerMineralSinEngendrarZangano(){
+    public void Test03ProtossNoPuedeExtraerMineralSinEngendrarZangano(){
 
         //ARRANGE
         String mensaje = "No hay zanganos disponibles";
@@ -46,7 +69,7 @@ public class casosDeUso7 {
 
 
     @Test
-    public void Test02ZergZanganoExtrae10mineralEnUnTurno{
+    public void Test04ZergZanganoExtrae10mineralEnUnTurno(){
 
         //ARRANGE
         Criadero criadero = Criadero.inicializar();

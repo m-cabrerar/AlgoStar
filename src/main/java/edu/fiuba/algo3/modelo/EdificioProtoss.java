@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-abstract class EdificioProttos extends EdificioConcreto {
+abstract class EdificioProtoss extends EdificioConcreto {
     private int escudo;
 
     public void recibirDanio(int danio) {
