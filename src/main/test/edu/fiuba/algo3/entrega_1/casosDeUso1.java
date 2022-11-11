@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.entrega_1;
 
+import edu.fiuba.algo3.modelo.Criadero;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,7 +16,7 @@ public class casosDeUso1 {
         
         //ARRANGE
         String mensaje = "Ya no quedan larvas disponibles";
-        Criadero criadero = Criadero.inicializar();
+        Criadero criadero = new Criadero();
 
         //ACT
         criadero.engendrarZangano();

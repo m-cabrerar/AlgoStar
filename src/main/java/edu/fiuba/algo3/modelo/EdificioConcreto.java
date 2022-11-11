@@ -8,7 +8,7 @@ abstract class EdificioConcreto implements Edificio {
     public void recibirDanio(int danio) {
         vida -= danio;
     }
-    public EdificioEnConstruiccion construir(casillero, inventario) {
+    public EdificioEnConstruiccion construir(Casillero casillero,Inventario inventario) {
         if (!this.tieneMateriales(inventario)) {
             throw new Exception("Materiales insuficientes");
         }
