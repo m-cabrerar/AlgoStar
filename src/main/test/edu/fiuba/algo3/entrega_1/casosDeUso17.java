@@ -11,7 +11,8 @@ public class casosDeUso17 {
         //ARRANGE
         String mensaje = "Aun no puedes construir una guarida";
         Inventario inventario = new Inventario(300,300);
-        Casillero casillero = new Moho();
+        Casillero casillero = new Casillero();
+        Casillero.setTipoCasillero(new Moho());
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
             Edificio guarida = new Guarida(casillero, inventario);
@@ -26,7 +27,8 @@ public class casosDeUso17 {
         //ARRANGE
         String mensaje = "Aun no puedes construir un Espiral";
         Inventario inventario = new Inventario(300,300);
-        Casillero casillero = new Moho();
+        Casillero casillero = new Casillero();
+        Casillero.setTipoCasillero(new Moho());
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
             Edificio espiral = new Espiral(casillero, inventario);
@@ -40,7 +42,8 @@ public class casosDeUso17 {
     public void test03SePuedeConstruirUnaGuaridaSiTengoUnaReservaDeReproduccion(){
         //ARRANGE
         Inventario inventario = new Inventario(300,300);
-        Casillero casillero = new Moho(); 
+        Casillero casillero = new Casillero();
+        Casillero.setTipoCasillero(new Moho());
         //ACT
         
         Edificio reserva = new ReservaDeReproduccion(casillero, inventario);
@@ -53,7 +56,8 @@ public class casosDeUso17 {
     public void test04SePuedeConstruirUnEspiralSiTengoUnaGuarida(){
         //ARRANGE
         Inventario inventario = new Inventario(300,300);
-        Casillero casillero = new Moho(); 
+        Casillero casillero = new Casillero();
+        Casillero.setTipoCasillero(new Moho());
         //ACT
         
         Edificio reserva = new ReservaDeReproduccion(casillero, inventario);

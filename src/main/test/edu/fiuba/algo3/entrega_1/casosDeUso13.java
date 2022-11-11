@@ -6,7 +6,8 @@ public class casosDeUso13 {
     public void Test01AlDestruirUnCriaderoSePuedeConstruirSobreElMohoQueDejo() {
 
         //ARRANGE
-        Casillero casillero = new Moho();
+        Casillero casillero = new Casillero();
+        Casillero.setTipoCasillero(new Moho());
         Inventario inventario = new Inventario(300,300);
         Edificio criadero = new Criadero(casillero, inventario);
 

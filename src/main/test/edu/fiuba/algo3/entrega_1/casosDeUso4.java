@@ -15,7 +15,8 @@ public class casosDeUso4 {
 
         //ARRANGE
         String mensaje = "El extractor no tiene zanganos trabajando";
-        Casillero casillero = new NodoDeGas();
+        Casillero casillero = new Casillero();
+        Casillero.setTipoCasillero(new NodoDeGas());
         Inventario inventario = new Inventario(300,300);
         Edificio extractor = new Extractor(casillero, inventario);
 
@@ -37,7 +38,8 @@ public class casosDeUso4 {
 
         //ARRANGE
         Gas gasEsperado = new Gas(10);
-        Casillero casillero = new NodoDeGas();
+        Casillero casillero = new Casillero();
+        Casillero.setTipoCasillero(new NodoDeGas());
         Inventario inventario = new Inventario(300,300);
         Edificio extractor = new Extractor(casillero, inventario);
 
@@ -58,7 +60,8 @@ public class casosDeUso4 {
 
         //ARRANGE
         Gas gasEsperado = new Gas(20);
-        Casillero casillero = new NodoDeGas();
+        Casillero casillero = new Casillero();
+        Casillero.setTipoCasillero(new NodoDeGas());
         Inventario inventario = new Inventario(300,300);
         Edificio extractor = new Extractor(casillero, inventario);
 
@@ -79,7 +82,8 @@ public class casosDeUso4 {
 
         //ARRANGE
         Gas gasEsperado = new Gas(30);
-        Casillero casillero = new NodoDeGas();
+        Casillero casillero = new Casillero();
+        Casillero.setTipoCasillero(new NodoDeGas());
         Inventario inventario = new Inventario(300,300);
         Edificio extractor = new Extractor(casillero, inventario);
 
@@ -101,7 +105,8 @@ public class casosDeUso4 {
 
         //ARRANGE
         String mensaje = "El extractor ya tiene 3 zanganos trabajando duro";
-        Casillero casillero = new NodoDeGas();
+        Casillero casillero = new Casillero();
+        Casillero.setTipoCasillero(new NodoDeGas());
         Inventario inventario = new Inventario(300,300);
         Edificio extractor = new Extractor(casillero, inventario);
 
