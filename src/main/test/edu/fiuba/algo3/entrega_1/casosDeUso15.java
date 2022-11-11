@@ -15,7 +15,7 @@ public class casosDeUso15 {
         //ARRANGE
         int unidadesGas = 5000;
         int unidadesRecolecto = 10;
-        Gas gasEsperado = new Gas(unidadesGas);
+
         Casillero casillero = new NodoDeGas();
         Inventario inventario = new Inventario(300,300);
         Edificio extractor = Extractor.construir(casillero, inventario);
@@ -26,15 +26,14 @@ public class casosDeUso15 {
         }
 
         extractor.agregarZangano();
-        Gas gasObtenido = extractor.extraerGas();
         for(int i=0; i< (unidadesGas/unidadesRecolecto); i++){
-            gasObtenido = gasObtenido + extractor.extraerGas();//Le saco una vez por turno hasta vaciarlo y repito una vez mas
+            extractor.extraerGas();//Le saco una vez por turno hasta vaciarlo y repito una vez mas
             extractor.pasarTurno();
         }
-        //Todo que se pueda sumar gas para poder hacer la operacion/refactor esa cuenta.
+        //Todo chequear como se manda a trabajar el zangano.
 
         //ASSERT
-        assertEquals(gasObtenido.total(), gasEsperado.total()); //Aunque repeti mas veces de las necesarias extraer deberia igual tener solo 5000
+        assertEquals(inventario.cantidadGas(), unidadesGas); //Aunque repeti mas veces de las necesarias extraer deberia igual tener solo 5000
     }
 
     @Test
@@ -43,7 +42,7 @@ public class casosDeUso15 {
         //ARRANGE
         int unidadesGas = 5000;
         int unidadesRecolecto = 20;
-        Gas gasEsperado = new Mineral(unidadesGas);
+
         Casillero casillero = new NodoDeGas();
         Inventario inventario = new Inventario(300,300);
         Edificio asimilador = Asimilador.construir(casillero, inventario);
@@ -53,15 +52,15 @@ public class casosDeUso15 {
             asimilador.pasarTurno(); //Lo construi
         }
 
-        Gas gasObtenido = asimilador.extraerGas();
+
         for(int i=0; i< (unidadesGas/unidadesRecolecto); i++){
-            gasObtenido = gasObtenido + asimilador.extraerGas();//Le saco una vez por turno hasta vaciarlo y repito una vez mas
+            asimilador.extraerGas();//Le saco una vez por turno hasta vaciarlo y repito una vez mas
             asimilador.pasarTurno();
         }
         //Todo que se pueda sumar gas para poder hacer la operacion/refactor esa cuenta.
 
         //ASSERT
-        assertEquals(gasObtenido.total(), gasEsperado.total()); //Aunque repeti mas veces de las necesarias extraer deberia igual tener solo 5000
+        assertEquals(inventario.cantidadGas(), unidadesGas); //Aunque repeti mas veces de las necesarias extraer deberia igual tener solo 5000
     }
 
     @Test
@@ -70,7 +69,7 @@ public class casosDeUso15 {
         //ARRANGE
         int unidadesMineral = 2000;
         int unidadesRecolecto = 10;
-        Mineral mineralEsperado = new Mineral(unidadesMineral);
+
         Casillero casillero = new NodoMineral();
         Inventario inventario = new Inventario(300,300);
         Edificio nexoMineral = NexoMineral.construir(casillero, inventario);
@@ -82,13 +81,13 @@ public class casosDeUso15 {
 
         Mineral mineralObtenido = nexoMineral.extraerMineral();
         for(int i=0; i< (unidadesMineral/unidadesRecolecto); i++){
-            mineralObtenido = mineralObtenido + nexoMineral.extraerMineral();//Le saco una vez por turno hasta vaciarlo y repito una vez mas
+             nexoMineral.extraerMineral();//Le saco una vez por turno hasta vaciarlo y repito una vez mas
             nexoMineral.pasarTurno();
         }
         //Todo que se pueda sumar gas para poder hacer la operacion/refactor esa cuenta.
 
         //ASSERT
-        assertEquals(mineralObtenido.total(), mineralEsperado.total()); //Aunque repeti mas veces de las necesarias extraer deberia igual tener solo 5000
+        assertEquals(inventario.cantidadMineral(),unidadesMineral); //Aunque repeti mas veces de las necesarias extraer deberia igual tener solo 5000
     }
 
 }
