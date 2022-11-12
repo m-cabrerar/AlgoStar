@@ -15,13 +15,15 @@ public class casosDeUso7 {
     public void Test01ProtossIntentaRecolectarCuandoNodoMinealVacio(){
         String mensajeError = "Nodo Mineral Agotado, no es posible extraer"
         Casillero casillero = new Casillero();
-        Casillero.setTipoCasillero(new NodoMineral());
+        NodoMineral unNodoMineral = new NodoMineral();
+        Casillero.setTipoCasillero(unNodoMineral);
         Inventario inventario = new Inventario(0,0);
         NexoMineral nexoMineral = new NexoMineral(casillero, inventario);
 
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            nexoMineral.extraerMineral();
+            nexoMineral.extraerMineral(inventario);
+            //rompe porque no usa el extrarMineral de los demás, hmm funny weird revisar
         });
         /*me dice que agregue el metodo a edificio, pero necesito que lo sepa solo el nexo, no todos
         problema para patorn de diseño?*/

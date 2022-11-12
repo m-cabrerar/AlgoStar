@@ -20,8 +20,8 @@ public class Casillero extends EdificioZerg{
     }
 
     //revisar esto, sino rompia encapsulamiento
-    public void extraerMineral(){
-        this.tipoCasillero.extraerMineral();
+    public void extraerMineral(Inventario inventario, int cantidad){
+        this.tipoCasillero.extraerMineral(Inventario inventario, int cantidad);
     }
 
 }
