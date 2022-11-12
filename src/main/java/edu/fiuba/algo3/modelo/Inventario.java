@@ -16,10 +16,17 @@ public class Inventario {
         return true;
     }
     public void pagar(int pagoDeGas, int pagoDeMineral){
-        if (!this.puedePagar(pagoDeGas, pagoDeMineral)) { //ACA DE UNA USAR PAGAR Y ESO CUBRE ESTA EXEPCION
+        if (!this.puedePagar(pagoDeGas, pagoDeMineral)) {
             throw new Exception("Materiales insuficientes");
         }
         this.cantidadGas -= pagoDeGas;
         this.cantidadMineral -= pagoDeMineral;
+    }
+
+    public void recibirMineral(int cantidad){
+        this.cantidadMineral += cantidad;
+    }
+    public void recibirGas(int cantidad){
+        this.cantidadGas += cantidad;
     }
 }

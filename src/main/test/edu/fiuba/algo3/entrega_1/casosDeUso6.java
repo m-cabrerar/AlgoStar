@@ -22,7 +22,7 @@ public class casosDeUso6 {
         //Act
         tablero.pasarTurno();
         for (Casilla casilla : casillasAdyacentes) {
-            new Criadero(casillero, inventario)
+            new Criadero(casillero, inventario);
         }
         //Assert
 

@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.entrega_1;
+import edu.fiuba.algo3.modelo.*;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Dictionary;
@@ -25,7 +27,7 @@ public class casosDeUso4 {
             extractor.pasarTurno();
         }
         Exception exception = assertThrows(Exception.class, () -> {
-            extractor.extraerGas(); //esto creo que habria que mandarselo a una metodo del inventario para agregar
+            extractor.extraerGas(inventario); //esto creo que habria que mandarselo a una metodo del inventario para agregar
         });
 
         //ASSERT

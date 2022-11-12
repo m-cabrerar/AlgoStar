@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-public class Casillero {
-
+public class Casillero implements EdificioZerg{
     private TipoCasillero unTipoCasillero;
     private int energia;
     private int coordenadaX;
@@ -10,8 +9,11 @@ public class Casillero {
         tipoCasillero = unTipoCasillero;
     }
 
-    public boolean puedeConstruir(Edificio unEdificio){
-        //Sudoku: similar a ver si se puede poner un numero.
-        return (this.unTipoCasillero).esCompatible(unEdificio);
+    public boolean sonDelMismoTipoDeCasillero(Casillero unCasillero){
+        return (this.suTipoDeCasillero() == unCasillero.suTipoDeCasillero());
     }
+    public String suTipoDeCasillero(){
+        return unTipoCasillero.nombreDelCasillero();
+    }
+
 }

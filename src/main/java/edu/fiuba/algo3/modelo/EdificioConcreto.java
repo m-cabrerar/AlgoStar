@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo;
 
 abstract class EdificioConcreto implements Edificio {
     private int vida;
-
+    private Casillero casilleroCompatible;
     abstract public void pasarTurno();
 
     public void recibirDanio(int danio) {
@@ -17,8 +17,17 @@ abstract class EdificioConcreto implements Edificio {
         }
         if (!casillero.puedeConstruir(this)) {
             throw new Exception("Ubicacion invalida");
+
         }
+        //alt:
+        if(casillero.sonDelMismoTipoDeCasillero(casilleroCompatible)){
+            throw new Exception("Ubicacion invalida");
+        }
+        //fin alt.
+
         this.consumirMateriales(inventario);
         return new EdificioEnConstruiccion(this, casillero, inventario);
     }
+
+
 }
