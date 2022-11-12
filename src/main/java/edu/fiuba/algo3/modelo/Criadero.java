@@ -1,15 +1,9 @@
 package edu.fiuba.algo3.modelo;
 
-public class Criadero extends EdificioConcreto{
+public class Criadero extends EdificioZerg{
     //PROVISORIO TDD
     private int cantidadLarvas;
     private int cantidadZanganos;
-
-    public Criadero Criadero(Casillero unCasillero, Inventario unInventario) {
-        super();
-        cantidadLarvas = 3;
-        cantidadZanganos = 0;
-    }
 
     public void engendrarZangano(){
         if(!this.tieneLarvas()){
@@ -27,10 +21,12 @@ public class Criadero extends EdificioConcreto{
     }
 
     public void pasarTurno(){
+        //recuperar vida
         if(estaEnCapacidadMaxima()){
             return;
         }
         this.cantidadLarvas += 1;
+
     }
 
 }

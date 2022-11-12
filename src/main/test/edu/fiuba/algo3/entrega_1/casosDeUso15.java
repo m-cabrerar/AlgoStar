@@ -18,7 +18,7 @@ public class casosDeUso15 {
 
         Casillero casillero = new NodoDeGas();
         Inventario inventario = new Inventario(300,300);
-        Edificio extractor = Extractor.construir(casillero, inventario);
+        Edificio extractor = new Extractor(casillero, inventario);
 
         //ACT
         for(int i=0; i<6; i++){
