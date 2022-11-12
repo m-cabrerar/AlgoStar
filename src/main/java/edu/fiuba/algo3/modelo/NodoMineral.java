@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-public class NodoMineral {
+public class NodoMineral implements TipoCasillero {
     private int unidadesRestantes = 0;
     public void extraerMineral(Inventario unDestinoDeRecoleccion, int cantidadRecolectada) {
         if(this.agotado()){

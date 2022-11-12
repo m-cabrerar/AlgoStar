@@ -4,6 +4,6 @@ public class Moho implements TipoCasillero{
 
     @Override
     public String nombreDelCasillero() {
-        return "Moho"
+        return "Moho";
     }
 }

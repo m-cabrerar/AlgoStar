@@ -17,15 +17,17 @@ public class casosDeUso7 {
         Casillero casillero = new Casillero();
         Casillero.setTipoCasillero(new NodoMineral());
         Inventario inventario = new Inventario(0,0);
-        EdificioProtoss nexoMineral = new NexoMineral(casillero, inventario);
+        NexoMineral nexoMineral = new NexoMineral(casillero, inventario);
 
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
             nexoMineral.extraerMineral();
         });
+        /*me dice que agregue el metodo a edificio, pero necesito que lo sepa solo el nexo, no todos
+        problema para patorn de diseño?*/
 
         //ASSERT
-        assertEquals(mensaje, exception.getMessage());
+        assertEquals(mensajeError, exception.getMessage());
     }
 
     @Test

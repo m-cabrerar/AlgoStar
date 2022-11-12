@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-public class Extractor implements EdificioZerg{
+public class Extractor extends EdificioZerg {
     int cantidadZanganos;
     int unidadesRecolectadasPorZangano;
 

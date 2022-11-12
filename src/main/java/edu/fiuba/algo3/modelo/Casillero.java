@@ -1,10 +1,13 @@
 package edu.fiuba.algo3.modelo;
 
 public class Casillero implements EdificioZerg{
-    private TipoCasillero unTipoCasillero;
+    private TipoCasillero tipoCasillero;
     private int energia;
     private int coordenadaX;
     private int coordenadaY;
+
+    
+
     public void setTipoCasillero(TipoCasillero unTipoCasillero){
         tipoCasillero = unTipoCasillero;
     }
@@ -13,7 +16,7 @@ public class Casillero implements EdificioZerg{
         return (this.suTipoDeCasillero() == unCasillero.suTipoDeCasillero());
     }
     public String suTipoDeCasillero(){
-        return unTipoCasillero.nombreDelCasillero();
+        return tipoCasillero.nombreDelCasillero();
     }
 
 }
