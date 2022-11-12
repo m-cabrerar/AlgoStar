@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-public class Casillero implements EdificioZerg{
+public class Casillero extends EdificioZerg{
     private TipoCasillero tipoCasillero;
     private int energia;
     private int coordenadaX;
@@ -17,6 +17,11 @@ public class Casillero implements EdificioZerg{
     }
     public String suTipoDeCasillero(){
         return tipoCasillero.nombreDelCasillero();
+    }
+
+    //revisar esto, sino rompia encapsulamiento
+    public void extraerMineral(){
+        this.tipoCasillero.extraerMineral();
     }
 
 }

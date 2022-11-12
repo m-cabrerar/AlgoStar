@@ -13,7 +13,7 @@ public class casosDeUso7 {
     //ARRANGE
     @Test
     public void Test01ProtossIntentaRecolectarCuandoNodoMinealVacio(){
-        String mensajeError = "Nodo Mineral Agotado, no es posible extraer mas"
+        String mensajeError = "Nodo Mineral Agotado, no es posible extraer"
         Casillero casillero = new Casillero();
         Casillero.setTipoCasillero(new NodoMineral());
         Inventario inventario = new Inventario(0,0);
