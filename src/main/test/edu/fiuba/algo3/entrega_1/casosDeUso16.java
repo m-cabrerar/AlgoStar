@@ -11,25 +11,7 @@ public class casosDeUso16 {
      * viceversa (zángano no puede extraer mineral si ya tiene un nexo construido sobre el
      * nodo).
      */
-    @Test
-    public void Test01NoPuedoConstruirUnAsimiladorSobreOtro() {
-        //ARRANGE
-        String mensaje = "No se puede construir sobre otra construccion";
-        Casillero casillero = new Casillero();
-        Casillero.setTipoCasillero(new NodoGas());
-        Inventario inventario = new Inventario(300,300);
-        Edificio asimilador = new Asimilador(casillero, inventario);
 
-        //ACT
-        for(int i=0; i<6; i++){
-            asimilador.pasarTurno();
-        }
-        Exception exception = assertThrows(Exception.class, () -> {
-            Edificio asimilador = new Asimilador(casillero, inventario);
-        });
-        //ASSERT
-        assertEquals(mensaje, exception.getMessage());
-    }
 
     @Test
     public void Test02NoPuedoConstruirUnNexoMineralSobreUnNodoConZangano() {
