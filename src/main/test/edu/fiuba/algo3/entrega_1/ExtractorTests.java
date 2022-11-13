@@ -1,19 +1,84 @@
 package edu.fiuba.algo3.entrega_1;
+
 import edu.fiuba.algo3.modelo.*;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.util.Dictionary;
-
-public class casosDeUso4 {
-    /*Verificar que extractor sin zánganos trabajando no genera gas. Verificar que con 1 saca
-     *10, con 2 20, con 3 30 y que no puede recibir a un 4to zángano porque está lleno. Verificar
-     *que el Asimilador recoge gas una vez construido según lo estipulado.
-     */
+public class ExtractorTests {
 
     @Test
-    public void Test01UnExtractorSinZanganosNoGeneraGas() {
+    public void test01ConstruyoUnExtractorQueEstaraListoEn6Turnos() {
+
+        //ARRANGE
+        Casillero casillero = new Casillero();
+        Casillero.setTipoCasillero(new NodoDeGas());
+        Inventario inventario = new Inventario(300,300);
+        Edificio extractor = new Extractor(casillero, inventario);
+
+        //ACT
+        for(int i=0; i<6; i++){
+            extractor.pasarTurno();
+        }
+
+        //ASSERT
+        assertDoesNotThrow(extractor.recibirDanio(5) );
+
+    }
+
+    @Test
+    public void test02ConstruyoUnExtractorQueNoSePuedeUsarPasados5Turnos() {
+
+        //ARRANGE
+        String mensaje = "Tu Extractor ha sido destruido";
+        Casillero casillero = new Casillero();
+        Casillero.setTipoCasillero(new NodoDeGas());
+        Inventario inventario = new Inventario(300,300);
+        Edificio extractor = new Extractor(casillero, inventario);
+
+        //ACT
+        for(int i=0; i<5; i++){
+            extractor.pasarTurno();
+        }
+        Exception exception = assertThrows(Exception.class, () -> {
+            extractor.recibirDanio(5);
+        });
+
+        //ASSERT
+        assertEquals(mensaje, exception.getMessage());
+
+    }
+
+    @Test
+    public void test03ConstruyoUnExtractorSobreElGas(){
+        //ARRANGE
+        Casillero casillero = new Casillero();
+        casillero.setTipoCasillero(new NodoDeGas());
+        Inventario inventario = new Inventario(200,200);
+        //ACT
+        Extractor extractor = new Extractor(casillero, inventario);
+        //ASSERT
+        assertTrue(casillero.estaOcupado());
+    }
+
+    @Test
+    public void test04ConstruirUnExtractorSobreOtroCasilleroLanzaError(){
+        //ARRANGE
+        String mensaje = "No se puede construir un extractor en este casillero";
+        Casillero casillero = new Casillero();
+        casillero.setTipoCasillero(new NodoMineral());
+        Inventario inventario = new Inventario(200,200);
+        //ACT
+        Exception exception = assertThrows(Exception.class, () -> {
+            Extractor extractor = new Extractor(casillero, inventario);
+        });
+        //ASSERT
+        assertEquals(mensaje, exception.getMessage());
+    }
+
+    @Test
+    public void Test05UnExtractorSinZanganosNoGeneraGas() {
 
         //ARRANGE
         String mensaje = "El extractor no tiene zanganos trabajando";
@@ -36,7 +101,7 @@ public class casosDeUso4 {
     }
 
     @Test
-    public void Test02UnExtractorCon1ZanganoSaca10DeGas() {
+    public void Test06UnExtractorCon1ZanganoSaca10DeGas() {
 
         //ARRANGE
         Gas gasEsperado = new Gas(10);
@@ -58,7 +123,7 @@ public class casosDeUso4 {
 
 
     @Test
-    public void Test03UnExtractorCon2ZanganosSaca20DeGas() {
+    public void Test07UnExtractorCon2ZanganosSaca20DeGas() {
 
         //ARRANGE
         Gas gasEsperado = new Gas(20);
@@ -80,7 +145,7 @@ public class casosDeUso4 {
     }
 
     @Test
-    public void Test04UnExtractorCon3ZanganosSaca30DeGas() {
+    public void Test08UnExtractorCon3ZanganosSaca30DeGas() {
 
         //ARRANGE
         Gas gasEsperado = new Gas(30);
@@ -103,7 +168,7 @@ public class casosDeUso4 {
     }
 
     @Test
-    public void Test05UnExtractorNoPuedeTener4ZanganosTrabajando() {
+    public void Test09UnExtractorNoPuedeTener4ZanganosTrabajando() {
 
         //ARRANGE
         String mensaje = "El extractor ya tiene 3 zanganos trabajando duro";
