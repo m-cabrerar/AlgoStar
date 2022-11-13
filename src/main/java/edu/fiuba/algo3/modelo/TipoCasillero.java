@@ -5,5 +5,5 @@ public interface TipoCasillero {
     public void pasarTurno();
     public String nombreDelCasillero();
 
-    void extraerMineral(Inventario inventario, int cantidad);
+    void extraerMineral(Inventario inventario, int cantidad) throws Exception;
 }
