@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-public class Casillero extends EdificioZerg{
+public class Casillero{
     private TipoCasillero tipoCasillero;
     private int energia;
     private int coordenadaX;
