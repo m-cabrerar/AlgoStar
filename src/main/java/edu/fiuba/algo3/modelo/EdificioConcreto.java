@@ -1,42 +1,34 @@
 package edu.fiuba.algo3.modelo;
 
 abstract class EdificioConcreto implements Edificio {
-    private int vida;
-    private Casillero casilleroCompatible;
-    abstract public void pasarTurno();
-
-    public void recibirDanio(int danio) {
+    protected int vida;
+    protected TipoCasillero casillero;
+    public EdificioConcreto(TipoCasillero unCasillero, Inventario unInventario, int vidaInicial){
+        this.casillero = unCasillero;
+        unCasillero.ocupar();
+        unInventario.agregar(this);
+        this.vida = vidaInicial;
+    }
+    abstract int turnosParaConstruir();
+    protected boolean estaDestruido() {
+        return vida <= 0;
+    }
+    public void recibirDanio(int danio) throws EstaDestruido {
+        if (estaDestruido()){
+            throw new EstaDestruido("El edificio está destruido");
+        }
         vida -= danio;
+        if (estaDestruido()){
+            casillero.desocupar();
+        }
     }
-    public EdificioEnConstruccion construir(Casillero casillero,Inventario inventario) {
-        if (!this.tieneMateriales(inventario)) {
-            throw new Exception("Materiales insuficientes");
-        }
-        if (!this.tieneCorrelativas(inventario)) {
-            throw new Exception("Correlativas insuficientes");
-        }
-        if (!casillero.puedeConstruir(this)) {
-            throw new Exception("Ubicacion invalida");
-
-        }
-        //alt:
-        if(casillero.sonDelMismoTipoDeCasillero(casilleroCompatible)){
-            throw new Exception("Ubicacion invalida");
-        }
-        //fin alt.
-
-        this.consumirMateriales(inventario);
-        return new EdificioEnConstruccion(this, casillero, inventario);
-    }
-
     private void consumirMateriales(Inventario inventario) {
     }
-
     private boolean tieneCorrelativas(Inventario inventario) {
+        return true;
     }
-
     private boolean tieneMateriales(Inventario inventario) {
+        return true;
     }
-
 
 }

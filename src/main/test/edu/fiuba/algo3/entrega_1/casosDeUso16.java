@@ -1,3 +1,4 @@
+/*
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.Criadero;
@@ -11,7 +12,7 @@ public class casosDeUso16 {
      * viceversa (zángano no puede extraer mineral si ya tiene un nexo construido sobre el
      * nodo).
      */
-
+/*
 
     @Test
     public void Test02NoPuedoConstruirUnNexoMineralSobreUnNodoConZangano() {
@@ -25,7 +26,7 @@ public class casosDeUso16 {
 
         //Supuesto
         criadero.engendrarZangano();
-        criadero.enviarZanganoAExtraerMineral(Casillero)
+        criadero.enviarZanganoAExtraerMineral(Casillero);
         //TODO ZANGANO EXTRAER MINERAL EN ESA CASILLA
 
         //ACT
@@ -53,10 +54,11 @@ public class casosDeUso16 {
 
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            criadero.enviarZanganoAExtraerMineral(Casillero)
+            criadero.enviarZanganoAExtraerMineral(Casillero);
             //TODO ZANGANO EXTRAER MINERAL EN ESA CASILLA
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
     }
 }
+*/

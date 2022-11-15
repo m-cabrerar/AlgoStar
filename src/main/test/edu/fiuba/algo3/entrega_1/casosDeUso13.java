@@ -1,7 +1,12 @@
+/*
+
 package edu.fiuba.algo3.entrega_1;
+import edu.fiuba.algo3.modelo.Casillero;
+import edu.fiuba.algo3.modelo.Edificio;
+import edu.fiuba.algo3.modelo.Inventario;
 import org.junit.jupiter.api.Test;
 public class casosDeUso13 {
-    /*Se destruye un criadero e igual se puede seguir construyendo sobre el moho que dejó.*/
+    //Se destruye un criadero e igual se puede seguir construyendo sobre el moho que dejó.
     @Test
     public void Test01AlDestruirUnCriaderoSePuedeConstruirSobreElMohoQueDejo() {
 
@@ -22,3 +27,4 @@ public class casosDeUso13 {
 
     }
 }
+*/
