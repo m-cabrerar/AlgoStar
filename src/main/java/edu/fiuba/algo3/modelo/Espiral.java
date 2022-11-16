@@ -10,9 +10,7 @@ public class Espiral extends EdificioZerg {
         super(casillero, inventario, VIDA_MAXIMA);
     }
     public void pasarTurno(){
-        if(vida<VIDA_MAXIMA){
-            regenerarVida();
-        }
+        super.pasarTurno();
     }
     public int turnosParaConstruir(){
         return 10;

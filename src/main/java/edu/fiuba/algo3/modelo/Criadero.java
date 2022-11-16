@@ -13,9 +13,7 @@ public class Criadero extends EdificioZerg{
         this.cantidadZanganos = 0;
     }
     public void pasarTurno() {
-        if(vida<VIDA_MAXIMA){
-            regenerarVida();
-        }
+        super.pasarTurno();
         if(!estaEnCapacidadMaxima()) {
             this.cantidadLarvas += 1;
         }
