@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.entrega_1;
 
+import edu.fiuba.algo3.exceptions.EstaDestruido;
 import edu.fiuba.algo3.modelo.*;
 import org.junit.jupiter.api.Test;
 
@@ -32,7 +33,6 @@ public class ExtractorTests {
     public void test02ConstruyoUnExtractorQueNoSePuedeUsarPasados5Turnos() {
 
         //ARRANGE
-        String mensaje = "El edificio esta destruido";
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
         when(casilleroMock.esDelTipo(any())).thenReturn(true);
@@ -44,11 +44,8 @@ public class ExtractorTests {
                 extractor.pasarTurno();
             }
             extractor.recibirDanio(5);
-            Exception exception = assertThrows(Exception.class, () -> {
-                extractor.recibirDanio(5);
-            });
-            //ASSERT
-            assertEquals(mensaje, exception.getMessage());
+            // ASSERT
+            assertThrows(EstaDestruido.class, () -> extractor.recibirDanio(5));
         } catch (Exception e) {
             fail();
         }

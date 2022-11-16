@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.entrega_1;
 
+import edu.fiuba.algo3.exceptions.RecursosInsuficientes;
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.exceptions.*;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -93,7 +95,7 @@ public class CriaderoTests {
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.sonDelMismoTipoDeCasillero(any())).thenReturn(true);
+        when(casilleroMock.esDelTipo(any())).thenReturn(true);
         when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         try {
             Edificio criadero = Criadero.construir(casilleroMock, inventarioMock);
@@ -111,10 +113,9 @@ public class CriaderoTests {
     @Test
     public void test05ConstruyoUnCriaderoQueNoSePuedeUsarPasados3Turnos() {
         //ARRANGE
-        String mensaje = "El edificio esta destruido";
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.sonDelMismoTipoDeCasillero(any())).thenReturn(true);
+        when(casilleroMock.esDelTipo(any())).thenReturn(true);
         when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         try {
             Edificio criadero = Criadero.construir(casilleroMock, inventarioMock);
@@ -123,12 +124,8 @@ public class CriaderoTests {
             criadero.pasarTurno();
             criadero.pasarTurno();
             criadero.recibirDanio(5);
-            Exception exception = assertThrows(Exception.class, () -> {
-                criadero.recibirDanio(5);
-            });
-
             //ASSERT
-            assertEquals(mensaje, exception.getMessage());
+            assertThrows(EstaDestruido.class, () -> criadero.recibirDanio(5));
         } catch (Exception e) {
             fail();
         }
@@ -139,7 +136,7 @@ public class CriaderoTests {
         String mensaje = "Ubicacion invalida";
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.sonDelMismoTipoDeCasillero(any())).thenReturn(false);
+        when(casilleroMock.esDelTipo(any())).thenReturn(false);
         when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
@@ -151,16 +148,11 @@ public class CriaderoTests {
     @Test
     public void test07NoPuedoConstruirUnCriaderoSinLosRecursos(){
         //ARRANGE
-        String mensaje = "No tiene recursos";
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.sonDelMismoTipoDeCasillero(any())).thenReturn(true);
+        when(casilleroMock.esDelTipo(any())).thenReturn(true);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(false);
-        //ACT
-        Exception exception = assertThrows(Exception.class, () -> {
-            Criadero.construir(casilleroMock, inventarioMock);
-        });
-        //ASSERT
-        assertEquals(mensaje, exception.getMessage());
+        //ACT & ASSERT
+        assertThrows(RecursosInsuficientes.class, () -> Criadero.construir(casilleroMock, inventarioMock));
     }
 }

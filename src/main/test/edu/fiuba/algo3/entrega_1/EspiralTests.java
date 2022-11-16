@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import edu.fiuba.algo3.exceptions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
@@ -32,10 +33,9 @@ public class EspiralTests {
     @Test
     public void test02ConstruyoUnEspiralQueNoSePuedeUsarPasados9Turnos() {
         //ARRANGE
-        String mensaje = "El edificio esta destruido";
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.sonDelMismoTipoDeCasillero(any())).thenReturn(true);
+        when(casilleroMock.esDelTipo(any())).thenReturn(true);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         when(inventarioMock.tieneGuarida()).thenReturn(true);
         try{
@@ -45,11 +45,8 @@ public class EspiralTests {
                 espiral.pasarTurno();
             }
             espiral.recibirDanio(5);
-            Exception exception = assertThrows(Exception.class, () -> {
-                espiral.recibirDanio(5);
-            });
-            //ASSERT
-            assertEquals(mensaje, exception.getMessage());
+            // ASSERT
+            assertThrows(EstaDestruido.class, () -> espiral.recibirDanio(5));
         } catch (Exception e) {
             fail();
         }
@@ -60,7 +57,7 @@ public class EspiralTests {
         String mensaje = "Aun no se puede construir este edificio";
         Inventario inventarioMock = mock(Inventario.class);
         Casillero casilleroMock = mock(Casillero.class);
-        when(casilleroMock.sonDelMismoTipoDeCasillero(any())).thenReturn(true);
+        when(casilleroMock.esDelTipo(any())).thenReturn(true);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         when(inventarioMock.tieneGuarida()).thenReturn(false);
         //ACT
@@ -77,7 +74,7 @@ public class EspiralTests {
         Casillero casilleroMock = mock(Casillero.class);
         try{
             //ACT
-            when(casilleroMock.sonDelMismoTipoDeCasillero(any())).thenReturn(true);
+            when(casilleroMock.esDelTipo(any())).thenReturn(true);
             when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
             when(inventarioMock.tieneGuarida()).thenReturn(true);
             //ASSERT
@@ -92,7 +89,7 @@ public class EspiralTests {
         String mensaje = "No tiene recursos";
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.sonDelMismoTipoDeCasillero(any())).thenReturn(true);
+        when(casilleroMock.esDelTipo(any())).thenReturn(true);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(false);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {

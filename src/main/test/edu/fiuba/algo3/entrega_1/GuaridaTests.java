@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.entrega_1;
 
+import edu.fiuba.algo3.exceptions.*;
 import edu.fiuba.algo3.modelo.*;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +17,7 @@ public class GuaridaTests {
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.sonDelMismoTipoDeCasillero(any())).thenReturn(true);
+        when(casilleroMock.esDelTipo(any())).thenReturn(true);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         when(inventarioMock.tieneReservaDeReproduccion()).thenReturn(true);
         try {
@@ -35,10 +36,9 @@ public class GuaridaTests {
     public void test02ConstruyoUnaGuaridaQueNoSePuedeUsarPasados11Turnos() {
 
         //ARRANGE
-        String mensaje = "El edificio esta destruido";
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.sonDelMismoTipoDeCasillero(any())).thenReturn(true);
+        when(casilleroMock.esDelTipo(any())).thenReturn(true);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         when(inventarioMock.tieneReservaDeReproduccion()).thenReturn(true);
         try {
@@ -48,11 +48,8 @@ public class GuaridaTests {
                 guarida.pasarTurno();
             }
             guarida.recibirDanio(5);
-            Exception exception = assertThrows(Exception.class, () -> {
-                guarida.recibirDanio(5);
-            });
-            //ASSERT
-            assertEquals(mensaje, exception.getMessage());
+            // ASSERT
+            assertThrows(EstaDestruido.class, () -> guarida.recibirDanio(5));
         } catch (Exception e) {
             fail();
         }
@@ -63,7 +60,7 @@ public class GuaridaTests {
         String mensaje = "Aun no se puede construir este edificio";
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.sonDelMismoTipoDeCasillero(any())).thenReturn(true);
+        when(casilleroMock.esDelTipo(any())).thenReturn(true);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         when(inventarioMock.tieneReservaDeReproduccion()).thenReturn(false);
         //ACT
@@ -81,7 +78,7 @@ public class GuaridaTests {
         Inventario inventarioMock = mock(Inventario.class);
         //ACT
         try {
-            when(casilleroMock.sonDelMismoTipoDeCasillero(any())).thenReturn(true);
+            when(casilleroMock.esDelTipo(any())).thenReturn(true);
             when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
             when(inventarioMock.tieneReservaDeReproduccion()).thenReturn(true);
             //ASSERT
@@ -96,7 +93,7 @@ public class GuaridaTests {
         String mensaje = "No tiene recursos";
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.sonDelMismoTipoDeCasillero(any())).thenReturn(true);
+        when(casilleroMock.esDelTipo(any())).thenReturn(true);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(false);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
