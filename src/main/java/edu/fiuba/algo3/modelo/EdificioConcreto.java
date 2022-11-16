@@ -8,7 +8,7 @@ abstract class EdificioConcreto implements Edificio {
     public void recibirDanio(int danio) {
         vida -= danio;
     }
-    public EdificioEnConstruiccion construir(Casillero casillero,Inventario inventario) {
+    public EdificioEnConstruccion construir(Casillero casillero,Inventario inventario) throws Exception {
         if (!this.tieneMateriales(inventario)) {
             throw new Exception("Materiales insuficientes");
         }
@@ -26,7 +26,16 @@ abstract class EdificioConcreto implements Edificio {
         //fin alt.
 
         this.consumirMateriales(inventario);
-        return new EdificioEnConstruiccion(this, casillero, inventario);
+        return new EdificioEnConstruccion(this, casillero, inventario);
+    }
+
+    private void consumirMateriales(Inventario inventario) {
+    }
+
+    private boolean tieneCorrelativas(Inventario inventario) {
+    }
+
+    private boolean tieneMateriales(Inventario inventario) {
     }
 
 

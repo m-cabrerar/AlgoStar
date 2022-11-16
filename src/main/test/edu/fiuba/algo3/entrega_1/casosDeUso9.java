@@ -9,9 +9,7 @@ public class casosDeUso9 {
      */
 
     @Test
-    public void Test01AccesoSigueActivoUbicadoEnCasilleroEnergizado2PilonesCuandoUnoSeDestruye
-
-    {
+    public void Test01AccesoSigueActivoUbicadoEnCasilleroEnergizado2PilonesCuandoUnoSeDestruye{
         //ARRANGE
         Casillero casillero;
         Casillero otroCasillero;

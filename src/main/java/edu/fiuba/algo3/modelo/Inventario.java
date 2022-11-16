@@ -16,7 +16,7 @@ public class Inventario {
         }
         return true;
     }
-    public void pagar(int pagoDeGas, int pagoDeMineral){
+    public void pagar(int pagoDeGas, int pagoDeMineral) throws Exception {
         if (!this.puedePagar(pagoDeGas, pagoDeMineral)) {
             throw new Exception("Materiales insuficientes");
         }
