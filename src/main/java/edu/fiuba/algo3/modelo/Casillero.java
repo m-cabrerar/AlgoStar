@@ -63,6 +63,10 @@ public class Casillero{
         }
         this.estaOcupado = true;
     }
+
+    public void desocupar(){
+        this.estaOcupado = false;
+    }
     public List<Casillero> visitarAdyacentes(int turnoActual, Mapa mapa){
         //Devuelve una lista con los adyacentes a la casilla que visita.
         List<Casillero> adyacentes = mapa.CasillerosAdyacentes(this.coordenadaX,this.coordenadaY);
