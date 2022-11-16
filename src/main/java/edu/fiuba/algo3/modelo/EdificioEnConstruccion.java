@@ -29,14 +29,14 @@ public class EdificioEnConstruccion implements Edificio {
 
     public void recibirDanio(int danio) throws EstaDestruido {
 
+        if (destruido){
+            throw new EstaDestruido("El edificio esta destruido");
+        }
         if (!estaListo()) {
             casillero.desocupar();
             destruido = true;
         } else {
             vaASer.recibirDanio(danio);
-        }
-        if (destruido){
-            throw new EstaDestruido("El edificio esta destruido");
         }
     }
 }

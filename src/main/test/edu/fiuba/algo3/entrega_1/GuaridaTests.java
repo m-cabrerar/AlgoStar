@@ -47,6 +47,7 @@ public class GuaridaTests {
             for (int i = 0; i < 11; i++) {
                 guarida.pasarTurno();
             }
+            guarida.recibirDanio(5);
             Exception exception = assertThrows(Exception.class, () -> {
                 guarida.recibirDanio(5);
             });

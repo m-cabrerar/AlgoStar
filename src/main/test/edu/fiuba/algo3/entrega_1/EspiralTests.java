@@ -44,6 +44,7 @@ public class EspiralTests {
             for(int i=0; i<9; i++){
                 espiral.pasarTurno();
             }
+            espiral.recibirDanio(5);
             Exception exception = assertThrows(Exception.class, () -> {
                 espiral.recibirDanio(5);
             });

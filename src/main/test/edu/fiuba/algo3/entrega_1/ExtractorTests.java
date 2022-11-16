@@ -43,6 +43,7 @@ public class ExtractorTests {
             for(int i=0; i<5; i++){
                 extractor.pasarTurno();
             }
+            extractor.recibirDanio(5);
             Exception exception = assertThrows(Exception.class, () -> {
                 extractor.recibirDanio(5);
             });

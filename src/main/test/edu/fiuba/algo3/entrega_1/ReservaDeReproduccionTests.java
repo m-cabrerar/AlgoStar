@@ -45,6 +45,7 @@ public class ReservaDeReproduccionTests {
             for (int i = 0; i < 11; i++) {
                 reserva.pasarTurno();
             }
+            reserva.recibirDanio(5);
             Exception exception = assertThrows(Exception.class, () -> {
                 reserva.recibirDanio(5);
             });
