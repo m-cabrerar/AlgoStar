@@ -17,7 +17,7 @@ public class Extractor extends EdificioZerg {
     }
     public static EdificioEnConstruccion construir(Casillero casillero, Inventario inventario) throws UbicacionInvalida, RecursosInsuficientes {
         // hacer checkeos de casilla y materiales
-        if(!casillero.sonDelMismoTipoDeCasillero(new NodoGas())){
+        if(!casillero.esDelTipo(new NodoGas())){
             throw new UbicacionInvalida("Ubicacion invalida");
         }
         if(!inventario.tieneRecursos(100, 0)){

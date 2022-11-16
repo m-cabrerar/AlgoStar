@@ -16,7 +16,7 @@ public class Espiral extends EdificioZerg {
     }
     public static EdificioEnConstruccion construir(Casillero casillero, Inventario inventario) throws UbicacionInvalida, RecursosInsuficientes {
         // hacer checkeos de casilla y materiales
-        if(!casillero.sonDelMismoTipoDeCasillero(new Moho())){
+        if(!casillero.esDelTipo(new Moho())){
             throw new UbicacionInvalida("Ubicacion invalida");
         }
         if(!inventario.tieneRecursos(150,100)){

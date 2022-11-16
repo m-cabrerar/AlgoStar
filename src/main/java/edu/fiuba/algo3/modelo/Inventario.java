@@ -41,6 +41,8 @@ public class Inventario {
         return true;
     }
 
+    public void recibirGas(int cantidad){return;}
+    public void recibirMineral(int cantidad){return;}
     public boolean tieneReservaDeReproduccion() { return true; }
 
     public boolean tieneRecursos(int cantMineral, int cantGas) {
