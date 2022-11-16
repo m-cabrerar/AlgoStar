@@ -1,9 +1,12 @@
 package edu.fiuba.algo3.modelo;
+import java.util.List;
 
-public interface TipoCasillero {
+public abstract class TipoCasillero{
+    public abstract String nombreDelCasillero();
 
-    public void pasarTurno();
-    public String nombreDelCasillero();
+    public void extraerMineral(Inventario inventario, int cantidad){}
 
-    void extraerMineral(Inventario inventario, int cantidad) throws Exception;
+    public void expandirMoho(List<Casillero> casillasAContagiar){}
+
+    public void extraerGas(Inventario unDestinoDeRecoleccion, int cantidadRecolectada){}
 }

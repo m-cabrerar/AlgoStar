@@ -1,14 +1,19 @@
 package edu.fiuba.algo3.modelo;
 
-public class Moho implements TipoCasillero{
+import java.util.List;
+
+public class Moho extends TipoCasillero {
+    public Moho(){}
+    @Override
+    public String nombreDelCasillero() { return "Moho";}
 
     @Override
-    public String nombreDelCasillero() {
-        return "Moho";
+    public void expandirMoho(List<Casillero> casillasAContagiar) {
+        for (Casillero casilla : casillasAContagiar) {
+            if (casilla.estaOcupado()) {
+                return;
+            }
+            casilla.setTipoCasillero(new Moho());
+        }
     }
 }
-    //Me pide sobreescrbir extraerMineral
-    @Override
-    public void extraerMineral(Inventario inventario, int cantidad){
-    //nada
-    }
