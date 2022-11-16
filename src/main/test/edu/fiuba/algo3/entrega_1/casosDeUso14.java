@@ -5,13 +5,16 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/*
 public class casosDeUso14 {
-    /*- Un pilón no puede energizar en un área ya cubierta por moho (Es decir las construcciones
+    */
+/*- Un pilón no puede energizar en un área ya cubierta por moho (Es decir las construcciones
      * protoss no se pueden hacer sobre moho, por más que estén dentro del alcance de un
      * pilón).
      *- El moho se puede expandir por un área no ocupada (es decir que no tenga un edificio ya
      * construido) aunque ésta esté energizada por un pilón.
-     */
+     *//*
+
     @Test
     public void Test01UnPilonNoEnergizaUnCasilleroConMoho() {
         //ARRANGE
@@ -75,3 +78,4 @@ public class casosDeUso14 {
         assertDoesNotThrow(new Criadero(casillero, inventario));
     }
 }
+*/

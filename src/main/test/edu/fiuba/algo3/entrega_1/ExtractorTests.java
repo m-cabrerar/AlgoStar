@@ -14,7 +14,7 @@ public class ExtractorTests {
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.sonDelMismoTipoDeCasillero(any())).thenReturn(true);
+        when(casilleroMock.esDelTipo(any())).thenReturn(true);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         try {
             Edificio extractor = Extractor.construir(casilleroMock, inventarioMock);
@@ -33,9 +33,9 @@ public class ExtractorTests {
 
         //ARRANGE
         String mensaje = "El edificio esta destruido";
-        Casillero casilleroMock = mock(NodoGas.class);
+        Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.sonDelMismoTipoDeCasillero(any())).thenReturn(true);
+        when(casilleroMock.esDelTipo(any())).thenReturn(true);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         try{
             Edificio extractor = Extractor.construir(casilleroMock, inventarioMock);
@@ -56,9 +56,9 @@ public class ExtractorTests {
     @Test
     public void test03ConstruyoUnExtractorSobreElGas(){
         //ARRANGE
-        Casillero casilleroMock = mock(NodoGas.class);
+        Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.sonDelMismoTipoDeCasillero(any(NodoGas.class))).thenReturn(true);
+        when(casilleroMock.esDelTipo(any(NodoGas.class))).thenReturn(true);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         //ACT
         new Extractor(casilleroMock, inventarioMock);
@@ -69,9 +69,9 @@ public class ExtractorTests {
     public void test04ConstruirUnExtractorSobreOtroCasilleroLanzaError(){
         //ARRANGE
         String mensaje = "Ubicacion invalida";
-        Casillero casilleroMock = mock(Moho.class);
+        Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.sonDelMismoTipoDeCasillero(any())).thenReturn(false);
+        when(casilleroMock.esDelTipo(any())).thenReturn(false);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
@@ -84,9 +84,9 @@ public class ExtractorTests {
     public void Test05UnExtractorSinZanganosNoGeneraGas() {
         //ARRANGE
         String mensaje = "El extractor no tiene zanganos trabajando";
-        Casillero casilleroMock = mock(NodoGas.class);
+        Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.sonDelMismoTipoDeCasillero(any(NodoGas.class))).thenReturn(true);
+        when(casilleroMock.esDelTipo(any(NodoGas.class))).thenReturn(true);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         try {
             Extractor extractor = new Extractor(casilleroMock, inventarioMock);
@@ -104,9 +104,9 @@ public class ExtractorTests {
     public void Test06UnExtractorCon1ZanganoSaca10DeGas() {
         //ARRANGE
         int cantidadGasEsperado = 10;
-        Casillero casilleroMock = mock(NodoGas.class);
+        Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.sonDelMismoTipoDeCasillero(any(NodoGas.class))).thenReturn(true);
+        when(casilleroMock.esDelTipo(any(NodoGas.class))).thenReturn(true);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         try{
             Extractor extractor = new Extractor(casilleroMock, inventarioMock);
@@ -123,9 +123,9 @@ public class ExtractorTests {
     public void Test07UnExtractorCon2ZanganosSaca20DeGas() {
         //ARRANGE
         int cantidadGasEsperado = 20;
-        Casillero casilleroMock = mock(NodoGas.class);
+        Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.sonDelMismoTipoDeCasillero(any(NodoGas.class))).thenReturn(true);
+        when(casilleroMock.esDelTipo(any(NodoGas.class))).thenReturn(true);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         try {
             Extractor extractor = new Extractor(casilleroMock, inventarioMock);
@@ -143,9 +143,9 @@ public class ExtractorTests {
     public void Test08UnExtractorCon3ZanganosSaca30DeGas() {
         //ARRANGE
         int cantidadGasEsperado = 30;
-        Casillero casilleroMock = mock(NodoGas.class);
+        Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.sonDelMismoTipoDeCasillero(any(NodoGas.class))).thenReturn(true);
+        when(casilleroMock.esDelTipo(any(NodoGas.class))).thenReturn(true);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         try {
             Extractor extractor = new Extractor(casilleroMock, inventarioMock);
@@ -164,9 +164,9 @@ public class ExtractorTests {
     public void Test09UnExtractorNoPuedeTener4ZanganosTrabajando() {
         //ARRANGE
         String mensaje = "El extractor ya tiene 3 zanganos trabajando";
-        Casillero casilleroMock = mock(NodoGas.class);
+        Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.sonDelMismoTipoDeCasillero(any(NodoGas.class))).thenReturn(true);
+        when(casilleroMock.esDelTipo(any(NodoGas.class))).thenReturn(true);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         try {
             Extractor extractor = new Extractor(casilleroMock, inventarioMock);
@@ -189,7 +189,7 @@ public class ExtractorTests {
         String mensaje = "No tiene recursos";
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.sonDelMismoTipoDeCasillero(any())).thenReturn(true);
+        when(casilleroMock.esDelTipo(any())).thenReturn(true);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(false);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {

@@ -155,6 +155,7 @@ public class NexoMineralTest {
         // Arrange
         Casillero mockedCasillero = mock(Casillero.class);
         when(mockedCasillero.esDelTipo(any())).thenReturn(true);
+        when(mockedCasillero.extraerMineral(20)).thenReturn(20);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         NexoMineral nexoMineral = new NexoMineral(mockedCasillero, mockedInventario);

@@ -12,19 +12,14 @@ public class NodoGas extends TipoCasillero{
         return "Nodo";
     }
     @Override
-    public void extraerGas(Inventario unDestinoDeRecoleccion, int cantidadRecolectada) {
-        if(this.agotado()){
-            return; //no recolecta nada.
+    public int extraerGas(int cantidad) {
+        unidadesRestantes -= cantidad;
+        if (this.agotado()){
+            return cantidad + unidadesRestantes;
         }
-        if (this.unidadesRestantes >= cantidadRecolectada){
-            this.unidadesRestantes -= cantidadRecolectada;
-            unDestinoDeRecoleccion.recibirGas(cantidadRecolectada);
-        }else{
-            unDestinoDeRecoleccion.recibirGas(this.unidadesRestantes);
-            this.unidadesRestantes = 0;
-        }
+        return cantidad;
     }
     public boolean agotado(){
-        return unidadesRestantes == 0;
+        return unidadesRestantes <= 0;
     }
 }

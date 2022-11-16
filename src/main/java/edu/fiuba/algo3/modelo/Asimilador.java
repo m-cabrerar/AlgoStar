@@ -29,7 +29,6 @@ public class Asimilador extends EdificioProtoss {
     }
 
     public int extraerGas() { //TODO: hacer privado y que se llame desde pasarTurno
-        casillero.extraerGas(20);
-        return 20;
+        return casillero.extraerGas(20);
     }
 }

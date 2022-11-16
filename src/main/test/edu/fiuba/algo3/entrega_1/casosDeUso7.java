@@ -8,8 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.times;
 
-public class casosDeUso7 {
-    /*Verificar la recolección de minerales para ambas razas.*/
+/*public class casosDeUso7 {
+    *//*Verificar la recolección de minerales para ambas razas.*//*
     //ARRANGE
     @Test
     public void Test01ProtossIntentaRecolectarCuandoNodoMinealVacio(){
@@ -25,8 +25,8 @@ public class casosDeUso7 {
             nexoMineral.extraerMineral(inventario);
             //rompe porque no usa el extrarMineral de los demás, hmm funny weird revisar
         });
-        /*me dice que agregue el metodo a edificio, pero necesito que lo sepa solo el nexo, no todos
-        problema para patorn de diseño?*/
+        *//*me dice que agregue el metodo a edificio, pero necesito que lo sepa solo el nexo, no todos
+        problema para patorn de diseño?*//*
 
         //ASSERT
         assertEquals(mensajeError, exception.getMessage());
@@ -34,7 +34,7 @@ public class casosDeUso7 {
 
     @Test
     public void Test02ProtossNexoMineralRecolecta10mineralEnUnTurno(){
-        /*se asume que se recolecta 10 mineral por turno. Después se corroborará*/
+        *//*se asume que se recolecta 10 mineral por turno. Después se corroborará*//*
         //Arrange
         //Mineral mineralEsperado = new Mineral(10);//
         Casillero mockedNodoMineral = mock(Casillero.class);
@@ -93,4 +93,4 @@ public class casosDeUso7 {
         assertEquals(mineralObtenido.total(), mineralEsperado.total());
     }
     
-}
+}*/

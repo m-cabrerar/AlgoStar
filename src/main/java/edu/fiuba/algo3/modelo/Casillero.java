@@ -53,11 +53,11 @@ public class Casillero{
         this.tipoCasillero.expandirMoho(adyacentesVisitados);
     }
 
-    public void extraerMineral(int cantidad) {
-        this.tipoCasillero.extraerMineral(cantidad);
+    public int extraerMineral(int cantidad) {
+        return this.tipoCasillero.extraerMineral(cantidad);
     }
-    public void extraerGas(int cantidad) {
-        this.tipoCasillero.extraerGas(cantidad);
+    public int extraerGas(int cantidad) {
+        return this.tipoCasillero.extraerGas(cantidad);
     }
     public boolean estaOcupado(){
         return this.estaOcupado;

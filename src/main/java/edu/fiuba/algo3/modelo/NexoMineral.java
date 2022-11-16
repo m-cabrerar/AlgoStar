@@ -28,7 +28,6 @@ public class NexoMineral extends EdificioProtoss {
     }
 
     public int extraerMineral() { // TODO: hacer privado y que se llame desde pasarTurno
-        casillero.extraerMineral(20);
-        return 20;
+        return casillero.extraerMineral(20);
     }
 }

@@ -152,6 +152,7 @@ public class AsimiladorTest {
         // Arrange
         Casillero mockedCasillero = mock(Casillero.class);
         when(mockedCasillero.esDelTipo(any())).thenReturn(true);
+        when(mockedCasillero.extraerGas(20)).thenReturn(20);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         Asimilador asimilador = new Asimilador(mockedCasillero, mockedInventario);

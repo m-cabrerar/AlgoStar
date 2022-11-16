@@ -4,9 +4,13 @@ import java.util.List;
 public abstract class TipoCasillero{
     public abstract String nombreDelCasillero();
 
-    public void extraerMineral(Inventario inventario, int cantidad){}
-
+    public int extraerMineral(int cantidad){
+        return 0;
+    }
+    public int extraerGas(int cantidad){
+        return 0;
+    }
     public void expandirMoho(List<Casillero> casillasAContagiar){}
 
-    public void extraerGas(Inventario unDestinoDeRecoleccion, int cantidadRecolectada){}
+
 }

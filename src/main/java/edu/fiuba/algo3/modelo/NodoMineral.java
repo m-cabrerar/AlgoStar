@@ -11,20 +11,15 @@ public class NodoMineral extends TipoCasillero{
         return "NodoMineral";
     }
 
-    public boolean agotado(){
-        return unidadesRestantes == 0;
-    }
     @Override
-    public void extraerMineral(Inventario unDestinoDeRecoleccion, int cantidadRecolectada){
-        if(this.agotado()){
-            return; //No recolecta nada.
+    public int extraerMineral(int cantidad) {
+        unidadesRestantes -= cantidad;
+        if (this.agotado()){
+            return cantidad + unidadesRestantes;
         }
-        if (this.unidadesRestantes >= cantidadRecolectada){
-            this.unidadesRestantes -= cantidadRecolectada;
-            unDestinoDeRecoleccion.recibirMineral(cantidadRecolectada);
-        }else{
-            unDestinoDeRecoleccion.recibirMineral(this.unidadesRestantes);
-            this.unidadesRestantes = 0;
-        }
+        return cantidad;
+    }
+    public boolean agotado(){
+        return unidadesRestantes <= 0;
     }
 }

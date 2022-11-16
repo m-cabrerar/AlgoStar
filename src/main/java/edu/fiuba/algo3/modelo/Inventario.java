@@ -48,4 +48,8 @@ public class Inventario {
     public boolean tieneRecursos(int cantMineral, int cantGas) {
         return true;
     }
+
+    public boolean tieneAcceso() {
+        return true;
+    }
 }
