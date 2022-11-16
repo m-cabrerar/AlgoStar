@@ -6,8 +6,8 @@ public class EdificioEnConstruccion implements Edificio {
     private Edificio vaASer;
     private Casillero casillero;
     private int turnosRestantes;
-    //private Inventario inventario;
     private boolean destruido;
+
     public EdificioEnConstruccion(EdificioConcreto vaASer, Casillero casillero, Inventario inventario) {
         this.vaASer = vaASer;
         this.casillero = casillero;
@@ -28,9 +28,8 @@ public class EdificioEnConstruccion implements Edificio {
     }
 
     public void recibirDanio(int danio) throws EstaDestruido {
-
         if (destruido){
-            throw new EstaDestruido("El edificio esta destruido");
+            throw new EstaDestruido("El edificio está destruido");
         }
         if (!estaListo()) {
             casillero.desocupar();

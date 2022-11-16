@@ -1,4 +1,6 @@
 package edu.fiuba.algo3.modelo;
+import edu.fiuba.algo3.exceptions.UbicacionInvalida;
+
 import java.util.*;
 
 public class Casillero{
@@ -51,19 +53,19 @@ public class Casillero{
         this.tipoCasillero.expandirMoho(adyacentesVisitados);
     }
 
-    public void extraerMineral(Inventario inventario, int cantidad) {
-        this.tipoCasillero.extraerMineral(inventario, cantidad);
+    public void extraerMineral(int cantidad) {
+        this.tipoCasillero.extraerMineral(cantidad);
     }
-    public void extraerGas(Inventario inventario, int cantidad) {
-        this.tipoCasillero.extraerGas(inventario, cantidad);
+    public void extraerGas(int cantidad) {
+        this.tipoCasillero.extraerGas(cantidad);
     }
     public boolean estaOcupado(){
         return this.estaOcupado;
     }
 
-    public void ocupar() throws Exception {
+    public void ocupar() throws UbicacionInvalida {
         if(this.estaOcupado()){
-            throw new Exception("Casillero Ocupado");
+            throw new UbicacionInvalida("Casillero Ocupado");
         }
         this.estaOcupado = true;
     }
