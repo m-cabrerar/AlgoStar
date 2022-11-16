@@ -11,9 +11,7 @@ public class Extractor extends EdificioZerg {
         this.zanganosTrabajando = 0;
     }
     public void pasarTurno(){
-        if(vida<VIDA_MAXIMA){
-            regenerarVida();
-        }
+        super.pasarTurno();
     }
     public int turnosParaConstruir(){
         return 6;
