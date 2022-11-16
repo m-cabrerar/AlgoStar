@@ -1,0 +1,70 @@
+@startuml
+title Modelado de Casilleros
+
+
+class Casillero {
+ - TipoCasillero: tipoCasillero
+ - int: energia
+ - int: coordenadaX
+ - int: coordenadaY
+ - boolean: estaOcupado
+ - int: turno
+ + Casillero(coordX, coordY)
+ + void: setTipoCasillero(TipoCasillero: unTipoDeCasilleroNuevo)
+ + boolean: sonDelMismoTipoDeCasillero(Casillero: unCasillero)
+ + String: suTipoDeCasillero()
+ + boolean: esDelTipo(TipoCasillero: unTipoCasillero)
+ + boolean: tieneEnergia()
+ + void: energizar()
+ + void: desenergizar()
+ + void: pasarTurno(int: turnoActual, Mapa: mapa)
+ + int: extraerMineral(int: cant)
+ + int: extraerGas(int: cant)
+ + boolean: estaOcupado()
+ + void: ocupar()
+ + void: desocupar()
+ + List<Casillero>: visitarAdyacentes(int turnoActual, Mapa mapa)
+ + int: posicionX()
+ + int: posicionY()
+}
+
+class CasilleroVacio{
+ + String: nombreDelCasillero()
+}
+
+abstract class TipoCasillero{
+ + {abstract}String: nombreDelCasillero();
+ + int: extraerMineral(int:cantidad)
+ + int: extraerGas(int cantidad)
+ + void: expandirMoho(List<Casillero> casillasAContagiar)
+}
+
+Casillero *-- TipoCasillero
+CasilleroVacio --|> TipoCasillero
+Moho --|> TipoCasillero
+NodoGas --|> TipoCasillero
+NodoMineral --|> TipoCasillero
+
+class Moho{
+ + Moho()
+ + String: nombreDelCasillero()
+ + void: expandirMoho(List<Casillero>: casillasAContagiar)
+}
+
+class NodoGas{
+ - int: unidadesRestantes
+ + NodoGas()
+ + String: nombreDelCasillero()
+ + int: extraerGas(int: cant)
+ + boolean: agotado(
+}
+
+class NodoMineral{
+ - int: unidadesRestantes
+ + NodoMineral()
+ + String: nombreDelCasillero()
+ + int: extraerMineral(int: cant)
+ + boolean: agotado()
+}
+
+@enduml

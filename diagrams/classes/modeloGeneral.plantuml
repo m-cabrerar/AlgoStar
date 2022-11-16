@@ -1,0 +1,92 @@
+@startuml
+title Modelado General
+
+class Mapa {
+    -List<List<Casillero>>: tableroActual
+    +Mapa(int:alto, int:ancho)
+    +void: cambiarTipoCasilla(int: x, int: y, TipoCasillero: tipo)
+    +void: pasarTurno()
+    +void: energizar(int:x,int:y,int:rango)
+    +void: desenergizar(int:x,int:y,int:rango)
+    +Casillero: obtenerCasillero(int:x, int:y)
+}
+
+class Casillero {
+ /'- TipoCasillero: tipoCasillero'/
+ - int: energia
+ - int: coordenadaX
+ - int: coordenadaY
+ + Casillero(coordX, coordY)
+ + void: setTipoCasillero(TipoCasillero: unTipoDeCasilleroNuevo)
+ + void: energizar()
+ + void: desenergizar()
+ + void: pasarTurno(int: turnoActual, Mapa: mapa)
+ + int: extraerMineral(int: cant)
+ + int: extraerGas(int: cant)
+ + void: ocupar()
+ + void: desocupar()
+}
+
+abstract class TipoCasillero{
+ + {abstract}String: nombreDelCasillero();
+ + int: extraerMineral(int:cantidad)
+ + int: extraerGas(int cantidad)
+ + void: expandirMoho(List<Casillero> casillasAContagiar)
+}
+
+interface Edificio {
+ + void:pasarTurno()
+ + void:recibirDanio(int cantidad)
+}
+
+class EdificioConcreto {
+ # int:vida
+ /'# Casillero:casillero'/
+ + EdificioConcreto(unCasillero, unInventario, vidaInicial)
+ # boolean:estaDestruido()
+ + void:recibirDanio(int cantidad)
+ - void:consumirMateriales(inventario)
+ - boolean:tieneCorrelativas(inventario)
+ - boolean:tieneMateriales(inventario)
+ {abstract} int:turnosParaConstruir()
+}
+
+class EdificioEnConstruccion{
+ /'- Edificio:vaASer'/
+ /'- Casillero:casillero'/
+ - int:turnosRestantes
+ + EdificioEnConstruccion(EdificioConcreto vaASer, casillero, inventario)
+ + void:pasarTurno()
+ + void:recibirDanio(int danio)
+}
+
+class EdificioZerg{
+ - int:vidaMaxima
+ + EdificioZerg(TipoCasillero casillero, Inventario inventario, int vida_)
+ + void:recibirDanio(int danio)
+ + void:pasarTurno()
+}
+
+class EdificioProtoss{
+ - int:escudo
+ - int:escudoMaximo
+ + EdificioProtoss(Casillero casillero, Inventario inventario, int vidaInicial, int escudoInicial)
+ + void:recibirDanio(int danio)
+ + void:pasarTurno()
+}
+
+class Inventario {
+
+}
+
+Edificio <|.. EdificioConcreto
+Edificio <|.. EdificioEnConstruccion
+EdificioConcreto <|-- EdificioZerg
+EdificioConcreto <|-- EdificioProtoss
+EdificioEnConstruccion "1" o-- "1" EdificioConcreto
+EdificioEnConstruccion "1" o-- "1" Casillero
+EdificioConcreto "1" o-- "1" Casillero
+Mapa "1" *-- "*" Casillero
+Casillero "1" *-- "1" TipoCasillero
+Inventario "1" o-- "*" Edificio
+@enduml

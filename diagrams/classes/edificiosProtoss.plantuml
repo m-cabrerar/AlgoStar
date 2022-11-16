@@ -1,0 +1,58 @@
+@startuml
+title Modelado de los Edificios Protoss
+
+
+
+class EdificioProtoss{
+ - int:escudo
+ - int:escudoMaximo
+ + EdificioProtoss(Casillero casillero, Inventario inventario, int vidaInicial, int escudoInicial)
+ + void:recibirDanio(int danio)
+ + void:pasarTurno()
+}
+
+class Acceso {
+ + Acceso(unCasillero, unInventario)
+ + void: pasarTurno()
+ + int: turnosParaConstruir()
+ + {static} EdificioEnConstruccion:construir(casillero, inventario)
+}
+
+class Asimilador {
+ + Asimilador(unCasillero, unInventario)
+ + void: pasarTurno()
+ + int: turnosParaConstruir()
+ + {static} EdificioEnConstruccion:construir(casillero, inventario)
+ + int: extraerGas()
+}
+
+class NexoMineral {
+ + NexoMineral(unCasillero, unInventario)
+ + void: pasarTurno()
+ + int: turnosParaConstruir()
+ + {static} EdificioEnConstruccion:construir(casillero, inventario)
+ + int: extraerMineral()
+}
+
+class Pilon {
+ + Pilon(unCasillero, unInventario)
+ + void: pasarTurno()
+ + int: turnosParaConstruir()
+ + {static} EdificioEnConstruccion:construir(casillero, inventario)
+}
+
+class PuertoEstelar {
+ + PuertoEstelar(unCasillero, unInventario)
+ + void: pasarTurno()
+ + int: turnosParaConstruir()
+ + {static} EdificioEnConstruccion:construir(casillero, inventario)
+}
+
+EdificioProtoss <|-- PuertoEstelar
+EdificioProtoss <|-- Pilon
+EdificioProtoss <|-- NexoMineral
+EdificioProtoss <|-- Asimilador
+EdificioProtoss <|-- Acceso
+
+
+@enduml

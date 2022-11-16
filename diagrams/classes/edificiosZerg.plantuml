@@ -1,0 +1,61 @@
+@startuml
+title Modelado de los Edificios Protoss
+
+
+class EdificioZerg{
+ - int:vidaMaxima
+ + EdificioZerg(Casillero casillero, Inventario inventario, int vidaInicial)
+ + void:recibirDanio(int danio)
+ + void:pasarTurno()
+}
+
+class Criadero{
+ - int cantidadLarvas
+ - int cantidadZanganos
+ + Criadero(casillero, inventario)
+ + void pasarTurno()
+ + int turnosParaConstruir()
+ {static} EdificioEnConstruccion construir(casillero, inventario)
+ + void engendrarZangano()
+ - boolean tieneLarvas()
+ - boolean estaEnCapacidadMaxima()
+}
+
+class Espiral{
+ + Espiral(casillero, inventario)
+ + void pasarTurno()
+ + int turnosParaConstruir()
+ {static} EdificioEnConstruccion construir(casillero, inventario)
+}
+
+class Extractor {
+ + Exctractor(casillero, inventario)
+ + void pasarTurno()
+ + int turnosParaConstruir()
+ {static} EdificioEnConstruccion construir(casillero, inventario)
+ + void extraerGas(inventario)
+ + void agregarZangano()
+}
+
+class Guarida{
+ + Guarida(casillero, inventario)
+ + void pasarTurno()
+ + int turnosParaConstruir()
+ {static} EdificioEnConstruccion construir(casillero, inventario)
+}
+
+class ReservaDeReproduccion {
+ + ReservaDeReproduccion(casillero, inventario)
+ + void pasarTurno()
+ + int turnosParaConstruir()
+ {static} EdificioEnConstruccion construir(casillero, inventario)
+}
+
+EdificioZerg <|-- ReservaDeReproduccion
+EdificioZerg <|-- Guarida
+EdificioZerg <|-- Extractor
+EdificioZerg <|-- Espiral
+EdificioZerg <|-- Criadero
+
+
+@enduml

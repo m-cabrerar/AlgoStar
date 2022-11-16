@@ -1,0 +1,52 @@
+@startuml
+title Modelado de los Edificios
+
+interface Edificio {
+ + void:pasarTurno()
+ + void:recibirDanio(int cantidad)
+}
+
+class EdificioConcreto {
+ # int:vida
+ # Casillero:casillero
+ + EdificioConcreto(unCasillero, unInventario, vidaInicial)
+ # boolean:estaDestruido()
+ + void:recibirDanio(int cantidad)
+ - void:consumirMateriales(inventario)
+ - boolean:tieneCorrelativas(inventario)
+ - boolean:tieneMateriales(inventario)
+ {abstract} int:turnosParaConstruir()
+}
+
+class EdificioEnConstruccion{
+ /'- Edificio:vaASer'/
+ - Casillero:casillero
+ - int:turnosRestantes
+ - boolean:destruido
+ + EdificioEnConstruccion(EdificioConcreto vaASer, casillero, inventario)
+ - boolean:estaListo()
+ + void:pasarTurno()
+ + void:recibirDanio(int danio)
+}
+
+class EdificioZerg{
+ - int:vidaMaxima
+ + EdificioZerg(TipoCasillero casillero, Inventario inventario, int vida_)
+ + void:recibirDanio(int danio)
+ + void:pasarTurno()
+}
+
+class EdificioProtoss{
+ - int:escudo
+ - int:escudoMaximo
+ + EdificioProtoss(Casillero casillero, Inventario inventario, int vidaInicial, int escudoInicial)
+ + void:recibirDanio(int danio)
+ + void:pasarTurno()
+}
+
+Edificio <|.. EdificioConcreto
+Edificio <|.. EdificioEnConstruccion
+EdificioConcreto <|-- EdificioZerg
+EdificioConcreto <|-- EdificioProtoss
+EdificioEnConstruccion "1" o-- "1" EdificioConcreto
+@enduml
