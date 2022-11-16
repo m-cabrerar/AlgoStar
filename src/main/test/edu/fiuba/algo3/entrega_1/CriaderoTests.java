@@ -10,7 +10,6 @@ public class CriaderoTests {
      *después de 1 turno vuelve a tener 3 larvas. Lo mismo al consumir 2 y las 3 larvas, verificar
      *que se regeneren acorde a los tiempos estipulados.
      */
-
     @Test
     public void test01ConsumoLaLarvaDeUnCriaderoParaEngendrarZanganoYCuandoPasaElTurnoTengo3OtraVez() {
         
@@ -123,6 +122,7 @@ public class CriaderoTests {
             criadero.pasarTurno();
             criadero.pasarTurno();
             criadero.pasarTurno();
+            criadero.recibirDanio(5);
             Exception exception = assertThrows(Exception.class, () -> {
                 criadero.recibirDanio(5);
             });

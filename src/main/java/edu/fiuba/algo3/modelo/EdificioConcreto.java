@@ -2,8 +2,8 @@ package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.exceptions.EstaDestruido;
 abstract class EdificioConcreto implements Edificio {
     protected int vida;
-    protected TipoCasillero casillero;
-    public EdificioConcreto(TipoCasillero unCasillero, Inventario unInventario, int vidaInicial){
+    protected Casillero casillero;
+    public EdificioConcreto(Casillero unCasillero, Inventario unInventario, int vidaInicial){
         this.casillero = unCasillero;
         unCasillero.ocupar();
         unInventario.agregar(this);
