@@ -18,12 +18,13 @@ public class Pilon extends EdificioProtoss {
 
     public static EdificioEnConstruccion construir(Casillero casillero, Inventario inventario) {
         EdificioConcreto pilon = new Pilon(casillero, inventario);
-        if(!casillero.esDelTipo(new CasilleroVacio())){
+        if (!casillero.esDelTipo(new CasilleroVacio())) {
             throw new UbicacionInvalida("Ubicacion invalida");
         }
-        if(!inventario.tieneRecursos(0, 100)){
+        if (!inventario.tieneRecursos(0, 100)) {
             throw new RecursosInsuficientes("No tiene recursos");
         }
+        casillero.energizarEnRango(5);
         return new EdificioEnConstruccion(pilon, casillero, inventario);
     }
 }

@@ -89,4 +89,6 @@ public class Casillero{
         return this.coordenadaY;
     }
 
+    public void energizarEnRango(int i) {
+    }
 }
