@@ -1,7 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
 public class Inventario {
-    int cantidadGas;
+
+    /*int cantidadGas;
     int cantidadMineral;
 
 
@@ -23,11 +24,26 @@ public class Inventario {
         this.cantidadGas -= pagoDeGas;
         this.cantidadMineral -= pagoDeMineral;
     }
-
     public void recibirMineral(int cantidad){
         this.cantidadMineral += cantidad;
     }
     public void recibirGas(int cantidad){
         this.cantidadGas += cantidad;
+    }*/
+    
+    public void agregarGas(int i) {
+    }
+
+    public void agregar(EdificioConcreto edificioConcreto) {
+    }
+
+    public boolean tieneGuarida() {
+        return true;
+    }
+
+    public boolean tieneReservaDeReproduccion() { return true; }
+
+    public boolean tieneRecursos(int cantMineral, int cantGas) {
+        return true;
     }
 }
