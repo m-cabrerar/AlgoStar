@@ -4,11 +4,14 @@ import edu.fiuba.algo3.exceptions.UbicacionInvalida;
 
 public class Guarida extends EdificioZerg {
 
+    private static int VIDA_MAXIMA = 1250;
     public Guarida(Casillero casillero, Inventario inventario){
-    super(casillero, inventario, 1250);
+    super(casillero, inventario, VIDA_MAXIMA);
     }
     public void pasarTurno(){
-        super.pasarTurno();
+        if(vida<VIDA_MAXIMA){
+            regenerarVida();
+        }
     }
     public int turnosParaConstruir(){
         return 12;

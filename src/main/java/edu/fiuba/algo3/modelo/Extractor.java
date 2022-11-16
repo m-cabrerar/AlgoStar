@@ -5,12 +5,15 @@ import edu.fiuba.algo3.exceptions.UbicacionInvalida;
 
 public class Extractor extends EdificioZerg {
     private int zanganosTrabajando;
+    private static int VIDA_MAXIMA = 750;
     public Extractor(Casillero casillero, Inventario inventario){
-        super(casillero, inventario, 750);
+        super(casillero, inventario, VIDA_MAXIMA);
         this.zanganosTrabajando = 0;
     }
     public void pasarTurno(){
-        super.pasarTurno();
+        if(vida<VIDA_MAXIMA){
+            regenerarVida();
+        }
     }
     public int turnosParaConstruir(){
         return 6;
