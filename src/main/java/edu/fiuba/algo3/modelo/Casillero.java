@@ -27,6 +27,10 @@ public class Casillero{
     public String suTipoDeCasillero(){
         return tipoCasillero.nombreDelCasillero();
     }
+
+    public boolean esDelTipo(TipoCasillero unTipoCasillero){
+        return this.suTipoDeCasillero().equals(unTipoCasillero.nombreDelCasillero());}
+
     public boolean tieneEnergia(){
         return this.energia > 0;
     }
