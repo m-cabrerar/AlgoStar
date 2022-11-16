@@ -1,24 +1,10 @@
 package edu.fiuba.algo3.modelo;
 
-public class NodoMineral implements TipoCasillero {
+public class NodoMineral extends TipoCasillero {
     private int unidadesRestantes = 0;
 
-    public void extraerMineral(Inventario unDestinoDeRecoleccion, int cantidadRecolectada) throws Exception{
-        if(this.agotado()){
-            try {
-                throw new Exception("Nodo Mineral Agotado, no es posible extraer");
-            } catch (Exception e) {
-                throw new RuntimeException(e); //maybe
-            }
-            //return;
-        }
-        if (this.unidadesRestantes >= cantidadRecolectada){
-            this.unidadesRestantes -= cantidadRecolectada;
-            unDestinoDeRecoleccion.recibirMineral(cantidadRecolectada);
-        }else{
-            unDestinoDeRecoleccion.recibirMineral(this.unidadesRestantes);
-            this.unidadesRestantes = 0;
-        }
+    public void extraerMineral(int cantidadDeMineral) {
+        unidadesRestantes -= cantidadDeMineral;
     }
 
     public boolean agotado(){

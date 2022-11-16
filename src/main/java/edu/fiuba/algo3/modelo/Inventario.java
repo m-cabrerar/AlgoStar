@@ -30,4 +30,15 @@ public class Inventario {
     public void recibirGas(int cantidad){
         this.cantidadGas += cantidad;
     }
+
+    public void agregar(EdificioConcreto edificioConcreto) {
+    }
+
+    public boolean tieneRecursos(int cantidadDeGas, int cantidadDeMineral){
+        return (this.cantidadGas >= cantidadDeGas) && (this.cantidadMineral >= cantidadDeMineral);
+    }
+
+    public boolean tieneAcceso() {
+        return true;
+    }
 }
