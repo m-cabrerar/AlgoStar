@@ -5,14 +5,17 @@ import edu.fiuba.algo3.exceptions.UbicacionInvalida;
 
 public class Criadero extends EdificioZerg{
     private int cantidadLarvas;
+    private static int VIDA_MAXIMA = 500;
     private int cantidadZanganos;
     public Criadero(Casillero casillero, Inventario inventario) {
-        super(casillero, inventario, 500);
+        super(casillero, inventario, VIDA_MAXIMA);
         this.cantidadLarvas = 3;
         this.cantidadZanganos = 0;
     }
     public void pasarTurno() {
-        super.pasarTurno();
+        if(vida<VIDA_MAXIMA){
+            regenerarVida();
+        }
         if(!estaEnCapacidadMaxima()) {
             this.cantidadLarvas += 1;
         }

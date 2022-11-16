@@ -1,101 +1,109 @@
 package edu.fiuba.algo3.entrega_1;
-
 import org.junit.jupiter.api.Test;
-
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+import edu.fiuba.algo3.modelo.*;
 public class EdificioZergTests {
 
     // Asumo que los edificios Zerg recuperan 10 de vida por turno.
 
     @Test
-    public void test01CriaderoRecibeDanioYRecuperaVida(){
+    public void test01CriaderoRecibeDanioYRecuperaVida() {
         //ARRANGE
-        Casillero casillero = new Casillero();
-        Casillero.setTipoCasillero(new Moho());
-        Inventario inventario = new Inventario(200,200);
-        Criadero criadero = new Criadero(casillero, inventario);
+        Casillero casilleroMock = mock(Casillero.class);
+        Inventario inventarioMock = mock(Inventario.class);
+        Criadero criadero = new Criadero(casilleroMock, inventarioMock);
         //ACT
-        criadero.recibirDanio(50);
-        criadero.pasarTurno();
-        criadero.pasarTurno();
-        criadero.pasarTurno();
-        criadero.recibirDanio(499);
-        //ASSERT
-        assertTrue(casillero.estaOcupado());
+        try {
+            criadero.recibirDanio(10);
+            criadero.pasarTurno();
+            //ASSERT
+            for (int i = 0; i < 49; i++) {
+                criadero.recibirDanio(10);
+            }
+            assertDoesNotThrow(() -> criadero.recibirDanio(10));
+        } catch (Exception e) {
+            fail();
+        }
     }
 
     @Test
-    public void test02ExtractorRecibeDanioYRecuperaVida(){
+    public void test02ExtractorRecibeDanioYRecuperaVida() {
         //ARRANGE
-        Casillero casillero = new Casillero();
-        Casillero.setTipoCasillero(new Moho());
-        Inventario inventario = new Inventario(200,200);
-        Extractor extractor = new Extractor(casillero, inventario);
+        Casillero casilleroMock = mock(Casillero.class);
+        Inventario inventarioMock = mock(Inventario.class);
+        Extractor extractor = new Extractor(casilleroMock, inventarioMock);
         //ACT
-        extractor.recibirDanio(50);
-        extractor.pasarTurno();
-        extractor.pasarTurno();
-        extractor.pasarTurno();
-        extractor.pasarTurno();
-        extractor.pasarTurno();
-        extractor.recibirDanio(999);
-        //ASSERT
-        assertTrue(casillero.estaOcupado());
+        try {
+            extractor.recibirDanio(10);
+            extractor.pasarTurno();
+            //ASSERT
+            for (int i = 0; i < 74; i++) {
+                extractor.recibirDanio(10);
+            }
+            assertDoesNotThrow(() -> extractor.recibirDanio(10));
+        } catch (Exception e) {
+            fail();
+        }
     }
 
     @Test
-    public void test03ReservaDeReproduccionRecibeDanioYRecuperaVida(){
+    public void test03ReservaDeReproduccionRecibeDanioYRecuperaVida() {
         //ARRANGE
-        Casillero casillero = new Casillero();
-        Casillero.setTipoCasillero(new Moho());
-        Inventario inventario = new Inventario(200,200);
-        ReservaDeReproduccion reservaDeReproduccion = new ReservaDeReproduccion(casillero, inventario);
+        Casillero casilleroMock = mock(Casillero.class);
+        Inventario inventarioMock = mock(Inventario.class);
+        ReservaDeReproduccion reserva = new ReservaDeReproduccion(casilleroMock, inventarioMock);
         //ACT
-        reservaDeReproduccion.recibirDanio(50);
-        reservaDeReproduccion.pasarTurno();
-        reservaDeReproduccion.pasarTurno();
-        reservaDeReproduccion.pasarTurno();
-        reservaDeReproduccion.pasarTurno();
-        reservaDeReproduccion.pasarTurno();
-        reservaDeReproduccion.recibirDanio(749);
-        //ASSERT
-        assertTrue(casillero.estaOcupado());
+        try {
+            reserva.recibirDanio(10);
+            reserva.pasarTurno();
+            //ASSERT
+            for (int i = 0; i < 99; i++) {
+                reserva.recibirDanio(10);
+            }
+            assertDoesNotThrow(() -> reserva.recibirDanio(10));
+        } catch (Exception e) {
+            fail();
+        }
     }
 
     @Test
-    public void test04GuaridaRecibeDanioYRecuperaVida(){
+    public void test04GuaridaRecibeDanioYRecuperaVida() {
         //ARRANGE
-        Casillero casillero = new Casillero();
-        Casillero.setTipoCasillero(new Moho());
-        Inventario inventario = new Inventario(200,200);
-        Guarida guarida = new Guarida(casillero, inventario);
+        Casillero casilleroMock = mock(Casillero.class);
+        Inventario inventarioMock = mock(Inventario.class);
+        Guarida guarida = new Guarida(casilleroMock, inventarioMock);
         //ACT
-        guarida.recibirDanio(50);
-        guarida.pasarTurno();
-        guarida.pasarTurno();
-        guarida.pasarTurno();
-        guarida.pasarTurno();
-        guarida.pasarTurno();
-        guarida.recibirDanio(1249);
-        //ASSERT
-        assertTrue(casillero.estaOcupado());
+        try {
+            guarida.recibirDanio(10);
+            guarida.pasarTurno();
+            //ASSERT
+            for (int i = 0; i < 124; i++) {
+                guarida.recibirDanio(10);
+            }
+            assertDoesNotThrow(() -> guarida.recibirDanio(10));
+        } catch (Exception e) {
+            fail();
+        }
     }
 
     @Test
-    public void test05EspiralRecibeDanioYRecuperaVida(){
+    public void test05EspiralRecibeDanioYRecuperaVida() {
         //ARRANGE
-        Casillero casillero = new Casillero();
-        Casillero.setTipoCasillero(new Moho());
-        Inventario inventario = new Inventario(200,200);
-        Espiral espiral = new Espiral(casillero, inventario);
+        Casillero casilleroMock = mock(Casillero.class);
+        Inventario inventarioMock = mock(Inventario.class);
+        Espiral espiral = new Espiral(casilleroMock, inventarioMock);
         //ACT
-        espiral.recibirDanio(50);
-        espiral.pasarTurno();
-        espiral.pasarTurno();
-        espiral.pasarTurno();
-        espiral.pasarTurno();
-        espiral.pasarTurno();
-        espiral.recibirDanio(1299);
-        //ASSERT
-        assertTrue(casillero.estaOcupado());
+        try {
+            espiral.recibirDanio(10);
+            espiral.pasarTurno();
+            //ASSERT
+            for (int i = 0; i < 129; i++) {
+                espiral.recibirDanio(10);
+            }
+            assertDoesNotThrow(() -> espiral.recibirDanio(10));
+        } catch (Exception e) {
+            fail();
+        }
     }
 }

@@ -6,9 +6,7 @@ abstract class EdificioZerg extends EdificioConcreto {
         super(casillero_, inventario_, vida_);
     }
 
-    public void pasarTurno(){
-        if(vida < 500){
-            vida += 10;
-        }
+    public void regenerarVida(){
+        vida += 10;
     }
 }

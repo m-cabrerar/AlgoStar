@@ -4,11 +4,14 @@ import edu.fiuba.algo3.exceptions.UbicacionInvalida;
 
 public class ReservaDeReproduccion extends EdificioZerg {
 
+    private static int VIDA_MAXIMA = 1000;
     public ReservaDeReproduccion(Casillero casillero, Inventario inventario){
-        super(casillero, inventario,1000);
+        super(casillero, inventario,VIDA_MAXIMA);
     }
     public void pasarTurno(){
-        super.pasarTurno();
+        if(vida<VIDA_MAXIMA){
+            regenerarVida();
+        }
     }
     public int turnosParaConstruir(){
         return 12;

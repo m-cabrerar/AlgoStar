@@ -5,11 +5,14 @@ import edu.fiuba.algo3.exceptions.UbicacionInvalida;
 
 public class Espiral extends EdificioZerg {
 
+    private static int VIDA_MAXIMA = 1300;
     public Espiral(Casillero casillero, Inventario inventario){
-        super(casillero, inventario, 1300);
+        super(casillero, inventario, VIDA_MAXIMA);
     }
     public void pasarTurno(){
-        super.pasarTurno();
+        if(vida<VIDA_MAXIMA){
+            regenerarVida();
+        }
     }
     public int turnosParaConstruir(){
         return 10;
