@@ -18,7 +18,7 @@ public class casosDeUso20 {
         int ancho = 10;
         Mapa mapa = new Mapa(alto,ancho);
         mapa.cambiarTipoCasilla(0,0,new CasilleroEspacial());
-        Unidad unidadVoladoraMock = mock(Unidad.class);
+        UnidadMovil unidadVoladoraMock = mock(UnidadMovil.class);
         when(unidadVoladoraMock.esVoladora()).thenReturn(true);
 
         //Act and assert
@@ -32,7 +32,7 @@ public class casosDeUso20 {
         int ancho = 10;
         Mapa mapa = new Mapa(alto,ancho);
         mapa.cambiarTipoCasilla(0,0,new CasilleroEspacial());
-        Unidad unidadVoladoraMock = mock(Unidad.class);
+        UnidadMovil unidadVoladoraMock = mock(UnidadMovil.class);
         when(unidadVoladoraMock.esVoladora()).thenReturn(false);
 
         //Act and assert
