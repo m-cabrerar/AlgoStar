@@ -1,4 +1,5 @@
 package edu.fiuba.algo3.modelo;
+import edu.fiuba.algo3.exceptions.CasilleroNocompatible;
 import edu.fiuba.algo3.exceptions.UbicacionInvalida;
 
 import java.util.*;
@@ -65,7 +66,16 @@ public class Casillero{
         return this.estaOcupado;
     }
 
-    public void ocupar() throws UbicacionInvalida {
+    public void ocupar(Unidad unidad) throws UbicacionInvalida, CasilleroNocompatible {
+        if(this.estaOcupado()){
+            throw new UbicacionInvalida("Casillero Ocupado");
+        }
+        if(!this.tipoCasillero.cumpleCondicionesEspeciales(unidad)){
+            throw  new CasilleroNocompatible("Casillero no compatible con la unidad");
+        }
+        this.estaOcupado = true;
+    }
+    public void ocupar() throws UbicacionInvalida, CasilleroNocompatible {
         if(this.estaOcupado()){
             throw new UbicacionInvalida("Casillero Ocupado");
         }

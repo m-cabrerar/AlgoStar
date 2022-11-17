@@ -5,4 +5,7 @@ public class CasilleroEspacial extends TipoCasillero {
     public String nombreDelCasillero() {
         return "Casillero Espacial";
     }
+
+    @Override
+    public boolean cumpleCondicionesEspeciales(Unidad unidad){return unidad.esVoladora();}
 }
