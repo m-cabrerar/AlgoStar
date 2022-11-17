@@ -1,9 +1,10 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.exceptions.EstaDestruido;
 import edu.fiuba.algo3.exceptions.RecursosInsuficientes;
 import edu.fiuba.algo3.exceptions.UbicacionInvalida;
 
-public class Hidralisco extends UnidadMovil {
+public class Hidralisco extends UnidadMovilZerg {
 
     private static int VIDA_MAXIMA = 80;
     private static int DANIO_AIRE = 10;
@@ -14,11 +15,14 @@ public class Hidralisco extends UnidadMovil {
     private static int TURNOS_PARA_CONSTRUIR = 4;
 
     Hidralisco(Inventario inventario){
-        if(!inventario.tieneRecursos(75,25)){
-            throw new RecursosInsuficientes("No tiene recursos");
-        }
+        super(inventario, COSTO_MINERAL, COSTO_GASEOSO, VIDA_MAXIMA);
     }
     public int turnosParaConstruir(){
         return TURNOS_PARA_CONSTRUIR;
+    }
+
+    @Override
+    public void recibirDanio(int danio) throws EstaDestruido {
+
     }
 }

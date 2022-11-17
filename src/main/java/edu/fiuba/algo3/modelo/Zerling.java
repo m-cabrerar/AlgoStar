@@ -1,9 +1,10 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.exceptions.EstaDestruido;
 import edu.fiuba.algo3.exceptions.RecursosInsuficientes;
 import edu.fiuba.algo3.exceptions.UbicacionInvalida;
 
-public class Zerling extends UnidadMovil {
+public class Zerling extends UnidadMovilZerg {
 
     private static int VIDA_MAXIMA = 35;
     private static int DANIO_AIRE = 0;
@@ -13,11 +14,14 @@ public class Zerling extends UnidadMovil {
     private static int COSTO_GASEOSO = 0;
     private static int TURNOS_PARA_CONSTRUIR = 2;
     Zerling(Inventario inventario){
-        if(!inventario.tieneRecursos(25,0)){
-            throw new RecursosInsuficientes("No tiene recursos");
-        }
+        super(inventario, COSTO_MINERAL, COSTO_GASEOSO, VIDA_MAXIMA);
     }
     public int turnosParaConstruir(){
         return TURNOS_PARA_CONSTRUIR;
+    }
+
+    @Override
+    public void recibirDanio(int danio) throws EstaDestruido {
+
     }
 }
