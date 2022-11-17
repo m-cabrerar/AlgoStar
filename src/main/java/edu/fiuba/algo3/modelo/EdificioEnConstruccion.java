@@ -38,4 +38,5 @@ public class EdificioEnConstruccion implements Unidad {
             vaASer.recibirDanio(danio);
         }
     }
+
 }
