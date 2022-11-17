@@ -20,6 +20,7 @@ abstract class EdificioZerg extends EdificioConcreto {
         }
     }
     public void pasarTurno(){
+        super.pasarTurno();
         if (vida < (vidaMaxima-10)){
             vida+=10;
         }

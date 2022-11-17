@@ -12,6 +12,11 @@ abstract class EdificioConcreto implements Unidad {
         unInventario.agregar(this);
         this.vida = vidaInicial;
     }
+    public void pasarTurno(){
+        if (unidadEnConstruccion()) {
+            turnosParaConstruir--;
+        }
+    }
     abstract int turnosParaConstruir();
     protected boolean estaDestruido() {
         return vida <= 0;

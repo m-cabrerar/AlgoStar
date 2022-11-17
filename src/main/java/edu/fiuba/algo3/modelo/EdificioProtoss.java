@@ -28,6 +28,7 @@ abstract class EdificioProtoss extends EdificioConcreto {
     }
 
     public void pasarTurno(){
+        super.pasarTurno();
         escudo += 10;
         if (escudo > escudoMaximo){
             escudo = escudoMaximo;

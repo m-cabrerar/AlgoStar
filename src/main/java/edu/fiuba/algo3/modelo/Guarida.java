@@ -1,4 +1,5 @@
 package edu.fiuba.algo3.modelo;
+import edu.fiuba.algo3.exceptions.EdificioOcupado;
 import edu.fiuba.algo3.exceptions.RecursosInsuficientes;
 import edu.fiuba.algo3.exceptions.UbicacionInvalida;
 
@@ -27,5 +28,15 @@ public class Guarida extends EdificioZerg {
         }
         EdificioConcreto guarida = new Guarida(casillero, inventario);
         return new EdificioEnConstruccion(guarida, casillero, inventario);
+    }
+    public UnidadMovil crearEvolucion(Inventario inventario) throws RecursosInsuficientes {
+        return new Hidralisco(inventario);
+    }
+    public void engendrarHidralisco(UnidadMovil unidad, Inventario inventario) throws RecursosInsuficientes, EdificioOcupado {
+        if (unidadEnConstruccion()) {
+            throw new EdificioOcupado("El edificio está ocupado");
+        }
+        unidadEnConstruccion = crearEvolucion(inventario);
+        turnosParaConstruir = unidadEnConstruccion.turnosParaConstruir();
     }
 }
