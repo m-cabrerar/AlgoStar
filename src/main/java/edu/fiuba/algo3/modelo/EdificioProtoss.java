@@ -4,7 +4,7 @@ import java.lang.invoke.CallSite;
 
 abstract class EdificioProtoss extends EdificioConcreto {
     private int escudo;
-    private Casillero casillero;
+    protected Casillero casillero;
     private Inventario inventario;
 
     public EdificioProtoss(Casillero unCasillero, Inventario unInventario){

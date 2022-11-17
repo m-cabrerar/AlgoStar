@@ -1,3 +1,4 @@
+/*
 package edu.fiuba.algo3.modelo;
 
 public class Moho implements TipoCasillero{
@@ -7,8 +8,9 @@ public class Moho implements TipoCasillero{
         return "Moho";
     }
 }
-    //Me pide sobreescrbir extraerMineral
     @Override
     public void extraerMineral(Inventario inventario, int cantidad){
     //nada
     }
+
+ */

@@ -1,3 +1,4 @@
+/*
 package edu.fiuba.algo3.modelo;
 
 abstract class EdificioZerg extends EdificioConcreto {
@@ -5,3 +6,5 @@ abstract class EdificioZerg extends EdificioConcreto {
         vida += 10;
     }
 }
+
+ */

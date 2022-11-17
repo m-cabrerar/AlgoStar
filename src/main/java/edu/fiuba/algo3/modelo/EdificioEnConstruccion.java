@@ -1,3 +1,4 @@
+/*
 package edu.fiuba.algo3.modelo;
 
 public class EdificioEnConstruccion implements Edificio {
@@ -21,3 +22,5 @@ public class EdificioEnConstruccion implements Edificio {
         casilla.desocupar();
     }
 }
+
+ */

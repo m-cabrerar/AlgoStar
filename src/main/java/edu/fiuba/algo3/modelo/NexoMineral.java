@@ -7,7 +7,7 @@ public class NexoMineral extends EdificioProtoss {
         super(casillero, inventario);
     }
 
-    public void extraerMineral(Inventario inventario) {
+    public void extraerMineral(Inventario inventario) throws Exception {
         this.casillero.extraerMineral(inventario, this.cantidadQueExtrae);
     }
 }

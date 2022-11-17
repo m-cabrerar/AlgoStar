@@ -1,15 +1,16 @@
+/*
 package edu.fiuba.algo3.entrega_1;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
 
 public class casosDeUso9 {
-    /*Verificar que un edificio protoss sigue operativo si le destruyen un pilon que lo energiza
+    /* Verificar que un edificio protoss sigue operativo si le destruyen un pilon que lo energiza
      *pero aún está dentro del rango de otro que también lo energiza.
      */
-
+/*
     @Test
-    public void Test01AccesoSigueActivoUbicadoEnCasilleroEnergizado2PilonesCuandoUnoSeDestruye{
+    public void Test01AccesoSigueActivoUbicadoEnCasilleroEnergizado2PilonesCuandoUnoSeDestruye(){
         //ARRANGE
         Casillero casillero;
         Casillero otroCasillero;
@@ -56,3 +57,4 @@ public class casosDeUso9 {
     }termino siendo para corroborar que el pilon este destruido
     //
        */
+

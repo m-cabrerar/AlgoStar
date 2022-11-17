@@ -1,10 +1,10 @@
 package edu.fiuba.algo3.modelo;
 
 abstract class EdificioConcreto implements Edificio {
-    private int vida;
+    protected int vida;
     private Casillero casilleroCompatible;
     abstract public void pasarTurno();
-
+/*
     public void recibirDanio(int danio) {
         vida -= danio;
     }
@@ -37,6 +37,8 @@ abstract class EdificioConcreto implements Edificio {
 
     private boolean tieneMateriales(Inventario inventario) {
     }
+
+ */
 
 
 }

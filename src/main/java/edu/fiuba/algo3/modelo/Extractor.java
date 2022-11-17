@@ -1,3 +1,4 @@
+/*
 package edu.fiuba.algo3.modelo;
 
 public class Extractor extends EdificioZerg {
@@ -13,3 +14,5 @@ public class Extractor extends EdificioZerg {
         return this.unidadesRecolectadasPorZangano * this.cantidadZanganos;
     }
 }
+
+ */

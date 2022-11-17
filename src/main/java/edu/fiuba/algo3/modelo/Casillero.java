@@ -20,10 +20,12 @@ public class Casillero{
     }
 
     //revisar esto, sino rompia encapsulamiento
-    public void extraerMineral(Inventario inventario, int cantidad) {
+    public void extraerMineral(Inventario inventario, int cantidad) throws Exception {
         this.tipoCasillero.extraerMineral(inventario, cantidad);
     }
-
+/*
     public boolean puedeConstruir(EdificioConcreto edificioConcreto) {
     }
+
+ */
 }
