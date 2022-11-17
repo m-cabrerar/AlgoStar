@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.exceptions.AtaqueFueraDeRango;
 import edu.fiuba.algo3.exceptions.EstaDestruido;
 import edu.fiuba.algo3.exceptions.RecursosInsuficientes;
 
@@ -29,6 +30,9 @@ public class Zealot extends UnidadMovilProtoss {
     }
 
     public void atacar(UnidadMovil unidadAAtacar){
+        if(!this.tieneEnRangoA(unidadAAtacar, RANGO_DE_ATAQUE)){
+            throw new AtaqueFueraDeRango("El ataque está fuera de rango");
+        }
         if (unidadAAtacar.esVoladora()){
             unidadAAtacar.recibirDanio(DANIO_AIRE);
         }

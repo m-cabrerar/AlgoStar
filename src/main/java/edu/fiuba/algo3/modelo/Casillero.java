@@ -103,4 +103,24 @@ public class Casillero{
 
     public void energizarEnRango(int i) {
     }
+
+    public boolean tieneEnRango(Unidad unidadAAtacar, int rango){
+        List<Casillero> casilleros = mapa.casillerosEnRango(coordenadaX,coordenadaY,rango);
+        //si el casillero de unidadAAtacar esta en la lista de casilleros, entonces esta en rango
+        for (Casillero casillero : casilleros) {
+            if(unidadAAtacar.estaPorAca(casilleros)){
+                return true;
+            }
+        }
+        return false;
+    }
+    public Casillero obtenerAdyacente(){
+        List<Casillero> casilleros = mapa.CasillerosAdyacentes(coordenadaX, coordenadaY);
+        for(Casillero casillero : casilleros){
+            if(!casillero.estaOcupado()){
+                return casillero;
+            }
+        }
+        return null;
+    }
 }

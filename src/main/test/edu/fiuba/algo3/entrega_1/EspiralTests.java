@@ -112,9 +112,10 @@ public class EspiralTests {
         for (int i = 0; i < 7; i++) {
             espiral.pasarTurno();
         }
-        Unidad mutalisco = espiral.obtenerUnidad();
+        //Unidad mutalisco = espiral.obtenerUnidad();
         //ASSERT
-        assertDoesNotThrow(() -> mutalisco.recibirDanio(5));
+        assertDoesNotThrow(() -> espiral.engendrarMutalisco(larva, inventarioMock));
+        //si no estuviera listo el mutalisco anterior esto tiraria error
     }
 
     @Test
