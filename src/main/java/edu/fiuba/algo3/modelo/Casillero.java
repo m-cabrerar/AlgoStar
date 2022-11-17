@@ -64,7 +64,7 @@ public class Casillero{
         return this.estaOcupado;
     }
 
-    public void ocupar(Unidad unidad) throws UbicacionInvalida, CasilleroNoCompatible {
+    public void ocupar(UnidadMovil unidad) throws UbicacionInvalida, CasilleroNoCompatible {
         if(this.estaOcupado()){
             throw new UbicacionInvalida("Casillero Ocupado");
         }

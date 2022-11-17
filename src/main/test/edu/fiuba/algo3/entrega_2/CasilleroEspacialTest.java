@@ -1,10 +1,9 @@
 package edu.fiuba.algo3.entrega_2;
 
-import edu.fiuba.algo3.modelo.CasilleroEspacial;
-import edu.fiuba.algo3.modelo.Mapa;
-import edu.fiuba.algo3.modelo.UnidadMovil;
+import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.exceptions.*;
 import org.junit.jupiter.api.Test;
-
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -20,7 +19,7 @@ public class CasilleroEspacialTest {
         when(unidadVoladoraMock.esVoladora()).thenReturn(true);
 
         //Act and assert
-        //assertDoesNotThrow(() -> casillero.ocupar(unidadVoladoraMock));
+        assertDoesNotThrow(() -> mapa.obtenerCasillero(0,0).ocupar(unidadVoladoraMock));
     }
 
     @Test
@@ -34,7 +33,7 @@ public class CasilleroEspacialTest {
         when(unidadVoladoraMock.esVoladora()).thenReturn(false);
 
         //Act and assert
-        //assertThrows(CasilleroNoCompatible.class, () -> casillero.ocupar(unidadVoladoraMock));
+        assertThrows(CasilleroNoCompatible.class, () -> mapa.obtenerCasillero(0,0).ocupar(unidadVoladoraMock));
     }
 
 
