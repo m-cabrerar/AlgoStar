@@ -9,7 +9,7 @@ import static org.mockito.Mockito.*;
 
 public class ReservaDeReproduccionTest {
     @Test
-    public void test04ReservaDeReproduccionEngendraZerlingYDespuesDe2TurnosEstaListo(){
+    public void test01ReservaDeReproduccionEngendraZerlingYDespuesDe2TurnosEstaListo(){
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
@@ -28,7 +28,7 @@ public class ReservaDeReproduccionTest {
     }
 
     @Test
-    public void test05ReservaDeReproduccionEngendraZerlingYDespuesDe1TurnoNoEstaListo(){
+    public void test02ReservaDeReproduccionEngendraZerlingYDespuesDe1TurnoNoEstaListo(){
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
@@ -45,7 +45,7 @@ public class ReservaDeReproduccionTest {
     }
 
     @Test
-    public void test06ReservaDeReproduccionEngendraZerlingPeroNoHayMaterialesSuficientes(){
+    public void test03ReservaDeReproduccionEngendraZerlingPeroNoHayMaterialesSuficientes(){
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioLleno = mock(Inventario.class);
@@ -60,7 +60,7 @@ public class ReservaDeReproduccionTest {
     }
 
     @Test
-    public void test07ReservaDeReproduccionEngendraZerlingPeroYaHayUnaUnidadEnProduccion(){
+    public void test04ReservaDeReproduccionEngendraZerlingPeroYaHayUnaUnidadEnProduccion(){
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
