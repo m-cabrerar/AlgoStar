@@ -23,5 +23,5 @@ public abstract class UnidadMovilProtoss extends UnidadMovil {
             escudo = escudoMaximo;
         }
     }
-
+    abstract void atacar(UnidadMovil unidadAAtacar);
 }

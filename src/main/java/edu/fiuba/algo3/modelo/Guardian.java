@@ -13,7 +13,7 @@ public class Guardian extends UnidadMovilZerg {
     private static int COSTO_GASEOSO = 100;
     private static int TURNOS_PARA_CONSTRUIR = 4;
 
-    Guardian(Inventario inventario){
+    public Guardian(Inventario inventario){
         super(inventario, COSTO_MINERAL, COSTO_GASEOSO, VIDA_MAXIMA);
     }
 
@@ -25,6 +25,15 @@ public class Guardian extends UnidadMovilZerg {
     @Override
     int turnosParaConstruir() {
         return TURNOS_PARA_CONSTRUIR;
+    }
+
+    public void atacar(UnidadMovil unidadAAtacar){
+        if (unidadAAtacar.esVoladora()){
+            unidadAAtacar.recibirDanio(DANIO_AIRE);
+        }
+        else{
+            unidadAAtacar.recibirDanio(DANIO_TIERRA);
+        }
     }
 }
 

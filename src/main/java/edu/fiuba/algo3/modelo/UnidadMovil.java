@@ -15,4 +15,6 @@ public abstract class UnidadMovil implements Unidad {
     public boolean esVoladora() {
         return false;
     }
+
+    abstract void atacar(UnidadMovil unidadAAtacar);
 }
