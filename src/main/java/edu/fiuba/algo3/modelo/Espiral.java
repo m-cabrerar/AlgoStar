@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.exceptions.EdificioOcupado;
 import edu.fiuba.algo3.exceptions.RecursosInsuficientes;
 import edu.fiuba.algo3.exceptions.UbicacionInvalida;
 
@@ -28,6 +29,17 @@ public class Espiral extends EdificioZerg {
         }
         EdificioConcreto espiral = new Espiral(casillero, inventario);
         return new EdificioEnConstruccion(espiral, casillero, inventario);
+    }
+    public UnidadMovil crearEvolucion(Inventario inventario) throws RecursosInsuficientes {
+        return new Mutalisco(inventario);
+    }
+
+    public void engendrarMutalisco(UnidadMovil unidad, Inventario inventario) throws RecursosInsuficientes, EdificioOcupado {
+        if (unidadEnConstruccion()) {
+            throw new EdificioOcupado("El edificio está ocupado");
+        }
+        unidadEnConstruccion = crearEvolucion(inventario);
+        turnosParaConstruir = unidadEnConstruccion.turnosParaConstruir();
     }
 
 }

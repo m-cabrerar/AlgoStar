@@ -11,7 +11,7 @@ public class Mutalisco extends UnidadMovilZerg {
     private static int RANGO_DE_ATAQUE = 3;
     private static int COSTO_MINERAL = 100;
     private static int COSTO_GASEOSO = 100;
-    private static int TURNOS_PARA_CONSTRUIR = 6;
+    private static int TURNOS_PARA_CONSTRUIR = 7;
 
     Mutalisco(Inventario inventario){
         super(inventario, COSTO_MINERAL, COSTO_GASEOSO, VIDA_MAXIMA);

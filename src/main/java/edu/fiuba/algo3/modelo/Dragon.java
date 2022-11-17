@@ -15,7 +15,7 @@ public class Dragon extends UnidadMovilProtoss {
     private static int COSTO_GASEOSO = 50;
     private static int TURNOS_PARA_CONSTRUIR = 6;
 
-    Dragon(Inventario inventario){
+    public Dragon(Inventario inventario){
         super(inventario, COSTO_MINERAL, COSTO_GASEOSO, VIDA_MAXIMA, ESCUDO_MAXIMO);
     }
 
