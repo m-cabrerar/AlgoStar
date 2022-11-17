@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.exceptions.*;
 
-abstract class EdificioConcreto implements Edificio {
+abstract class EdificioConcreto implements Unidad {
     protected int vida;
     protected Casillero casillero;
     public EdificioConcreto(Casillero unCasillero, Inventario unInventario, int vidaInicial) throws UbicacionInvalida {

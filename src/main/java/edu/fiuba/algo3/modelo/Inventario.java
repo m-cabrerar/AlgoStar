@@ -34,7 +34,7 @@ public class Inventario {
     public void agregarGas(int i) {
     }
 
-    public void agregar(EdificioConcreto edificioConcreto) {
+    public void agregar(Unidad unidad) {
     }
 
     public boolean tieneGuarida() {
