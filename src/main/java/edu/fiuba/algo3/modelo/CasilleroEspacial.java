@@ -6,6 +6,6 @@ public class CasilleroEspacial extends TipoCasillero {
         return "Casillero Espacial";
     }
 
-    @Override
-    public boolean cumpleCondicionesEspeciales(Unidad unidad){return unidad.esVoladora();}
+
+    public boolean cumpleCondicionesEspeciales(UnidadMovil unidad){return unidad.esVoladora();}
 }
