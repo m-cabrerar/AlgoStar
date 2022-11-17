@@ -1,6 +1,53 @@
 package edu.fiuba.algo3.modelo;
 
+import java.util.List;
+
 public class Inventario {
+
+    int cantidadGas;
+    int cantidadMineral;
+    List<Unidad> unidades;
+
+    public void agregarGas(int i) {
+        this.cantidadGas += i;
+    }
+
+    public void agregar(Unidad unidad) {
+        this.unidades.add(unidad);
+    }
+
+    public boolean tieneGuarida() {
+        for (Unidad unidad : this.unidades) {
+            if (unidad instanceof Guarida) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean tieneReservaDeReproduccion() {
+        for (Unidad unidad : this.unidades) {
+            if (unidad instanceof ReservaDeReproduccion) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean tieneRecursos(int cantMineral, int cantGas) {
+        return (this.cantidadMineral >= cantMineral) && (this.cantidadGas >= cantGas);
+    }
+
+    public boolean tieneAcceso() {
+        for (Unidad unidad : this.unidades) {
+            if (unidad instanceof Acceso) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
 
     /*int cantidadGas;
     int cantidadMineral;
@@ -30,26 +77,3 @@ public class Inventario {
     public void recibirGas(int cantidad){
         this.cantidadGas += cantidad;
     }*/
-    
-    public void agregarGas(int i) {
-    }
-
-    public void agregar(Unidad unidad) {
-    }
-
-    public boolean tieneGuarida() {
-        return true;
-    }
-
-    public void recibirGas(int cantidad){return;}
-    public void recibirMineral(int cantidad){return;}
-    public boolean tieneReservaDeReproduccion() { return true; }
-
-    public boolean tieneRecursos(int cantMineral, int cantGas) {
-        return true;
-    }
-
-    public boolean tieneAcceso() {
-        return true;
-    }
-}
