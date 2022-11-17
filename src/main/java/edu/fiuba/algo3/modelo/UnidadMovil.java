@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.exceptions.EstaDestruido;
-import edu.fiuba.algo3.exceptions.RecursosInsuficientes;
+import edu.fiuba.algo3.exceptions.*;
 
 public abstract class UnidadMovil implements Unidad {
     UnidadMovil(Inventario inventario, int costoMineral, int costoGas){

@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.modelo;
-import edu.fiuba.algo3.exceptions.ExtractorError;
-import edu.fiuba.algo3.exceptions.RecursosInsuficientes;
-import edu.fiuba.algo3.exceptions.UbicacionInvalida;
+import edu.fiuba.algo3.exceptions.*;
 
 public class Extractor extends EdificioZerg {
     private int zanganosTrabajando;

@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.entrega_1;
+package edu.fiuba.algo3.entrega_2;
 
 import edu.fiuba.algo3.modelo.*;
 import org.junit.jupiter.api.Test;
@@ -6,38 +6,38 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.*;
 
-public class ScoutTests {
+public class MutaliscoTests {
     @Test
-    public void test01ScoutAtacaAUnidadVoladorYLeHace14DeDanio() {
+    public void test01MutaliscoAtacaAUnidadVoladorYLeHace9DeDanio() {
         //ARRANGE
         Inventario inventarioMock = mock(Inventario.class);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
+        Mutalisco mutalisco = new Mutalisco(inventarioMock);
         UnidadMovil unidadMock = mock(UnidadMovil.class);
         when(unidadMock.esVoladora()).thenReturn(true);
-        Scout scout = new Scout(inventarioMock);
         //ACT
         try {
-            scout.atacar(unidadMock);
+            mutalisco.atacar(unidadMock);
             //ASSERT
-            verify(unidadMock, times(1)).recibirDanio(14);
+            verify(unidadMock, times(1)).recibirDanio(9);
         } catch (Exception e) {
             fail();
         }
     }
 
     @Test
-    public void test02ScoutAtacaAUnidadTerrestreYLeHace8DeDanio() {
+    public void test02MutaliscoAtacaAUnidadTerrestreYLeHace9DeDanio() {
         //ARRANGE
         Inventario inventarioMock = mock(Inventario.class);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         UnidadMovil unidadMock = mock(UnidadMovil.class);
-        when(unidadMock.esVoladora()).thenReturn(false);
-        Scout scout = new Scout(inventarioMock);
+        when(unidadMock.esVoladora()).thenReturn(true);
+        Mutalisco mutalisco = new Mutalisco(inventarioMock);
         //ACT
         try {
-            scout.atacar(unidadMock);
+            mutalisco.atacar(unidadMock);
             //ASSERT
-            verify(unidadMock, times(1)).recibirDanio(8);
+            verify(unidadMock, times(1)).recibirDanio(9);
         } catch (Exception e) {
             fail();
         }

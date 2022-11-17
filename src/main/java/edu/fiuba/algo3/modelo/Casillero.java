@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.modelo;
-import edu.fiuba.algo3.exceptions.CasilleroNoCompatible;
-import edu.fiuba.algo3.exceptions.UbicacionInvalida;
-
+import edu.fiuba.algo3.exceptions.*;
 import java.util.*;
 
 public class Casillero{
