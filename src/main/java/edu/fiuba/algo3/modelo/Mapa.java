@@ -96,8 +96,15 @@ public class Mapa {
             casillero.desenergizar();
         }
     }
-    public int[][] posicionesExtremo(){
-        int[][] posiciones = {{0,0},{this.anchoMapa-1,this.altoMapa-1}};
+    public List<List<Integer>> posicionesExtremo(){
+        //int[][] posiciones = {{0,0},{this.anchoMapa-1,this.altoMapa-1}};
+        List<List<Integer>> posiciones = new ArrayList<>();
+        posiciones.add(new ArrayList<>());
+        posiciones.add(new ArrayList<>());
+        posiciones.get(0).add(0);
+        posiciones.get(0).add(0);
+        posiciones.get(1).add(this.anchoMapa-1);
+        posiciones.get(1).add(this.altoMapa-1);
         return posiciones;
     }
 

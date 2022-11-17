@@ -18,9 +18,9 @@ public class Juego {
     }
 
     public void crearBases(Mapa mapa){
-        int[][] posiciones = mapa.posicionesExtremo();
-        int[] posicion1 = posiciones[0];
-        int[] posicion2 = posiciones[1];
+        List<List<Integer>> posiciones = mapa.posicionesExtremo();
+        int[] posicion1 = {posiciones.get(0).get(0), posiciones.get(0).get(1)};
+        int[] posicion2 = {posiciones.get(1).get(0), posiciones.get(1).get(1)};
 
         //agrego minerales
         List<Casillero> casillerosMineral= mapa.casillerosEnRango(posicion1[0],posicion1[1],2);
