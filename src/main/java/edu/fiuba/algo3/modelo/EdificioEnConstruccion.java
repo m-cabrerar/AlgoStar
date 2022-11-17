@@ -2,8 +2,8 @@ package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.exceptions.EstaDestruido;
 
-public class EdificioEnConstruccion implements Edificio {
-    private Edificio vaASer;
+public class EdificioEnConstruccion implements Unidad {
+    private Unidad vaASer;
     private Casillero casillero;
     private int turnosRestantes;
     private boolean destruido;
