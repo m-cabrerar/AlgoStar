@@ -22,9 +22,9 @@ public class GuaridaTest {
         for (int i = 0; i < 4; i++) {
             guarida.pasarTurno();
         }
-        Unidad hidralisco = guarida.obtenerUnidad();
+        //Unidad hidralisco = guarida.obtenerUnidad();
         //ASSERT
-        assertDoesNotThrow(() -> hidralisco.recibirDanio(5));
+        assertDoesNotThrow(() -> guarida.engendrarHidralisco(larva, inventarioMock));
     }
 
     @Test

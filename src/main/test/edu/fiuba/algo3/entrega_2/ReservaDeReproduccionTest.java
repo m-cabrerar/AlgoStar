@@ -22,9 +22,9 @@ public class ReservaDeReproduccionTest {
         for (int i = 0; i < 2; i++) {
             reservaDeReproduccion.pasarTurno();
         }
-        Unidad zerling = reservaDeReproduccion.obtenerUnidad();
+        //Unidad zerling = reservaDeReproduccion.obtenerUnidad();
         //ASSERT
-        assertDoesNotThrow(() -> zerling.recibirDanio(5));
+        assertDoesNotThrow(() -> reservaDeReproduccion.engendrarZerling(larva, inventarioMock));
     }
 
     @Test
