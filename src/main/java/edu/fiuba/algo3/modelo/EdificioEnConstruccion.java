@@ -2,6 +2,8 @@ package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.exceptions.*;
 
+import java.util.List;
+
 public class EdificioEnConstruccion implements Unidad {
     private Unidad vaASer;
     private Casillero casillero;
@@ -37,6 +39,10 @@ public class EdificioEnConstruccion implements Unidad {
         } else {
             vaASer.recibirDanio(danio);
         }
+    }
+
+    public boolean estaPorAca(List<Casillero> casilleros){
+        return casilleros.contains(casillero);
     }
 
 }
