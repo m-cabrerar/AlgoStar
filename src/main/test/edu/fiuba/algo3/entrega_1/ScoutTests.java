@@ -1,4 +1,3 @@
-/*
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
@@ -11,15 +10,16 @@ public class ScoutTests {
     @Test
     public void test01ScoutAtacaAUnidadVoladorYLeHace14DeDanio() {
         //ARRANGE
-        Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        Scout scout = new Scout(casilleroMock, inventarioMock);
-        Unidad unidadMock = mock(Unidad.class);
+        when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
+        UnidadMovil unidadMock = mock(UnidadMovil.class);
+        when(unidadMock.esVoladora()).thenReturn(true);
+        Scout scout = new Scout(inventarioMock);
         //ACT
         try {
             scout.atacar(unidadMock);
             //ASSERT
-            verify(unidadMock, times(1)).recibirDanio(8,14);
+            verify(unidadMock, times(1)).recibirDanio(14);
         } catch (Exception e) {
             fail();
         }
@@ -28,18 +28,18 @@ public class ScoutTests {
     @Test
     public void test02ScoutAtacaAUnidadTerrestreYLeHace8DeDanio() {
         //ARRANGE
-        Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        Scout scout = new Scout(casilleroMock, inventarioMock);
-        Unidad unidadMock = mock(Unidad.class);
+        when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
+        UnidadMovil unidadMock = mock(UnidadMovil.class);
+        when(unidadMock.esVoladora()).thenReturn(false);
+        Scout scout = new Scout(inventarioMock);
         //ACT
         try {
             scout.atacar(unidadMock);
             //ASSERT
-            verify(unidadMock, times(1)).recibirDanio(8,14);
+            verify(unidadMock, times(1)).recibirDanio(8);
         } catch (Exception e) {
             fail();
         }
     }
 }
-*/

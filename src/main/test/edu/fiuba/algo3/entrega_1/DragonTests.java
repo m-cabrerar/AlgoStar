@@ -1,4 +1,3 @@
-/*
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
@@ -11,15 +10,16 @@ public class DragonTests {
     @Test
     public void test01DragonAtacaAUnidadVoladorYLeHace20DeDanio() {
         //ARRANGE
-        Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        Dragon dragon = new Dragon(casilleroMock, inventarioMock);
-        Unidad unidadMock = mock(Unidad.class);
+        when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
+        Dragon dragon = new Dragon(inventarioMock);
+        UnidadMovil unidadMock = mock(UnidadMovil.class);
+        when(unidadMock.esVoladora()).thenReturn(true);
         //ACT
         try {
             dragon.atacar(unidadMock);
             //ASSERT
-            verify(unidadMock, times(1)).recibirDanio(20,20);
+            verify(unidadMock, times(1)).recibirDanio(20);
         } catch (Exception e) {
             fail();
         }
@@ -28,18 +28,18 @@ public class DragonTests {
     @Test
     public void test02DragonAtacaAUnidadTerrestreYLeHace20DeDanio() {
         //ARRANGE
-        Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        Dragon dragon = new Dragon(casilleroMock, inventarioMock);
-        Unidad unidadMock = mock(Unidad.class);
+        when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
+        Dragon dragon = new Dragon(inventarioMock);
+        UnidadMovil unidadMock = mock(UnidadMovil.class);
+        when(unidadMock.esVoladora()).thenReturn(false);
         //ACT
         try {
             dragon.atacar(unidadMock);
             //ASSERT
-            verify(unidadMock, times(1)).recibirDanio(20,20);
+            verify(unidadMock, times(1)).recibirDanio(20);
         } catch (Exception e) {
             fail();
         }
     }
 }
-*/

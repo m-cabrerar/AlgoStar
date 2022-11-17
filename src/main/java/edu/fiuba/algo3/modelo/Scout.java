@@ -14,10 +14,9 @@ public class Scout extends UnidadMovilProtoss {
     private static int COSTO_GASEOSO = 150;
     private static int TURNOS_PARA_CONSTRUIR = 9;
 
-    Scout(Inventario inventario){
+    public Scout(Inventario inventario){
         super(inventario, COSTO_MINERAL, COSTO_GASEOSO, VIDA_MAXIMA, ESCUDO_MAXIMO);
     }
-
 
     @Override
     public void recibirDanio(int danio) throws EstaDestruido {
@@ -27,5 +26,14 @@ public class Scout extends UnidadMovilProtoss {
     @Override
     int turnosParaConstruir() {
         return TURNOS_PARA_CONSTRUIR;
+    }
+
+    public void atacar(UnidadMovil unidadAAtacar){
+        if (unidadAAtacar.esVoladora()){
+            unidadAAtacar.recibirDanio(DANIO_AIRE);
+        }
+        else{
+            unidadAAtacar.recibirDanio(DANIO_TIERRA);
+        }
     }
 }

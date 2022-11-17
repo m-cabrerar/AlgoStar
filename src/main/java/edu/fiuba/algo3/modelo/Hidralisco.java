@@ -14,7 +14,7 @@ public class Hidralisco extends UnidadMovilZerg {
     private static int COSTO_GASEOSO = 25;
     private static int TURNOS_PARA_CONSTRUIR = 4;
 
-    Hidralisco(Inventario inventario){
+    public Hidralisco(Inventario inventario){
         super(inventario, COSTO_MINERAL, COSTO_GASEOSO, VIDA_MAXIMA);
     }
     public int turnosParaConstruir(){
@@ -24,5 +24,14 @@ public class Hidralisco extends UnidadMovilZerg {
     @Override
     public void recibirDanio(int danio) throws EstaDestruido {
 
+    }
+
+    public void atacar(UnidadMovil unidadAAtacar){
+        if (unidadAAtacar.esVoladora()){
+            unidadAAtacar.recibirDanio(DANIO_AIRE);
+        }
+        else{
+            unidadAAtacar.recibirDanio(DANIO_TIERRA);
+        }
     }
 }

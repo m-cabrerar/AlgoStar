@@ -28,4 +28,13 @@ public class Dragon extends UnidadMovilProtoss {
     int turnosParaConstruir() {
         return TURNOS_PARA_CONSTRUIR;
     }
+
+    public void atacar(UnidadMovil unidadAAtacar){
+        if (unidadAAtacar.esVoladora()){
+            unidadAAtacar.recibirDanio(DANIO_AIRE);
+        }
+        else{
+            unidadAAtacar.recibirDanio(DANIO_TIERRA);
+        }
+    }
 }
