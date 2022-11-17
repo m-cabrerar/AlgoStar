@@ -1,9 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.exceptions.AtaqueFueraDeRango;
-import edu.fiuba.algo3.exceptions.EstaDestruido;
-import edu.fiuba.algo3.exceptions.RecursosInsuficientes;
-import edu.fiuba.algo3.exceptions.UbicacionInvalida;
+
+import edu.fiuba.algo3.exceptions.*;
 
 public class Mutalisco extends UnidadMovilZerg {
     private static int VIDA_MAXIMA = 120;

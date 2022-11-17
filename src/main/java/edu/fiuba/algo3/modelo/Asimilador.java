@@ -1,8 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.exceptions.CorrelativasInsuficientes;
-import edu.fiuba.algo3.exceptions.RecursosInsuficientes;
-import edu.fiuba.algo3.exceptions.UbicacionInvalida;
+import edu.fiuba.algo3.exceptions.*;
 
 public class Asimilador extends EdificioProtoss {
     public Asimilador(Casillero unCasillero, Inventario unInventario){

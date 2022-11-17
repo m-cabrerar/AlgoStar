@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.modelo;
-import edu.fiuba.algo3.exceptions.EdificioOcupado;
-import edu.fiuba.algo3.exceptions.RecursosInsuficientes;
-import edu.fiuba.algo3.exceptions.UbicacionInvalida;
+import edu.fiuba.algo3.exceptions.*;
 
 public class Guarida extends EdificioZerg {
 

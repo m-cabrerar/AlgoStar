@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.exceptions.EstaDestruido;
+import edu.fiuba.algo3.exceptions.*;
 
 public abstract class UnidadMovilProtoss extends UnidadMovil {
     int escudoMaximo;

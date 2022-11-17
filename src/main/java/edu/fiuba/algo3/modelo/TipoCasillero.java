@@ -12,5 +12,5 @@ public abstract class TipoCasillero{
     }
     public void expandirMoho(List<Casillero> casillasAContagiar){}
 
-    public boolean cumpleCondicionesEspeciales(Unidad unidad){return true;}
+    public boolean cumpleCondicionesEspeciales(UnidadMovil unidad){return true;}
 }
