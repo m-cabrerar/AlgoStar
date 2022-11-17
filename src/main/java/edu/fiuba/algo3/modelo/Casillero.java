@@ -10,14 +10,16 @@ public class Casillero{
     private int coordenadaY;
     private boolean estaOcupado;
     private int turno;
+    private Mapa mapa;
 
-    public Casillero(int unaCoordenadaX, int unaCoordenadaY) {
+    public Casillero(int unaCoordenadaX, int unaCoordenadaY,Mapa mapa) {
         this.energia = 0;
         this.coordenadaX = unaCoordenadaX;
         this.coordenadaY = unaCoordenadaY;
         this.turno = 0;
         this.estaOcupado = false;
         this.tipoCasillero = new CasilleroVacio();
+        this.mapa = mapa;
     }
     public void setTipoCasillero(TipoCasillero unTipoCasilleroNuevo){
         tipoCasillero = unTipoCasilleroNuevo;

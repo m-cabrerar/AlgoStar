@@ -12,5 +12,4 @@ public abstract class TipoCasillero{
     }
     public void expandirMoho(List<Casillero> casillasAContagiar){}
 
-
 }
