@@ -1,4 +1,3 @@
-/*
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
@@ -11,15 +10,16 @@ public class ZealotTests {
     @Test
     public void test01ZealotAtacaAUnidadVoladorYNoLeHaceDanio() {
         //ARRANGE
-        Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        Zealot zealot = new Zealot(casilleroMock, inventarioMock);
-        Unidad unidadMock = mock(Unidad.class);
+        when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
+        UnidadMovil unidadMock = mock(UnidadMovil.class);
+        when(unidadMock.esVoladora()).thenReturn(true);
+        Zealot zealot = new Zealot(inventarioMock);
         //ACT
         try {
             zealot.atacar(unidadMock);
             //ASSERT
-            verify(unidadMock, times(1)).recibirDanio(8,0);
+            verify(unidadMock, times(1)).recibirDanio(0);
         } catch (Exception e) {
             fail();
         }
@@ -28,18 +28,18 @@ public class ZealotTests {
     @Test
     public void test02ZealotAtacaAUnidadTerrestreYLeHace8DeDanio() {
         //ARRANGE
-        Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        Zealot zealot = new Zealot(casilleroMock, inventarioMock);
-        Unidad unidadMock = mock(Unidad.class);
+        when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
+        UnidadMovil unidadMock = mock(UnidadMovil.class);
+        when(unidadMock.esVoladora()).thenReturn(false);
+        Zealot zealot = new Zealot(inventarioMock);
         //ACT
         try {
             zealot.atacar(unidadMock);
             //ASSERT
-            verify(unidadMock, times(1)).recibirDanio(8,0);
+            verify(unidadMock, times(1)).recibirDanio(8);
         } catch (Exception e) {
             fail();
         }
     }
 }
-*/

@@ -21,4 +21,6 @@ public abstract class UnidadMovilZerg extends UnidadMovil{
             vida = vidaMaxima;
         }
     }
+
+    abstract void atacar(UnidadMovil unidadAAtacar);
 }

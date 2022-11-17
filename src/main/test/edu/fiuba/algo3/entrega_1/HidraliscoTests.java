@@ -1,4 +1,3 @@
-/*
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
@@ -11,15 +10,16 @@ public class HidraliscoTests {
     @Test
     public void test01HidraliscoAtacaAUnidadVoladorYLeHace10DeDanio() {
         //ARRANGE
-        Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        Hidralisco hidralisco = new Hidralisco(casilleroMock, inventarioMock);
-        Unidad unidadMock = mock(Unidad.class);
+        when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
+        UnidadMovil unidadMock = mock(UnidadMovil.class);
+        when(unidadMock.esVoladora()).thenReturn(true);
+        Hidralisco hidra = new Hidralisco(inventarioMock);
         //ACT
         try {
-            hidralisco.atacar(unidadMock);
+            hidra.atacar(unidadMock);
             //ASSERT
-            verify(unidadMock, times(1)).recibirDanio(10,10);
+            verify(unidadMock, times(1)).recibirDanio(10);
         } catch (Exception e) {
             fail();
         }
@@ -28,18 +28,18 @@ public class HidraliscoTests {
     @Test
     public void test02HidraliscoAtacaAUnidadTerrestreYLeHace10DeDanio() {
         //ARRANGE
-        Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        Hidralisco hidralisco = new Hidralisco(casilleroMock, inventarioMock);
-        Unidad unidadMock = mock(Unidad.class);
+        when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
+        Hidralisco hidralisco = new Hidralisco(inventarioMock);
+        UnidadMovil unidadMock = mock(UnidadMovil.class);
+        when(unidadMock.esVoladora()).thenReturn(false);
         //ACT
         try {
             hidralisco.atacar(unidadMock);
             //ASSERT
-            verify(unidadMock, times(1)).recibirDanio(10,10);
+            verify(unidadMock, times(1)).recibirDanio(10);
         } catch (Exception e) {
             fail();
         }
     }
 }
-*/

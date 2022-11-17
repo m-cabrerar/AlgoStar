@@ -1,4 +1,3 @@
-/*
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
@@ -11,15 +10,16 @@ public class ZerlingTests {
     @Test
     public void test01ZerlingAtacaAUnidadVoladorYNoLeHaceDanio() {
         //ARRANGE
-        Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        Zerling zerling = new Zerling(casilleroMock, inventarioMock);
-        Unidad unidadMock = mock(Unidad.class);
+        when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
+        UnidadMovil unidadMock = mock(UnidadMovil.class);
+        when(unidadMock.esVoladora()).thenReturn(true);
+        Zerling zerling = new Zerling(inventarioMock);
         //ACT
         try {
             zerling.atacar(unidadMock);
             //ASSERT
-            verify(unidadMock, times(1)).recibirDanio(4,0);
+            verify(unidadMock, times(1)).recibirDanio(0);
         } catch (Exception e) {
             fail();
         }
@@ -28,18 +28,18 @@ public class ZerlingTests {
     @Test
     public void test02ZerlingAtacaAUnidadTerrestreYLeHace4DeDanio() {
         //ARRANGE
-        Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        Zerling zerling = new Zerling(casilleroMock, inventarioMock);
-        Unidad unidadMock = mock(Unidad.class);
+        when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
+        UnidadMovil unidadMock = mock(UnidadMovil.class);
+        when(unidadMock.esVoladora()).thenReturn(false);
+        Zerling zerling = new Zerling(inventarioMock);
         //ACT
         try {
             zerling.atacar(unidadMock);
             //ASSERT
-            verify(unidadMock, times(1)).recibirDanio(4,0);
+            verify(unidadMock, times(1)).recibirDanio(4);
         } catch (Exception e) {
             fail();
         }
     }
 }
-*/

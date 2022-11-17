@@ -13,7 +13,7 @@ public class Zerling extends UnidadMovilZerg {
     private static int COSTO_MINERAL = 25;
     private static int COSTO_GASEOSO = 0;
     private static int TURNOS_PARA_CONSTRUIR = 2;
-    Zerling(Inventario inventario){
+    public Zerling(Inventario inventario){
         super(inventario, COSTO_MINERAL, COSTO_GASEOSO, VIDA_MAXIMA);
     }
     public int turnosParaConstruir(){
@@ -23,5 +23,13 @@ public class Zerling extends UnidadMovilZerg {
     @Override
     public void recibirDanio(int danio) throws EstaDestruido {
 
+    }
+    public void atacar(UnidadMovil unidadAAtacar){
+        if (unidadAAtacar.esVoladora()){
+            unidadAAtacar.recibirDanio(DANIO_AIRE);
+        }
+        else{
+            unidadAAtacar.recibirDanio(DANIO_TIERRA);
+        }
     }
 }

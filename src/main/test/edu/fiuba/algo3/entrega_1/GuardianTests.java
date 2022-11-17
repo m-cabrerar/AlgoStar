@@ -1,4 +1,3 @@
-/*
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
@@ -11,15 +10,16 @@ public class GuardianTests {
     @Test
     public void test01GuardianAtacaAUnidadVoladorYNoLeHaceDanio() {
         //ARRANGE
-        Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        Guardian guardian = new Guardian(casilleroMock, inventarioMock);
-        Unidad unidadMock = mock(Unidad.class);
+        when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
+        Guardian guardian = new Guardian(inventarioMock);
+        UnidadMovil unidadMock = mock(UnidadMovil.class);
+        when(unidadMock.esVoladora()).thenReturn(true);
         //ACT
         try {
             guardian.atacar(unidadMock);
             //ASSERT
-            verify(unidadMock, times(1)).recibirDanio(25,0);
+            verify(unidadMock, times(1)).recibirDanio(0);
         } catch (Exception e) {
             fail();
         }
@@ -28,18 +28,18 @@ public class GuardianTests {
     @Test
     public void test02GuardianAtacaAUnidadTerrestreYLeHace25DeDanio() {
         //ARRANGE
-        Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        Guardian guardian = new Guardian(casilleroMock, inventarioMock);
-        Unidad unidadMock = mock(Unidad.class);
+        when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
+        Guardian guardian = new Guardian(inventarioMock);
+        UnidadMovil unidadMock = mock(UnidadMovil.class);
+        when(unidadMock.esVoladora()).thenReturn(false);
         //ACT
         try {
             guardian.atacar(unidadMock);
             //ASSERT
-            verify(unidadMock, times(1)).recibirDanio(25,0);
+            verify(unidadMock, times(1)).recibirDanio(25);
         } catch (Exception e) {
             fail();
         }
     }
 }
-*/

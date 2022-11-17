@@ -23,4 +23,13 @@ public class Larva extends UnidadMovilZerg {
 
     }
 
+    public void atacar(UnidadMovil unidadAAtacar){
+        if (unidadAAtacar.esVoladora()){
+            unidadAAtacar.recibirDanio(DANIO_AIRE);
+        }
+        else{
+            unidadAAtacar.recibirDanio(DANIO_TIERRA);
+        }
+    }
+
 }
