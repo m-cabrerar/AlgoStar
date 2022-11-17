@@ -96,6 +96,10 @@ public class Mapa {
             casillero.desenergizar();
         }
     }
+    public int[][] posicionesExtremo(){
+        int[][] posiciones = {{0,0},{this.anchoMapa-1,this.altoMapa-1}};
+        return posiciones;
+    }
 
     public Casillero obtenerCasillero(int x, int y){
         return this.tableroActual.get(x).get(y);
