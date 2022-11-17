@@ -22,7 +22,4 @@ public class NodoGas extends TipoCasillero{
     public boolean agotado(){
         return unidadesRestantes <= 0;
     }
-
-    @Override
-    public boolean cumpleCondicionesEspeciales(Unidad unidad){return false;}
 }

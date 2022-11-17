@@ -9,17 +9,10 @@ public class Mapa {
     public Mapa( int alto, int ancho){
         this.anchoMapa = ancho;
         this.altoMapa = alto;
-        List<List<Casillero>> tablero = new ArrayList<>();
-        for (int i = 0; i < ancho; i++)  {
-            tablero.add(new ArrayList<>());
-            for (int j = 0; j < alto; j++) {
-                tablero.get(i).add(new Casillero(i,j,this));
-            }
-        }
-        this.tableroActual = tablero;
+        this.tableroActual = crearTablero(alto,ancho);
         this.tiempoVida = 0;
     }
-/*
+
     private List<List<Casillero>> crearTablero(int alto, int ancho){
             List<List<Casillero>> tablero = new ArrayList<>();
             for (int i = 0; i < ancho; i++)  {
@@ -30,7 +23,7 @@ public class Mapa {
             }
         return tablero;
         }
-*/
+
     public void cambiarTipoCasilla(int x, int y, TipoCasillero tipoCasillero){
         obtenerCasillero(x,y).setTipoCasillero(tipoCasillero);
     }

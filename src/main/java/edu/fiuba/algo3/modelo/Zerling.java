@@ -36,11 +36,5 @@ public class Zerling extends UnidadMovilZerg{
     }
     public void atacar(Unidad unidadAAtacar){
         super.atacar(unidadAAtacar, DANIO_AIRE, DANIO_TIERRA);
-
-public class Zerling extends UnidadMovil {
-    Zerling(Inventario inventario){
-        if(!inventario.tieneRecursos(25,0)){
-            throw new RecursosInsuficientes("No tiene recursos");
-        }
     }
 }

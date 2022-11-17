@@ -1,5 +1,4 @@
 package edu.fiuba.algo3.modelo;
-import edu.fiuba.algo3.exceptions.EdificioOcupado;
 import edu.fiuba.algo3.exceptions.RecursosInsuficientes;
 import edu.fiuba.algo3.exceptions.UbicacionInvalida;
 
@@ -25,17 +24,6 @@ public class ReservaDeReproduccion extends EdificioZerg {
         }
         EdificioConcreto reserva = new ReservaDeReproduccion(casillero, inventario);
         return new EdificioEnConstruccion(reserva, casillero, inventario);
-    }
-    public UnidadMovil crearEvolucion(Inventario inventario) throws RecursosInsuficientes {
-        return new Zerling(inventario);
-    }
-
-    public void engendrarZerling(UnidadMovil unidad, Inventario inventario) throws RecursosInsuficientes, EdificioOcupado {
-        if (unidadEnConstruccion()) {
-            throw new EdificioOcupado("El edificio está ocupado");
-        }
-        unidadEnConstruccion = crearEvolucion(inventario);
-        turnosParaConstruir = unidadEnConstruccion.turnosParaConstruir();
     }
 }
 
