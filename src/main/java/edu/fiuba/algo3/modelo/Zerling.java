@@ -11,12 +11,13 @@ public class Zerling extends UnidadMovil {
     private static int RANGO_DE_ATAQUE = 1;
     private static int COSTO_MINERAL = 25;
     private static int COSTO_GASEOSO = 0;
+    private static int TURNOS_PARA_CONSTRUIR = 2;
     Zerling(Inventario inventario){
         if(!inventario.tieneRecursos(25,0)){
             throw new RecursosInsuficientes("No tiene recursos");
         }
     }
     public int turnosParaConstruir(){
-        return 2;
+        return TURNOS_PARA_CONSTRUIR;
     }
 }
