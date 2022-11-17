@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.exceptions.RecursosInsuficientes;
-import edu.fiuba.algo3.exceptions.UbicacionInvalida;
+import edu.fiuba.algo3.exceptions.*;
 
 public class NexoMineral extends EdificioProtoss {
     public NexoMineral(Casillero casillero, Inventario inventario) {
