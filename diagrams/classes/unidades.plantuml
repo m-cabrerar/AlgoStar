@@ -1,0 +1,52 @@
+@startuml
+title Modelado de Unidades
+
+class UnidadMovil {
+ - Casillero: casilleroActual
+ UnidadMovil(inventario, costoMineral, costoGas)
+ {sbstract} void: atacar(Unidad unidad)
+}
+
+class UnidadMovilProtoss {
+ - int: escucoMaximo
+ - int: escudo
+ - int: vida
+ + UnidadMovilProtoss(inventario,costoM,costoG,vida,escudo)
+ + void: pasarTurno()
+ {abstract}void: atacar(Unidad unidad)
+}
+
+class UnidadMovilZerg{
+ - int: vidaMaxima
+ - int: vida
+ + UnidadMovilZerg(inventario,costoM,costoG,vida)
+ + void: pasarTurno()
+ {abstract}void: atacar(Unidad unidad)
+}
+
+interface Unidad {
+ + void:pasarTurno()
+ + void:recibirDanio(int cantidad)
+}
+class Dragon{}
+class Zealot{}
+class Scout{}
+
+class Mutalisco{}
+class Zerling{}
+class Hidralisco{}
+class Guardian{}
+
+Unidad <|.. UnidadMovil
+UnidadMovil <|-- UnidadMovilProtoss
+UnidadMovil <|-- UnidadMovilZerg
+UnidadMovilProtoss <|-- Dragon
+UnidadMovilProtoss <|-- Zealot
+UnidadMovilProtoss <|-- Scout
+UnidadMovilZerg <|-- Mutalisco
+UnidadMovilZerg <|-- Zerling
+UnidadMovilZerg <|-- Hidralisco
+UnidadMovilZerg <|-- Guardian
+
+
+@enduml

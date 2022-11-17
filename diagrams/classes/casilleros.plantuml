@@ -28,6 +28,10 @@ class Casillero {
  + int: posicionY()
 }
 
+class CasilleroEspacial {
+ + String: nombreDelCasillero()
+}
+
 class CasilleroVacio{
  + String: nombreDelCasillero()
 }
@@ -44,6 +48,7 @@ CasilleroVacio --|> TipoCasillero
 Moho --|> TipoCasillero
 NodoGas --|> TipoCasillero
 NodoMineral --|> TipoCasillero
+CasilleroEspacial --|> TipoCasillero
 
 class Moho{
  + Moho()
