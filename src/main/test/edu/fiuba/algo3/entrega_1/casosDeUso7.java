@@ -40,7 +40,7 @@ import static org.mockito.Mockito.times;
         Casillero mockedNodoMineral = mock(Casillero.class);
         when(mockedNodoMineral.extraerMineral()).thenReturn(true);
         Inventario inventario = new Inventario(50,0);
-        Edificio nexoMineral = NexoMineral.construir(casillero, inventario);
+        Unidad nexoMineral = NexoMineral.construir(casillero, inventario);
 
         //ACT
         for(int i=0; i<6; i++){

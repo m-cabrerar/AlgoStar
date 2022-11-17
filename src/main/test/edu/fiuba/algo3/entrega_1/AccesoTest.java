@@ -47,7 +47,7 @@ public class AccesoTest {
         when(mockedCasillero.tieneEnergia()).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
-        Edificio acceso = Acceso.construir(mockedCasillero, mockedInventario);
+        Unidad acceso = Acceso.construir(mockedCasillero, mockedInventario);
         for (int i = 0; i < 8; i++) {
             acceso.pasarTurno();
         }
@@ -65,7 +65,7 @@ public class AccesoTest {
         when(mockedCasillero.tieneEnergia()).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
-        Edificio acceso = Acceso.construir(mockedCasillero, mockedInventario);
+        Unidad acceso = Acceso.construir(mockedCasillero, mockedInventario);
         // Act
         try{acceso.recibirDanio(1);}
         catch(Exception e){}
@@ -80,7 +80,7 @@ public class AccesoTest {
         when(mockedCasillero.tieneEnergia()).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
-        Edificio acceso = Acceso.construir(mockedCasillero, mockedInventario);
+        Unidad acceso = Acceso.construir(mockedCasillero, mockedInventario);
         for (int i = 0; i < 7; i++) {
             acceso.pasarTurno();
         }
@@ -98,7 +98,7 @@ public class AccesoTest {
         when(mockedCasillero.tieneEnergia()).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
-        Edificio acceso = new Acceso(mockedCasillero, mockedInventario);
+        Unidad acceso = new Acceso(mockedCasillero, mockedInventario);
         // Act
         try{acceso.recibirDanio(50);}
         catch(Exception e){}
@@ -120,7 +120,7 @@ public class AccesoTest {
         when(mockedCasillero.tieneEnergia()).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
-        Edificio acceso = new Acceso(mockedCasillero, mockedInventario);
+        Unidad acceso = new Acceso(mockedCasillero, mockedInventario);
         // Act
         try{acceso.recibirDanio(550);}
         catch(Exception e){}
@@ -141,7 +141,7 @@ public class AccesoTest {
         when(mockedCasillero.tieneEnergia()).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
-        Edificio acceso = new Acceso(mockedCasillero, mockedInventario);
+        Unidad acceso = new Acceso(mockedCasillero, mockedInventario);
         // Act
         try{acceso.recibirDanio(1200);}
         catch(Exception e){}

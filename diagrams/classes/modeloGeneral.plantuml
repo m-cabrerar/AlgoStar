@@ -34,7 +34,7 @@ abstract class TipoCasillero{
  + void: expandirMoho(List<Casillero> casillasAContagiar)
 }
 
-interface Edificio {
+interface Unidad {
  + void:pasarTurno()
  + void:recibirDanio(int cantidad)
 }
@@ -52,7 +52,7 @@ class EdificioConcreto {
 }
 
 class EdificioEnConstruccion{
- /'- Edificio:vaASer'/
+ /'- Unidad:vaASer'/
  /'- Casillero:casillero'/
  - int:turnosRestantes
  + EdificioEnConstruccion(EdificioConcreto vaASer, casillero, inventario)
@@ -79,8 +79,8 @@ class Inventario {
 
 }
 
-Edificio <|.. EdificioConcreto
-Edificio <|.. EdificioEnConstruccion
+Unidad <|.. EdificioConcreto
+Unidad <|.. EdificioEnConstruccion
 EdificioConcreto <|-- EdificioZerg
 EdificioConcreto <|-- EdificioProtoss
 EdificioEnConstruccion "1" o-- "1" EdificioConcreto
@@ -88,5 +88,5 @@ EdificioEnConstruccion "1" o-- "1" Casillero
 EdificioConcreto "1" o-- "1" Casillero
 Mapa "1" *-- "*" Casillero
 Casillero "1" *-- "1" TipoCasillero
-Inventario "1" o-- "*" Edificio
+Inventario "1" o-- "*" Unidad
 @enduml

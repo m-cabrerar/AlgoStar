@@ -22,7 +22,7 @@ public class casosDeUso14 {
         Casillero casillero = mapa.obtenerCasillero(1, 1);
         casillero.setTipoCasillero(new Moho());
         Inventario inventario = new Inventario(300, 300);
-        Edificio pilon = new Pilon(mapa.adyacentes(casillero)[0], inventario);
+        Unidad pilon = new Pilon(mapa.adyacentes(casillero)[0], inventario);
         //ACT
         estaEnergizado = casillero.tieneEnergia();
         //ASSERT
@@ -37,7 +37,7 @@ public class casosDeUso14 {
         Casillero casillero = mapa.obtenerCasillero(1, 1);
         casillero.setTipoCasillero(new Moho());
         Inventario inventario = new Inventario(300, 300);
-        Edificio pilon = new Pilon(mapa.adyacentes(casillero)[0], inventario);
+        Unidad pilon = new Pilon(mapa.adyacentes(casillero)[0], inventario);
         //ACT
         Exception exception = assertThrows(NoSePuedeConstruirEnCasilleroConMohoException.class, () -> {
             new Acceso(casillero, inventario);
@@ -54,7 +54,7 @@ public class casosDeUso14 {
         Casillero casillero = mapa.obtenerCasillero(1, 1);
         casillero.setTipoCasillero(new Moho());
         Inventario inventario = new Inventario(300, 300);
-        Edificio pilon = new Pilon(mapa.adyacentes(casillero)[0], inventario);
+        Unidad pilon = new Pilon(mapa.adyacentes(casillero)[0], inventario);
         //ACT
         Exception exception = assertThrows(NoSePuedeConstruirEnCasilleroConMohoException.class, () -> {
             new PuertoEstelar(casillero, inventario);
@@ -68,7 +68,7 @@ public class casosDeUso14 {
         //ARRANGE
         Mapa mapa = new Mapa(dimensionX, dimensionY);
         Casillero casillero = mapa.obtenerCasillero(1, 1);
-        Edificio pilon = new Pilon(mapa.adyacentes(casillero)[0], inventario);
+        Unidad pilon = new Pilon(mapa.adyacentes(casillero)[0], inventario);
         casillero.setTipoCasillero(new Moho());
         Inventario inventario = new Inventario(300, 300);
         //ACT

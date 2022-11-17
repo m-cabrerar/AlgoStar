@@ -1,7 +1,7 @@
 @startuml
 title Modelado de los Edificios
 
-interface Edificio {
+interface Unidad {
  + void:pasarTurno()
  + void:recibirDanio(int cantidad)
 }
@@ -19,7 +19,7 @@ class EdificioConcreto {
 }
 
 class EdificioEnConstruccion{
- /'- Edificio:vaASer'/
+ /'- Unidad:vaASer'/
  - Casillero:casillero
  - int:turnosRestantes
  - boolean:destruido
@@ -44,8 +44,8 @@ class EdificioProtoss{
  + void:pasarTurno()
 }
 
-Edificio <|.. EdificioConcreto
-Edificio <|.. EdificioEnConstruccion
+Unidad <|.. EdificioConcreto
+Unidad <|.. EdificioEnConstruccion
 EdificioConcreto <|-- EdificioZerg
 EdificioConcreto <|-- EdificioProtoss
 EdificioEnConstruccion "1" o-- "1" EdificioConcreto

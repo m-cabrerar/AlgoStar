@@ -21,7 +21,7 @@ public class ReservaDeReproduccionTests {
         when(casilleroMock.esDelTipo(any())).thenReturn(true);
         when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         try {
-            Edificio reserva = ReservaDeReproduccion.construir(casilleroMock, inventarioMock);
+            Unidad reserva = ReservaDeReproduccion.construir(casilleroMock, inventarioMock);
             //ACT
             for (int i = 0; i < 12; i++) {
                 reserva.pasarTurno();
@@ -40,7 +40,7 @@ public class ReservaDeReproduccionTests {
         when(casilleroMock.esDelTipo(any())).thenReturn(true);
         when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         try {
-            Edificio reserva = ReservaDeReproduccion.construir(casilleroMock, inventarioMock);
+            Unidad reserva = ReservaDeReproduccion.construir(casilleroMock, inventarioMock);
             //ACT
             for (int i = 0; i < 11; i++) {
                 reserva.pasarTurno();

@@ -98,7 +98,7 @@ public class CriaderoTests {
         when(casilleroMock.esDelTipo(any())).thenReturn(true);
         when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         try {
-            Edificio criadero = Criadero.construir(casilleroMock, inventarioMock);
+            Unidad criadero = Criadero.construir(casilleroMock, inventarioMock);
             //ACT
             criadero.pasarTurno();
             criadero.pasarTurno();
@@ -118,7 +118,7 @@ public class CriaderoTests {
         when(casilleroMock.esDelTipo(any())).thenReturn(true);
         when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         try {
-            Edificio criadero = Criadero.construir(casilleroMock, inventarioMock);
+            Unidad criadero = Criadero.construir(casilleroMock, inventarioMock);
             //ACT
             criadero.pasarTurno();
             criadero.pasarTurno();

@@ -18,7 +18,7 @@ public class EspiralTests {
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
         try {
-            Edificio espiral = new Espiral(casilleroMock, inventarioMock);
+            Unidad espiral = new Espiral(casilleroMock, inventarioMock);
 
             //ACT
             for(int i=0; i<10; i++){
@@ -39,7 +39,7 @@ public class EspiralTests {
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         when(inventarioMock.tieneGuarida()).thenReturn(true);
         try{
-            Edificio espiral = Espiral.construir(casilleroMock, inventarioMock);
+            Unidad espiral = Espiral.construir(casilleroMock, inventarioMock);
             //ACT
             for(int i=0; i<9; i++){
                 espiral.pasarTurno();

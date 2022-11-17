@@ -21,7 +21,7 @@ public class casosDeUso15 {
 
         Casillero casillero = new NodoDeGas();
         Inventario inventario = new Inventario(300,300);
-        Edificio extractor = new Extractor(casillero, inventario);
+        Unidad extractor = new Extractor(casillero, inventario);
 
         //ACT
         for(int i=0; i<6; i++){
@@ -48,7 +48,7 @@ public class casosDeUso15 {
 
         Casillero casillero = new NodoDeGas();
         Inventario inventario = new Inventario(300,300);
-        Edificio asimilador = Asimilador.construir(casillero, inventario);
+        Unidad asimilador = Asimilador.construir(casillero, inventario);
 
         //ACT
         for(int i=0; i<6; i++){
@@ -76,7 +76,7 @@ public class casosDeUso15 {
         Casillero casillero = new Casillero();
         Casillero.setTipoCasillero(new NodoMineral());
         Inventario inventario = new Inventario(300,300);
-        Edificio nexoMineral = NexoMineral.construir(casillero, inventario);
+        Unidad nexoMineral = NexoMineral.construir(casillero, inventario);
 
         //ACT
         for(int i=0; i<4; i++){

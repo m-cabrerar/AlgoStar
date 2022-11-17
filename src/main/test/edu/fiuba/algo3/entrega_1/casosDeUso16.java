@@ -33,7 +33,7 @@ public class casosDeUso16 {
 
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            Edificio nexoMineral = new NexoMineral(casillero, inventario);
+            Unidad nexoMineral = new NexoMineral(casillero, inventario);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
@@ -46,7 +46,7 @@ public class casosDeUso16 {
         Casillero casillero = new Casillero();
         Casillero.setTipoCasillero(new NodoMineral());
         Inventario inventario = new Inventario(300,300);
-        Edificio nexoMineral = new NexoMineral(casillero, inventario);
+        Unidad nexoMineral = new NexoMineral(casillero, inventario);
         for(int i=0; i<6; i++){
             nexoMineral.pasarTurno();
         }
