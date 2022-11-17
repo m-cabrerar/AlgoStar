@@ -1,3 +1,4 @@
+/*
 package edu.fiuba.algo3.entrega_1;
 
 import org.junit.jupiter.api.Test;
@@ -6,15 +7,26 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class casosDeUso5 {
-    /* Verificar que no se puedan construir edificios fuera del rango de un pilon o fuera del
+    */
+/* Verificar que no se puedan construir edificios fuera del rango de un pilon o fuera del
      *moho.
-     */
+     *//*
+
     //Todo pasar a Mock el inventario que siempre pueda pagar.
 
 
-    /*
-    *//*********************Edificios Que Necesitan Moho**************************//*
-    *//* INTENTO CONSTRUIR SOBRE NODO MINERAL Y NO SE PUEDE. *//*
+    */
+/*
+    *//*
+*/
+/*********************Edificios Que Necesitan Moho**************************//*
+*/
+/*
+    *//*
+*/
+/* INTENTO CONSTRUIR SOBRE NODO MINERAL Y NO SE PUEDE. *//*
+*/
+/*
     @Test
     public void test01ConstruyoUnCriaderoEnUnNodoMineralYDaError(){
         //ARRANGE
@@ -147,5 +159,7 @@ public class casosDeUso5 {
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
     }
-*/
+*//*
+
 }
+*/

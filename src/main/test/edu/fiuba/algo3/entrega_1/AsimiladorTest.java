@@ -46,7 +46,7 @@ public class AsimiladorTest {
         when(mockedCasillero.esDelTipo(any())).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
-        Edificio asimilador = Asimilador.construir(mockedCasillero, mockedInventario);
+        Unidad asimilador = Asimilador.construir(mockedCasillero, mockedInventario);
         for (int i = 0; i < 6; i++) {
             asimilador.pasarTurno();
         }
@@ -64,7 +64,7 @@ public class AsimiladorTest {
         when(mockedCasillero.esDelTipo(any())).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
-        Edificio asimilador = Asimilador.construir(mockedCasillero, mockedInventario);
+        Unidad asimilador = Asimilador.construir(mockedCasillero, mockedInventario);
         // Act
         try{asimilador.recibirDanio(1);}
         catch(Exception e){}
@@ -79,7 +79,7 @@ public class AsimiladorTest {
         when(mockedCasillero.esDelTipo(any())).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
-        Edificio asimilador = Asimilador.construir(mockedCasillero, mockedInventario);
+        Unidad asimilador = Asimilador.construir(mockedCasillero, mockedInventario);
         for (int i = 0; i < 5; i++) {
             asimilador.pasarTurno();
         }
@@ -97,7 +97,7 @@ public class AsimiladorTest {
         when(mockedCasillero.esDelTipo(any())).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
-        Edificio asimilador = new Asimilador(mockedCasillero, mockedInventario);
+        Unidad asimilador = new Asimilador(mockedCasillero, mockedInventario);
         // Act
         try{asimilador.recibirDanio(50);}
         catch(Exception e){}
@@ -119,7 +119,7 @@ public class AsimiladorTest {
         when(mockedCasillero.esDelTipo(any())).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
-        Edificio asimilador = new Asimilador(mockedCasillero, mockedInventario);
+        Unidad asimilador = new Asimilador(mockedCasillero, mockedInventario);
         // Act
         try{asimilador.recibirDanio(500);}
         catch(Exception e){}
@@ -139,7 +139,7 @@ public class AsimiladorTest {
         when(mockedCasillero.esDelTipo(any())).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
-        Edificio asimilador = new Asimilador(mockedCasillero, mockedInventario);
+        Unidad asimilador = new Asimilador(mockedCasillero, mockedInventario);
         // Act
         try{asimilador.recibirDanio(1000);}
         catch(Exception e){}

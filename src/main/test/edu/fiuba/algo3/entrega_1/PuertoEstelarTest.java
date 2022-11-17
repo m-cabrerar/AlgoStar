@@ -63,7 +63,7 @@ public class PuertoEstelarTest {
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         when(mockedInventario.tieneAcceso()).thenReturn(true);
-        Edificio puertoEstelar = PuertoEstelar.construir(mockedCasillero, mockedInventario);
+        Unidad puertoEstelar = PuertoEstelar.construir(mockedCasillero, mockedInventario);
         for (int i = 0; i < 10; i++) {
             puertoEstelar.pasarTurno();
         }
@@ -82,7 +82,7 @@ public class PuertoEstelarTest {
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         when(mockedInventario.tieneAcceso()).thenReturn(true);
-        Edificio puertoEstelar = PuertoEstelar.construir(mockedCasillero, mockedInventario);
+        Unidad puertoEstelar = PuertoEstelar.construir(mockedCasillero, mockedInventario);
         // Act
         try{puertoEstelar.recibirDanio(1);}
         catch(Exception e){}
@@ -98,7 +98,7 @@ public class PuertoEstelarTest {
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         when(mockedInventario.tieneAcceso()).thenReturn(true);
-        Edificio puertoEstelar = PuertoEstelar.construir(mockedCasillero, mockedInventario);
+        Unidad puertoEstelar = PuertoEstelar.construir(mockedCasillero, mockedInventario);
         for (int i = 0; i < 9; i++) {
             puertoEstelar.pasarTurno();
         }
@@ -117,7 +117,7 @@ public class PuertoEstelarTest {
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         when(mockedInventario.tieneAcceso()).thenReturn(true);
-        Edificio puertoEstelar = new PuertoEstelar(mockedCasillero, mockedInventario);
+        Unidad puertoEstelar = new PuertoEstelar(mockedCasillero, mockedInventario);
         // Act
         try{puertoEstelar.recibirDanio(50);}
         catch(Exception e){}
@@ -140,7 +140,7 @@ public class PuertoEstelarTest {
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         when(mockedInventario.tieneAcceso()).thenReturn(true);
-        Edificio puertoEstelar = new PuertoEstelar(mockedCasillero, mockedInventario);
+        Unidad puertoEstelar = new PuertoEstelar(mockedCasillero, mockedInventario);
         // Act
         try{puertoEstelar.recibirDanio(650);}
         catch(Exception e){}
@@ -161,7 +161,7 @@ public class PuertoEstelarTest {
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         when(mockedInventario.tieneAcceso()).thenReturn(true);
-        Edificio puertoEstelar = new PuertoEstelar(mockedCasillero, mockedInventario);
+        Unidad puertoEstelar = new PuertoEstelar(mockedCasillero, mockedInventario);
         // Act
         try{puertoEstelar.recibirDanio(1200);}
         catch(Exception e){}

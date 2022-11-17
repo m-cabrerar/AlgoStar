@@ -1,30 +1,30 @@
-package edu.fiuba.algo3.entrega_1;
+/*package edu.fiuba.algo3.entrega_1;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
 
 public class casosDeUso9 {
-    /*Verificar que un edificio protoss sigue operativo si le destruyen un pilon que lo energiza
+    *//*Verificar que un edificio protoss sigue operativo si le destruyen un pilon que lo energiza
      *pero aún está dentro del rango de otro que también lo energiza.
-     */
+     *//*
 
-/*    @Test
+*//*    @Test
     public void Test01AccesoSigueActivoUbicadoEnCasilleroEnergizado2PilonesCuandoUnoSeDestruye(){
         //ARRANGE
         Casillero casillero;
         Casillero otroCasillero;
         casillero.energizar();
         casillero.energizar();
-        Edificio.pilon(casillero);
+        Unidad.pilon(casillero);
         Inventario inventario = new Inventario(200,200);
-        Edificio edificio (otroCasillero, inventario)
+        Unidad edificio (otroCasillero, inventario)
         //ACT
         pilon.recibirDanio(600);
         //Assert
         assertTrue(edificio.tieneEnergia());
     }
-*/
-}
+*//*
+}*/
 
 
 
@@ -35,7 +35,7 @@ public class casosDeUso9 {
         @InjectMocks
         Casillero casillero;
         @Mock
-        Edificio edificio;
+        Unidad edificio;
         @Test
         public void Test01name{
             Mockito.when(mockedCasillero.estaOcupado()).thenReturn(false);
@@ -43,7 +43,7 @@ public class casosDeUso9 {
 
         //otro modo de encararlo, incompleto, ver si me sirve
          @Mock
-    Edificio mockedPilon;
+    Unidad mockedPilon;
     Casillero casillero;
 
     @Captor

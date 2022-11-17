@@ -21,7 +21,7 @@ public class GuaridaTests {
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         when(inventarioMock.tieneReservaDeReproduccion()).thenReturn(true);
         try {
-            Edificio guarida = Guarida.construir(casilleroMock, inventarioMock);
+            Unidad guarida = Guarida.construir(casilleroMock, inventarioMock);
             //ACT
             for (int i = 0; i < 12; i++) {
                 guarida.pasarTurno();
@@ -42,7 +42,7 @@ public class GuaridaTests {
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         when(inventarioMock.tieneReservaDeReproduccion()).thenReturn(true);
         try {
-            Edificio guarida = Guarida.construir(casilleroMock, inventarioMock);
+            Unidad guarida = Guarida.construir(casilleroMock, inventarioMock);
             //ACT
             for (int i = 0; i < 11; i++) {
                 guarida.pasarTurno();

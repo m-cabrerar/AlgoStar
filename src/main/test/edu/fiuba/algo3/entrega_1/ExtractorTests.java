@@ -18,7 +18,7 @@ public class ExtractorTests {
         when(casilleroMock.esDelTipo(any())).thenReturn(true);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         try {
-            Edificio extractor = Extractor.construir(casilleroMock, inventarioMock);
+            Unidad extractor = Extractor.construir(casilleroMock, inventarioMock);
             //ACT
             for (int i = 0; i < 6; i++) {
                 extractor.pasarTurno();
@@ -38,7 +38,7 @@ public class ExtractorTests {
         when(casilleroMock.esDelTipo(any())).thenReturn(true);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         try{
-            Edificio extractor = Extractor.construir(casilleroMock, inventarioMock);
+            Unidad extractor = Extractor.construir(casilleroMock, inventarioMock);
             //ACT
             for(int i=0; i<5; i++){
                 extractor.pasarTurno();

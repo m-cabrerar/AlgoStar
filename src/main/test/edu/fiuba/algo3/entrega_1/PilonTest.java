@@ -47,7 +47,7 @@ public class PilonTest {
         when(mockedCasillero.esDelTipo(any())).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
-        Edificio pilon = Pilon.construir(mockedCasillero, mockedInventario);
+        Unidad pilon = Pilon.construir(mockedCasillero, mockedInventario);
         for (int i = 0; i < 5; i++) {
             pilon.pasarTurno();
         }
@@ -65,7 +65,7 @@ public class PilonTest {
         when(mockedCasillero.esDelTipo(any())).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
-        Edificio pilon = Pilon.construir(mockedCasillero, mockedInventario);
+        Unidad pilon = Pilon.construir(mockedCasillero, mockedInventario);
         // Act
         try{pilon.recibirDanio(1);}
         catch(Exception e){}
@@ -80,7 +80,7 @@ public class PilonTest {
         when(mockedCasillero.esDelTipo(any())).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
-        Edificio pilon = Pilon.construir(mockedCasillero, mockedInventario);
+        Unidad pilon = Pilon.construir(mockedCasillero, mockedInventario);
         for (int i = 0; i < 4; i++) {
             pilon.pasarTurno();
         }
@@ -98,7 +98,7 @@ public class PilonTest {
         when(mockedCasillero.esDelTipo(any())).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
-        Edificio pilon = new Pilon(mockedCasillero, mockedInventario);
+        Unidad pilon = new Pilon(mockedCasillero, mockedInventario);
         // Act
         try{pilon.recibirDanio(50);}
         catch(Exception e){}
@@ -120,7 +120,7 @@ public class PilonTest {
         when(mockedCasillero.esDelTipo(any())).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
-        Edificio pilon = new Pilon(mockedCasillero, mockedInventario);
+        Unidad pilon = new Pilon(mockedCasillero, mockedInventario);
         // Act
         try{pilon.recibirDanio(350);}
         catch(Exception e){}
@@ -140,7 +140,7 @@ public class PilonTest {
         when(mockedCasillero.esDelTipo(any())).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
-        Edificio pilon = new Pilon(mockedCasillero, mockedInventario);
+        Unidad pilon = new Pilon(mockedCasillero, mockedInventario);
         // Act
         try{pilon.recibirDanio(600);}
         catch(Exception e){}

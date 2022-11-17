@@ -49,7 +49,7 @@ public class NexoMineralTest {
         when(mockedCasillero.esDelTipo(any())).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
-        Edificio nexoMineral = NexoMineral.construir(mockedCasillero, mockedInventario);
+        Unidad nexoMineral = NexoMineral.construir(mockedCasillero, mockedInventario);
         for (int i = 0; i < 4; i++) {
             nexoMineral.pasarTurno();
         }
@@ -67,7 +67,7 @@ public class NexoMineralTest {
         when(mockedCasillero.esDelTipo(any())).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
-        Edificio nexoMineral = NexoMineral.construir(mockedCasillero, mockedInventario);
+        Unidad nexoMineral = NexoMineral.construir(mockedCasillero, mockedInventario);
         // Act
         try{nexoMineral.recibirDanio(1);}
         catch(Exception e){}
@@ -82,7 +82,7 @@ public class NexoMineralTest {
         when(mockedCasillero.esDelTipo(any())).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
-        Edificio nexoMineral = NexoMineral.construir(mockedCasillero, mockedInventario);
+        Unidad nexoMineral = NexoMineral.construir(mockedCasillero, mockedInventario);
         for (int i = 0; i < 3; i++) {
             nexoMineral.pasarTurno();
         }
@@ -100,7 +100,7 @@ public class NexoMineralTest {
         when(mockedCasillero.esDelTipo(any())).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
-        Edificio nexoMineral = new NexoMineral(mockedCasillero, mockedInventario);
+        Unidad nexoMineral = new NexoMineral(mockedCasillero, mockedInventario);
         // Act
         try{nexoMineral.recibirDanio(50);}
         catch(Exception e){}
@@ -122,7 +122,7 @@ public class NexoMineralTest {
         when(mockedCasillero.esDelTipo(any())).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
-        Edificio nexoMineral = new NexoMineral(mockedCasillero, mockedInventario);
+        Unidad nexoMineral = new NexoMineral(mockedCasillero, mockedInventario);
         // Act
         try{nexoMineral.recibirDanio(300);}
         catch(Exception e){}
@@ -142,7 +142,7 @@ public class NexoMineralTest {
         when(mockedCasillero.esDelTipo(any())).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
-        Edificio nexoMineral = new NexoMineral(mockedCasillero, mockedInventario);
+        Unidad nexoMineral = new NexoMineral(mockedCasillero, mockedInventario);
         // Act
         try{nexoMineral.recibirDanio(500);}
         catch(Exception e){}
