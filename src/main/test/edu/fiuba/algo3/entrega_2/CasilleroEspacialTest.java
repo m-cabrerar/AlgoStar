@@ -1,16 +1,14 @@
 package edu.fiuba.algo3.entrega_2;
-import edu.fiuba.algo3.exceptions.CasilleroNoCompatible;
-import edu.fiuba.algo3.exceptions.RecursosInsuficientes;
-import edu.fiuba.algo3.modelo.*;
+
+import edu.fiuba.algo3.modelo.CasilleroEspacial;
+import edu.fiuba.algo3.modelo.Mapa;
+import edu.fiuba.algo3.modelo.UnidadMovil;
 import org.junit.jupiter.api.Test;
-import edu.fiuba.algo3.exceptions.CorrelativasInsuficientes;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class casosDeUso20 {
-    //Verificar  que solo las unidades voladoras puedan moverse por áreas espaciales.
+public class CasilleroEspacialTest {
     @Test
     public void Test01elCasilleroEspecialVacioAceptaUnaUnidadVoladora(){
         //Arrange
