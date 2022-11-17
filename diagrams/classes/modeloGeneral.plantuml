@@ -76,7 +76,33 @@ class EdificioProtoss{
 }
 
 class Inventario {
+ - int: cantGas
+ - int: cantMineral
+ + boolean: tieneRecursos(mineral, gas)
+ + agregar(Unidad unidad)
+}
 
+class UnidadMovil {
+ - Casillero: casilleroActual
+ UnidadMovil(inventario, costoMineral, costoGas)
+ {sbstract} void: atacar(Unidad unidad)
+}
+
+class UnidadMovilProtoss {
+ - int: escucoMaximo
+ - int: escudo
+ - int: vida
+ + UnidadMovilProtoss(inventario,costoM,costoG,vida,escudo)
+ + void: pasarTurno()
+ {abstract}void: atacar(Unidad unidad)
+}
+
+class UnidadMovilZerg{
+ - int: vidaMaxima
+ - int: vida
+ + UnidadMovilZerg(inventario,costoM,costoG,vida)
+ + void: pasarTurno()
+ {abstract}void: atacar(Unidad unidad)
 }
 
 Unidad <|.. EdificioConcreto
@@ -89,4 +115,7 @@ EdificioConcreto "1" o-- "1" Casillero
 Mapa "1" *-- "*" Casillero
 Casillero "1" *-- "1" TipoCasillero
 Inventario "1" o-- "*" Unidad
+Unidad <|.. UnidadMovil
+UnidadMovil <|-- UnidadMovilProtoss
+UnidadMovil <|-- UnidadMovilZerg
 @enduml
