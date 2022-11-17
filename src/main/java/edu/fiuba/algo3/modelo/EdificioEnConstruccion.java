@@ -1,26 +1,45 @@
 /*
 package edu.fiuba.algo3.modelo;
 
-public class EdificioEnConstruccion implements Edificio {
-    private Edificio vaASer;
+import edu.fiuba.algo3.exceptions.*;
+
+public class EdificioEnConstruccion implements Unidad {
+    private Unidad vaASer;
     private Casillero casillero;
     private int turnosRestantes;
-    private Inventario inventario;
+    private boolean destruido;
 
-    public EdificioEnConstruccion(Edificio vaASer, Casillero casillero, Inventario inventario) {
+    public EdificioEnConstruccion(EdificioConcreto vaASer, Casillero casillero, Inventario inventario) {
         this.vaASer = vaASer;
         this.casillero = casillero;
         this.turnosRestantes = vaASer.turnosParaConstruir();
         casillero.ocupar();
+        this.destruido = false;
     }
 
+    private boolean estaListo() {
+        return turnosRestantes <= 0;
+    }
     public void pasarTurno() {
-        turnosRestantes--;
+        if (estaListo()) {
+            vaASer.pasarTurno();
+        } else {
+            turnosRestantes--;
+        }
     }
 
-    public void recibirDanio(int danio) {
-        casilla.desocupar();
+    public void recibirDanio(int danio) throws EstaDestruido {
+        if (destruido){
+            throw new EstaDestruido("El edificio está destruido");
+        }
+        if (!estaListo()) {
+            casillero.desocupar();
+            destruido = true;
+        } else {
+            vaASer.recibirDanio(danio);
+        }
     }
+
 }
 
  */

@@ -1,70 +1,72 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.Casillero;
-import edu.fiuba.algo3.modelo.Edificio;
-import edu.fiuba.algo3.modelo.Inventario;
-import edu.fiuba.algo3.modelo.Moho;
+import edu.fiuba.algo3.exceptions.*;
+import edu.fiuba.algo3.modelo.*;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class GuaridaTests {
 
     @Test
     public void test01ConstruyoUnaGuaridaQueEstaraListoEn12Turnos() {
-
         //ARRANGE
-        Casillero casillero = new Casillero();
-        Casillero.setTipoCasillero(new Moho());
-        Inventario inventario = new Inventario(300,300);
-        Edificio guarida = new Guarida(casillero, inventario);
-
-        //ACT
-        for(int i=0; i<12; i++){
-            guarida.pasarTurno();
+        Casillero casilleroMock = mock(Casillero.class);
+        Inventario inventarioMock = mock(Inventario.class);
+        when(casilleroMock.esDelTipo(any())).thenReturn(true);
+        when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
+        when(inventarioMock.tieneReservaDeReproduccion()).thenReturn(true);
+        try {
+            Unidad guarida = Guarida.construir(casilleroMock, inventarioMock);
+            //ACT
+            for (int i = 0; i < 12; i++) {
+                guarida.pasarTurno();
+            }
+            //ASSERT
+            assertDoesNotThrow(() -> guarida.recibirDanio(5));
+        } catch (Exception e) {
+            fail();
         }
-
-        //ASSERT
-        assertDoesNotThrow(guarida.recibirDanio(5) );
-
     }
-
     @Test
     public void test02ConstruyoUnaGuaridaQueNoSePuedeUsarPasados11Turnos() {
 
         //ARRANGE
-        String mensaje = "Tu Guarida ha sido destruida";
-        Casillero casillero = new Casillero();
-        Casillero.setTipoCasillero(new Moho());
-        Inventario inventario = new Inventario(300,300);
-        Edificio guarida = new Guarida(casillero, inventario);
-
-        //ACT
-        for(int i=0; i<11; i++){
-            guarida.pasarTurno();
-        }
-        Exception exception = assertThrows(Exception.class, () -> {
+        Casillero casilleroMock = mock(Casillero.class);
+        Inventario inventarioMock = mock(Inventario.class);
+        when(casilleroMock.esDelTipo(any())).thenReturn(true);
+        when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
+        when(inventarioMock.tieneReservaDeReproduccion()).thenReturn(true);
+        try {
+            Unidad guarida = Guarida.construir(casilleroMock, inventarioMock);
+            //ACT
+            for (int i = 0; i < 11; i++) {
+                guarida.pasarTurno();
+            }
             guarida.recibirDanio(5);
-        });
-
-        //ASSERT
-        assertEquals(mensaje, exception.getMessage());
-
+            // ASSERT
+            assertThrows(EstaDestruido.class, () -> guarida.recibirDanio(5));
+        } catch (Exception e) {
+            fail();
+        }
     }
-
     @Test
     public void test03NoSePuedeConstruirUnaGuaridaSinTenerUnaReservaDeReproduccion(){
         //ARRANGE
-        String mensaje = "Aun no puedes construir una guarida";
-        Inventario inventario = new Inventario(300,300);
-        Casillero casillero = new Casillero();
-        Casillero.setTipoCasillero(new Moho());
+        String mensaje = "Aun no se puede construir este edificio";
+        Casillero casilleroMock = mock(Casillero.class);
+        Inventario inventarioMock = mock(Inventario.class);
+        when(casilleroMock.esDelTipo(any())).thenReturn(true);
+        when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
+        when(inventarioMock.tieneReservaDeReproduccion()).thenReturn(false);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            Edificio guarida = new Guarida(casillero, inventario);
+            Guarida.construir(casilleroMock, inventarioMock);
         });
-
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
     }
@@ -72,15 +74,32 @@ public class GuaridaTests {
     @Test
     public void test04SePuedeConstruirUnaGuaridaSiTengoUnaReservaDeReproduccion(){
         //ARRANGE
-        Inventario inventario = new Inventario(300,300);
-        Casillero casillero = new Casillero();
-        Casillero.setTipoCasillero(new Moho());
+        Casillero casilleroMock = mock(Casillero.class);
+        Inventario inventarioMock = mock(Inventario.class);
         //ACT
-
-        Edificio reserva = new ReservaDeReproduccion(casillero, inventario);
-
-        //ASSERT
-        assertDoesNotThrow(Edificio guarida = new Guarida(casillero, inventario) );
+        try {
+            when(casilleroMock.esDelTipo(any())).thenReturn(true);
+            when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
+            when(inventarioMock.tieneReservaDeReproduccion()).thenReturn(true);
+            //ASSERT
+            Guarida.construir(casilleroMock, inventarioMock);
+        } catch (Exception e) {
+            fail();
+        }
     }
-
+    @Test
+    public void test05NoPuedoConstruirUnaGuaridaSinLosRecursos(){
+        //ARRANGE
+        String mensaje = "No tiene recursos";
+        Casillero casilleroMock = mock(Casillero.class);
+        Inventario inventarioMock = mock(Inventario.class);
+        when(casilleroMock.esDelTipo(any())).thenReturn(true);
+        when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(false);
+        //ACT
+        Exception exception = assertThrows(Exception.class, () -> {
+            Guarida.construir(casilleroMock, inventarioMock);
+        });
+        //ASSERT
+        assertEquals(mensaje, exception.getMessage());
+    }
 }

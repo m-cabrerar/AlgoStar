@@ -1,13 +1,14 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.Casillero;
-import edu.fiuba.algo3.modelo.Edificio;
-import edu.fiuba.algo3.modelo.Inventario;
-import edu.fiuba.algo3.modelo.Moho;
+import edu.fiuba.algo3.exceptions.*;
+import edu.fiuba.algo3.modelo.*;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class ReservaDeReproduccionTests {
 
@@ -15,41 +16,50 @@ public class ReservaDeReproduccionTests {
     public void test01ConstruyoUnaRerservaDeReproduccionQueEstaraListoEn12Turnos() {
 
         //ARRANGE
-        Casillero casillero = new Casillero();
-        Casillero.setTipoCasillero(new Moho());
-        Inventario inventario = new Inventario(300,300);
-        Edificio reserva = new ReservaDeReproduccion(casillero, inventario);
-
-        //ACT
-        for(int i=0; i<12; i++){
-            reserva.pasarTurno();
+        Casillero casilleroMock = mock(Casillero.class);
+        Inventario inventarioMock = mock(Inventario.class);
+        when(casilleroMock.esDelTipo(any())).thenReturn(true);
+        when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
+        try {
+            Unidad reserva = ReservaDeReproduccion.construir(casilleroMock, inventarioMock);
+            //ACT
+            for (int i = 0; i < 12; i++) {
+                reserva.pasarTurno();
+            }
+            //ASSERT
+                assertDoesNotThrow(() -> reserva.recibirDanio(5));
+        } catch (Exception e) {
+            fail();
         }
-
-        //ASSERT
-        assertDoesNotThrow(reserva.recibirDanio(5) );
-
     }
-
     @Test
     public void test02ConstruyoUnaReservaDeReproduccionQueNoSePuedeUsarPasados11Turnos() {
-
         //ARRANGE
-        String mensaje = "Tu Reserva de Produccion ha sido destruido";
-        Casillero casillero = new Casillero();
-        Casillero.setTipoCasillero(new Moho());
-        Inventario inventario = new Inventario(300,300);
-        Edificio reserva = new ReservaDeReproduccion(casillero, inventario);
-
-        //ACT
-        for(int i=0; i<11; i++){
-            reserva.pasarTurno();
-        }
-        Exception exception = assertThrows(Exception.class, () -> {
+        Casillero casilleroMock = mock(Casillero.class);
+        Inventario inventarioMock = mock(Inventario.class);
+        when(casilleroMock.esDelTipo(any())).thenReturn(true);
+        when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
+        try {
+            Unidad reserva = ReservaDeReproduccion.construir(casilleroMock, inventarioMock);
+            //ACT
+            for (int i = 0; i < 11; i++) {
+                reserva.pasarTurno();
+            }
             reserva.recibirDanio(5);
-        });
-
-        //ASSERT
-        assertEquals(mensaje, exception.getMessage());
-
+            // ASSERT
+            assertThrows(EstaDestruido.class, () -> reserva.recibirDanio(5));
+        } catch (Exception e) {
+            fail();
+        }
+    }
+    @Test
+    public void test03NoPuedoConstruirUnaReservaDeReproduccionSinLosRecursos(){
+        //ARRANGE
+        Casillero casilleroMock = mock(Casillero.class);
+        Inventario inventarioMock = mock(Inventario.class);
+        when(casilleroMock.esDelTipo(any())).thenReturn(true);
+        when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(false);
+        //ACT & ASSERT
+        assertThrows(RecursosInsuficientes.class, () -> ReservaDeReproduccion.construir(casilleroMock, inventarioMock));
     }
 }

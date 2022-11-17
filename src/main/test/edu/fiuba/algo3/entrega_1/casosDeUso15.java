@@ -1,3 +1,4 @@
+/*
 package edu.fiuba.algo3.entrega_1;
 
 import org.junit.jupiter.api.Test;
@@ -6,9 +7,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class casosDeUso15 {
-    /*Verificar que no se sigan recolectando ni gas ni mineral una vez agotados los recursos del
+    */
+/*Verificar que no se sigan recolectando ni gas ni mineral una vez agotados los recursos del
      *nodo mineral o del volcán.
-     */
+     *//*
+
     @Test
     public void Test01ExtractorRecolectoGasPeroSeAgotoElVolcanYNoCambiaElGasQueTengo() {
 
@@ -18,7 +21,7 @@ public class casosDeUso15 {
 
         Casillero casillero = new NodoDeGas();
         Inventario inventario = new Inventario(300,300);
-        Edificio extractor = new Extractor(casillero, inventario);
+        Unidad extractor = new Extractor(casillero, inventario);
 
         //ACT
         for(int i=0; i<6; i++){
@@ -45,7 +48,7 @@ public class casosDeUso15 {
 
         Casillero casillero = new NodoDeGas();
         Inventario inventario = new Inventario(300,300);
-        Edificio asimilador = Asimilador.construir(casillero, inventario);
+        Unidad asimilador = Asimilador.construir(casillero, inventario);
 
         //ACT
         for(int i=0; i<6; i++){
@@ -73,7 +76,7 @@ public class casosDeUso15 {
         Casillero casillero = new Casillero();
         Casillero.setTipoCasillero(new NodoMineral());
         Inventario inventario = new Inventario(300,300);
-        Edificio nexoMineral = NexoMineral.construir(casillero, inventario);
+        Unidad nexoMineral = NexoMineral.construir(casillero, inventario);
 
         //ACT
         for(int i=0; i<4; i++){
@@ -92,3 +95,4 @@ public class casosDeUso15 {
     }
 
 }
+*/

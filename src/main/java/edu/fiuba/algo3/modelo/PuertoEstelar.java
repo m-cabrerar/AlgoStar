@@ -1,4 +1,31 @@
 package edu.fiuba.algo3.modelo;
 
-public class PuertoEstelar {
+import edu.fiuba.algo3.exceptions.*;
+
+public class PuertoEstelar extends EdificioProtoss {
+    public PuertoEstelar(Casillero casillero, Inventario inventario) {
+        super(casillero, inventario, 600, 600);
+    }
+
+    public void pasarTurno() {
+        super.pasarTurno();
+    }
+
+    int turnosParaConstruir() {
+        return 10;
+    }
+
+    public static EdificioEnConstruccion construir(Casillero casillero, Inventario inventario) {
+        EdificioConcreto puertoEstelar = new PuertoEstelar(casillero, inventario);
+        if(!casillero.tieneEnergia()){
+            throw new UbicacionInvalida("Ubicacion invalida");
+        }
+        if(!inventario.tieneRecursos(150, 150)){
+            throw new RecursosInsuficientes("No tiene recursos");
+        }
+        if(!inventario.tieneAcceso()){
+            throw new CorrelativasInsuficientes("Aún no se puede contruir este edificio");
+        }
+        return new EdificioEnConstruccion(puertoEstelar, casillero, inventario);
+    }
 }
