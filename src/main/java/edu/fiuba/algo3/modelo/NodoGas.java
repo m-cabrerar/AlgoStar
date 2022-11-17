@@ -24,5 +24,5 @@ public class NodoGas extends TipoCasillero{
     }
 
     @Override
-    public boolean cumpleCondicionesEspeciales(Unidad unidad){return false;}
+    public boolean cumpleCondicionesEspeciales(UnidadMovil unidad){return false;}
 }
