@@ -14,7 +14,7 @@ public class Hidralisco extends UnidadMovil {
     private static int TURNOS_PARA_CONSTRUIR = 4;
 
     Hidralisco(Inventario inventario){
-        if(!inventario.tieneRecursos(25,0)){
+        if(!inventario.tieneRecursos(75,25)){
             throw new RecursosInsuficientes("No tiene recursos");
         }
     }
