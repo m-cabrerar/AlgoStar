@@ -8,6 +8,11 @@ public class Acceso extends EdificioProtoss {
 
     public void pasarTurno() {
         super.pasarTurno();
+        if(obtenerUnidad()!=null){
+            UnidadMovil unidad = obtenerUnidad();
+            unidad.ubicarEn(casillero.obtenerAdyacente());
+            //acaba habria que chequear que si el casillero que da al obtener adyacentes es nulo (porque no hay ninguno libre)
+        }
     }
 
     int turnosParaConstruir() {

@@ -26,6 +26,9 @@ public class Guardian extends UnidadMovilZerg {
     }
 
     public void atacar(UnidadMovil unidadAAtacar){
+        if(!this.tieneEnRangoA(unidadAAtacar, RANGO_DE_ATAQUE)){
+            throw new AtaqueFueraDeRango("El ataque está fuera de rango");
+        }
         if (unidadAAtacar.esVoladora()){
             unidadAAtacar.recibirDanio(DANIO_AIRE);
         }
