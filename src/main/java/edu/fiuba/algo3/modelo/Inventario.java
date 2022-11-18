@@ -15,27 +15,25 @@ public class Inventario {
     public void agregarMineral(int i) {
         this.cantidadMineral += i;
     }
-        public void agregar(Unidad unidad) {
-            this.unidades.add(unidad);
-        }
-
-        public boolean tieneGuarida() {
-            for (Unidad unidad : this.unidades) {
-                if (unidad instanceof Guarida) {
+    public void agregar(Unidad unidad) {
+        this.unidades.add(unidad);
+    }
+    public boolean tieneGuarida() {
+        for (Unidad unidad : this.unidades) {
+            if (unidad instanceof Guarida) {
                     return true;
-                }
             }
-            return false;
         }
-
-        public boolean tieneReservaDeReproduccion() {
-            for (Unidad unidad : this.unidades) {
-                if (unidad instanceof ReservaDeReproduccion) {
-                    return true;
-                }
+        return false;
+    }
+    public boolean tieneReservaDeReproduccion() {
+        for (Unidad unidad : this.unidades) {
+            if (unidad instanceof ReservaDeReproduccion) {
+                return true;
             }
-            return false;
         }
+        return false;
+    }
     public boolean tieneRecursos(int cantMineral, int cantGas) {
         return (this.cantidadMineral >= cantMineral) && (this.cantidadGas >= cantGas);
     }
