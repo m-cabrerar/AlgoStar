@@ -160,7 +160,7 @@ public class NexoMineralTest {
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         NexoMineral nexoMineral = new NexoMineral(mockedCasillero, mockedInventario);
         // Act
-        int cantidadMineral = nexoMineral.extraerMineral();
+        int cantidadMineral = nexoMineral.extraerMineral(0);
         // Assert
         assertEquals(20, cantidadMineral);
     }

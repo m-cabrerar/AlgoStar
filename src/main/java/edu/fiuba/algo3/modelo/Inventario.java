@@ -7,9 +7,18 @@ public class Inventario {
     int cantidadGas;
     int cantidadMineral;
     List<Unidad> unidades;
+    List<NexoMineral> nexos;
 
     public void agregarGas(int i) {
         this.cantidadGas += i;
+    }
+    public void agregarMineral() {
+        for(NexoMineral nexo: nexos ){
+            cantidadMineral += nexo.extraerMineral(cantidadMineral);
+        }
+    }
+    public void agregarNexo(NexoMineral unNexoMineral){
+        this.nexos.add(unNexoMineral);
     }
 
     public void agregar(Unidad unidad) {
@@ -50,21 +59,7 @@ public class Inventario {
 }
 
 
-    /*int cantidadGas;
-    int cantidadMineral;
-
-
-    public Inventario(int cantidadInicialGas, int cantidadInicialMineral){
-        this.cantidadGas = cantidadInicialGas;
-        this.cantidadMineral = cantidadInicialMineral;
-    }
-
-    private boolean puedePagar(int pagoDeMineral, int pagoDeGas){
-        if((this.cantidadMineral < pagoDeMineral) || (this.cantidadGas < pagoDeGas)){
-            return false;
-        }
-        return true;
-    }
+    /*
     public void pagar(int pagoDeGas, int pagoDeMineral) throws Exception {
         if (!this.puedePagar(pagoDeGas, pagoDeMineral)) {
             throw new Exception("Materiales insuficientes");
@@ -72,9 +67,4 @@ public class Inventario {
         this.cantidadGas -= pagoDeGas;
         this.cantidadMineral -= pagoDeMineral;
     }
-    public void recibirMineral(int cantidad){
-        this.cantidadMineral += cantidad;
-    }
-    public void recibirGas(int cantidad){
-        this.cantidadGas += cantidad;
-    }*/
+*/
