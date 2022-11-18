@@ -4,28 +4,28 @@ import java.util.List;
 
 public class Inventario {
 
-    int cantidadGas;
-    int cantidadMineral;
+    int cantidadGas = 0;
+    int cantidadMineral =0;
     List<Unidad> unidades;
 
     public void agregarGas(int i) {
         this.cantidadGas += i;
     }
 
+    public void agregarMineral(int i) {
+        this.cantidadMineral += i;
+    }
     public void agregar(Unidad unidad) {
         this.unidades.add(unidad);
     }
-
-    //TODO: evitar instanceof
     public boolean tieneGuarida() {
         for (Unidad unidad : this.unidades) {
             if (unidad instanceof Guarida) {
-                return true;
+                    return true;
             }
         }
         return false;
     }
-
     public boolean tieneReservaDeReproduccion() {
         for (Unidad unidad : this.unidades) {
             if (unidad instanceof ReservaDeReproduccion) {
@@ -34,7 +34,6 @@ public class Inventario {
         }
         return false;
     }
-
     public boolean tieneRecursos(int cantMineral, int cantGas) {
         return (this.cantidadMineral >= cantMineral) && (this.cantidadGas >= cantGas);
     }
@@ -47,24 +46,7 @@ public class Inventario {
         }
         return false;
     }
-}
-
-
-    /*int cantidadGas;
-    int cantidadMineral;
-
-
-    public Inventario(int cantidadInicialGas, int cantidadInicialMineral){
-        this.cantidadGas = cantidadInicialGas;
-        this.cantidadMineral = cantidadInicialMineral;
-    }
-
-    private boolean puedePagar(int pagoDeMineral, int pagoDeGas){
-        if((this.cantidadMineral < pagoDeMineral) || (this.cantidadGas < pagoDeGas)){
-            return false;
-        }
-        return true;
-    }
+    /*
     public void pagar(int pagoDeGas, int pagoDeMineral) throws Exception {
         if (!this.puedePagar(pagoDeGas, pagoDeMineral)) {
             throw new Exception("Materiales insuficientes");
@@ -72,9 +54,7 @@ public class Inventario {
         this.cantidadGas -= pagoDeGas;
         this.cantidadMineral -= pagoDeMineral;
     }
-    public void recibirMineral(int cantidad){
-        this.cantidadMineral += cantidad;
-    }
-    public void recibirGas(int cantidad){
-        this.cantidadGas += cantidad;
-    }*/
+
+
+     */
+}

@@ -54,7 +54,7 @@ public class Casillero{
         this.tipoCasillero.expandirMoho(adyacentesVisitados);
     }
 
-    public int extraerMineral(int cantidad) {
+    public int extraerMineral(int cantidad) throws Exception {
         return this.tipoCasillero.extraerMineral(cantidad);
     }
     public int extraerGas(int cantidad) {
