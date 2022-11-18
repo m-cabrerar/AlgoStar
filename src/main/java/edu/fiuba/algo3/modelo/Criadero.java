@@ -65,7 +65,7 @@ public class Criadero extends EdificioZerg {
         if (!this.tieneZanganos()) {
             throw new Exception("No hay zanganos disponibles para extraer Mineral");
         }
-        return cantidadGas + casillero.extraerGas(20);
+        return cantidadGas + casillero.extraerMineral(10);
         //TODO:cada zangano trabaja en un nodo mineral extrayendo 10 por turno
 
 
