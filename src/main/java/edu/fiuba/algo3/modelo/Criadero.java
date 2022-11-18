@@ -1,4 +1,3 @@
-/*
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.exceptions.*;
@@ -45,9 +44,16 @@ public class Criadero extends EdificioZerg{
     private boolean estaEnCapacidadMaxima(){
         return cantidadLarvas == 3;
     }
+    private boolean tieneZanganos(){
+        return cantidadZanganos>0;
+    }
+    public void enviarZanganoExtraerMineral() throws Exception {
+        if(!this.tieneZanganos()){
+            throw new Exception("No hay zanganos disponibles para extraer Mineral");
+        }
+        //TODO:cada zangano trabaja en un nodo mineral extrayendo 10 por turno
+    }
 
 
 
 }
-
- */

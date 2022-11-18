@@ -1,3 +1,4 @@
+/*
 package edu.fiuba.algo3.entrega_2;
 
 import edu.fiuba.algo3.modelo.*;
@@ -38,3 +39,5 @@ public class CasilleroEspacialTest {
 
 
 }
+
+ */

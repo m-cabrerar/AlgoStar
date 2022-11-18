@@ -62,4 +62,6 @@ public class ReservaDeReproduccionTests {
         //ACT & ASSERT
         assertThrows(RecursosInsuficientes.class, () -> ReservaDeReproduccion.construir(casilleroMock, inventarioMock));
     }
+<<<<<<< Updated upstream
+
 }

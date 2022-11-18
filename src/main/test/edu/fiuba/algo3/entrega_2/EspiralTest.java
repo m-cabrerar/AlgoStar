@@ -1,3 +1,4 @@
+/*
 package edu.fiuba.algo3.entrega_2;
 
 import edu.fiuba.algo3.exceptions.*;
@@ -76,3 +77,5 @@ public class EspiralTest {
         assertThrows(EdificioOcupado.class, () -> espiral.engendrarMutalisco(larva, inventarioMock));
     }
 }
+
+ */
