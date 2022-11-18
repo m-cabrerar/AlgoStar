@@ -13,8 +13,8 @@ public class Inventario {
         this.cantidadGas += i;
     }
     public void agregarMineral() {
-        for(NexoMineral nexo: nexos ){
-            cantidadMineral += nexo.extraerMineral(cantidadMineral);
+        for(NexoMineral nexo: this.nexos ){
+            cantidadMineral = nexo.extraerMineral(cantidadMineral);
         }
     }
     public void agregarNexo(NexoMineral unNexoMineral){
