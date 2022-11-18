@@ -4,7 +4,7 @@ import java.util.List;
 public abstract class TipoCasillero{
     public abstract String nombreDelCasillero();
 
-    public int extraerMineral(int cantidad) throws Exception {
+    public int extraerMineral(int cantidad){
         return 0;
     }
     public int extraerGas(int cantidad){

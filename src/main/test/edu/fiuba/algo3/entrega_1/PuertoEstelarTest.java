@@ -1,4 +1,3 @@
-/*
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.exceptions.*;
@@ -170,5 +169,3 @@ public class PuertoEstelarTest {
         verify(mockedCasillero, times(1)).desocupar();
     }
 }
-
- */

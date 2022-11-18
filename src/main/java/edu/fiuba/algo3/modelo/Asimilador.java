@@ -11,10 +11,8 @@ public class Asimilador extends EdificioProtoss {
         return 6;
     }
 
-    protected Inventario inventario;
-    public void pasarTurno() throws Exception {
-        //super.pasarTurno();
-        this.inventario.agregarGas(this.extraerGas());
+    public void pasarTurno(){
+        super.pasarTurno();
     }
 
     public static EdificioEnConstruccion construir(Casillero casillero, Inventario inventario) {
@@ -27,6 +25,7 @@ public class Asimilador extends EdificioProtoss {
         }
         return new EdificioEnConstruccion(asimilador, casillero, inventario);
     }
+
     public int extraerGas() { //TODO: hacer privado y que se llame desde pasarTurno
         return casillero.extraerGas(20);
     }

@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.exceptions.RecursoAgotado;
 public class NodoMineral extends TipoCasillero{
     private int unidadesRestantes;
 
@@ -13,12 +12,11 @@ public class NodoMineral extends TipoCasillero{
     }
 
     @Override
-    public int extraerMineral(int cantidad) throws Exception {
-        if (this.agotado()){
-            throw new RecursoAgotado("Nodo Mineral Agotado, no es posible extraer");
-            //return cantidad + unidadesRestantes;
-        }
+    public int extraerMineral(int cantidad) {
         unidadesRestantes -= cantidad;
+        if (this.agotado()){
+            return cantidad + unidadesRestantes;
+        }
         return cantidad;
     }
     public boolean agotado(){

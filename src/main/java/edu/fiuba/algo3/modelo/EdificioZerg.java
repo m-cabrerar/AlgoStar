@@ -29,4 +29,3 @@ abstract class EdificioZerg extends EdificioConcreto {
         }
     }
 }
-

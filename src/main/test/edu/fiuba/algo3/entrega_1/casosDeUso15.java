@@ -1,3 +1,4 @@
+/*
 package edu.fiuba.algo3.entrega_1;
 
 import org.junit.jupiter.api.Test;
@@ -6,9 +7,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class casosDeUso15 {
-    /*Verificar que no se sigan recolectando ni gas ni mineral una vez agotados los recursos del
+    */
+/*Verificar que no se sigan recolectando ni gas ni mineral una vez agotados los recursos del
      *nodo mineral o del volcán.
-     */
+     *//*
 
     @Test
     public void Test01ExtractorRecolectoGasPeroSeAgotoElVolcanYNoCambiaElGasQueTengo() {
@@ -93,4 +95,4 @@ public class casosDeUso15 {
     }
 
 }
-
+*/

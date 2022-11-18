@@ -1,4 +1,3 @@
-/*
 package edu.fiuba.algo3.entrega_2;
 
 import edu.fiuba.algo3.exceptions.*;
@@ -76,5 +75,3 @@ public class ReservaDeReproduccionTest {
         assertThrows(EdificioOcupado.class, () -> reservaDeReproduccion.engendrarZerling(larva, inventarioMock));
     }
 }
-
- */

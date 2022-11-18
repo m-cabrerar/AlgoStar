@@ -1,137 +1,96 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.exceptions.RecursoAgotado;
 import edu.fiuba.algo3.modelo.*;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.times;
 
-public class casosDeUso7 {
-    /*Verificar la recolección de minerales para ambas razas.*/
-
+/*public class casosDeUso7 {
+    *//*Verificar la recolección de minerales para ambas razas.*//*
+    //ARRANGE
     @Test
-    public void Test01NodoMineraAgotadolLanzaErrorCuandoIntentanExtraerMineral() throws Exception {
-        //ARRANGE
-        String mensajeError = "Nodo Mineral Agotado, no es posible extraer";
-
+    public void Test01ProtossIntentaRecolectarCuandoNodoMinealVacio(){
+        String mensajeError = "Nodo Mineral Agotado, no es posible extraer"
+        Casillero casillero = new Casillero();
         NodoMineral unNodoMineral = new NodoMineral();
-        unNodoMineral.extraerMineral(2000);
+        Casillero.setTipoCasillero(unNodoMineral);
+        Inventario inventario = new Inventario(0,0);
+        NexoMineral nexoMineral = new NexoMineral(casillero, inventario);
+
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            unNodoMineral.extraerMineral(10);
+            nexoMineral.extraerMineral(inventario);
+            //rompe porque no usa el extrarMineral de los demás, hmm funny weird revisar
         });
+        *//*me dice que agregue el metodo a edificio, pero necesito que lo sepa solo el nexo, no todos
+        problema para patorn de diseño?*//*
+
         //ASSERT
         assertEquals(mensajeError, exception.getMessage());
     }
 
     @Test
-    public void Test02NodoMineralRestante20Extraen20MineralNoDebeLanzarExcepcion() throws Exception {
-        //ARRANGE
-        NodoMineral unNonoMineral = new NodoMineral();
-        unNonoMineral.extraerMineral(1980);
+    public void Test02ProtossNexoMineralRecolecta10mineralEnUnTurno(){
+        *//*se asume que se recolecta 10 mineral por turno. Después se corroborará*//*
+        //Arrange
+        //Mineral mineralEsperado = new Mineral(10);//
+        Casillero mockedNodoMineral = mock(Casillero.class);
+        when(mockedNodoMineral.extraerMineral()).thenReturn(true);
+        Inventario inventario = new Inventario(50,0);
+        Unidad nexoMineral = NexoMineral.construir(casillero, inventario);
+
         //ACT
-        try {
-            unNonoMineral.extraerMineral(20);
-        } catch(Exception e) {
-            fail("Should not have thrown any exception");
-        }
-    }
-    @Test
-    public void Test03ProtossIntentaRecolectarCuandoNodoMinealVacioLanzaExcepcion() throws Exception {
-        //ARRANGE
-        String mensajeError = "Nodo Mineral Agotado, no es posible extraer";
-        Inventario inventarioMock = mock(Inventario.class);
-        Casillero casilleroMock = mock(Casillero.class);
-        when(casilleroMock.extraerMineral(anyInt())).thenThrow(new RecursoAgotado("Nodo Mineral Agotado, no es posible extraer"));
-        NexoMineral nexoMineral = new NexoMineral(casilleroMock, inventarioMock);
-        //ACT
-        Exception exception = assertThrows(Exception.class, () -> {
+        for(int i=0; i<6; i++){
             nexoMineral.pasarTurno();
-        });
-        //ASSERT
-        assertEquals(mensajeError, exception.getMessage());
-    }
-
-    @Test
-    public void Test04NodoGasAgotadoLanzaExcepcionCuandoIntentanExtraer(){
-        String mensajeError = "Nodo Gas Agotado, no es posible extraer";
-
-        NodoGas unNodoGas = new NodoGas();
-        unNodoGas.extraerGas(5000);
-        //ACT
-        Exception exception = assertThrows(Exception.class, () -> {
-            unNodoGas.extraerGas(20);
-        });
-        //ASSERT
-        assertEquals(mensajeError, exception.getMessage());
-    }
-
-    @Test
-    public void Test05NodoGasRestante20Extraen20GasNoDebeLanzarExcepcion() throws Exception {
-        //ARRANGE
-        NodoGas unNodoGas = new NodoGas();
-        unNodoGas.extraerMineral(4980);
-        //ACT
-        try {
-            unNodoGas.extraerMineral(20);
-        } catch(Exception e) {
-            fail("Should not have thrown any exception");
         }
-    }
-    @Test
-    public void Test06ProtossIntentaRecolectarGasCuandoNodoGasVacioLanzaExcepcion() throws Exception {
-        //ARRANGE
-        String mensajeError = "Nodo Gas Agotado, no es posible extraer";
-        Inventario inventarioMock = mock(Inventario.class);
-        Casillero casilleroMock = mock(Casillero.class);
-        when(casilleroMock.extraerGas(anyInt())).thenThrow(new RecursoAgotado("Nodo Gas Agotado, no es posible extraer"));
-        Asimilador asimilador = new Asimilador(casilleroMock, inventarioMock);
-        //ACT
-        Exception exception = assertThrows(Exception.class, () -> {
-            asimilador.pasarTurno();
-        });
+        nexoMineral.extraerMineral();
+
         //ASSERT
-        assertEquals(mensajeError, exception.getMessage());
+        assertEquals(inventario.mineral, 10);
+
+        verify(mockedNodoMineral,times(1)).extraerMineral();
     }
 
-    @Test //prueba de integracion, necesito Mapa
-    public void Test07InventarioTieneRescursosDespuesDeQueNexoExtraigaMineral() throws Exception {
+    @Test
+    public void Test03ProtossNoPuedeExtraerMineralSinEngendrarZangano(){
+
         //ARRANGE
-        Mapa mockedMap = mock(Mapa.class);
-        Casillero unCasillero = new Casillero(1,1,mockedMap);
-        NodoMineral mockedNodoMineral = mock(NodoMineral.class);
-        unCasillero.setTipoCasillero(mockedNodoMineral);
-        when(mockedNodoMineral.extraerMineral(anyInt())).thenReturn(20);
-        Inventario inventario = new Inventario();
-        NexoMineral unNexoMineral = new NexoMineral(unCasillero, inventario);
+        String mensaje = "No hay zanganos disponibles";
+
+        //ARRANGE
+        Casillero casillero = new NodoMineral();
+        Criadero criadero = Criadero.inicializar();
+
         //ACT
-        unNexoMineral.pasarTurno();
-        //ASSERT
-        assertTrue(inventario.tieneRecursos(20,0));
+        Exception exception = assertThrows(Exception.class, () -> {
+            criadero.enviarZanganoAExtraerMineral();
+        });
+        assertEquals(mensaje, exception.getMessage());
     }
 
 
     @Test
-    public void Test04ZergNoPuedeExtraerMineralSinEngendrarZangano(){
-        //ARRENGE
-        String mensajeError = "No hay zanganos disponibles para extraer Mineral";
-        Casillero mockedCasillero = mock(Casillero.class);
-        Inventario mockedInventario = mock(Inventario.class);
-;        Criadero unCriadero = new Criadero(mockedCasillero, mockedInventario);
+    public void Test04ZergZanganoExtrae10mineralEnUnTurno(){
+
+        //ARRANGE
+        Criadero criadero = Criadero.inicializar();
+        Mineral mineralEsperado = new Mineral(10)
+        Casillero casillero = new NexoMineral();
+        //por ahora el criadero se encarga directamente de esta tarea, necesita refactor
+        //el haber engendrado zangano es lo que le permite extraerMineral
+        criadero.engendrarZangano();
+
         //ACT
-        Exception exception = assertThrows(Exception.class, () -> {
-            unCriadero.enviarZanganoExtraerMineral();
-        });
+        for(int i=0; i<6; i++){
+            criadero.pasarTurno();
+        }
+        Mineral mineralObtenido = criadero.enviarZanganoAExtraerMineral();
+
         //ASSERT
-        assertEquals(mensajeError, exception.getMessage());
-
+        assertEquals(mineralObtenido.total(), mineralEsperado.total());
     }
-
-}
-
-
-
-
-
+    
+}*/

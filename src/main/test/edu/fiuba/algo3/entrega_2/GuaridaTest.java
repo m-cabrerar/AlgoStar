@@ -1,4 +1,3 @@
-/*
 package edu.fiuba.algo3.entrega_2;
 
 import edu.fiuba.algo3.exceptions.*;
@@ -77,5 +76,3 @@ public class GuaridaTest {
         assertThrows(EdificioOcupado.class, () -> guarida.engendrarHidralisco(larva, inventarioMock));
     }
 }
-
- */

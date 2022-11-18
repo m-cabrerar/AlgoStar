@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.exceptions.RecursoAgotado;
+
 public class NodoGas extends TipoCasillero{
     private int unidadesRestantes;
 
@@ -13,11 +13,10 @@ public class NodoGas extends TipoCasillero{
     }
     @Override
     public int extraerGas(int cantidad) {
-        if (this.agotado()){
-            throw new RecursoAgotado("Nodo Gas Agotado, no es posible extraer");
-            //return cantidad + unidadesRestantes;
-        }
         unidadesRestantes -= cantidad;
+        if (this.agotado()){
+            return cantidad + unidadesRestantes;
+        }
         return cantidad;
     }
     public boolean agotado(){

@@ -3,15 +3,12 @@ package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.exceptions.*;
 
 public class NexoMineral extends EdificioProtoss {
-
-    protected Inventario inventario;//lo agregué, sino como agrega recuros al inventario?
-    public NexoMineral(Casillero casillero, Inventario unInventario) {
-        super(casillero, unInventario, 250, 250);
-        this.inventario=unInventario;
+    public NexoMineral(Casillero casillero, Inventario inventario) {
+        super(casillero, inventario, 250, 250);
     }
 
-    public void pasarTurno() throws Exception {
-        this.inventario.agregarMineral(this.extraerMineral());
+    public void pasarTurno() {
+        super.pasarTurno();
     }
 
     int turnosParaConstruir() {
@@ -29,7 +26,7 @@ public class NexoMineral extends EdificioProtoss {
         return new EdificioEnConstruccion(nexoMineral, casillero, inventario);
     }
 
-    public int extraerMineral() throws Exception { // TODO: hacer privado y que se llame desde pasarTurno
+    public int extraerMineral() { // TODO: hacer privado y que se llame desde pasarTurno
         return casillero.extraerMineral(20);
     }
 }
