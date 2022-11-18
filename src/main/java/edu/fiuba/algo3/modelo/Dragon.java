@@ -27,6 +27,7 @@ public class Dragon extends UnidadMovilProtoss {
         return TURNOS_PARA_CONSTRUIR;
     }
 
+    // TODO: refactor
     public void atacar(UnidadMovil unidadAAtacar){
         if(!this.tieneEnRangoA(unidadAAtacar, RANGO_DE_ATAQUE)){
             throw new AtaqueFueraDeRango("El ataque está fuera de rango");

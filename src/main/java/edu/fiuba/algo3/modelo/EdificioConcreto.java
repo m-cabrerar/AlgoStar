@@ -40,6 +40,7 @@ abstract class EdificioConcreto implements Unidad {
     private boolean tieneMateriales(Inventario inventario) {
         return true;
     }
+    // TODO: evitar null
     protected boolean unidadEnConstruccion() {
         return unidadEnConstruccion != null;
     }

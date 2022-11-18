@@ -16,6 +16,7 @@ public class Inventario {
         this.unidades.add(unidad);
     }
 
+    //TODO: evitar instanceof
     public boolean tieneGuarida() {
         for (Unidad unidad : this.unidades) {
             if (unidad instanceof Guarida) {

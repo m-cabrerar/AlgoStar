@@ -27,6 +27,7 @@ public class ReservaDeReproduccionTest {
         assertDoesNotThrow(() -> reservaDeReproduccion.engendrarZerling(larva, inventarioMock));
     }
 
+    //TODO: excepcion
     @Test
     public void test02ReservaDeReproduccionEngendraZerlingYDespuesDe1TurnoNoEstaListo(){
         //ARRANGE
