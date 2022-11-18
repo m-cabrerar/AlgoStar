@@ -10,7 +10,7 @@ import static org.mockito.Mockito.*;
 
 public class GuaridaTest {
     @Test
-    public void test06GuaridaEngendraHidraliscoYDespuesDe4TurnosEstaListo(){
+    public void test01GuaridaEngendraHidraliscoYDespuesDe4TurnosEstaListo(){
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
@@ -23,13 +23,13 @@ public class GuaridaTest {
         for (int i = 0; i < 4; i++) {
             guarida.pasarTurno();
         }
-        Unidad hidralisco = guarida.obtenerUnidad();
+        //Unidad hidralisco = guarida.obtenerUnidad();
         //ASSERT
-        assertDoesNotThrow(() -> hidralisco.recibirDanio(5));
+        assertDoesNotThrow(() -> guarida.engendrarHidralisco(larva, inventarioMock));
     }
 
     @Test
-    public void test07GuaridaEngendraHidraliscoYDespuesDe3TurnosNoEstaListo(){
+    public void test02GuaridaEngendraHidraliscoYDespuesDe3TurnosNoEstaListo(){
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
@@ -48,7 +48,7 @@ public class GuaridaTest {
     }
 
     @Test
-    public void test08GuaridaEngendraHidraliscoPeroNoHayMaterialesSuficientes(){
+    public void test03GuaridaEngendraHidraliscoPeroNoHayMaterialesSuficientes(){
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioLleno = mock(Inventario.class);
@@ -63,7 +63,7 @@ public class GuaridaTest {
     }
 
     @Test
-    public void test09GuaridaEngendraHidraliscoPeroYaHayUnaUnidadEnProduccion(){
+    public void test04GuaridaEngendraHidraliscoPeroYaHayUnaUnidadEnProduccion(){
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);

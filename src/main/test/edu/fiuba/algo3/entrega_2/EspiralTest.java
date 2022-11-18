@@ -10,7 +10,7 @@ import static org.mockito.Mockito.*;
 
 public class EspiralTest {
     @Test
-    public void test06EspiralEngendraMutaliscoYDespuesDe7TurnosEstaListo(){
+    public void test01EspiralEngendraMutaliscoYDespuesDe7TurnosEstaListo(){
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
@@ -23,13 +23,14 @@ public class EspiralTest {
         for (int i = 0; i < 7; i++) {
             espiral.pasarTurno();
         }
-        Unidad mutalisco = espiral.obtenerUnidad();
+
+        //Unidad mutalisco = espiral.obtenerUnidad();
         //ASSERT
-        assertDoesNotThrow(() -> mutalisco.recibirDanio(5));
+        assertDoesNotThrow(() -> espiral.engendrarMutalisco(larva, inventarioMock));
     }
 
     @Test
-    public void test07EspiralEngendraMutaliscoYDespuesDe6TurnosNoEstaListo(){
+    public void test02EspiralEngendraMutaliscoYDespuesDe6TurnosNoEstaListo(){
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
@@ -48,7 +49,7 @@ public class EspiralTest {
     }
 
     @Test
-    public void test08EspiralEngendraMutaliscoPeroNoHayMaterialesSuficientes(){
+    public void test03EspiralEngendraMutaliscoPeroNoHayMaterialesSuficientes(){
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioLleno = mock(Inventario.class);
@@ -63,7 +64,7 @@ public class EspiralTest {
     }
 
     @Test
-    public void test09EspiralEngendraMutaliscoPeroYaHayUnaUnidadEnProduccion(){
+    public void test04EspiralEngendraMutaliscoPeroYaHayUnaUnidadEnProduccion(){
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);

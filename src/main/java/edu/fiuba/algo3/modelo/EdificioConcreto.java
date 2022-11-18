@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.exceptions.*;
 
+import java.util.List;
+
 abstract class EdificioConcreto implements Unidad {
     protected int vida;
     protected Casillero casillero;
@@ -38,6 +40,7 @@ abstract class EdificioConcreto implements Unidad {
     private boolean tieneMateriales(Inventario inventario) {
         return true;
     }
+    // TODO: evitar null
     protected boolean unidadEnConstruccion() {
         return unidadEnConstruccion != null;
     }
@@ -51,6 +54,10 @@ abstract class EdificioConcreto implements Unidad {
         UnidadMovil unidad = unidadEnConstruccion;
         unidadEnConstruccion = null;
         return unidad;
+    }
+
+    public boolean estaPorAca(List<Casillero> casilleros){
+        return casilleros.contains(casillero);
     }
 
     public UnidadMovil crearEvolucion(Inventario inventario) {

@@ -9,6 +9,11 @@ public class ReservaDeReproduccion extends EdificioZerg {
     }
     public void pasarTurno(){
         super.pasarTurno();
+        UnidadMovil unidad = obtenerUnidad();
+        if(unidad!=null){
+            unidad.ubicarEn(casillero.obtenerAdyacente());
+            //acaba habria que chequear que si el casillero que da al obtener adyacentes es nulo (porque no hay ninguno libre)
+        }
     }
     public int turnosParaConstruir(){
         return 12;
