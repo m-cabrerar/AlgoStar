@@ -8,15 +8,22 @@ public class Inventario {
     int cantidadMineral;
     List<Unidad> unidades;
     List<NexoMineral> nexos;
+    List<Criadero> criaderos;
 
     public void agregarGas(int i) {
         this.cantidadGas += i;
     }
-    public void agregarMineral() {
+    public void agregarMineral() throws Exception {
         for(NexoMineral nexo: this.nexos ){
             cantidadMineral = nexo.extraerMineral(cantidadMineral);
         }
+        for(Criadero criadero:this.criaderos){ //si no tiene criadero no hará nada
+            cantidadGas = criadero.enviarZanganoExtraerMineral(cantidadMineral);
+        }
+
     }
+
+
     public void agregarNexo(NexoMineral unNexoMineral){
         this.nexos.add(unNexoMineral);
     }

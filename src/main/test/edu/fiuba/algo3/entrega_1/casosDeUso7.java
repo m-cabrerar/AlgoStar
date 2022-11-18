@@ -89,6 +89,7 @@ public class casosDeUso7 {
         assertEquals(gasEsperado, gasExtraido);
     }
 
+    /*
     @Test //prueba de mas integral, mockeo Mapa
     public void Test07InventarioTieneRescursosAlAgregarMineral() throws Exception {
         //ARRANGE
