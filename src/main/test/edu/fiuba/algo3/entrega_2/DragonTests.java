@@ -16,6 +16,7 @@ public class DragonTests {
         //ARRANGE
         Inventario inventarioMock = mock(Inventario.class);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
+        when(inventarioMock.tieneSuministros(anyInt())).thenReturn(true);
 
         UnidadMovil unidadMock = mock(UnidadMovil.class);
         when(unidadMock.esVoladora()).thenReturn(true);
@@ -40,6 +41,7 @@ public class DragonTests {
         //ARRANGE
         Inventario inventarioMock = mock(Inventario.class);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
+        when(inventarioMock.tieneSuministros(anyInt())).thenReturn(true);
 
         UnidadMovil unidadMock = mock(UnidadMovil.class);
         when(unidadMock.esVoladora()).thenReturn(false);
@@ -64,6 +66,7 @@ public class DragonTests {
         //ARRANGE
         Inventario inventarioMock = mock(Inventario.class);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
+        when(inventarioMock.tieneSuministros(anyInt())).thenReturn(true);
 
         UnidadMovil unidadMock = mock(UnidadMovil.class);
         when(unidadMock.esVoladora()).thenReturn(false);

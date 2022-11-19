@@ -11,8 +11,10 @@ public class Guardian extends UnidadMovilZerg {
     private static int COSTO_GASEOSO = 100;
     private static int TURNOS_PARA_CONSTRUIR = 4;
 
+    private static int COSTO_SUMINISTRO = 0;
+
     public Guardian(Inventario inventario){
-        super(inventario, COSTO_MINERAL, COSTO_GASEOSO, VIDA_MAXIMA);
+        super(inventario, COSTO_MINERAL, COSTO_GASEOSO, VIDA_MAXIMA, COSTO_SUMINISTRO);
     }
 
     @Override

@@ -7,8 +7,8 @@ public abstract class UnidadMovilProtoss extends UnidadMovil {
     int escudo;
     int vida;
 
-    UnidadMovilProtoss(Inventario inventario, int costoMineral, int costoGas, int vidaInicial, int escudoInicial){
-        super(inventario, costoMineral, costoGas);
+    UnidadMovilProtoss(Inventario inventario, int costoMineral, int costoGas, int vidaInicial, int escudoInicial, int costoSuministro){
+        super(inventario, costoMineral, costoGas,costoSuministro);
         this.vida = vidaInicial;
         this.escudo = escudoInicial;
         this.escudoMaximo = escudoInicial;

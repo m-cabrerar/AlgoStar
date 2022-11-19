@@ -13,8 +13,10 @@ public class Zealot extends UnidadMovilProtoss {
     private static int COSTO_GASEOSO = 0;
     private static int TURNOS_PARA_CONSTRUIR = 4;
 
+    private static int COSTO_SUMINISTRO = 2;
+
     public Zealot(Inventario inventario){
-        super(inventario, COSTO_MINERAL, COSTO_GASEOSO, VIDA_MAXIMA, ESCUDO_MAXIMO);
+        super(inventario, COSTO_MINERAL, COSTO_GASEOSO, VIDA_MAXIMA, ESCUDO_MAXIMO, COSTO_SUMINISTRO);
     }
 
     @Override

@@ -14,6 +14,7 @@ public class ZerlingTests {
         //ARRANGE
         Inventario inventarioMock = mock(Inventario.class);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
+        when(inventarioMock.tieneSuministros(anyInt())).thenReturn(true);
         UnidadMovil unidadMock = mock(UnidadMovil.class);
         when(unidadMock.esVoladora()).thenReturn(true);
         Casillero casilleroMock = mock(Casillero.class);
@@ -35,6 +36,7 @@ public class ZerlingTests {
         //ARRANGE
         Inventario inventarioMock = mock(Inventario.class);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
+        when(inventarioMock.tieneSuministros(anyInt())).thenReturn(true);
         UnidadMovil unidadMock = mock(UnidadMovil.class);
         when(unidadMock.esVoladora()).thenReturn(false);
         Casillero casilleroMock = mock(Casillero.class);
@@ -54,6 +56,7 @@ public class ZerlingTests {
         //ARRANGE
         Inventario inventarioMock = mock(Inventario.class);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
+        when(inventarioMock.tieneSuministros(anyInt())).thenReturn(true);
         Casillero casilleroMock = mock(Casillero.class);
         when(casilleroMock.tieneEnRango(any(), anyInt())).thenReturn(true);
         Zerling zerling = new Zerling(inventarioMock);
