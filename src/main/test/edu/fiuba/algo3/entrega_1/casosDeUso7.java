@@ -108,7 +108,7 @@ public class casosDeUso7 {
         assertTrue(inventario.tieneRecursos(20,0));
     }
 
-/*
+*/
     @Test
     public void Test04ZergNoPuedeExtraerMineralSinEngendrarZangano(){
         //ARRENGE
@@ -118,7 +118,7 @@ public class casosDeUso7 {
         ;        Criadero unCriadero = new Criadero(mockedCasillero, mockedInventario);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            unCriadero.enviarZanganoExtraerMineral();
+            unCriadero.enviarZanganoExtraerMineral(0);
         });
         //ASSERT
         assertEquals(mensajeError, exception.getMessage());
@@ -126,7 +126,6 @@ public class casosDeUso7 {
     }
 
 
- */
 }
 
 

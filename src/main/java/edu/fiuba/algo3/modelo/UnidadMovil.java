@@ -11,6 +11,9 @@ public abstract class UnidadMovil implements Unidad {
         if(!inventario.tieneRecursos(costoMineral, costoGas)){
             throw new RecursosInsuficientes("No tiene recursos");
         }
+        if(!inventario.tieneSuministros(costoSuministro)){
+            throw new SuministrosInsuficientes("No tiene suministros");
+        }
         casilleroActual = null;
     }
 

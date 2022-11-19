@@ -5,6 +5,7 @@ import edu.fiuba.algo3.exceptions.*;
 public class Pilon extends EdificioProtoss {
     public Pilon(Casillero casillero, Inventario inventario) {
         super(casillero, inventario, 300, 300);
+        inventario.agregarSuministro(5);
     }
 
     public void pasarTurno() {

@@ -10,6 +10,9 @@ public class Inventario {
     List<NexoMineral> nexos;
     List<Criadero> criaderos;
 
+    private static int POBLACION_MAXIMA =200;
+    private int suministros;
+
     public void agregarGas(int i) {
         this.cantidadGas += i;
     }
@@ -23,7 +26,6 @@ public class Inventario {
 
     }
 
-
     public void agregarNexo(NexoMineral unNexoMineral){
         this.nexos.add(unNexoMineral);
     }
@@ -31,6 +33,14 @@ public class Inventario {
     public void agregar(Unidad unidad) {
         this.unidades.add(unidad);
     }
+
+    public void agregarSuministro(int cantidad){
+        this.suministros += cantidad;
+    }
+    public boolean tieneSuministros(int costoSuministro){
+        return this.suministros>=costoSuministro;
+    }
+
 
     //TODO: evitar instanceof
     public boolean tieneGuarida() {
@@ -64,6 +74,7 @@ public class Inventario {
         return false;
     }
 }
+
 
 
     /*
