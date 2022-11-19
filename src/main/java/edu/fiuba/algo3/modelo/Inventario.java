@@ -8,6 +8,9 @@ public class Inventario {
     int cantidadMineral;
     List<Unidad> unidades;
 
+    private static int POBLACION_MAXIMA =200;
+    private int suministros;
+
     public void agregarGas(int i) {
         this.cantidadGas += i;
     }
@@ -15,6 +18,14 @@ public class Inventario {
     public void agregar(Unidad unidad) {
         this.unidades.add(unidad);
     }
+
+    public void agregarSuministro(int cantidad){
+        this.suministros += cantidad;
+    }
+    public boolean tieneSuministros(int costoSuministro){
+        return this.suministros>=costoSuministro;
+    }
+
 
     //TODO: evitar instanceof
     public boolean tieneGuarida() {
