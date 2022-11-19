@@ -11,8 +11,11 @@ public class Zerling extends UnidadMovilZerg {
     private static int COSTO_MINERAL = 25;
     private static int COSTO_GASEOSO = 0;
     private static int TURNOS_PARA_CONSTRUIR = 2;
+
+    private static int COSTO_SUMINISTRO = 1;
+
     public Zerling(Inventario inventario){
-        super(inventario, COSTO_MINERAL, COSTO_GASEOSO, VIDA_MAXIMA);
+        super(inventario, COSTO_MINERAL, COSTO_GASEOSO, VIDA_MAXIMA, COSTO_SUMINISTRO);
     }
     public int turnosParaConstruir(){
         return TURNOS_PARA_CONSTRUIR;

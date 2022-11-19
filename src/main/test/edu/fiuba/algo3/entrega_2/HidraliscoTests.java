@@ -14,6 +14,7 @@ public class HidraliscoTests {
         //ARRANGE
         Inventario inventarioMock = mock(Inventario.class);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
+        when(inventarioMock.tieneSuministros(anyInt())).thenReturn(true);
         UnidadMovil unidadMock = mock(UnidadMovil.class);
         when(unidadMock.esVoladora()).thenReturn(true);
         Casillero casilleroMock = mock(Casillero.class);
@@ -35,6 +36,7 @@ public class HidraliscoTests {
         //ARRANGE
         Inventario inventarioMock = mock(Inventario.class);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
+        when(inventarioMock.tieneSuministros(anyInt())).thenReturn(true);
         Casillero casilleroMock = mock(Casillero.class);
         when(casilleroMock.tieneEnRango(any(), anyInt())).thenReturn(true);
         Hidralisco hidralisco = new Hidralisco(inventarioMock);
@@ -55,6 +57,7 @@ public class HidraliscoTests {
         //ARRANGE
         Inventario inventarioMock = mock(Inventario.class);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
+        when(inventarioMock.tieneSuministros(anyInt())).thenReturn(true);
         Casillero casilleroMock = mock(Casillero.class);
         when(casilleroMock.tieneEnRango(any(), anyInt())).thenReturn(true);
         Hidralisco hidra = new Hidralisco(inventarioMock);

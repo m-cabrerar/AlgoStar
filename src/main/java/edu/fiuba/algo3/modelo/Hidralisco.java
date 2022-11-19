@@ -12,8 +12,10 @@ public class Hidralisco extends UnidadMovilZerg {
     private static int COSTO_GASEOSO = 25;
     private static int TURNOS_PARA_CONSTRUIR = 4;
 
+    private static int COSTO_SUMINISTRO = 2;
+
     public Hidralisco(Inventario inventario){
-        super(inventario, COSTO_MINERAL, COSTO_GASEOSO, VIDA_MAXIMA);
+        super(inventario, COSTO_MINERAL, COSTO_GASEOSO, VIDA_MAXIMA, COSTO_SUMINISTRO);
     }
     public int turnosParaConstruir(){
         return TURNOS_PARA_CONSTRUIR;

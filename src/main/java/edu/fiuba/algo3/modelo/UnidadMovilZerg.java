@@ -6,8 +6,8 @@ public abstract class UnidadMovilZerg extends UnidadMovil{
     int vidaMaxima;
     int vida;
 
-    UnidadMovilZerg(Inventario inventario, int costoMineral, int costoGas, int vidaInicial){
-        super(inventario, costoMineral, costoGas);
+    UnidadMovilZerg(Inventario inventario, int costoMineral, int costoGas, int vidaInicial, int costoSuministro){
+        super(inventario, costoMineral, costoGas, costoSuministro);
         this.vida = vidaInicial;
         this.vidaMaxima = vidaInicial;
     }

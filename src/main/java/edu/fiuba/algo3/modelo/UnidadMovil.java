@@ -7,7 +7,7 @@ import java.util.List;
 public abstract class UnidadMovil implements Unidad {
 
     Casillero casilleroActual;
-    UnidadMovil(Inventario inventario, int costoMineral, int costoGas){
+    UnidadMovil(Inventario inventario, int costoMineral, int costoGas, int costoSuministro){
         if(!inventario.tieneRecursos(costoMineral, costoGas)){
             throw new RecursosInsuficientes("No tiene recursos");
         }

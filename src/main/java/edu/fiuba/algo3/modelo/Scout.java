@@ -14,8 +14,10 @@ public class Scout extends UnidadMovilProtoss {
     private static int COSTO_GASEOSO = 150;
     private static int TURNOS_PARA_CONSTRUIR = 9;
 
+    private static int COSTO_SUMINISTRO = 4;
+
     public Scout(Inventario inventario){
-        super(inventario, COSTO_MINERAL, COSTO_GASEOSO, VIDA_MAXIMA, ESCUDO_MAXIMO);
+        super(inventario, COSTO_MINERAL, COSTO_GASEOSO, VIDA_MAXIMA, ESCUDO_MAXIMO, COSTO_SUMINISTRO);
     }
 
     @Override
