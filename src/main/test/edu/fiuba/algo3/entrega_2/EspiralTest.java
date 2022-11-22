@@ -15,6 +15,7 @@ public class EspiralTest {
         Inventario inventarioMock = mock(Inventario.class);
         when(casilleroMock.esDelTipo(any())).thenReturn(true);
         when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
+        when(inventarioMock.tieneSuministros(anyInt())).thenReturn(true);
         Espiral espiral = new Espiral(casilleroMock, inventarioMock);
         Larva larva = new Larva(inventarioMock);
         //ACT
@@ -35,6 +36,7 @@ public class EspiralTest {
         Inventario inventarioMock = mock(Inventario.class);
         when(casilleroMock.esDelTipo(any())).thenReturn(true);
         when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
+        when(inventarioMock.tieneSuministros(anyInt())).thenReturn(true);
         Espiral espiral = new Espiral(casilleroMock, inventarioMock);
         Larva larva = new Larva(inventarioMock);
         //ACT
@@ -55,6 +57,7 @@ public class EspiralTest {
         Inventario inventarioVacio = mock(Inventario.class);
         when(casilleroMock.esDelTipo(any())).thenReturn(true);
         when(inventarioLleno.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
+        when(inventarioLleno.tieneSuministros(anyInt())).thenReturn(true);
         when(inventarioVacio.tieneRecursos(anyInt(), anyInt())).thenReturn(false);
         Espiral espiral = new Espiral(casilleroMock, inventarioLleno);
         Larva larva = new Larva(inventarioLleno);
@@ -69,6 +72,7 @@ public class EspiralTest {
         Inventario inventarioMock = mock(Inventario.class);
         when(casilleroMock.esDelTipo(any())).thenReturn(true);
         when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
+        when(inventarioMock.tieneSuministros(anyInt())).thenReturn(true);
         Espiral espiral = new Espiral(casilleroMock, inventarioMock);
         Larva larva = new Larva(inventarioMock);
         //ACT
