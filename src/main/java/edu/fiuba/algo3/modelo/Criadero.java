@@ -6,10 +6,12 @@ public class Criadero extends EdificioZerg{
     private int cantidadLarvas;
     private static int VIDA_MAXIMA = 500;
     private int cantidadZanganos;
+    private static int SUMINISTRA = 5;
     public Criadero(Casillero casillero, Inventario inventario) {
         super(casillero, inventario, VIDA_MAXIMA);
         this.cantidadLarvas = 3;
         this.cantidadZanganos = 0;
+        inventario.agregarSuministro(SUMINISTRA);
     }
     public void pasarTurno() {
         super.pasarTurno();
@@ -50,6 +52,16 @@ public class Criadero extends EdificioZerg{
         return cantidadLarvas == 3;
     }
 
+    public void recibirDanio(int danio) throws EstaDestruido {
+        if (estaDestruido()){
+            throw new EstaDestruido("El edificio está destruido");
+        }
+        vida -= danio;
+        if (estaDestruido()){
+            casillero.desocupar();
+            this.inventario.perderSuministro(SUMINISTRA);
+        }
+    }
 
 
 }

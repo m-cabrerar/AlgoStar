@@ -16,6 +16,7 @@ public class ReservaDeReproduccionTest {
         when(casilleroMock.esDelTipo(any())).thenReturn(true);
         when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         when(inventarioMock.tieneSuministros(anyInt())).thenReturn(true);
+        when(inventarioMock.puedeCrecerPoblacion(anyInt())).thenReturn(true);
         ReservaDeReproduccion reservaDeReproduccion = new ReservaDeReproduccion(casilleroMock, inventarioMock);
         Larva larva = new Larva(inventarioMock);
         //ACT
@@ -37,6 +38,7 @@ public class ReservaDeReproduccionTest {
         when(casilleroMock.esDelTipo(any())).thenReturn(true);
         when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         when(inventarioMock.tieneSuministros(anyInt())).thenReturn(true);
+        when(inventarioMock.puedeCrecerPoblacion(anyInt())).thenReturn(true);
         ReservaDeReproduccion reservaDeReproduccion = new ReservaDeReproduccion(casilleroMock, inventarioMock);
         Larva larva = new Larva(inventarioMock);
         //ACT
@@ -56,6 +58,7 @@ public class ReservaDeReproduccionTest {
         when(casilleroMock.esDelTipo(any())).thenReturn(true);
         when(inventarioLleno.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         when(inventarioLleno.tieneSuministros(anyInt())).thenReturn(true);
+        when(inventarioLleno.puedeCrecerPoblacion(anyInt())).thenReturn(true);
         when(inventarioVacio.tieneRecursos(anyInt(), anyInt())).thenReturn(false);
         ReservaDeReproduccion reservaDeReproduccion = new ReservaDeReproduccion(casilleroMock, inventarioLleno);
         Larva larva = new Larva(inventarioLleno);
@@ -71,6 +74,7 @@ public class ReservaDeReproduccionTest {
         when(casilleroMock.esDelTipo(any())).thenReturn(true);
         when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         when(inventarioMock.tieneSuministros(anyInt())).thenReturn(true);
+        when(inventarioMock.puedeCrecerPoblacion(anyInt())).thenReturn(true);
         ReservaDeReproduccion reservaDeReproduccion = new ReservaDeReproduccion(casilleroMock, inventarioMock);
         Larva larva = new Larva(inventarioMock);
         //ACT

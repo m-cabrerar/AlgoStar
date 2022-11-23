@@ -15,6 +15,7 @@ public class MutaliscoTests {
         Inventario inventarioMock = mock(Inventario.class);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         when(inventarioMock.tieneSuministros(anyInt())).thenReturn(true);
+        when(inventarioMock.puedeCrecerPoblacion(anyInt())).thenReturn(true);
         Casillero casilleroMock = mock(Casillero.class);
         when(casilleroMock.tieneEnRango(any(), anyInt())).thenReturn(true);
         Mutalisco mutalisco = new Mutalisco(inventarioMock);
@@ -37,6 +38,7 @@ public class MutaliscoTests {
         Inventario inventarioMock = mock(Inventario.class);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         when(inventarioMock.tieneSuministros(anyInt())).thenReturn(true);
+        when(inventarioMock.puedeCrecerPoblacion(anyInt())).thenReturn(true);
         UnidadMovil unidadMock = mock(UnidadMovil.class);
         when(unidadMock.esVoladora()).thenReturn(true);
         Casillero casilleroMock = mock(Casillero.class);
@@ -58,6 +60,7 @@ public class MutaliscoTests {
         Inventario inventarioMock = mock(Inventario.class);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         when(inventarioMock.tieneSuministros(anyInt())).thenReturn(true);
+        when(inventarioMock.puedeCrecerPoblacion(anyInt())).thenReturn(true);
         Casillero casilleroMock = mock(Casillero.class);
         when(casilleroMock.tieneEnRango(any(), anyInt())).thenReturn(true);
         Mutalisco mutalisco = new Mutalisco(inventarioMock);
