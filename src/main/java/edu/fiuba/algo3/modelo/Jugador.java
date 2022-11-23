@@ -46,4 +46,11 @@ public class Jugador {
         return true;
     }
 
+    public boolean tieneEdificios(){
+       return inventario.tieneEdificios();
+    }
+
+    public String getNombreYRaza(){
+       return nombre + " " + raza;
+    }
 }

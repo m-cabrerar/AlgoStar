@@ -58,6 +58,10 @@ public class Inventario {
         }
         return false;
     }
+
+    public boolean tieneEdificios(){
+        return !(edificios.isEmpty());
+    }
 }
 
 
