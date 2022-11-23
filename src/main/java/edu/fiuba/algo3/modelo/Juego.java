@@ -41,14 +41,13 @@ public class Juego {
 
     public String verificar_ganador(){ //todo:despues lo hará en pasarTurno
         if(turnos!=0){
-            if(!(jugadores[1].tieneEdificios())){
+            if(!(jugadores[0].tieneEdificios())){
                 return "Ganador Jugador" + jugadores[1].getNombreYRaza();
-            }else if(!(jugadores[2]).tieneEdificios()){
+            }else if(!jugadores[1].tieneEdificios()){
                 return "Ganador jugador"+ jugadores[2].getNombreYRaza();
             }
         }
         turnos ++; //esto tampoco se hará aca
-
         return null;
     }
 

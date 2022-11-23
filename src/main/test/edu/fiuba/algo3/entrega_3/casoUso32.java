@@ -14,14 +14,17 @@ contrario.
      */
 
     @Test
-    public void Test01JugadorConSoloUnPilonLoDestruyenElOtroGanaJuego(){
+    public void Test01JugadorConSoloUnEdificioLoDestruyenElOtroGanaJuego(){
         //ARRANGE
-        String mensaje = "Ganador Jugador jug1 Protoss"
+        String mensaje = "Ganador Jugador jug1 Protoss";
         Mapa mapaMock = mock(Mapa.class);
         Juego juego = new Juego();
-        juego.registrarJugador("jug1", "rojo","Protoss",1 );
-        juego.registrarJugador("jug2","azul","Protoss",2);
-        juego.crearBases(mapaMock);
+        juego.registrarJugador("Jugador 1", "rojo","Protoss",0 );
+        juego.registrarJugador("Jugador 2","azul","Zerg",1);
+       // juego.crearBases(mapaMock);
+
+        juego.verificar_ganador();
+        //COMO mockeo el inventario si lo crea el jugador?
         //ACT
         String ganador = juego.verificar_ganador();
         //ASSERT

@@ -11,6 +11,7 @@ public class Inventario {
     int cantidadGas;
     int cantidadMineral;
     List<Unidad> unidades;
+    List<Unidad> edificios; //por ahora
 
     private static int POBLACION_MAXIMA =200;
     private static int SUMINISTROS_MAXIMOS = 200;
