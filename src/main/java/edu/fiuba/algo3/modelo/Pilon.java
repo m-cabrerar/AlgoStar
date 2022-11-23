@@ -3,9 +3,10 @@ package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.exceptions.*;
 
 public class Pilon extends EdificioProtoss {
+    private static int SUMINISTRA = 5;
     public Pilon(Casillero casillero, Inventario inventario) {
         super(casillero, inventario, 300, 300);
-        inventario.agregarSuministro(5);
+        inventario.agregarSuministro(SUMINISTRA);
     }
 
     public void pasarTurno() {
@@ -26,5 +27,21 @@ public class Pilon extends EdificioProtoss {
         }
         casillero.energizarEnRango(5);
         return new EdificioEnConstruccion(pilon, casillero, inventario);
+    }
+
+    @Override
+    public void recibirDanio(int danio) throws EstaDestruido{
+        if (estaDestruido()){
+            throw new EstaDestruido("El edificio está destruido");
+        }
+        escudo -= danio;
+        if (escudo < 0){
+            vida += escudo;
+            escudo = 0;
+        }
+        if (estaDestruido()){
+            casillero.desocupar();
+            this.inventario.perderSuministro(SUMINISTRA);
+        }
     }
 }

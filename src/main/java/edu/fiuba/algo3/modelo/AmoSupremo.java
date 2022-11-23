@@ -13,10 +13,11 @@ public class AmoSupremo extends UnidadMovilZerg {
         private static int TURNOS_PARA_CONSTRUIR = 5;
 
         private static int COSTO_SUMINISTRO = 0;
+        private static int SUMINISTRA = 5;
 
         public AmoSupremo(Inventario inventario){
             super(inventario, COSTO_MINERAL, COSTO_GASEOSO, VIDA_MAXIMA, COSTO_SUMINISTRO);
-            inventario.agregarSuministro(5);
+            inventario.agregarSuministro(SUMINISTRA);
         }
         public int turnosParaConstruir(){
             return TURNOS_PARA_CONSTRUIR;
@@ -35,5 +36,6 @@ public class AmoSupremo extends UnidadMovilZerg {
 
     @Override
     public void recibirDanio(int danio) throws EstaDestruido {
+            //Si esta muerto this.inventario.perderSuministro(5);
     }
 }

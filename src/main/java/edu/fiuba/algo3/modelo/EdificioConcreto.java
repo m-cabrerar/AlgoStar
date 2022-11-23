@@ -8,11 +8,13 @@ abstract class EdificioConcreto implements Unidad {
     protected Casillero casillero;
     protected UnidadMovil unidadEnConstruccion = null;
     protected int turnosParaConstruir = 0;
+    protected Inventario inventario;
     public EdificioConcreto(Casillero unCasillero, Inventario unInventario, int vidaInicial) throws UbicacionInvalida {
         this.casillero = unCasillero;
         unCasillero.ocupar();
         unInventario.agregar(this);
         this.vida = vidaInicial;
+        this.inventario = unInventario;
     }
     public void pasarTurno(){
         if (unidadEnConstruccion()) {

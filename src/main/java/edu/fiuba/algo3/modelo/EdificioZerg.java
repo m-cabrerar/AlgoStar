@@ -4,7 +4,7 @@ import edu.fiuba.algo3.exceptions.*;
 
 abstract class EdificioZerg extends EdificioConcreto {
     private final int vidaMaxima;
-    private int vida;
+    protected int vida;
     public EdificioZerg(Casillero casillero_, Inventario inventario_, int vida_){
         super(casillero_, inventario_, vida_);
         vidaMaxima = vida_;
