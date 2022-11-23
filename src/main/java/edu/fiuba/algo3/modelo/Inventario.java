@@ -1,5 +1,9 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.exceptions.ParametrosInvalidos;
+import edu.fiuba.algo3.exceptions.PoblacionMaximaAlcanzada;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Inventario {
@@ -9,8 +13,17 @@ public class Inventario {
     List<Unidad> unidades;
 
     private static int POBLACION_MAXIMA =200;
-    private int suministros;
+    private static int SUMINISTROS_MAXIMOS = 200;
+    private int suministrosDisponibles;
+    int suministrosEmpleados;
 
+    public Inventario(){
+        this.cantidadGas = 0;
+        this.cantidadMineral = 200;
+        this.suministrosDisponibles = 0;
+        this.suministrosEmpleados = 0;
+        this.unidades = new ArrayList<>();
+    }
     public void agregarGas(int i) {
         this.cantidadGas += i;
     }
@@ -20,12 +33,24 @@ public class Inventario {
     }
 
     public void agregarSuministro(int cantidad){
-        this.suministros += cantidad;
+        this.suministrosDisponibles += cantidad;
+        if(this.suministrosDisponibles > SUMINISTROS_MAXIMOS){this.suministrosDisponibles = 200;}
     }
-    public boolean tieneSuministros(int costoSuministro){
-        return this.suministros>=costoSuministro;
+    public void perderSuministro(int cantidad){
+        this.suministrosDisponibles -= cantidad;
     }
-
+    public boolean tieneSuministros(int cantidad){
+        return this.suministrosDisponibles >= cantidad;
+    }
+    public boolean puedeCrecerPoblacion(int cantidad){
+        return (this.suministrosEmpleados+cantidad) <= POBLACION_MAXIMA;
+    }
+    public void suministrarUnidad(int cantidad) throws PoblacionMaximaAlcanzada {
+        if (tieneSuministros(cantidad) && puedeCrecerPoblacion(cantidad)){ //Puedo pagarlo y tengo capacidad de poblacion
+            this.suministrosEmpleados += cantidad;
+            perderSuministro(cantidad);
+        }
+    }
 
     //TODO: evitar instanceof
     public boolean tieneGuarida() {

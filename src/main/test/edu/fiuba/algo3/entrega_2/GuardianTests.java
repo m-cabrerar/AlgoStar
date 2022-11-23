@@ -15,6 +15,7 @@ public class GuardianTests {
         Inventario inventarioMock = mock(Inventario.class);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         when(inventarioMock.tieneSuministros(anyInt())).thenReturn(true);
+        when(inventarioMock.puedeCrecerPoblacion(anyInt())).thenReturn(true);
         Casillero casilleroMock = mock(Casillero.class);
         when(casilleroMock.tieneEnRango(any(), anyInt())).thenReturn(true);
         Guardian guardian = new Guardian(inventarioMock);
@@ -37,6 +38,7 @@ public class GuardianTests {
         Inventario inventarioMock = mock(Inventario.class);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         when(inventarioMock.tieneSuministros(anyInt())).thenReturn(true);
+        when(inventarioMock.puedeCrecerPoblacion(anyInt())).thenReturn(true);
         Casillero casilleroMock = mock(Casillero.class);
         when(casilleroMock.tieneEnRango(any(), anyInt())).thenReturn(true);
         Guardian guardian = new Guardian(inventarioMock);
@@ -58,6 +60,7 @@ public class GuardianTests {
         Inventario inventarioMock = mock(Inventario.class);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         when(inventarioMock.tieneSuministros(anyInt())).thenReturn(true);
+        when(inventarioMock.puedeCrecerPoblacion(anyInt())).thenReturn(true);
         Casillero casilleroMock = mock(Casillero.class);
         when(casilleroMock.tieneEnRango(any(), anyInt())).thenReturn(true);
         Guardian guardian = new Guardian(inventarioMock);

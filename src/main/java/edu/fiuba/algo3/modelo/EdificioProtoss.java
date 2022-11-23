@@ -2,8 +2,8 @@ package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.exceptions.*;
 
 abstract class EdificioProtoss extends EdificioConcreto {
-    private int escudo;
-    private final int escudoMaximo;
+    protected int escudo;
+    protected final int escudoMaximo;
 
     public EdificioProtoss(Casillero unCasillero, Inventario unInventario, int vidaInicial, int escudoInicial){
         super(unCasillero, unInventario, vidaInicial);
