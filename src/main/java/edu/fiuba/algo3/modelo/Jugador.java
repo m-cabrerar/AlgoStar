@@ -1,18 +1,28 @@
 package edu.fiuba.algo3.modelo;
 
 public class Jugador {
-    private final String nombre;
-    private final String color;
-    private final String raza;
+    private /*final*/ String nombre;
+    private  String color;
+    private  String raza;
     private final Inventario inventario;
 
+    public void setDatos(String nombre_,String color_,String raza_){
+        nombre = nombre_;
+        color = color_;
+        raza = raza_;
+    }
+    public Jugador(){
+        inventario = new Inventario();
+    }
+
+    /*
     public Jugador(String nombre_, String color_ , String raza_){
         nombre = nombre_;
         color = color_;
         raza = raza_;
         inventario = new Inventario();
     }
-
+*/
     public static boolean nombreValido(String nombre_, Jugador[] jugadores){
         if (nombre_.length() < 6){
             return false;
@@ -46,4 +56,25 @@ public class Jugador {
         return true;
     }
 
+    public boolean tieneEdificios(){
+       return inventario.tieneEdificios();
+    }
+
+    public String getNombreYRaza(){
+       return nombre + " " + raza;
+    }
+
+    //todo: como hacer para no explotar de metodos, por ahora para tdd
+    public void construirPilon(Casillero unCasillero){
+        Unidad pilon = new Pilon(unCasillero, inventario);
+    }
+    public void construirExtractor(Casillero unCasillero){
+        Unidad extractor = new Extractor(unCasillero, inventario);
+    }
+    public void crearHidralisco(){
+        Hidralisco hidralisco = new Hidralisco(inventario);
+    }
+    public void pasarTurno(){
+        inventario.pasarTurno();
+    }
 }

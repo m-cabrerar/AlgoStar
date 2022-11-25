@@ -11,6 +11,7 @@ public class Inventario {
     int cantidadGas;
     int cantidadMineral;
     List<Unidad> unidades;
+    //List<Unidad> edificios;
 
     private static int POBLACION_MAXIMA =200;
     private static int SUMINISTROS_MAXIMOS = 200;
@@ -82,6 +83,17 @@ public class Inventario {
             }
         }
         return false;
+    }
+
+
+    public boolean tieneEdificios(){
+        return !(unidades.isEmpty());
+        //cuando esten separados los edificios se manda a edificios
+    }
+    public void pasarTurno(){
+        for(Unidad unidad :unidades){
+            unidad.pasarTurno();
+        }
     }
 }
 

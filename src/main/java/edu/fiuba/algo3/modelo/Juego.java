@@ -8,9 +8,12 @@ public class Juego {
     private final int CANTIDAD_DE_JUGADORES = 2;
     private Jugador[] jugadores = new Jugador[CANTIDAD_DE_JUGADORES];
 
-    public void registrarJugador(String nombre, String color, String raza, int n) throws ParametrosInvalidos {
+    private int turnos;
+
+    public void registrarJugador(String nombre, String color, String raza, int n, Jugador jugador) throws ParametrosInvalidos {
         if (Jugador.nombreValido(nombre, jugadores) && Jugador.colorValido(color, jugadores) && Jugador.razaValida(raza, jugadores)){
-            jugadores[n] = new Jugador(nombre, color, raza);
+            jugador.setDatos(nombre,color,raza);
+            jugadores[n] = jugador;//new Jugador(nombre, color, raza);
         }
         else {
             throw new ParametrosInvalidos("Los parametros ingresados no son validos");
@@ -36,4 +39,23 @@ public class Juego {
         mapa.cambiarTipoCasilla(posicion1[0],posicion1[1],new NodoGas());
         mapa.cambiarTipoCasilla(posicion2[0],posicion2[1],new NodoGas());
     }
+
+    public void pasarTurno(){
+        for (Jugador jugador : jugadores) {
+            jugador.pasarTurno();
+        }
+    }
+
+    public String verificar_ganador(){ //todo:despues lo hará en pasarTurno
+        if(turnos!=0){
+            if(!jugadores[0].tieneEdificios()){
+                return "Ganador " + jugadores[1].getNombreYRaza();
+            }else if(!jugadores[1].tieneEdificios()){
+                return "Ganador " + jugadores[0].getNombreYRaza();
+            }
+        }
+        turnos ++; //esto tampoco se hará aca
+        return null;
+    }
+
 }
