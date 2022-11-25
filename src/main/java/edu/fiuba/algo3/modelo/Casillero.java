@@ -121,4 +121,14 @@ public class Casillero{
         }
         return null;
     }
+
+    public boolean tengoEnRangoAmoSupremo(Inventario inventario){
+        List<AmoSupremo> amos = inventario.obtenerAmosSupremos();
+        for (AmoSupremo amo : amos) {
+            if(this.tieneEnRango(amo,4)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

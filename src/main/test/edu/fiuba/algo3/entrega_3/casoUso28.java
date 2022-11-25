@@ -3,7 +3,9 @@ package edu.fiuba.algo3.entrega_3;
 import edu.fiuba.algo3.exceptions.UnidadInvisible;
 import edu.fiuba.algo3.modelo.*;
 import org.junit.jupiter.api.Test;
+import java.util.*;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -37,7 +39,7 @@ public class casoUso28 {
         assertThrows(UnidadInvisible.class, () -> zerling.atacar(zealot));
     }
 
-    /*@Test
+    @Test
     public void Test02UnaUnidadEnemigaPuedeAtacarAUnZealotInvisibleSiUnZealotEnSuRangoLoCubre(){
 
         //ARRANGE
@@ -46,20 +48,36 @@ public class casoUso28 {
         when(inventarioMock.tieneSuministros(anyInt())).thenReturn(true);
         when(inventarioMock.puedeCrecerPoblacion(anyInt())).thenReturn(true);
 
-        Casillero casilleroMock = mock(Casillero.class);
-        when(casilleroMock.tieneEnRango(any(Unidad.class), anyInt())).thenReturn(true);
+        Casillero casilleroMock1 = mock(Casillero.class);
+        when(casilleroMock1.tieneEnRango(any(Unidad.class), anyInt())).thenReturn(true);
+
+        Casillero casilleroMock2 = mock(Casillero.class);
+        Casillero casilleroMock3 = mock(Casillero.class);
+        when(casilleroMock3.tieneEnRango(any(Unidad.class), anyInt())).thenReturn(true);
 
         Zealot zealot = new Zealot(inventarioMock);
+        Zerling zerling = new Zerling(inventarioMock);
         AmoSupremo amo = new AmoSupremo(inventarioMock);
-        amo.ubicarEn(casilleroMock);
+
+        List<AmoSupremo> amosEnRango = new ArrayList<>();
+        amosEnRango.add(amo);
+
+        when(casilleroMock2.tengoEnRangoAmoSupremo(inventarioMock)).thenReturn(true);
+        when(inventarioMock.obtenerAmosSupremos()).thenReturn(amosEnRango);
 
         //ACT
+        amo.ubicarEn(casilleroMock1);
+
+        zealot.ubicarEn(casilleroMock2);
         zealot.volverseInvisible();
-        amo.atacar(zealot);
+        zealot.pasarTurno();
+
+        zerling.ubicarEn(casilleroMock3);
 
         //ASSERT
+        assertDoesNotThrow(() -> zerling.atacar(zealot));
 
-    }*/
+    }
 
 
 }

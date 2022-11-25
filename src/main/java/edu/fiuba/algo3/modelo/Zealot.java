@@ -53,4 +53,10 @@ public class Zealot extends UnidadMovilProtoss {
     public void volverseInvisible(){
         this.esVisible = false;
     }
+
+    public void pasarTurno(){
+        if(casilleroActual.tengoEnRangoAmoSupremo(inventario)){
+            this.esVisible = true;
+        }
+    }
 }
