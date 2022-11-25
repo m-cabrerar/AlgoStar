@@ -36,6 +36,12 @@ public class AmoSupremo extends UnidadMovilZerg {
 
     @Override
     public void recibirDanio(int danio) throws EstaDestruido {
-            //Si esta muerto this.inventario.perderSuministro(5);
+        if (this.estaDestruida()){
+            throw new EstaDestruido("El edificio está destruido");
+        }
+        this.vida -= danio;
+        if (this.estaDestruida()) {
+            this.inventario.perderSuministro(SUMINISTRA);
+        }
     }
 }
