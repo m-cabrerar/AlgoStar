@@ -23,15 +23,15 @@ abstract class EdificioConcreto implements Unidad {
     }
     abstract int turnosParaConstruir();
     protected boolean estaDestruido() {
-        return vida <= 0;
+        return this.vida <= 0;
     }
     public void recibirDanio(int danio) throws EstaDestruido {
-        if (estaDestruido()){
+        if (this.estaDestruido()){
             throw new EstaDestruido("El edificio está destruido");
         }
-        vida -= danio;
-        if (estaDestruido()){
-            casillero.desocupar();
+        this.vida -= danio;
+        if (this.estaDestruido()){
+            this.casillero.desocupar();
         }
     }
     private void consumirMateriales(Inventario inventario) {

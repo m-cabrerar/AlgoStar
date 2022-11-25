@@ -52,6 +52,14 @@ public class Criadero extends EdificioZerg{
         return cantidadLarvas == 3;
     }
 
+
+    public void recibirDanio(int danio) throws EstaDestruido {
+        super.recibirDanio(danio);
+        if (this.estaDestruido()){
+            this.inventario.perderSuministro(SUMINISTRA);
+        }
+    }
+/*
     @Override
     public void recibirDanio(int danio) throws EstaDestruido {
         super.recibirDanio(danio);
@@ -59,6 +67,7 @@ public class Criadero extends EdificioZerg{
             this.inventario.perderSuministro(SUMINISTRA);
         }
     }
+*/
 
 
 }

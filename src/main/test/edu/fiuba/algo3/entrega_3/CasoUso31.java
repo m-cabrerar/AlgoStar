@@ -1,4 +1,5 @@
 package edu.fiuba.algo3.entrega_3;
+import edu.fiuba.algo3.exceptions.EstaDestruido;
 import edu.fiuba.algo3.exceptions.PoblacionMaximaAlcanzada;
 import edu.fiuba.algo3.exceptions.SuministrosInsuficientes;
 import edu.fiuba.algo3.modelo.*;
@@ -28,7 +29,7 @@ public class CasoUso31{
             Zerling zerling = new Zerling(inventario);
         }
         criadero2.recibirDanio(600);
-
+        assertThrows(EstaDestruido.class, () -> criadero2.recibirDanio(600));
         //act & assert
         assertFalse(inventario.tieneSuministros(1));
 

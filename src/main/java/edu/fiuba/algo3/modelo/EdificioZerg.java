@@ -4,30 +4,18 @@ import edu.fiuba.algo3.exceptions.*;
 
 abstract class EdificioZerg extends EdificioConcreto {
     private final int vidaMaxima;
-    private int vida;
     public EdificioZerg(Casillero casillero_, Inventario inventario_, int vida_){
         super(casillero_, inventario_, vida_);
-        vidaMaxima = vida_;
-        vida = vida_;
-    }
-
-    public void recibirDanio(int danio) throws EstaDestruido {
-        if (this.estaDestruido()){
-            throw new EstaDestruido("El edificio está destruido");
-        }
-        vida -= danio;
-        if (this.estaDestruido()){
-            casillero.desocupar();
-        }
+        this.vidaMaxima = vida_;
     }
 
     public void pasarTurno(){
         super.pasarTurno();
-        if (vida < (vidaMaxima-10)){
-            vida+=10;
+        if (this.vida < (vidaMaxima-10)){
+            this.vida+=10;
         }
-        else if( (vida < vidaMaxima) && (vida > (vidaMaxima-10)) ){
-            vida = vidaMaxima;
+        else if (this.vida < vidaMaxima){
+            this.vida = vidaMaxima;
         }
     }
 }

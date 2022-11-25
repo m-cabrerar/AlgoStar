@@ -18,9 +18,7 @@ public class EdificioZergTests {
             criadero.recibirDanio(10);
             criadero.pasarTurno();
             //ASSERT
-            for (int i = 0; i < 49; i++) {
-                criadero.recibirDanio(10);
-            }
+            criadero.recibirDanio(490);
             assertDoesNotThrow(() -> criadero.recibirDanio(10));
         } catch (Exception e) {
             fail();
