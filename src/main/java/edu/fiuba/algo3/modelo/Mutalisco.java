@@ -38,4 +38,10 @@ public class Mutalisco extends UnidadMovilZerg {
         }
     }
 
+    void evolucionarADevorador (Inventario inventario) throws RecursosInsuficientes {
+        Devorador devorador = new Devorador(inventario);
+        this.casilleroActual.desocupar();
+        //sacar del inventario
+        new UnidadEnEvolucion(this.casilleroActual, inventario, devorador);
+    }
 }
