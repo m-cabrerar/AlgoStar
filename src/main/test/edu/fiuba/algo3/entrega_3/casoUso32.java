@@ -39,6 +39,7 @@ contrario.
         assertEquals(mensaje, ganador);
     }
 
+    /*
     @Test
     public void Test02JugadorConSoloUnPilonSeLoDestruyenGanaElOtro(){
         //ARRANGE
@@ -68,6 +69,8 @@ contrario.
         //ASSERT
         assertEquals(mensaje, ganador);
     }
+    
+     */
 }
 
 
