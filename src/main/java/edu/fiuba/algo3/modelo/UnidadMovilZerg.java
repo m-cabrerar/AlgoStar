@@ -1,17 +1,13 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.exceptions.*;
-
 public abstract class UnidadMovilZerg extends UnidadMovil{
     int vidaMaxima;
-    int vida;
 
     UnidadMovilZerg(Inventario inventario, int costoMineral, int costoGas, int vidaInicial, int costoSuministro){
         super(inventario, costoMineral, costoGas, costoSuministro);
         this.vida = vidaInicial;
         this.vidaMaxima = vidaInicial;
     }
-
     @Override
     public void pasarTurno() {
         if (vida < (vidaMaxima-10)){
@@ -22,5 +18,4 @@ public abstract class UnidadMovilZerg extends UnidadMovil{
         }
     }
 
-    abstract void atacar(UnidadMovil unidadAAtacar);
 }

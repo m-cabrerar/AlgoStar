@@ -5,7 +5,6 @@ import edu.fiuba.algo3.exceptions.*;
 public abstract class UnidadMovilProtoss extends UnidadMovil {
     int escudoMaximo;
     int escudo;
-    int vida;
 
     UnidadMovilProtoss(Inventario inventario, int costoMineral, int costoGas, int vidaInicial, int escudoInicial, int costoSuministro){
         super(inventario, costoMineral, costoGas,costoSuministro);
