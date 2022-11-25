@@ -95,6 +95,15 @@ public class Inventario {
             unidad.pasarTurno();
         }
     }
+    public List<AmoSupremo> obtenerAmosSupremos(){
+        List<AmoSupremo> amosSupremos = new ArrayList<>();
+        for (Unidad unidad : this.unidades) {
+            if (unidad instanceof AmoSupremo) {
+                amosSupremos.add((AmoSupremo) unidad);
+            }
+        }
+        return amosSupremos;
+    }
 }
 
 
