@@ -3,8 +3,11 @@ package edu.fiuba.algo3.entrega_3;
 import edu.fiuba.algo3.modelo.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 import org.junit.jupiter.api.Test;
 
 public class casoUso32 {
@@ -14,17 +17,22 @@ contrario.
      */
 
     @Test
-    public void Test01JugadorConSoloUnEdificioLoDestruyenElOtroGanaJuego(){
+    public void Test01CuandoNoEsTurnoCeroYUnJugadorNoTieneEdificiosGanaElOtro(){
         //ARRANGE
-        String mensaje = "Ganador Jugador jug1 Protoss";
-        Mapa mapaMock = mock(Mapa.class);
-        Juego juego = new Juego();
-        juego.registrarJugador("Jugador 1", "rojo","Protoss",0 );
-        juego.registrarJugador("Jugador 2","azul","Zerg",1);
-       // juego.crearBases(mapaMock);
+        String mensaje = "Ganador Jugador 1 Protoss";
 
+        Juego juego = new Juego();
+        Jugador jugador1 = new Jugador();
+        Jugador jugador2 = new Jugador();
+
+        juego.registrarJugador("Jugador 1", "rojo","Protoss",0,jugador1);
+        juego.registrarJugador("Jugador 2","azul","Zerg",1,jugador2);
+
+        Casillero mockedCasillero = mock(Casillero.class);
+        when(mockedCasillero.esDelTipo(any())).thenReturn(true);
+
+        jugador1.construirPilon(mockedCasillero);
         juego.verificar_ganador();
-        //COMO mockeo el inventario si lo crea el jugador?
         //ACT
         String ganador = juego.verificar_ganador();
         //ASSERT
@@ -32,8 +40,30 @@ contrario.
     }
 
     @Test
-    public void Test02(){
+    public void Test02JugadorConSoloUnPilonSeLoDestruyenGanaElOtro{
+        //ARRANGE
+        String mensaje = "Ganador Jugador 2 Zerg";
 
+        Juego juego = new Juego();
+        Jugador jugador1 = new Jugador();
+        Jugador jugador2 = new Jugador();
+
+        juego.registrarJugador("Jugador 1", "rojo","Protoss",0,jugador1);
+        juego.registrarJugador("Jugador 2","azul","Zerg",1,jugador2);
+
+        Casillero mockedCasillero = mock(Casillero.class);
+        when(mockedCasillero.esDelTipo(any())).thenReturn(true);
+
+        jugador1.construirPilon(mockedCasillero);
+        jugador2.construirGuarida(mockedCasillero);
+        
+
+        juego.verificar_ganador();
+        //ACT
+        String ganador = juego.verificar_ganador();
+        //ASSERT
+        assertEquals(mensaje, ganador);
     }
-
 }
+
+

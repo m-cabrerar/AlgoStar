@@ -17,9 +17,11 @@ public class JuegoTest {
         String razaJugador1 = "Protoss";
         String razaJugador2 = "Zerg";
         //ACT
-        juego.registrarJugador(nombreJugador1, colorJugador1, razaJugador1, 0);
+        Jugador jugador1 = new Jugador();
+        Jugador jugador2 = new Jugador();
+        juego.registrarJugador(nombreJugador1, colorJugador1, razaJugador1, 0, jugador1);
         //ASSERT
-        assertDoesNotThrow(() -> juego.registrarJugador(nombreJugador2, colorJugador2, razaJugador2, 1));
+        assertDoesNotThrow(() -> juego.registrarJugador(nombreJugador2, colorJugador2, razaJugador2, 1, jugador2));
     }
 
     @Test
@@ -32,10 +34,12 @@ public class JuegoTest {
         String colorJugador2 = "Azul";
         String razaJugador1 = "Protoss";
         String razaJugador2 = "Zerg";
+        Jugador jugador1 = new Jugador();
+        Jugador jugador2 = new Jugador();
         //ACT
-        juego.registrarJugador(nombreJugador1, colorJugador1, razaJugador1, 0);
+        juego.registrarJugador(nombreJugador1, colorJugador1, razaJugador1, 0, jugador1);
         //ASSERT
-        assertThrows(ParametrosInvalidos.class, () -> juego.registrarJugador(nombreJugador2, colorJugador2, razaJugador2, 1));
+        assertThrows(ParametrosInvalidos.class, () -> juego.registrarJugador(nombreJugador2, colorJugador2, razaJugador2, 1, jugador2));
     }
 
     @Test
@@ -48,10 +52,12 @@ public class JuegoTest {
         String colorJugador2 = "Rojo";
         String razaJugador1 = "Protoss";
         String razaJugador2 = "Zerg";
+        Jugador jugador1 = new Jugador();
+        Jugador jugador2 = new Jugador();
         //ACT
-        juego.registrarJugador(nombreJugador1, colorJugador1, razaJugador1, 0);
+        juego.registrarJugador(nombreJugador1, colorJugador1, razaJugador1, 0, jugador1);
         //ASSERT
-        assertThrows(ParametrosInvalidos.class, () -> juego.registrarJugador(nombreJugador2, colorJugador2, razaJugador2, 1));
+        assertThrows(ParametrosInvalidos.class, () -> juego.registrarJugador(nombreJugador2, colorJugador2, razaJugador2, 1,jugador2));
     }
 
     @Test
@@ -64,10 +70,12 @@ public class JuegoTest {
         String colorJugador2 = "Azul";
         String razaJugador1 = "Protoss";
         String razaJugador2 = "Protoss";
+        Jugador jugador1 = new Jugador();
+        Jugador jugador2 = new Jugador();
         //ACT
-        juego.registrarJugador(nombreJugador1, colorJugador1, razaJugador1, 0);
+        juego.registrarJugador(nombreJugador1, colorJugador1, razaJugador1, 0, jugador1);
         //ASSERT
-        assertThrows(ParametrosInvalidos.class, () -> juego.registrarJugador(nombreJugador2, colorJugador2, razaJugador2, 1));
+        assertThrows(ParametrosInvalidos.class, () -> juego.registrarJugador(nombreJugador2, colorJugador2, razaJugador2, 1,jugador2));
     }
 
     @Test
@@ -77,8 +85,9 @@ public class JuegoTest {
         String nombreJugador = "Jug";
         String colorJugador = "Rojo";
         String razaJugador = "Protoss";
+        Jugador jugador1 = new Jugador();
         //ACT & ASSERT
-        assertThrows(ParametrosInvalidos.class, () -> juego.registrarJugador(nombreJugador, colorJugador, razaJugador, 0));
+        assertThrows(ParametrosInvalidos.class, () -> juego.registrarJugador(nombreJugador, colorJugador, razaJugador, 0,jugador1));
     }
 
     @Test
@@ -88,8 +97,11 @@ public class JuegoTest {
         int alto = 50;
         int ancho = 50;
         Juego juego = new Juego();
-        juego.registrarJugador("Nombre1", "Violeta", "Zerg", 0);
-        juego.registrarJugador("Nombre2", "Azul", "Protoss", 1);
+        Jugador jugador1 = new Jugador();
+        Jugador jugador2 = new Jugador();
+
+        juego.registrarJugador("Nombre1", "Violeta", "Zerg", 0,jugador1);
+        juego.registrarJugador("Nombre2", "Azul", "Protoss", 1,jugador2);
         Mapa mapa = new Mapa(alto,ancho);
 
         //Act
@@ -99,14 +111,18 @@ public class JuegoTest {
         assertTrue(mapa.obtenerCasillero(0,0).esDelTipo(new NodoGas()));
         assertTrue(mapa.obtenerCasillero(ancho-1,alto-1).esDelTipo(new NodoGas()));
     }
+
     @Test
     public  void Test07SeCreanLosMineralesEnLasPosicionesCorrespondientes(){
         //Arrange
         int alto = 50;
         int ancho = 50;
         Juego juego = new Juego();
-        juego.registrarJugador("Nombre1", "Violeta", "Zerg", 0);
-        juego.registrarJugador("Nombre2", "Azul", "Protoss", 1);
+        Jugador jugador1 = new Jugador();
+        Jugador jugador2 = new Jugador();
+
+        juego.registrarJugador("Nombre1", "Violeta", "Zerg", 0,jugador1);
+        juego.registrarJugador("Nombre2", "Azul", "Protoss", 1,jugador2);
         Mapa mapa = new Mapa(alto,ancho);
 
         //Act
@@ -126,5 +142,6 @@ public class JuegoTest {
         assertTrue(mapa.obtenerCasillero(48,49).esDelTipo(new NodoMineral()));
         assertTrue(mapa.obtenerCasillero(47,49).esDelTipo(new NodoMineral()));
     }
+
 
 }

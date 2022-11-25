@@ -10,9 +10,10 @@ public class Juego {
 
     private int turnos;
 
-    public void registrarJugador(String nombre, String color, String raza, int n) throws ParametrosInvalidos {
+    public void registrarJugador(String nombre, String color, String raza, int n, Jugador jugador) throws ParametrosInvalidos {
         if (Jugador.nombreValido(nombre, jugadores) && Jugador.colorValido(color, jugadores) && Jugador.razaValida(raza, jugadores)){
-            jugadores[n] = new Jugador(nombre, color, raza);
+            jugador.setDatos(nombre,color,raza);
+            jugadores[n] = jugador;//new Jugador(nombre, color, raza);
         }
         else {
             throw new ParametrosInvalidos("Los parametros ingresados no son validos");
@@ -41,10 +42,10 @@ public class Juego {
 
     public String verificar_ganador(){ //todo:despues lo hará en pasarTurno
         if(turnos!=0){
-            if(!(jugadores[0].tieneEdificios())){
-                return "Ganador Jugador" + jugadores[1].getNombreYRaza();
+            if(!jugadores[0].tieneEdificios()){
+                return "Ganador " + jugadores[1].getNombreYRaza();
             }else if(!jugadores[1].tieneEdificios()){
-                return "Ganador jugador"+ jugadores[2].getNombreYRaza();
+                return "Ganador " + jugadores[0].getNombreYRaza();
             }
         }
         turnos ++; //esto tampoco se hará aca
