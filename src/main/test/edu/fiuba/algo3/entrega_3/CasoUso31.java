@@ -11,7 +11,6 @@ import static org.mockito.Mockito.when;
 public class CasoUso31{
     //Verificar que al destruir pilones, amos supremos o criaderos disminuye la capacidad de
     //suministros del jugador.
-/*
     @Test
     public void TengoDosCriaderosYDestruyoUnoSoloPuedoHacer5Zerlings() {
 
@@ -20,19 +19,18 @@ public class CasoUso31{
         inventario.agregarGas(150);
 
         Casillero casillero = mock(Casillero.class);
-        Criadero criadero = new Criadero(casillero, inventario);
+        Pilon pilon = new Pilon(casillero, inventario);
 
         Casillero casillero2 = mock(Casillero.class);
-        Criadero criadero2 = new Criadero(casillero2, inventario);
+        Pilon pilon2 = new Pilon(casillero2, inventario);
 
         for (int i = 0; i < 5; i++) {
             Zerling zerling = new Zerling(inventario);
         }
-        criadero2.recibirDanio(600);
+        pilon2.recibirDanio(600);
 
         //act & assert
-        assertTrue(inventario.tieneSuministros(5));
+        assertFalse(inventario.tieneSuministros(1));
 
     }
- */
 }
