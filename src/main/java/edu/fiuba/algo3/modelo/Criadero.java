@@ -52,6 +52,7 @@ public class Criadero extends EdificioZerg{
         return cantidadLarvas == 3;
     }
 
+    @Override
     public void recibirDanio(int danio) throws EstaDestruido {
         if (estaDestruido()){
             throw new EstaDestruido("El edificio está destruido");
