@@ -40,7 +40,7 @@ contrario.
     }
 
     @Test
-    public void Test02JugadorConSoloUnPilonSeLoDestruyenGanaElOtro{
+    public void Test02JugadorConSoloUnPilonSeLoDestruyenGanaElOtro(){
         //ARRANGE
         String mensaje = "Ganador Jugador 2 Zerg";
 
@@ -55,8 +55,12 @@ contrario.
         when(mockedCasillero.esDelTipo(any())).thenReturn(true);
 
         jugador1.construirPilon(mockedCasillero);
-        jugador2.construirGuarida(mockedCasillero);
-        
+        jugador2.construirExtractor(mockedCasillero);
+        //pasar el extraer a pasar turno? tendria problemas con la construccion
+        juego.pasarTurno();
+        juego.pasarTurno();
+        juego.pasarTurno();
+        jugador2.crearHidralisco();
 
         juego.verificar_ganador();
         //ACT

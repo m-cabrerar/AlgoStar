@@ -68,8 +68,13 @@ public class Jugador {
     public void construirPilon(Casillero unCasillero){
         Unidad pilon = new Pilon(unCasillero, inventario);
     }
-    public void construirGuarida(Casillero unCasillero){
-        Unidad guarida = new Guarida(unCasillero, inventario);
+    public void construirExtractor(Casillero unCasillero){
+        Unidad extractor = new Extractor(unCasillero, inventario);
     }
-
+    public void crearHidralisco(){
+        Hidralisco hidralisco = new Hidralisco(inventario);
+    }
+    public void pasarTurno(){
+        inventario.pasarTurno();
+    }
 }

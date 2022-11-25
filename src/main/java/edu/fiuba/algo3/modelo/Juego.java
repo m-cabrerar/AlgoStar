@@ -40,6 +40,12 @@ public class Juego {
         mapa.cambiarTipoCasilla(posicion2[0],posicion2[1],new NodoGas());
     }
 
+    public void pasarTurno(){
+        for (Jugador jugador : jugadores) {
+            jugador.pasarTurno();
+        }
+    }
+
     public String verificar_ganador(){ //todo:despues lo hará en pasarTurno
         if(turnos!=0){
             if(!jugadores[0].tieneEdificios()){

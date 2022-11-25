@@ -90,6 +90,11 @@ public class Inventario {
         return !(unidades.isEmpty());
         //cuando esten separados los edificios se manda a edificios
     }
+    public void pasarTurno(){
+        for(Unidad unidad :unidades){
+            unidad.pasarTurno();
+        }
+    }
 }
 
 
