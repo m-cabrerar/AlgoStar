@@ -54,12 +54,8 @@ public class Criadero extends EdificioZerg{
 
     @Override
     public void recibirDanio(int danio) throws EstaDestruido {
-        if (estaDestruido()){
-            throw new EstaDestruido("El edificio está destruido");
-        }
-        vida -= danio;
-        if (estaDestruido()){
-            casillero.desocupar();
+        super.recibirDanio(danio);
+        if (this.estaDestruido()) {
             this.inventario.perderSuministro(SUMINISTRA);
         }
     }

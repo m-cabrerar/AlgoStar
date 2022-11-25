@@ -12,15 +12,15 @@ abstract class EdificioProtoss extends EdificioConcreto {
     }
 
     public void recibirDanio(int danio) throws EstaDestruido {
-        if (estaDestruido()){
+        if (this.estaDestruido()){
             throw new EstaDestruido("El edificio está destruido");
         }
         escudo -= danio;
         if (escudo < 0){
-            vida += escudo;
+            this.vida += escudo;
             escudo = 0;
         }
-        if (estaDestruido()){
+        if (this.estaDestruido()){
             casillero.desocupar();
         }
     }

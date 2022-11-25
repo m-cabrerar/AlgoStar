@@ -31,16 +31,8 @@ public class Pilon extends EdificioProtoss {
 
     @Override
     public void recibirDanio(int danio) throws EstaDestruido{
+        super.recibirDanio(danio);
         if (this.estaDestruido()){
-            throw new EstaDestruido("El edificio está destruido");
-        }
-        this.escudo -= danio;
-        if (escudo < 0){
-            this.vida += this.escudo;
-            this.escudo = 0;
-        }
-        if (this.estaDestruido()){
-            casillero.desocupar();
             this.inventario.perderSuministro(SUMINISTRA);
         }
     }
