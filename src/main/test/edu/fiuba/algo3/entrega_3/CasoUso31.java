@@ -12,7 +12,29 @@ public class CasoUso31{
     //Verificar que al destruir pilones, amos supremos o criaderos disminuye la capacidad de
     //suministros del jugador.
     @Test
-    public void TengoDosCriaderosYDestruyoUnoSoloPuedoHacer5Zerlings() {
+    public void TengoDosCriaderosYDestruyoUnoSoloPuedoHacer5ZerlingsYMeQuedoSinSuministros() {
+
+        //ARRANGE
+        Inventario inventario = new Inventario();
+        inventario.agregarGas(150);
+
+        Casillero casillero = mock(Casillero.class);
+        Criadero criadero = new Criadero(casillero, inventario);
+
+        Casillero casillero2 = mock(Casillero.class);
+        Criadero criadero2 = new Criadero(casillero2, inventario);
+
+        for (int i = 0; i < 5; i++) {
+            Zerling zerling = new Zerling(inventario);
+        }
+        criadero2.recibirDanio(600);
+
+        //act & assert
+        assertFalse(inventario.tieneSuministros(1));
+
+    }
+    @Test
+    public void TengoDosPilonesYDestruyoUnoSoloPuedoHacer5ZerlingsYMeQuedoSinSuministros() {
 
         //ARRANGE
         Inventario inventario = new Inventario();
@@ -33,4 +55,26 @@ public class CasoUso31{
         assertFalse(inventario.tieneSuministros(1));
 
     }
+
+    @Test
+    public void TengoDosAmosSupremosYDestruyoUnoSoloPuedoHacer5ZerlingsYMeQuedoSinSuministros() {
+
+        //ARRANGE
+        Inventario inventario = new Inventario();
+        inventario.agregarGas(150);
+        inventario.agregarMineral(150);
+
+        AmoSupremo amo1 = new AmoSupremo(inventario);
+        AmoSupremo amo2 = new AmoSupremo(inventario);
+
+        for (int i = 0; i < 5; i++) {
+            Zerling zerling = new Zerling(inventario);
+        }
+        amo2.recibirDanio(600);
+
+        //act & assert
+        assertFalse(inventario.tieneSuministros(1));
+
+    }
+
 }

@@ -28,7 +28,9 @@ public class Inventario {
     public void agregarGas(int i) {
         this.cantidadGas += i;
     }
-
+    public void agregarMineral(int i) {
+        this.cantidadMineral += i;
+    }
     public void agregar(Unidad unidad) {
         this.unidades.add(unidad);
     }
