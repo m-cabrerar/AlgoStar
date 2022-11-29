@@ -22,7 +22,7 @@ public class UnidadEnEvolucion extends EdificioZerg{
         }
     }
     @Override
-    int turnosParaConstruir() {
+    public int turnosParaConstruir() {
         return 0;
     }
 }

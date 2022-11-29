@@ -13,7 +13,7 @@ public class Pilon extends EdificioProtoss {
         super.pasarTurno();
     }
 
-    int turnosParaConstruir() {
+    public int turnosParaConstruir() {
         return 5;
     }
 

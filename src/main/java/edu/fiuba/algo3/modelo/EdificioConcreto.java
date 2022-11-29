@@ -3,7 +3,7 @@ import edu.fiuba.algo3.exceptions.*;
 
 import java.util.List;
 
-abstract class EdificioConcreto implements Unidad {
+abstract class EdificioConcreto implements Unidad, Construible{
     protected int vida;
     protected Casillero casillero;
     protected UnidadMovil unidadEnConstruccion = null;
@@ -21,7 +21,6 @@ abstract class EdificioConcreto implements Unidad {
             turnosParaConstruir--;
         }
     }
-    abstract int turnosParaConstruir();
     protected boolean estaDestruido() {
         return this.vida <= 0;
     }

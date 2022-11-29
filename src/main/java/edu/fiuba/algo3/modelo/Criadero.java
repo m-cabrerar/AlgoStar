@@ -24,7 +24,7 @@ public class Criadero extends EdificioZerg{
             //acaba habria que chequear que si el casillero que da al obtener adyacentes es nulo (porque no hay ninguno libre)
         }
     }
-    int turnosParaConstruir() {
+    public int turnosParaConstruir() {
         return 4;
     }
     public static EdificioEnConstruccion construir(Casillero casillero, Inventario inventario) throws UbicacionInvalida, RecursosInsuficientes {

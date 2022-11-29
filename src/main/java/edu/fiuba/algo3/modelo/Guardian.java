@@ -23,7 +23,7 @@ public class Guardian extends UnidadMovilZerg {
     }
 
     @Override
-    int turnosParaConstruir() {
+    public int turnosParaConstruir() {
         return TURNOS_PARA_CONSTRUIR;
     }
 

@@ -15,7 +15,7 @@ public class Acceso extends EdificioProtoss {
         }
     }
 
-    int turnosParaConstruir() {
+    public int turnosParaConstruir() {
         return 8;
     }
 
