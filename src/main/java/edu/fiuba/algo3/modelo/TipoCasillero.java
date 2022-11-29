@@ -3,7 +3,6 @@ import java.util.List;
 
 public abstract class TipoCasillero{
     public abstract String nombreDelCasillero();
-
     public int extraerMineral(int cantidad){
         return 0;
     }
@@ -11,6 +10,5 @@ public abstract class TipoCasillero{
         return 0;
     }
     public void expandirMoho(List<Casillero> casillasAContagiar){}
-
     public boolean cumpleCondicionesEspeciales(UnidadMovil unidad){return true;}
 }

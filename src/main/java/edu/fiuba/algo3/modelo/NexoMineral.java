@@ -11,7 +11,7 @@ public class NexoMineral extends EdificioProtoss {
         super.pasarTurno();
     }
 
-    int turnosParaConstruir() {
+    public int turnosParaConstruir() {
         return 4;
     }
 

@@ -4,7 +4,7 @@ import edu.fiuba.algo3.exceptions.*;
 
 import java.util.List;
 
-public abstract class UnidadMovil implements Unidad {
+public abstract class UnidadMovil implements Unidad, Construible {
 
     Casillero casilleroActual;
     Inventario inventario;
@@ -24,7 +24,6 @@ public abstract class UnidadMovil implements Unidad {
         this.inventario = inventario;
     }
 
-    abstract int turnosParaConstruir();
     protected boolean estaDestruida() {
         return vida <= 0;
     }

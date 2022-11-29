@@ -10,7 +10,6 @@ abstract class EdificioProtoss extends EdificioConcreto {
         this.escudo = escudoInicial;
         this.escudoMaximo = escudoInicial;
     }
-
     public void recibirDanio(int danio) throws EstaDestruido {
         if (this.estaDestruido()){
             throw new EstaDestruido("El edificio está destruido");
@@ -24,7 +23,6 @@ abstract class EdificioProtoss extends EdificioConcreto {
             casillero.desocupar();
         }
     }
-
     public void pasarTurno(){
         super.pasarTurno();
         escudo += 10;

@@ -16,7 +16,7 @@ public class PuertoEstelar extends EdificioProtoss {
         }
     }
 
-    int turnosParaConstruir() {
+    public int turnosParaConstruir() {
         return 10;
     }
 
