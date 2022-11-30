@@ -32,14 +32,6 @@ abstract class EdificioConcreto implements Unidad, Construible{
             this.casillero.desocupar();
         }
     }
-    private void consumirMateriales(Inventario inventario) {
-    }
-    private boolean tieneCorrelativas(Inventario inventario) {
-        return true;
-    }
-    private boolean tieneMateriales(Inventario inventario) {
-        return true;
-    }
     // TODO: evitar null
     protected boolean unidadEnConstruccion() {
         return unidadEnConstruccion != null;
