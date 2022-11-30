@@ -43,8 +43,5 @@ public class Espiral extends EdificioZerg {
         turnosParaConstruir = unidadEnConstruccion.turnosParaConstruir();
     }
 
-    @Override
-    public void ocupar(Casillero casillero) throws UbicacionInvalida {
-        casillero.ocupar(this);
-    }
+
 }

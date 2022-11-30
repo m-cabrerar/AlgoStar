@@ -35,8 +35,5 @@ public class PuertoEstelar extends EdificioProtoss {
         return new EdificioEnConstruccion(puertoEstelar, casillero, inventario);
     }
 
-    @Override
-    public void ocupar(Casillero casillero) throws UbicacionInvalida {
-        casillero.ocupar(this);
-    }
+
 }

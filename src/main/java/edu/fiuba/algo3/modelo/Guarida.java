@@ -40,8 +40,5 @@ public class Guarida extends EdificioZerg {
         unidadEnConstruccion = crearEvolucion(inventario);
         turnosParaConstruir = unidadEnConstruccion.turnosParaConstruir();
     }
-    @Override
-    public void ocupar(Casillero casillero) throws UbicacionInvalida {
-        casillero.ocupar(this);
-    }
+
 }

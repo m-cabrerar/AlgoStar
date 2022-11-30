@@ -44,8 +44,4 @@ public class EdificioEnConstruccion implements Unidad {
         return casilleros.contains(casillero);
     }
 
-    @Override
-    public void ocupar(Casillero casillero) throws UbicacionInvalida {
-        casillero.ocupar(this.vaASer);
-    }
 }

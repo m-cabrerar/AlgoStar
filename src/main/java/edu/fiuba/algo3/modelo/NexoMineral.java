@@ -31,8 +31,5 @@ public class NexoMineral extends EdificioProtoss {
         return cantidad;
     }
 
-    @Override
-    public void ocupar(Casillero casillero) throws UbicacionInvalida {
-        casillero.ocupar(this);
-    }
+
 }

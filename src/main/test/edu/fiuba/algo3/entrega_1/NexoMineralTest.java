@@ -12,31 +12,34 @@ public class NexoMineralTest {
     @Test
     public void test01NexoMineralSeConstruyeEnLaCasillaCorrectaYConRecursosSuficientes() {
         // Arrange
-        Casillero mockedCasillero = mock(Casillero.class);
+        Casillero casillero = new Casillero(0,0,mock(Mapa.class));
+        casillero.setTipoCasillero(new NodoMineral());
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         // Act & Assert
-        assertDoesNotThrow(() -> NexoMineral.construir(mockedCasillero, mockedInventario));
+        assertDoesNotThrow(() -> NexoMineral.construir(casillero, mockedInventario));
     }
 
     @Test
     public void test02NexoMineralSeConstruyeEnLaCasillaCorrectaPeroConRecursosInsuficientes() {
         // Arrange
-        Casillero mockedCasillero = mock(Casillero.class);
+        Casillero casillero = new Casillero(0,0,mock(Mapa.class));
+        casillero.setTipoCasillero(new NodoMineral());
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(false);
         // Act & Assert
-        assertThrows(RecursosInsuficientes.class, () -> NexoMineral.construir(mockedCasillero, mockedInventario));
+        assertThrows(RecursosInsuficientes.class, () -> NexoMineral.construir(casillero, mockedInventario));
     }
 
     @Test
     public void test03NexoMineralSeConstruyeEnLaCasillaIncorrectaPeroConRecursosSuficientes() {
         // Arrange
-        Casillero mockedCasillero = mock(Casillero.class);
+        Casillero casillero = new Casillero(0,0,mock(Mapa.class));
+        casillero.setTipoCasillero(new CasilleroVacio());
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         // Act & Assert
-        assertThrows(UbicacionInvalida.class, () -> NexoMineral.construir(mockedCasillero, mockedInventario));
+        assertThrows(UbicacionInvalida.class, () -> NexoMineral.construir(casillero, mockedInventario));
     }
 
     @Test
@@ -130,25 +133,26 @@ public class NexoMineralTest {
     @Test
     public void test09NexoMineralRecibeDanioYSeDestruye() {
         // Arrange
-        Casillero mockedCasillero = mock(Casillero.class);
+        Casillero casillero = new Casillero(0,0,mock(Mapa.class));
+        casillero.setTipoCasillero(new NodoMineral());
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
-        Unidad nexoMineral = new NexoMineral(mockedCasillero, mockedInventario);
+        EdificioEnConstruccion nexoMineral = NexoMineral.construir(casillero, mockedInventario);
         // Act
         try{nexoMineral.recibirDanio(500);}
         catch(Exception e){}
         // Assert
-        verify(mockedCasillero, times(1)).desocupar();
+        assertFalse(casillero.estaOcupado());
     }
 
     @Test
     public void test10NexoMineralExtraeMineral() {
         // Arrange
-        Casillero mockedCasillero = mock(Casillero.class);
-        when(mockedCasillero.extraerMineral(20)).thenReturn(20);
+        Casillero casillero = new Casillero(0,0,mock(Mapa.class));
+        casillero.setTipoCasillero(new NodoMineral());
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
-        NexoMineral nexoMineral = new NexoMineral(mockedCasillero, mockedInventario);
+        NexoMineral nexoMineral = new NexoMineral(casillero, mockedInventario);
         // Act
         int cantidadMineral = nexoMineral.extraerMineral(mockedInventario);
         // Assert

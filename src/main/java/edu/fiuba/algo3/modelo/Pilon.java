@@ -35,8 +35,5 @@ public class Pilon extends EdificioProtoss {
         }
     }
 
-    @Override
-    public void ocupar(Casillero casillero) throws UbicacionInvalida {
-        casillero.ocupar(this);
-    }
+
 }

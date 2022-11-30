@@ -30,9 +30,4 @@ public class Acceso extends EdificioProtoss {
         casillero.ocupar(acceso);
         return new EdificioEnConstruccion(acceso, casillero, inventario);
     }
-
-    @Override
-    public void ocupar(Casillero casillero) throws UbicacionInvalida {
-        casillero.ocupar(this);
-    }
 }

@@ -59,7 +59,7 @@ public class ExtractorTests {
 
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         //ACT
-        Extractor extractor = new Extractor(casillero, inventarioMock);
+        Extractor.construir(casillero, inventarioMock);
         //ASSERT
         assertTrue(casillero.estaOcupado());
     }

@@ -154,4 +154,19 @@ public class CriaderoTests {
         //ACT & ASSERT
         assertThrows(RecursosInsuficientes.class, () -> Criadero.construir(casilleroMock, inventarioMock));
     }
+
+    @Test
+    public void test08ConstruirUnCriaderoSobreCasillaVaciaError(){
+        //ARRANGE
+        String mensaje = "Ubicacion invalida";
+        Casillero casillero = new Casillero(0,0,mock(Mapa.class));
+        Inventario inventarioMock = mock(Inventario.class);
+        when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
+        //ACT
+        Exception exception = assertThrows(Exception.class, () -> {
+            Criadero.construir(casillero, inventarioMock);
+        });
+        //ASSERT
+        assertEquals(mensaje, exception.getMessage());
+    }
 }

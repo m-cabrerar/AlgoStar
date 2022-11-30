@@ -67,10 +67,5 @@ public class Criadero extends EdificioZerg{
     }
 */
 
-    @Override
-    public void ocupar(Casillero casillero) throws UbicacionInvalida {
-        casillero.ocupar(this);
-    }
-
 
 }

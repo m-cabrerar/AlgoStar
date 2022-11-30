@@ -28,8 +28,5 @@ public class Asimilador extends EdificioProtoss {
         return casillero.extraerGas(20);
     }
 
-    @Override
-    public void ocupar(Casillero casillero) throws UbicacionInvalida {
-        casillero.ocupar(this);
-    }
+
 }

@@ -119,7 +119,7 @@ public class AsimiladorTest {
         casillero.setTipoCasillero(new NodoGas());
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
-        Unidad asimilador = new Asimilador(casillero, mockedInventario);
+        Unidad asimilador =  Asimilador.construir(casillero, mockedInventario);
         // Act
         try{asimilador.recibirDanio(500);}
         catch(Exception e){}
@@ -139,7 +139,7 @@ public class AsimiladorTest {
         casillero.setTipoCasillero(new NodoGas());
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
-        Unidad asimilador = new Asimilador(casillero, mockedInventario);
+        Unidad asimilador = Asimilador.construir(casillero, mockedInventario);
         // Act
         try{asimilador.recibirDanio(1000);}
         catch(Exception e){}
