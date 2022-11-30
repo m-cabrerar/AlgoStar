@@ -8,4 +8,5 @@ public interface Unidad {
     void recibirDanio(int danio) throws EstaDestruido;
     boolean estaPorAca(List<Casillero> casilleros);
 
+    void ocupar(Casillero casillero) throws UbicacionInvalida;
 }

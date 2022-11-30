@@ -15,7 +15,7 @@ public class ExtractorTests {
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.esDelTipo(any())).thenReturn(true);
+
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         try {
             Unidad extractor = Extractor.construir(casilleroMock, inventarioMock);
@@ -35,7 +35,7 @@ public class ExtractorTests {
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.esDelTipo(any())).thenReturn(true);
+
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         try{
             Unidad extractor = Extractor.construir(casilleroMock, inventarioMock);
@@ -53,26 +53,27 @@ public class ExtractorTests {
     @Test
     public void test03ConstruyoUnExtractorSobreElGas(){
         //ARRANGE
-        Casillero casilleroMock = mock(Casillero.class);
+        Casillero casillero = new Casillero(0,0,mock(Mapa.class));
+        casillero.setTipoCasillero(new NodoGas());
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.esDelTipo(any(NodoGas.class))).thenReturn(true);
+
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         //ACT
-        new Extractor(casilleroMock, inventarioMock);
+        Extractor extractor = new Extractor(casillero, inventarioMock);
         //ASSERT
-        verify(casilleroMock, times(1)).ocupar();
+        assertTrue(casillero.estaOcupado());
     }
     @Test
     public void test04ConstruirUnExtractorSobreOtroCasilleroLanzaError(){
         //ARRANGE
         String mensaje = "Ubicacion invalida";
-        Casillero casilleroMock = mock(Casillero.class);
+        Casillero casillero = new Casillero(0,0,mock(Mapa.class));
+        casillero.setTipoCasillero(new Moho());
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.esDelTipo(any())).thenReturn(false);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            Extractor.construir(casilleroMock, inventarioMock);
+            Extractor.construir(casillero, inventarioMock);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
@@ -83,7 +84,6 @@ public class ExtractorTests {
         String mensaje = "El extractor no tiene zanganos trabajando";
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.esDelTipo(any(NodoGas.class))).thenReturn(true);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         try {
             Extractor extractor = new Extractor(casilleroMock, inventarioMock);
@@ -103,7 +103,6 @@ public class ExtractorTests {
         int cantidadGasEsperado = 10;
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.esDelTipo(any(NodoGas.class))).thenReturn(true);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         try{
             Extractor extractor = new Extractor(casilleroMock, inventarioMock);
@@ -122,7 +121,6 @@ public class ExtractorTests {
         int cantidadGasEsperado = 20;
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.esDelTipo(any(NodoGas.class))).thenReturn(true);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         try {
             Extractor extractor = new Extractor(casilleroMock, inventarioMock);
@@ -142,7 +140,6 @@ public class ExtractorTests {
         int cantidadGasEsperado = 30;
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.esDelTipo(any(NodoGas.class))).thenReturn(true);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         try {
             Extractor extractor = new Extractor(casilleroMock, inventarioMock);
@@ -163,7 +160,6 @@ public class ExtractorTests {
         String mensaje = "El extractor ya tiene 3 zanganos trabajando";
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.esDelTipo(any(NodoGas.class))).thenReturn(true);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         try {
             Extractor extractor = new Extractor(casilleroMock, inventarioMock);
@@ -186,7 +182,7 @@ public class ExtractorTests {
         String mensaje = "No tiene recursos";
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.esDelTipo(any())).thenReturn(true);
+
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(false);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {

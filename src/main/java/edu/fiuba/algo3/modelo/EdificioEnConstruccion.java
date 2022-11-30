@@ -14,7 +14,6 @@ public class EdificioEnConstruccion implements Unidad {
         this.vaASer = vaASer;
         this.casillero = casillero;
         this.turnosRestantes = vaASer.turnosParaConstruir();
-        casillero.ocupar();
         this.destruido = false;
     }
 
@@ -45,4 +44,8 @@ public class EdificioEnConstruccion implements Unidad {
         return casilleros.contains(casillero);
     }
 
+    @Override
+    public void ocupar(Casillero casillero) throws UbicacionInvalida {
+        casillero.ocupar(this.vaASer);
+    }
 }

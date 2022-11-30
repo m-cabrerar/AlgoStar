@@ -19,18 +19,7 @@ public class Mapa {
         this.tableroActual = tablero;
         this.tiempoVida = 0;
     }
-/*
-    private List<List<Casillero>> crearTablero(int alto, int ancho){
-            List<List<Casillero>> tablero = new ArrayList<>();
-            for (int i = 0; i < ancho; i++)  {
-                tablero.add(new ArrayList<>());
-                for (int j = 0; j < alto; j++) {
-                    tablero.get(i).add(new Casillero(i,j));
-                }
-            }
-        return tablero;
-        }
-*/
+
     public void cambiarTipoCasilla(int x, int y, TipoCasillero tipoCasillero){
         obtenerCasillero(x,y).setTipoCasillero(tipoCasillero);
     }

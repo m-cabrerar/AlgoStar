@@ -13,7 +13,6 @@ public class NexoMineralTest {
     public void test01NexoMineralSeConstruyeEnLaCasillaCorrectaYConRecursosSuficientes() {
         // Arrange
         Casillero mockedCasillero = mock(Casillero.class);
-        when(mockedCasillero.esDelTipo(any())).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         // Act & Assert
@@ -24,7 +23,6 @@ public class NexoMineralTest {
     public void test02NexoMineralSeConstruyeEnLaCasillaCorrectaPeroConRecursosInsuficientes() {
         // Arrange
         Casillero mockedCasillero = mock(Casillero.class);
-        when(mockedCasillero.esDelTipo(any())).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(false);
         // Act & Assert
@@ -35,7 +33,6 @@ public class NexoMineralTest {
     public void test03NexoMineralSeConstruyeEnLaCasillaIncorrectaPeroConRecursosSuficientes() {
         // Arrange
         Casillero mockedCasillero = mock(Casillero.class);
-        when(mockedCasillero.esDelTipo(any())).thenReturn(false);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         // Act & Assert
@@ -46,7 +43,6 @@ public class NexoMineralTest {
     public void test04ConstruyoUnNexoMineralQueEstaraListoEn4Turnos() {
         // Arrange
         Casillero mockedCasillero = mock(Casillero.class);
-        when(mockedCasillero.esDelTipo(any())).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         Unidad nexoMineral = NexoMineral.construir(mockedCasillero, mockedInventario);
@@ -64,7 +60,6 @@ public class NexoMineralTest {
     public void test05ConstruyoUnNexoMineralYNoEstaListo() {
         // Arrange
         Casillero mockedCasillero = mock(Casillero.class);
-        when(mockedCasillero.esDelTipo(any())).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         Unidad nexoMineral = NexoMineral.construir(mockedCasillero, mockedInventario);
@@ -79,7 +74,6 @@ public class NexoMineralTest {
     public void test06ConstruyoUnNexoMineralYLuegoDe3turnosNoEstaListo() {
         // Arrange
         Casillero mockedCasillero = mock(Casillero.class);
-        when(mockedCasillero.esDelTipo(any())).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         Unidad nexoMineral = NexoMineral.construir(mockedCasillero, mockedInventario);
@@ -97,7 +91,6 @@ public class NexoMineralTest {
     public void test07NexoMineralRecibeDanioSinPerderTodoElEscudoYSeRegenera() {
         // Arrange
         Casillero mockedCasillero = mock(Casillero.class);
-        when(mockedCasillero.esDelTipo(any())).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         Unidad nexoMineral = new NexoMineral(mockedCasillero, mockedInventario);
@@ -119,7 +112,6 @@ public class NexoMineralTest {
     public void test08NexoMineralRecibeDanioPerdiendoTodoElEscudoYSeRegenera() {
         // Arrange
         Casillero mockedCasillero = mock(Casillero.class);
-        when(mockedCasillero.esDelTipo(any())).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         Unidad nexoMineral = new NexoMineral(mockedCasillero, mockedInventario);
@@ -139,7 +131,6 @@ public class NexoMineralTest {
     public void test09NexoMineralRecibeDanioYSeDestruye() {
         // Arrange
         Casillero mockedCasillero = mock(Casillero.class);
-        when(mockedCasillero.esDelTipo(any())).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         Unidad nexoMineral = new NexoMineral(mockedCasillero, mockedInventario);
@@ -154,13 +145,12 @@ public class NexoMineralTest {
     public void test10NexoMineralExtraeMineral() {
         // Arrange
         Casillero mockedCasillero = mock(Casillero.class);
-        when(mockedCasillero.esDelTipo(any())).thenReturn(true);
         when(mockedCasillero.extraerMineral(20)).thenReturn(20);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         NexoMineral nexoMineral = new NexoMineral(mockedCasillero, mockedInventario);
         // Act
-        int cantidadMineral = nexoMineral.extraerMineral();
+        int cantidadMineral = nexoMineral.extraerMineral(mockedInventario);
         // Assert
         assertEquals(20, cantidadMineral);
     }

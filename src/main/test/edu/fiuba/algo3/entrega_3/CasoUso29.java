@@ -13,9 +13,8 @@ public class CasoUso29 {
     public void Agrego41PilonesPeroLosSuministrosDisponiblesSon200(){
 
         Casillero mockedCasillero = mock(Casillero.class);
-        when(mockedCasillero.esDelTipo(any())).thenReturn(true);
         Inventario inventario = new Inventario();
-        inventario.agregarGas(4100);
+        inventario.agregarMineral(4200);
         // Act
         for (int i = 0; i < 41; i++) {
             Pilon.construir(mockedCasillero, inventario);

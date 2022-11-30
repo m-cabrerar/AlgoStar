@@ -10,11 +10,11 @@ public abstract class UnidadMovilZerg extends UnidadMovil{
     }
     @Override
     public void pasarTurno() {
-        if (vida < (vidaMaxima-10)){
-            vida+=10;
+        if (this.vida < (vidaMaxima-10)){
+            this.vida+=10;
         }
-        else if( (vida < vidaMaxima) && (vida > (vidaMaxima-10)) ){
-            vida = vidaMaxima;
+        else if(vida < vidaMaxima){
+            this.vida = vidaMaxima;
         }
     }
 

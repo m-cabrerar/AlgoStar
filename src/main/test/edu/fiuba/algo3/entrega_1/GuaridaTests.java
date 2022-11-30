@@ -17,7 +17,7 @@ public class GuaridaTests {
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.esDelTipo(any())).thenReturn(true);
+
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         when(inventarioMock.tieneReservaDeReproduccion()).thenReturn(true);
         try {
@@ -38,7 +38,7 @@ public class GuaridaTests {
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.esDelTipo(any())).thenReturn(true);
+
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         when(inventarioMock.tieneReservaDeReproduccion()).thenReturn(true);
         try {
@@ -60,7 +60,7 @@ public class GuaridaTests {
         String mensaje = "Aun no se puede construir este edificio";
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.esDelTipo(any())).thenReturn(true);
+
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         when(inventarioMock.tieneReservaDeReproduccion()).thenReturn(false);
         //ACT
@@ -78,7 +78,7 @@ public class GuaridaTests {
         Inventario inventarioMock = mock(Inventario.class);
         //ACT
         try {
-            when(casilleroMock.esDelTipo(any())).thenReturn(true);
+
             when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
             when(inventarioMock.tieneReservaDeReproduccion()).thenReturn(true);
             //ASSERT
@@ -93,7 +93,7 @@ public class GuaridaTests {
         String mensaje = "No tiene recursos";
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.esDelTipo(any())).thenReturn(true);
+
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(false);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {

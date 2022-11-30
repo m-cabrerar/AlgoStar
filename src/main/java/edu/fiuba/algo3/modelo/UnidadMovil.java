@@ -40,6 +40,9 @@ public abstract class UnidadMovil implements Unidad, Construible {
     public boolean estaPorAca(List<Casillero> casilleros){
         return casilleros.contains(casilleroActual);
     }
-    
 
+    @Override
+    public void ocupar(Casillero casillero) throws UbicacionInvalida {
+        casillero.ocupar(this);
+    }
 }

@@ -20,13 +20,11 @@ public class ReservaDeReproduccion extends EdificioZerg {
     }
     public static EdificioEnConstruccion construir(Casillero casillero, Inventario inventario) throws UbicacionInvalida, RecursosInsuficientes {
         // hacer checkeos de casilla y materiales
-        if(!casillero.esDelTipo(new Moho())){
-            throw new UbicacionInvalida("Ubicacion invalida");
-        }
         if(!inventario.tieneRecursos(150,0)){
             throw new RecursosInsuficientes("No tiene recursos");
         }
-        EdificioConcreto reserva = new ReservaDeReproduccion(casillero, inventario);
+        ReservaDeReproduccion reserva = new ReservaDeReproduccion(casillero, inventario);
+        casillero.ocupar(reserva);
         return new EdificioEnConstruccion(reserva, casillero, inventario);
     }
     public UnidadMovil crearEvolucion(Inventario inventario) throws RecursosInsuficientes {
@@ -39,6 +37,10 @@ public class ReservaDeReproduccion extends EdificioZerg {
         }
         unidadEnConstruccion = crearEvolucion(inventario);
         turnosParaConstruir = unidadEnConstruccion.turnosParaConstruir();
+    }
+    @Override
+    public void ocupar(Casillero casillero) throws UbicacionInvalida {
+        casillero.ocupar(this);
     }
 }
 

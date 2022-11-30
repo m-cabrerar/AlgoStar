@@ -11,7 +11,6 @@ public class PilonTest {
     public void test01PilonSeConstruyeEnLaCasillaCorrectaYConRecursosSuficientes() {
         // Arrange
         Casillero mockedCasillero = mock(Casillero.class);
-        when(mockedCasillero.esDelTipo(any())).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         // Act & Assert
@@ -22,7 +21,6 @@ public class PilonTest {
     public void test02PilonSeConstruyeEnLaCasillaCorrectaPeroConRecursosInsuficientes() {
         // Arrange
         Casillero mockedCasillero = mock(Casillero.class);
-        when(mockedCasillero.esDelTipo(any())).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(false);
         // Act & Assert
@@ -33,18 +31,16 @@ public class PilonTest {
     public void test03PilonSeConstruyeEnLaCasillaIncorrectaPeroConRecursosSuficientes() {
         // Arrange
         Casillero mockedCasillero = mock(Casillero.class);
-        when(mockedCasillero.esDelTipo(any())).thenReturn(false);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         // Act & Assert
-        assertThrows(UbicacionInvalida.class, () -> Pilon.construir(mockedCasillero, mockedInventario));
+        assertThrows(CasilleroNoCompatible.class, () -> Pilon.construir(mockedCasillero, mockedInventario));
     }
 
     @Test
     public void test04ConstruyoUnPilonQueEstaraListoEn5Turnos() {
         // Arrange
         Casillero mockedCasillero = mock(Casillero.class);
-        when(mockedCasillero.esDelTipo(any())).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         Unidad pilon = Pilon.construir(mockedCasillero, mockedInventario);
@@ -62,7 +58,6 @@ public class PilonTest {
     public void test05ConstruyoUnPilonYNoEstaListo() {
         // Arrange
         Casillero mockedCasillero = mock(Casillero.class);
-        when(mockedCasillero.esDelTipo(any())).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         Unidad pilon = Pilon.construir(mockedCasillero, mockedInventario);
@@ -77,7 +72,6 @@ public class PilonTest {
     public void test06ConstruyoUnPilonYLuegoDe4turnosNoEstaListo() {
         // Arrange
         Casillero mockedCasillero = mock(Casillero.class);
-        when(mockedCasillero.esDelTipo(any())).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         Unidad pilon = Pilon.construir(mockedCasillero, mockedInventario);
@@ -95,7 +89,6 @@ public class PilonTest {
     public void test07PilonRecibeDanioSinPerderTodoElEscudoYSeRegenera() {
         // Arrange
         Casillero mockedCasillero = mock(Casillero.class);
-        when(mockedCasillero.esDelTipo(any())).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         Unidad pilon = new Pilon(mockedCasillero, mockedInventario);
@@ -117,7 +110,6 @@ public class PilonTest {
     public void test08PilonRecibeDanioPerdiendoTodoElEscudoYSeRegenera() {
         // Arrange
         Casillero mockedCasillero = mock(Casillero.class);
-        when(mockedCasillero.esDelTipo(any())).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         Unidad pilon = new Pilon(mockedCasillero, mockedInventario);
@@ -137,7 +129,6 @@ public class PilonTest {
     public void test09PilonRecibeDanioYSeDestruye() {
         // Arrange
         Casillero mockedCasillero = mock(Casillero.class);
-        when(mockedCasillero.esDelTipo(any())).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         Unidad pilon = new Pilon(mockedCasillero, mockedInventario);

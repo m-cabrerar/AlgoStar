@@ -19,15 +19,20 @@ public class Acceso extends EdificioProtoss {
         return 8;
     }
 
-    public static EdificioEnConstruccion construir(Casillero casillero, Inventario inventario) {
-        EdificioConcreto acceso = new Acceso(casillero, inventario);
+    public static EdificioEnConstruccion construir(Casillero casillero, Inventario inventario){
+        Acceso acceso = new Acceso(casillero, inventario);
         if(!casillero.tieneEnergia()){
             throw new UbicacionInvalida("Ubicacion invalida");
         }
         if(!inventario.tieneRecursos(0, 150)){
             throw new RecursosInsuficientes("No tiene recursos");
         }
+        casillero.ocupar(acceso);
         return new EdificioEnConstruccion(acceso, casillero, inventario);
     }
 
+    @Override
+    public void ocupar(Casillero casillero) throws UbicacionInvalida {
+        casillero.ocupar(this);
+    }
 }

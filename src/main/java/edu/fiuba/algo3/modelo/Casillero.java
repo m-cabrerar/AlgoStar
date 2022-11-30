@@ -23,17 +23,6 @@ public class Casillero{
     public void setTipoCasillero(TipoCasillero unTipoCasilleroNuevo){
         tipoCasillero = unTipoCasilleroNuevo;
     }
-
-    public boolean sonDelMismoTipoDeCasillero(Casillero unCasillero){
-        return (this.suTipoDeCasillero().equals(unCasillero.suTipoDeCasillero()));
-    }
-    public String suTipoDeCasillero(){
-        return tipoCasillero.nombreDelCasillero();
-    }
-
-    public boolean esDelTipo(TipoCasillero unTipoCasillero){
-        return this.suTipoDeCasillero().equals(unTipoCasillero.nombreDelCasillero());}
-
     public boolean tieneEnergia(){
         return this.energia > 0;
     }
@@ -46,7 +35,7 @@ public class Casillero{
     }
 
     public void pasarTurno(int turnoActual, Mapa mapa){
-        if(this.turno == turnoActual){ //ya la visite y/o la cambie
+        if(this.turno == turnoActual){ //ya la visite en este turno
             return;
         }
         this.turno = turnoActual;
@@ -64,25 +53,10 @@ public class Casillero{
         return this.estaOcupado;
     }
 
-    public void ocupar(UnidadMovil unidad) throws UbicacionInvalida, CasilleroNoCompatible {
-        if(this.estaOcupado()){
-            throw new UbicacionInvalida("Casillero Ocupado");
-        }
-        if(!this.tipoCasillero.cumpleCondicionesEspeciales(unidad)){
-            throw  new CasilleroNoCompatible("Casillero no compatible con la unidad");
-        }
-        this.estaOcupado = true;
-    }
-    public void ocupar() throws UbicacionInvalida {
-        if(this.estaOcupado()){
-            throw new UbicacionInvalida("Casillero Ocupado");
-        }
-        this.estaOcupado = true;
-    }
-
-    public void desocupar(){
+    public void desocupar() {
         this.estaOcupado = false;
     }
+
     public List<Casillero> visitarAdyacentes(int turnoActual, Mapa mapa){
         //Devuelve una lista con los adyacentes a la casilla que visita.
         List<Casillero> adyacentes = mapa.CasillerosAdyacentes(this.coordenadaX,this.coordenadaY);
@@ -98,7 +72,6 @@ public class Casillero{
     public int posicionY(){
         return this.coordenadaY;
     }
-
     public void energizarEnRango(int i) {
     }
 
@@ -112,6 +85,7 @@ public class Casillero{
         }
         return false;
     }
+
     public Casillero obtenerAdyacente(){
         List<Casillero> casilleros = mapa.CasillerosAdyacentes(coordenadaX, coordenadaY);
         for(Casillero casillero : casilleros){
@@ -121,7 +95,6 @@ public class Casillero{
         }
         return null;
     }
-
     public boolean tengoEnRangoAmoSupremo(Inventario inventario){
         List<AmoSupremo> amos = inventario.obtenerAmosSupremos();
         for (AmoSupremo amo : amos) {
@@ -130,5 +103,52 @@ public class Casillero{
             }
         }
         return false;
+    }
+
+
+    //METODOS PARA DOUBLE DISPATCH ---------------------------------------------------------------
+    public void ocupar(Unidad unidad){
+        if(this.estaOcupado()){
+            throw new UbicacionInvalida("Casillero Ocupado");
+        }
+        this.tipoCasillero.ocupar(unidad);
+        this.estaOcupado = true;
+    }
+    public void ocupar(UnidadMovil unidad){
+        if(this.estaOcupado()){
+            throw new UbicacionInvalida("Casillero Ocupado");
+        }
+        this.tipoCasillero.ocupar(unidad);
+        this.estaOcupado = true;
+    }
+    public void ocupar(Extractor extractor) {
+        if (this.estaOcupado()) {
+            throw new UbicacionInvalida("Casillero Ocupado");
+        }
+        this.tipoCasillero.ocupar(extractor);
+        this.estaOcupado = true;
+    }
+    public void ocupar(Asimilador asimilador){
+        if (this.estaOcupado()) {
+            throw new UbicacionInvalida("Casillero Ocupado");
+        }
+        this.tipoCasillero.ocupar(asimilador);
+        this.estaOcupado = true;
+    }
+
+    public void ocupar(NexoMineral nexo){
+        if (this.estaOcupado()) {
+            throw new UbicacionInvalida("Casillero Ocupado");
+        }
+        this.tipoCasillero.ocupar(nexo);
+        this.estaOcupado = true;
+    }
+
+    public void ocupar(Criadero criadero){
+        if (this.estaOcupado()) {
+            throw new UbicacionInvalida("Casillero Ocupado");
+        }
+        this.tipoCasillero.ocupar(criadero);
+        this.estaOcupado = true;
     }
 }

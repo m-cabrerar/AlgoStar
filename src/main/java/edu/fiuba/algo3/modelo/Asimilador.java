@@ -16,17 +16,20 @@ public class Asimilador extends EdificioProtoss {
     }
 
     public static EdificioEnConstruccion construir(Casillero casillero, Inventario inventario) {
-        EdificioConcreto asimilador = new Asimilador(casillero, inventario);
-        if(!casillero.esDelTipo(new NodoGas())){
-            throw new UbicacionInvalida("Ubicacion invalida");
-        }
+        Asimilador asimilador = new Asimilador(casillero, inventario);
         if(!inventario.tieneRecursos(0, 100)){
             throw new RecursosInsuficientes("No tiene recursos");
         }
+        casillero.ocupar(asimilador);
         return new EdificioEnConstruccion(asimilador, casillero, inventario);
     }
 
     public int extraerGas() { //TODO: hacer privado y que se llame desde pasarTurno
         return casillero.extraerGas(20);
+    }
+
+    @Override
+    public void ocupar(Casillero casillero) throws UbicacionInvalida {
+        casillero.ocupar(this);
     }
 }

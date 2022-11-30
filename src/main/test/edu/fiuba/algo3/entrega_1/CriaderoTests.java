@@ -95,7 +95,7 @@ public class CriaderoTests {
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.esDelTipo(any())).thenReturn(true);
+
         when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         try {
             Unidad criadero = Criadero.construir(casilleroMock, inventarioMock);
@@ -115,7 +115,7 @@ public class CriaderoTests {
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.esDelTipo(any())).thenReturn(true);
+
         when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         try {
             Unidad criadero = Criadero.construir(casilleroMock, inventarioMock);
@@ -134,13 +134,13 @@ public class CriaderoTests {
     public void test06ConstruirUnCriaderoSobreElGasLanzaError(){
         //ARRANGE
         String mensaje = "Ubicacion invalida";
-        Casillero casilleroMock = mock(Casillero.class);
+        Casillero casillero = new Casillero(0,0,mock(Mapa.class));
+        casillero.setTipoCasillero(new NodoGas());
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.esDelTipo(any())).thenReturn(false);
         when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            Criadero.construir(casilleroMock, inventarioMock);
+            Criadero.construir(casillero, inventarioMock);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
@@ -150,7 +150,6 @@ public class CriaderoTests {
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.esDelTipo(any())).thenReturn(true);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(false);
         //ACT & ASSERT
         assertThrows(RecursosInsuficientes.class, () -> Criadero.construir(casilleroMock, inventarioMock));

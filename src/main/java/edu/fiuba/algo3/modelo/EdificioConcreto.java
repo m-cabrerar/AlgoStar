@@ -10,8 +10,8 @@ abstract class EdificioConcreto implements Unidad, Construible{
     protected int turnosParaConstruir = 0;
     protected Inventario inventario;
     public EdificioConcreto(Casillero unCasillero, Inventario unInventario, int vidaInicial) throws UbicacionInvalida {
+        this.ocupar(unCasillero);
         this.casillero = unCasillero;
-        unCasillero.ocupar();
         unInventario.agregar(this);
         this.vida = vidaInicial;
         this.inventario = unInventario;
@@ -63,5 +63,9 @@ abstract class EdificioConcreto implements Unidad, Construible{
 
     public UnidadMovil crearEvolucion(Inventario inventario) {
         return null;
+    }
+    @Override
+    public void ocupar(Casillero casillero) throws UbicacionInvalida {
+        casillero.ocupar(this);
     }
 }

@@ -2,14 +2,15 @@ package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.exceptions.ParametrosInvalidos;
 import edu.fiuba.algo3.exceptions.PoblacionMaximaAlcanzada;
+import edu.fiuba.algo3.exceptions.RecursosInsuficientes;
+import edu.fiuba.algo3.exceptions.UbicacionInvalida;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Inventario {
-
-    int cantidadGas;
-    int cantidadMineral;
+    private int cantidadGas;
+    private int cantidadMineral;
     List<Unidad> unidades;
     //List<Unidad> edificios;
 
@@ -55,7 +56,18 @@ public class Inventario {
         }
     }
 
+    public boolean tieneRecursos(int cantidadGas, int cantMineral) {
+        return ((this.cantidadMineral >= cantMineral) && (this.cantidadGas >= cantidadGas));
+    }
+    public void pagarMateriales(int cantidadGas, int cantidadMineral){
+        if(!this.tieneRecursos(cantidadMineral,cantidadGas)){
+            throw new RecursosInsuficientes("Recursos insuficientes");
+        }
+        this.cantidadMineral -= cantidadMineral;
+        this.cantidadGas -= cantidadGas;
+    }
     //TODO: evitar instanceof
+
     public boolean tieneGuarida() {
         for (Unidad unidad : this.unidades) {
             if (unidad instanceof Guarida) {
@@ -72,10 +84,6 @@ public class Inventario {
             }
         }
         return false;
-    }
-
-    public boolean tieneRecursos(int cantMineral, int cantGas) {
-        return (this.cantidadMineral >= cantMineral) && (this.cantidadGas >= cantGas);
     }
 
     public boolean tieneAcceso() {
