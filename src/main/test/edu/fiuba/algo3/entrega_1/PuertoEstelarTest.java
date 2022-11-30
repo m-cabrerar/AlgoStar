@@ -10,49 +10,48 @@ public class PuertoEstelarTest {
     @Test
     public void test01PuertoEstelarSeConstruyeEnLaCasillaCorrectaConRecursosSuficientesYCorrelativas() {
         // Arrange
-        Casillero mockedCasillero = mock(Casillero.class);
-        when(mockedCasillero.tieneEnergia()).thenReturn(true);
+        Casillero casillero = new Casillero(0,0,mock(Mapa.class));
+        casillero.energizar();
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         when(mockedInventario.tieneAcceso()).thenReturn(true);
         // Act & Assert
-        assertDoesNotThrow(() -> PuertoEstelar.construir(mockedCasillero, mockedInventario));
+        assertDoesNotThrow(() -> PuertoEstelar.construir(casillero, mockedInventario));
     }
 
     @Test
     public void test02PuertoEstelarSeConstruyeEnLaCasillaCorrectaYConCorrelativasPeroConRecursosInsuficientes() {
         // Arrange
-        Casillero mockedCasillero = mock(Casillero.class);
-        when(mockedCasillero.tieneEnergia()).thenReturn(true);
+        Casillero casillero = new Casillero(0,0,mock(Mapa.class));
+        casillero.energizar();
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(false);
         when(mockedInventario.tieneAcceso()).thenReturn(true);
         // Act & Assert
-        assertThrows(RecursosInsuficientes.class, () -> PuertoEstelar.construir(mockedCasillero, mockedInventario));
+        assertThrows(RecursosInsuficientes.class, () -> PuertoEstelar.construir(casillero, mockedInventario));
     }
 
     @Test
     public void test03PuertoEstelarSeConstruyeEnLaCasillaIncorrectaPeroConRecursosSuficientesYCorrelativas() {
         // Arrange
-        Casillero mockedCasillero = mock(Casillero.class);
-        when(mockedCasillero.tieneEnergia()).thenReturn(false);
+        Casillero casillero = new Casillero(0,0,mock(Mapa.class));
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         when(mockedInventario.tieneAcceso()).thenReturn(true);
         // Act & Assert
-        assertThrows(UbicacionInvalida.class, () -> PuertoEstelar.construir(mockedCasillero, mockedInventario));
+        assertThrows(UbicacionInvalida.class, () -> PuertoEstelar.construir(casillero, mockedInventario));
     }
 
     @Test
     public void test04PuertoEstelarSeConstruyeEnLaCasillaCorrectaYRecursosSuficientesPeroSinCorrelativas() {
         // Arrange
-        Casillero mockedCasillero = mock(Casillero.class);
-        when(mockedCasillero.tieneEnergia()).thenReturn(true);
+        Casillero casillero = new Casillero(0,0,mock(Mapa.class));
+        casillero.energizar();
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         when(mockedInventario.tieneAcceso()).thenReturn(false);
         // Act & Assert
-        assertThrows(CorrelativasInsuficientes.class, () -> PuertoEstelar.construir(mockedCasillero, mockedInventario));
+        assertThrows(CorrelativasInsuficientes.class, () -> PuertoEstelar.construir(casillero, mockedInventario));
     }
 
     @Test

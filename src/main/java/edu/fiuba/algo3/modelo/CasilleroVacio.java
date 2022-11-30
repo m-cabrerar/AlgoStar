@@ -1,8 +1,10 @@
 package edu.fiuba.algo3.modelo;
+
+
 public class CasilleroVacio extends TipoCasillero{
     @Override
-    public String nombreDelCasillero() {
-        return "CasilleroVacio";
+    public boolean ocupar (Unidad unidad){
+        return true;
     }
 }
 

@@ -33,7 +33,7 @@ public class CasilleroEspacialTest {
         when(unidadVoladoraMock.esVoladora()).thenReturn(false);
 
         //Act and assert
-        assertThrows(CasilleroNoCompatible.class, () -> mapa.obtenerCasillero(0,0).ocupar(unidadVoladoraMock));
+        assertThrows(UbicacionInvalida.class, () -> mapa.obtenerCasillero(0,0).ocupar(unidadVoladoraMock));
     }
 
 

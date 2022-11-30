@@ -40,6 +40,6 @@ public abstract class UnidadMovil implements Unidad, Construible {
     public boolean estaPorAca(List<Casillero> casilleros){
         return casilleros.contains(casilleroActual);
     }
-    
+
 
 }

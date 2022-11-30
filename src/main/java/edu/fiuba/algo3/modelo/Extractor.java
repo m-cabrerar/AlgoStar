@@ -16,13 +16,11 @@ public class Extractor extends EdificioZerg {
     }
     public static EdificioEnConstruccion construir(Casillero casillero, Inventario inventario) throws UbicacionInvalida, RecursosInsuficientes {
         // hacer checkeos de casilla y materiales
-        if(!casillero.esDelTipo(new NodoGas())){
-            throw new UbicacionInvalida("Ubicacion invalida");
-        }
         if(!inventario.tieneRecursos(100, 0)){
             throw new RecursosInsuficientes("No tiene recursos");
         }
-        EdificioConcreto extractor = new Extractor(casillero, inventario);
+        Extractor extractor = new Extractor(casillero, inventario);
+        casillero.ocupar(extractor);
         return new EdificioEnConstruccion(extractor, casillero, inventario);
     }
     public void extraerGas(Inventario inventario) throws ExtractorError {
@@ -39,4 +37,6 @@ public class Extractor extends EdificioZerg {
             throw new ExtractorError("El extractor ya tiene 3 zanganos trabajando");
         }
     }
+
+
 }

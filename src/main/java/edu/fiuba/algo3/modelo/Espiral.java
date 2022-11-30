@@ -21,16 +21,14 @@ public class Espiral extends EdificioZerg {
     }
     public static EdificioEnConstruccion construir(Casillero casillero, Inventario inventario) throws UbicacionInvalida, RecursosInsuficientes {
         // hacer checkeos de casilla y materiales
-        if(!casillero.esDelTipo(new Moho())){
-            throw new UbicacionInvalida("Ubicacion invalida");
-        }
         if(!inventario.tieneRecursos(150,100)){
             throw new RecursosInsuficientes("No tiene recursos");
         }
         if(!inventario.tieneGuarida()){
             throw new UbicacionInvalida("Aun no se puede construir este edificio");
         }
-        EdificioConcreto espiral = new Espiral(casillero, inventario);
+        Espiral espiral = new Espiral(casillero, inventario);
+        casillero.ocupar(espiral);
         return new EdificioEnConstruccion(espiral, casillero, inventario);
     }
     public UnidadMovil crearEvolucion(Inventario inventario) throws RecursosInsuficientes {
@@ -44,5 +42,6 @@ public class Espiral extends EdificioZerg {
         unidadEnConstruccion = crearEvolucion(inventario);
         turnosParaConstruir = unidadEnConstruccion.turnosParaConstruir();
     }
+
 
 }

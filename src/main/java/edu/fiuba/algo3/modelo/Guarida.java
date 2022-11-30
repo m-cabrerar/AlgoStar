@@ -20,16 +20,14 @@ public class Guarida extends EdificioZerg {
     }
     public static EdificioEnConstruccion construir(Casillero casillero, Inventario inventario) throws UbicacionInvalida, RecursosInsuficientes {
         // hacer checkeos de casilla y materiales
-        if(!casillero.esDelTipo(new Moho())){
-            throw new UbicacionInvalida("Ubicacion invalida");
-        }
         if(!inventario.tieneRecursos(200, 100)){
             throw new RecursosInsuficientes("No tiene recursos");
         }
         if(!inventario.tieneReservaDeReproduccion()){
             throw new UbicacionInvalida("Aun no se puede construir este edificio");
         }
-        EdificioConcreto guarida = new Guarida(casillero, inventario);
+        Guarida guarida = new Guarida(casillero, inventario);
+        casillero.ocupar(guarida);
         return new EdificioEnConstruccion(guarida, casillero, inventario);
     }
     public UnidadMovil crearEvolucion(Inventario inventario) throws RecursosInsuficientes {
@@ -42,4 +40,5 @@ public class Guarida extends EdificioZerg {
         unidadEnConstruccion = crearEvolucion(inventario);
         turnosParaConstruir = unidadEnConstruccion.turnosParaConstruir();
     }
+
 }

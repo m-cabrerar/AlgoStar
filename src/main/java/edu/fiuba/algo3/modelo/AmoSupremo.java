@@ -44,4 +44,5 @@ public class AmoSupremo extends UnidadMovilZerg {
             this.inventario.perderSuministro(SUMINISTRA);
         }
     }
+
 }

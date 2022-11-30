@@ -35,7 +35,6 @@ public class EspiralTests {
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.esDelTipo(any())).thenReturn(true);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         when(inventarioMock.tieneGuarida()).thenReturn(true);
         try{
@@ -57,7 +56,7 @@ public class EspiralTests {
         String mensaje = "Aun no se puede construir este edificio";
         Inventario inventarioMock = mock(Inventario.class);
         Casillero casilleroMock = mock(Casillero.class);
-        when(casilleroMock.esDelTipo(any())).thenReturn(true);
+
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         when(inventarioMock.tieneGuarida()).thenReturn(false);
         //ACT
@@ -74,7 +73,6 @@ public class EspiralTests {
         Casillero casilleroMock = mock(Casillero.class);
         try{
             //ACT
-            when(casilleroMock.esDelTipo(any())).thenReturn(true);
             when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
             when(inventarioMock.tieneGuarida()).thenReturn(true);
             //ASSERT
@@ -89,7 +87,7 @@ public class EspiralTests {
         String mensaje = "No tiene recursos";
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.esDelTipo(any())).thenReturn(true);
+
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(false);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {

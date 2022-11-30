@@ -14,7 +14,6 @@ public class EdificioEnConstruccion implements Unidad {
         this.vaASer = vaASer;
         this.casillero = casillero;
         this.turnosRestantes = vaASer.turnosParaConstruir();
-        casillero.ocupar();
         this.destruido = false;
     }
 

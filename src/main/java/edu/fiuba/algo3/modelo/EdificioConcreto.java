@@ -11,7 +11,6 @@ abstract class EdificioConcreto implements Unidad, Construible{
     protected Inventario inventario;
     public EdificioConcreto(Casillero unCasillero, Inventario unInventario, int vidaInicial) throws UbicacionInvalida {
         this.casillero = unCasillero;
-        unCasillero.ocupar();
         unInventario.agregar(this);
         this.vida = vidaInicial;
         this.inventario = unInventario;
@@ -64,4 +63,5 @@ abstract class EdificioConcreto implements Unidad, Construible{
     public UnidadMovil crearEvolucion(Inventario inventario) {
         return null;
     }
+
 }

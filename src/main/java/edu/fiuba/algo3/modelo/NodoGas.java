@@ -1,15 +1,13 @@
 package edu.fiuba.algo3.modelo;
 
 
+import edu.fiuba.algo3.exceptions.UbicacionInvalida;
+
 public class NodoGas extends TipoCasillero{
     private int unidadesRestantes;
 
     public NodoGas(){
         unidadesRestantes = 5000;
-    }
-    @Override
-    public String nombreDelCasillero() {
-        return "Nodo";
     }
     @Override
     public int extraerGas(int cantidad) {
@@ -24,5 +22,13 @@ public class NodoGas extends TipoCasillero{
     }
 
     @Override
-    public boolean cumpleCondicionesEspeciales(UnidadMovil unidad){return false;}
+    public boolean ocupar(Extractor extractor){
+        return true;
+    }
+    @Override
+    public boolean ocupar(Asimilador asimilador){
+        return true;
+    }
+
+
 }

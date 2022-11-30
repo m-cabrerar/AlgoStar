@@ -21,7 +21,7 @@ public class PuertoEstelar extends EdificioProtoss {
     }
 
     public static EdificioEnConstruccion construir(Casillero casillero, Inventario inventario) {
-        EdificioConcreto puertoEstelar = new PuertoEstelar(casillero, inventario);
+        PuertoEstelar puertoEstelar = new PuertoEstelar(casillero, inventario);
         if(!casillero.tieneEnergia()){
             throw new UbicacionInvalida("Ubicacion invalida");
         }
@@ -31,6 +31,9 @@ public class PuertoEstelar extends EdificioProtoss {
         if(!inventario.tieneAcceso()){
             throw new CorrelativasInsuficientes("Aún no se puede contruir este edificio");
         }
+        casillero.ocupar(puertoEstelar);
         return new EdificioEnConstruccion(puertoEstelar, casillero, inventario);
     }
+
+
 }

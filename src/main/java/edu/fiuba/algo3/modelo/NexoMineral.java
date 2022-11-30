@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.exceptions.*;
 
 public class NexoMineral extends EdificioProtoss {
+
     public NexoMineral(Casillero casillero, Inventario inventario) {
         super(casillero, inventario, 250, 250);
     }
@@ -16,17 +17,19 @@ public class NexoMineral extends EdificioProtoss {
     }
 
     public static EdificioEnConstruccion construir(Casillero casillero, Inventario inventario) {
-        EdificioConcreto nexoMineral = new NexoMineral(casillero, inventario);
-        if(!casillero.esDelTipo(new NodoMineral())){
-            throw new UbicacionInvalida("Ubicacion invalida");
-        }
+        NexoMineral nexoMineral = new NexoMineral(casillero, inventario);
         if(!inventario.tieneRecursos(0, 50)){
             throw new RecursosInsuficientes("No tiene recursos");
         }
+        casillero.ocupar(nexoMineral);
         return new EdificioEnConstruccion(nexoMineral, casillero, inventario);
     }
 
-    public int extraerMineral() { // TODO: hacer privado y que se llame desde pasarTurno
-        return casillero.extraerMineral(20);
+    public int extraerMineral(Inventario inventario) { // TODO: hacer privado y que se llame desde pasarTurno
+        int cantidad = casillero.extraerMineral(20);
+        inventario.agregarMineral(cantidad);
+        return cantidad;
     }
+
+
 }

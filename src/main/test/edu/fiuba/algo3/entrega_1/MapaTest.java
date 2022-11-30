@@ -57,20 +57,20 @@ class MapaTest {
     public void Test03CambioElTipoDeCasilleroANodoMineral() {
 
         //Arrange
-        Casillero casilleroNodoMock = mock(Casillero.class);
-        when(casilleroNodoMock.suTipoDeCasillero()).thenReturn("NodoMineral");
         Mapa mapa = new Mapa(5, 5);
-
+        Inventario inventarioMock = mock(Inventario.class);
+        when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         //Act
         mapa.cambiarTipoCasilla(0, 0, new NodoMineral());
         Casillero casilleroObtenido = mapa.obtenerCasillero(0, 0);
 
         //Assert
-        assertTrue(casilleroObtenido.sonDelMismoTipoDeCasillero(casilleroNodoMock));
+        assertDoesNotThrow(()-> NexoMineral.construir(casilleroObtenido,inventarioMock));
     }
-
     @Test
     public void Test04CreoUnMapaYReciboLosAdyacentesCorrectosAUnaPosicion() {
+
+
         //Arrange
         Mapa mapa = new Mapa(10, 10);
         int posx = 0;
@@ -84,6 +84,7 @@ class MapaTest {
         assertTrue(adyacentes.contains(mapa.obtenerCasillero(posx, posy + 1)));
         assertTrue(adyacentes.contains(mapa.obtenerCasillero(posx + 1, posy)));
     }
+
 
     @Test
     public void Test05CreoUnMapaYReciboLosAdyacentesAUnaPosicionConRango2() {
@@ -183,37 +184,16 @@ class MapaTest {
         //Arrange
         Mapa mapa = new Mapa(10, 10);
         mapa.cambiarTipoCasilla(0, 0, new Moho());
-        Casillero casilleroMohoMock = mock(Casillero.class);
-        when(casilleroMohoMock.suTipoDeCasillero()).thenReturn("Moho");
-
+        Inventario inventarioMock = mock(Inventario.class);
+        when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         //act
         mapa.pasarTurno();
 
         //
-        assertTrue((mapa.obtenerCasillero(0,1)).sonDelMismoTipoDeCasillero(casilleroMohoMock));
-        assertTrue((mapa.obtenerCasillero(1,0)).sonDelMismoTipoDeCasillero(casilleroMohoMock));
-        assertTrue((mapa.obtenerCasillero(0,0)).sonDelMismoTipoDeCasillero(casilleroMohoMock));
+        assertDoesNotThrow(()-> Criadero.construir((mapa.obtenerCasillero(0,1)),inventarioMock));
+        assertDoesNotThrow(()-> Criadero.construir((mapa.obtenerCasillero(1,0)),inventarioMock));
+        assertDoesNotThrow(()-> Criadero.construir((mapa.obtenerCasillero(0,0)),inventarioMock));
     }
-
-    @Test
-    public void Test11CreoUnMapaYPasoTurnoYElMohoSeExpandeSobreNodosSinConstruccion() {
-        //Arrange
-        Mapa mapa = new Mapa(10, 10);
-        mapa.cambiarTipoCasilla(0, 0, new Moho());
-        Casillero casilleroMohoMock = mock(Casillero.class);
-        when(casilleroMohoMock.suTipoDeCasillero()).thenReturn("Moho");
-
-        //act
-        mapa.cambiarTipoCasilla(0,1,new NodoGas());
-        mapa.pasarTurno();
-
-        //
-        assertTrue((mapa.obtenerCasillero(0,1)).sonDelMismoTipoDeCasillero(casilleroMohoMock));
-        assertTrue((mapa.obtenerCasillero(1,0)).sonDelMismoTipoDeCasillero(casilleroMohoMock));
-        assertTrue((mapa.obtenerCasillero(0,0)).sonDelMismoTipoDeCasillero(casilleroMohoMock));
     }
-
-
-}
 
 

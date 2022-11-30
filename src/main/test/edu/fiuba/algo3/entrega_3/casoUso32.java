@@ -29,7 +29,6 @@ contrario.
         juego.registrarJugador("Jugador 2","azul","Zerg",1,jugador2);
 
         Casillero mockedCasillero = mock(Casillero.class);
-        when(mockedCasillero.esDelTipo(any())).thenReturn(true);
 
         jugador1.construirPilon(mockedCasillero);
         juego.verificar_ganador();

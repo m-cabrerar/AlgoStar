@@ -13,7 +13,7 @@ public class GuaridaTest {
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.esDelTipo(any())).thenReturn(true);
+
         when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         when(inventarioMock.tieneSuministros(anyInt())).thenReturn(true);
         when(inventarioMock.puedeCrecerPoblacion(anyInt())).thenReturn(true);
@@ -34,7 +34,7 @@ public class GuaridaTest {
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.esDelTipo(any())).thenReturn(true);
+
         when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         when(inventarioMock.tieneSuministros(anyInt())).thenReturn(true);
         when(inventarioMock.puedeCrecerPoblacion(anyInt())).thenReturn(true);
@@ -56,7 +56,7 @@ public class GuaridaTest {
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioLleno = mock(Inventario.class);
         Inventario inventarioVacio = mock(Inventario.class);
-        when(casilleroMock.esDelTipo(any())).thenReturn(true);
+
         when(inventarioLleno.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         when(inventarioLleno.tieneSuministros(anyInt())).thenReturn(true);
         when(inventarioLleno.puedeCrecerPoblacion(anyInt())).thenReturn(true);
@@ -72,7 +72,7 @@ public class GuaridaTest {
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.esDelTipo(any())).thenReturn(true);
+
         when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         when(inventarioMock.tieneSuministros(anyInt())).thenReturn(true);
         when(inventarioMock.puedeCrecerPoblacion(anyInt())).thenReturn(true);

@@ -28,14 +28,12 @@ public class Criadero extends EdificioZerg{
         return 4;
     }
     public static EdificioEnConstruccion construir(Casillero casillero, Inventario inventario) throws UbicacionInvalida, RecursosInsuficientes {
-        // hacer checkeos de casilla y materiales
-        if(!casillero.esDelTipo(new Moho())){
-            throw new UbicacionInvalida("Ubicacion invalida");
-        }
+        // TODO: hacer checkeos de casilla y materiales
         if(!inventario.tieneRecursos(50, 0)){
             throw new RecursosInsuficientes("No tiene recursos");
         }
-        EdificioConcreto criadero = new Criadero(casillero, inventario);
+        Criadero criadero = new Criadero(casillero, inventario);
+        casillero.ocupar(criadero);
         return new EdificioEnConstruccion(criadero, casillero, inventario);
     }
     public void engendrarZangano() throws Exception {

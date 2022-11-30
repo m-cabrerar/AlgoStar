@@ -6,10 +6,7 @@ public class NodoMineral extends TipoCasillero{
     public NodoMineral(){
         unidadesRestantes = 2000;
     }
-    @Override
-    public String nombreDelCasillero() {
-        return "NodoMineral";
-    }
+
 
     @Override
     public int extraerMineral(int cantidad) {
@@ -22,4 +19,10 @@ public class NodoMineral extends TipoCasillero{
     public boolean agotado(){
         return unidadesRestantes <= 0;
     }
+
+    @Override
+    public boolean ocupar(NexoMineral nexo){
+        return true;
+    }
+
 }

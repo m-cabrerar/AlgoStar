@@ -18,7 +18,7 @@ public class ReservaDeReproduccionTests {
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.esDelTipo(any())).thenReturn(true);
+
         when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         try {
             Unidad reserva = ReservaDeReproduccion.construir(casilleroMock, inventarioMock);
@@ -37,7 +37,7 @@ public class ReservaDeReproduccionTests {
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.esDelTipo(any())).thenReturn(true);
+
         when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         try {
             Unidad reserva = ReservaDeReproduccion.construir(casilleroMock, inventarioMock);
@@ -57,7 +57,7 @@ public class ReservaDeReproduccionTests {
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(casilleroMock.esDelTipo(any())).thenReturn(true);
+
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(false);
         //ACT & ASSERT
         assertThrows(RecursosInsuficientes.class, () -> ReservaDeReproduccion.construir(casilleroMock, inventarioMock));

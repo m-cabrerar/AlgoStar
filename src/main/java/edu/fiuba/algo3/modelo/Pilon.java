@@ -18,13 +18,11 @@ public class Pilon extends EdificioProtoss {
     }
 
     public static EdificioEnConstruccion construir(Casillero casillero, Inventario inventario) {
-        EdificioConcreto pilon = new Pilon(casillero, inventario);
-        if (!casillero.esDelTipo(new CasilleroVacio())) {
-            throw new UbicacionInvalida("Ubicacion invalida");
-        }
+        Pilon pilon = new Pilon(casillero, inventario);
         if (!inventario.tieneRecursos(0, 100)) {
             throw new RecursosInsuficientes("No tiene recursos");
         }
+        casillero.ocupar(pilon);
         casillero.energizarEnRango(5);
         return new EdificioEnConstruccion(pilon, casillero, inventario);
     }
@@ -36,4 +34,6 @@ public class Pilon extends EdificioProtoss {
             this.inventario.perderSuministro(SUMINISTRA);
         }
     }
+
+
 }
