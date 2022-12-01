@@ -25,8 +25,8 @@ contrario.
         Jugador jugador1 = new Jugador();
         Jugador jugador2 = new Jugador();
 
-        juego.registrarJugador("Jugador 1", "rojo","Protoss",0,jugador1);
-        juego.registrarJugador("Jugador 2","azul","Zerg",1,jugador2);
+        juego.registrarJugador("Jugador 1", "rojo","Protoss", jugador1);
+        juego.registrarJugador("Jugador 2","azul","Zerg", jugador2);
 
         Casillero mockedCasillero = mock(Casillero.class);
 
