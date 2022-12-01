@@ -38,5 +38,11 @@ public class Extractor extends EdificioZerg {
         }
     }
 
-
+    public void recibirDanio(Danio danio){
+        try {
+            super.recibirDanio(danio);
+        } catch (Exception EstaDestruido){
+            this.casillero.desocupar();
+        }
+    }
 }

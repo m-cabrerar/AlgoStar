@@ -16,13 +16,17 @@ public class Scout extends UnidadMovilProtoss {
 
     private static int COSTO_SUMINISTRO = 4;
 
+    private Danio danio;
+
     public Scout(Inventario inventario){
         super(inventario, COSTO_MINERAL, COSTO_GASEOSO, VIDA_MAXIMA, ESCUDO_MAXIMO, COSTO_SUMINISTRO);
+        danio = new Danio(DANIO_AIRE, DANIO_TIERRA);
+        superficie = new Aire();
     }
 
     @Override
-    public void recibirDanio(int danio) throws EstaDestruido {
-
+    public void recibirDanio(Danio danio) throws EstaDestruido {
+        vida.sufrirAtaque(superficie.danio(danio));
     }
 
     @Override
@@ -34,11 +38,6 @@ public class Scout extends UnidadMovilProtoss {
         if(!this.tieneEnRangoA(unidadAAtacar, RANGO_DE_ATAQUE)){
             throw new AtaqueFueraDeRango("El ataque está fuera de rango");
         }
-        if (unidadAAtacar.esVoladora()){
-            unidadAAtacar.recibirDanio(DANIO_AIRE);
-        }
-        else{
-            unidadAAtacar.recibirDanio(DANIO_TIERRA);
-        }
+        unidadAAtacar.recibirDanio(danio);
     }
 }

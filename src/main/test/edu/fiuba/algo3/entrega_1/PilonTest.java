@@ -43,16 +43,17 @@ public class PilonTest {
         // Arrange
         Casillero mockedCasillero = mock(Casillero.class);
         Inventario mockedInventario = mock(Inventario.class);
+        Danio danio = new Danio(0,1);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         Unidad pilon = Pilon.construir(mockedCasillero, mockedInventario);
         for (int i = 0; i < 5; i++) {
             pilon.pasarTurno();
         }
         // Act
-        try{pilon.recibirDanio(1);}
+        try{pilon.recibirDanio(danio);}
         catch(Exception e){}
         // Assert
-        assertDoesNotThrow(() -> pilon.recibirDanio(1));
+        assertDoesNotThrow(() -> pilon.recibirDanio(danio));
     }
 
     @Test
@@ -60,13 +61,14 @@ public class PilonTest {
         // Arrange
         Casillero mockedCasillero = mock(Casillero.class);
         Inventario mockedInventario = mock(Inventario.class);
+        Danio danio = new Danio(0,1);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         Unidad pilon = Pilon.construir(mockedCasillero, mockedInventario);
         // Act
-        try{pilon.recibirDanio(1);}
+        try{pilon.recibirDanio(danio);}
         catch(Exception e){}
         // Assert
-        assertThrows(EstaDestruido.class, () -> pilon.recibirDanio(1));
+        assertThrows(EstaDestruido.class, () -> pilon.recibirDanio(danio));
     }
 
     @Test
@@ -74,16 +76,17 @@ public class PilonTest {
         // Arrange
         Casillero mockedCasillero = mock(Casillero.class);
         Inventario mockedInventario = mock(Inventario.class);
+        Danio danio = new Danio(0,1);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         Unidad pilon = Pilon.construir(mockedCasillero, mockedInventario);
         for (int i = 0; i < 4; i++) {
             pilon.pasarTurno();
         }
         // Act
-        try{pilon.recibirDanio(1);}
+        try{pilon.recibirDanio(danio);}
         catch(Exception e){}
         // Assert
-        assertThrows(EstaDestruido.class, () -> pilon.recibirDanio(1));
+        assertThrows(EstaDestruido.class, () -> pilon.recibirDanio(danio));
     }
 
     @Test
@@ -91,17 +94,19 @@ public class PilonTest {
         // Arrange
         Casillero mockedCasillero = mock(Casillero.class);
         Inventario mockedInventario = mock(Inventario.class);
+        Danio danio = new Danio(0,50);
+        Danio danio2 = new Danio(0,599);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         Unidad pilon = new Pilon(mockedCasillero, mockedInventario);
         // Act
-        try{pilon.recibirDanio(50);}
+        try{pilon.recibirDanio(danio);}
         catch(Exception e){}
         pilon.pasarTurno();
         pilon.pasarTurno();
         pilon.pasarTurno();
         pilon.pasarTurno();
         pilon.pasarTurno();
-        try{pilon.recibirDanio(599);}
+        try{pilon.recibirDanio(danio2);}
         catch(Exception e){}
         // Assert
         verify(mockedCasillero, times(0)).desocupar();
@@ -110,31 +115,34 @@ public class PilonTest {
     @Test
     public void test08PilonRecibeDanioPerdiendoTodoElEscudoYSeRegenera() {
         // Arrange
-        Casillero casillero = new Casillero(0,0,mock(Mapa.class));
+        Danio danio = new Danio(0,350);
+        Danio danio2 = new Danio(0,550);
+        Casillero mockedCasillero = mock(Casillero.class);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
-        Pilon pilon = new Pilon(casillero, mockedInventario);
+        Pilon pilon = new Pilon(mockedCasillero, mockedInventario);
         // Act
-        try{pilon.recibirDanio(350);}
+        try{pilon.recibirDanio(danio);}
         catch(Exception e){}
         for (int i = 0; i < 35; i++) {
             pilon.pasarTurno();
         }
-        try{pilon.recibirDanio(550);}
+        try{pilon.recibirDanio(danio2);}
         catch(Exception e){}
         // Assert
-        assertTrue(casillero.estaOcupado());
+        verify(mockedCasillero, times(0)).desocupar();
     }
 
     @Test
     public void test09PilonRecibeDanioYSeDestruye() {
         // Arrange
+        Danio danio = new Danio(0,600);
         Casillero casillero = new Casillero(0,0,mock(Mapa.class));
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         Unidad pilon = new Pilon(casillero, mockedInventario);
         // Act
-        try{pilon.recibirDanio(600);}
+        try{pilon.recibirDanio(danio);}
         catch(Exception e){}
         // Assert
         assertFalse(casillero.estaOcupado());

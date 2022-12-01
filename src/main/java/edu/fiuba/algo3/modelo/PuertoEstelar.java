@@ -35,5 +35,12 @@ public class PuertoEstelar extends EdificioProtoss {
         return new EdificioEnConstruccion(puertoEstelar, casillero, inventario);
     }
 
+    public void recibirDanio(Danio danio){
+        try {
+            super.recibirDanio(danio);
+        } catch (Exception EstaDestruido){
+            this.casillero.desocupar();
+        }
+    }
 
 }

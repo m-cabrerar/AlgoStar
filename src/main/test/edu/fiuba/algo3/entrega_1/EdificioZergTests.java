@@ -12,14 +12,17 @@ public class EdificioZergTests {
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
+        Danio danio = new Danio(0,490);
+        Danio danio2 = new Danio(0,10);
+        
         Criadero criadero = new Criadero(casilleroMock, inventarioMock);
         //ACT
         try {
-            criadero.recibirDanio(10);
+            criadero.recibirDanio(danio);
             criadero.pasarTurno();
             //ASSERT
-            criadero.recibirDanio(490);
-            assertDoesNotThrow(() -> criadero.recibirDanio(10));
+            criadero.recibirDanio(danio);
+            assertDoesNotThrow(() -> criadero.recibirDanio(danio2));
         } catch (Exception e) {
             fail();
         }
@@ -31,15 +34,16 @@ public class EdificioZergTests {
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
         Extractor extractor = new Extractor(casilleroMock, inventarioMock);
+        Danio danio = new Danio(0,10);
         //ACT
         try {
-            extractor.recibirDanio(10);
+            extractor.recibirDanio(danio);
             extractor.pasarTurno();
             //ASSERT
             for (int i = 0; i < 74; i++) {
-                extractor.recibirDanio(10);
+                extractor.recibirDanio(danio);
             }
-            assertDoesNotThrow(() -> extractor.recibirDanio(10));
+            assertDoesNotThrow(() -> extractor.recibirDanio(danio));
         } catch (Exception e) {
             fail();
         }
@@ -51,15 +55,16 @@ public class EdificioZergTests {
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
         ReservaDeReproduccion reserva = new ReservaDeReproduccion(casilleroMock, inventarioMock);
+        Danio danio = new Danio(0,10);
         //ACT
         try {
-            reserva.recibirDanio(10);
+            reserva.recibirDanio(danio);
             reserva.pasarTurno();
             //ASSERT
             for (int i = 0; i < 99; i++) {
-                reserva.recibirDanio(10);
+                reserva.recibirDanio(danio);
             }
-            assertDoesNotThrow(() -> reserva.recibirDanio(10));
+            assertDoesNotThrow(() -> reserva.recibirDanio(danio));
         } catch (Exception e) {
             fail();
         }
@@ -71,15 +76,16 @@ public class EdificioZergTests {
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
         Guarida guarida = new Guarida(casilleroMock, inventarioMock);
+        Danio danio = new Danio(0,10);
         //ACT
         try {
-            guarida.recibirDanio(10);
+            guarida.recibirDanio(danio);
             guarida.pasarTurno();
             //ASSERT
             for (int i = 0; i < 124; i++) {
-                guarida.recibirDanio(10);
+                guarida.recibirDanio(danio);
             }
-            assertDoesNotThrow(() -> guarida.recibirDanio(10));
+            assertDoesNotThrow(() -> guarida.recibirDanio(danio));
         } catch (Exception e) {
             fail();
         }
@@ -91,15 +97,16 @@ public class EdificioZergTests {
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
         Espiral espiral = new Espiral(casilleroMock, inventarioMock);
+        Danio danio = new Danio(0,10);
         //ACT
         try {
-            espiral.recibirDanio(10);
+            espiral.recibirDanio(danio);
             espiral.pasarTurno();
             //ASSERT
             for (int i = 0; i < 129; i++) {
-                espiral.recibirDanio(10);
+                espiral.recibirDanio(danio);
             }
-            assertDoesNotThrow(() -> espiral.recibirDanio(10));
+            assertDoesNotThrow(() -> espiral.recibirDanio(danio));
         } catch (Exception e) {
             fail();
         }

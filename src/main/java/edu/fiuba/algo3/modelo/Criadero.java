@@ -7,12 +7,14 @@ public class Criadero extends EdificioZerg{
     private static int VIDA_MAXIMA = 500;
     private int cantidadZanganos;
     private static int SUMINISTRA = 5;
+    
     public Criadero(Casillero casillero, Inventario inventario) {
         super(casillero, inventario, VIDA_MAXIMA);
         this.cantidadLarvas = 3;
         this.cantidadZanganos = 0;
         inventario.agregarSuministro(SUMINISTRA);
     }
+    
     public void pasarTurno() {
         super.pasarTurno();
         if(!estaEnCapacidadMaxima()) {
@@ -24,9 +26,11 @@ public class Criadero extends EdificioZerg{
             //acaba habria que chequear que si el casillero que da al obtener adyacentes es nulo (porque no hay ninguno libre)
         }
     }
+    
     public int turnosParaConstruir() {
         return 4;
     }
+    
     public static EdificioEnConstruccion construir(Casillero casillero, Inventario inventario) throws UbicacionInvalida, RecursosInsuficientes {
         // TODO: hacer checkeos de casilla y materiales
         if(!inventario.tieneRecursos(50, 0)){
@@ -36,6 +40,7 @@ public class Criadero extends EdificioZerg{
         casillero.ocupar(criadero);
         return new EdificioEnConstruccion(criadero, casillero, inventario);
     }
+    
     public void engendrarZangano() throws Exception {
         if(!this.tieneLarvas()){
             throw new Exception("Ya no quedan larvas disponibles");
@@ -43,29 +48,21 @@ public class Criadero extends EdificioZerg{
         this.cantidadLarvas -= 1;
         this.cantidadZanganos += 1;
     }
+    
     private boolean tieneLarvas(){
         return cantidadLarvas > 0;
     }
+    
     private boolean estaEnCapacidadMaxima(){
         return cantidadLarvas == 3;
     }
 
-
-    public void recibirDanio(int danio) throws EstaDestruido {
-        super.recibirDanio(danio);
-        if (this.estaDestruido()){
+    public void recibirDanio(Danio danio){
+        try {
+            super.recibirDanio(danio);
+        } catch (Exception EstaDestruido){
+            this.casillero.desocupar();
             this.inventario.perderSuministro(SUMINISTRA);
         }
     }
-/*
-    @Override
-    public void recibirDanio(int danio) throws EstaDestruido {
-        super.recibirDanio(danio);
-        if (this.estaDestruido()) {
-            this.inventario.perderSuministro(SUMINISTRA);
-        }
-    }
-*/
-
-
 }

@@ -15,13 +15,17 @@ public class Dragon extends UnidadMovilProtoss {
 
     private static int COSTO_SUMINISTRO = 3;
 
+    private Danio danio;
+
     public Dragon(Inventario inventario){
         super(inventario, COSTO_MINERAL, COSTO_GASEOSO, VIDA_MAXIMA, ESCUDO_MAXIMO, COSTO_SUMINISTRO);
+        danio = new Danio(DANIO_AIRE, DANIO_TIERRA);
+        superficie = new Tierra();
     }
 
     @Override
-    public void recibirDanio(int danio) throws EstaDestruido {
-
+    public void recibirDanio(Danio danio) throws EstaDestruido {
+        vida.sufrirAtaque(superficie.danio(danio));
     }
 
     @Override
@@ -34,12 +38,12 @@ public class Dragon extends UnidadMovilProtoss {
         if(!this.tieneEnRangoA(unidadAAtacar, RANGO_DE_ATAQUE)){
             throw new AtaqueFueraDeRango("El ataque está fuera de rango");
         }
-        if (unidadAAtacar.esVoladora()){
-            unidadAAtacar.recibirDanio(DANIO_AIRE);
+        try{
+            unidadAAtacar.recibirDanio(danio);
+        } catch (Exception EstaDestruido){
+            throw new EstaDestruido("Edificio Destruido");
         }
-        else{
-            unidadAAtacar.recibirDanio(DANIO_TIERRA);
-        }
+
     }
 
 

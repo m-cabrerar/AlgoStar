@@ -12,6 +12,7 @@ public class ReservaDeReproduccionTest {
     public void test01ReservaDeReproduccionEngendraZerlingYDespuesDe2TurnosEstaListo(){
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
+        when(casilleroMock.obtenerAdyacente()).thenReturn(casilleroMock);
         Inventario inventarioMock = mock(Inventario.class);
 
         when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
@@ -33,6 +34,7 @@ public class ReservaDeReproduccionTest {
     @Test
     public void test02ReservaDeReproduccionEngendraZerlingYDespuesDe1TurnoNoEstaListo(){
         //ARRANGE
+        Danio danio = new Danio(5,5);
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
 
@@ -46,7 +48,7 @@ public class ReservaDeReproduccionTest {
         reservaDeReproduccion.pasarTurno();
         Unidad zerling = reservaDeReproduccion.obtenerUnidad();
         //ASSERT
-        assertThrows(NullPointerException.class, () -> zerling.recibirDanio(5));
+        assertThrows(NullPointerException.class, () -> zerling.recibirDanio(danio));
     }
 
     @Test

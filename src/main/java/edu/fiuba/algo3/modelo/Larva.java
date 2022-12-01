@@ -12,26 +12,22 @@ public class Larva extends UnidadMovilZerg {
     private static int TURNOS_PARA_CONSTRUIR = 0;
 
     private static int COSTO_SUMINISTRO = 0; //supuesto
+    private Danio danio;
 
     public Larva(Inventario inventario){
         super(inventario, COSTO_MINERAL, COSTO_GASEOSO, VIDA_MAXIMA, COSTO_SUMINISTRO);
+        danio = new Danio(DANIO_AIRE, DANIO_TIERRA);
     }
     public int turnosParaConstruir(){
         return TURNOS_PARA_CONSTRUIR;
     }
 
-    @Override
     public void recibirDanio(int danio) throws EstaDestruido {
 
     }
 
     public void atacar(UnidadMovil unidadAAtacar){
-        if (unidadAAtacar.esVoladora()){
-            unidadAAtacar.recibirDanio(DANIO_AIRE);
-        }
-        else{
-            unidadAAtacar.recibirDanio(DANIO_TIERRA);
-        }
+        unidadAAtacar.recibirDanio(danio);
     }
 
 }

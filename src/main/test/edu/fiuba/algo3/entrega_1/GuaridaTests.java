@@ -17,6 +17,7 @@ public class GuaridaTests {
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
+        Danio danio = new Danio(0,5);
 
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         when(inventarioMock.tieneReservaDeReproduccion()).thenReturn(true);
@@ -27,7 +28,7 @@ public class GuaridaTests {
                 guarida.pasarTurno();
             }
             //ASSERT
-            assertDoesNotThrow(() -> guarida.recibirDanio(5));
+            assertDoesNotThrow(() -> guarida.recibirDanio(danio));
         } catch (Exception e) {
             fail();
         }
@@ -38,6 +39,7 @@ public class GuaridaTests {
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
+        Danio danio = new Danio(0,5);
 
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         when(inventarioMock.tieneReservaDeReproduccion()).thenReturn(true);
@@ -47,9 +49,9 @@ public class GuaridaTests {
             for (int i = 0; i < 11; i++) {
                 guarida.pasarTurno();
             }
-            guarida.recibirDanio(5);
+            guarida.recibirDanio(danio);
             // ASSERT
-            assertThrows(EstaDestruido.class, () -> guarida.recibirDanio(5));
+            assertThrows(EstaDestruido.class, () -> guarida.recibirDanio(danio));
         } catch (Exception e) {
             fail();
         }

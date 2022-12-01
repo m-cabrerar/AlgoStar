@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.entrega_2;
 
-import edu.fiuba.algo3.exceptions.AtaqueFueraDeRango;
+import edu.fiuba.algo3.exceptions.*;
 import edu.fiuba.algo3.modelo.*;
 import org.junit.jupiter.api.Test;
 
@@ -16,20 +16,24 @@ public class ScoutTests {
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         when(inventarioMock.tieneSuministros(anyInt())).thenReturn(true);
         when(inventarioMock.puedeCrecerPoblacion(anyInt())).thenReturn(true);
-        UnidadMovil unidadMock = mock(UnidadMovil.class);
-        when(unidadMock.esVoladora()).thenReturn(true);
+
         Casillero casilleroMock = mock(Casillero.class);
         when(casilleroMock.tieneEnRango(any(), anyInt())).thenReturn(true);
+        
         Scout scout = new Scout(inventarioMock);
+        Mutalisco muta = new Mutalisco(inventarioMock);
         //ACT
         try {
             scout.ubicarEn(casilleroMock);
-            scout.atacar(unidadMock);
-            //ASSERT
-            verify(unidadMock, times(1)).recibirDanio(14);
+            muta.ubicarEn(casilleroMock);
+            for(int i=0; i<9; i++){
+                scout.atacar(muta);
+            }
         } catch (Exception e) {
             fail();
         }
+        //ASSERT 
+        verify(casilleroMock, times(1)).desocupar();
     }
 
     @Test
@@ -39,39 +43,23 @@ public class ScoutTests {
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         when(inventarioMock.tieneSuministros(anyInt())).thenReturn(true);
         when(inventarioMock.puedeCrecerPoblacion(anyInt())).thenReturn(true);
-        UnidadMovil unidadMock = mock(UnidadMovil.class);
-        when(unidadMock.esVoladora()).thenReturn(false);
+
         Casillero casilleroMock = mock(Casillero.class);
         when(casilleroMock.tieneEnRango(any(), anyInt())).thenReturn(true);
+
         Scout scout = new Scout(inventarioMock);
+        Hidralisco hidra = new Hidralisco(inventarioMock);
         //ACT
         try {
             scout.ubicarEn(casilleroMock);
-            scout.atacar(unidadMock);
-            //ASSERT
-            verify(unidadMock, times(1)).recibirDanio(8);
+            hidra.ubicarEn(casilleroMock);
+            for(int i=0; i<10; i++){
+                scout.atacar(hidra);
+            }
         } catch (Exception e) {
             fail();
         }
-    }
-    public void test03ScoutNoPuedeAtacarAUnaUnidadFueraDeRango() {
-        //ARRANGE
-        Inventario inventarioMock = mock(Inventario.class);
-        when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
-        when(inventarioMock.tieneSuministros(anyInt())).thenReturn(true);
-        when(inventarioMock.puedeCrecerPoblacion(anyInt())).thenReturn(true);
-        Casillero casilleroMock = mock(Casillero.class);
-        when(casilleroMock.tieneEnRango(any(), anyInt())).thenReturn(true);
-        Scout scout = new Scout(inventarioMock);
-        UnidadMovil unidadMock = mock(UnidadMovil.class);
-        when(unidadMock.esVoladora()).thenReturn(false);
-        //ACT
-        try {
-            scout.ubicarEn(casilleroMock);
-            //ASSERT
-            assertThrows(AtaqueFueraDeRango.class, () -> scout.atacar(unidadMock));
-        } catch (Exception e) {
-            fail();
-        }
+        //ASSERT
+        verify(casilleroMock, times(1)).desocupar();
     }
 }

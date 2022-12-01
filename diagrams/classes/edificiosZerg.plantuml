@@ -5,7 +5,7 @@ title Modelado de los Edificios Protoss
 class EdificioZerg{
  - int:vidaMaxima
  + EdificioZerg(Casillero casillero, Inventario inventario, int vidaInicial)
- + void:recibirDanio(int danio)
+ + void:recibirDanio(Danio danio)
  + void:pasarTurno()
 }
 

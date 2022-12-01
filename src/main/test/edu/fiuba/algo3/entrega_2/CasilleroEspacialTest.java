@@ -14,7 +14,7 @@ public class CasilleroEspacialTest {
         int alto = 10;
         int ancho = 10;
         Mapa mapa = new Mapa(alto,ancho);
-        mapa.cambiarTipoCasilla(0,0,new CasilleroEspacial());
+        mapa.cambiarTipoCasilla(0,0, new CasilleroEspacial());
         UnidadMovil unidadVoladoraMock = mock(UnidadMovil.class);
         when(unidadVoladoraMock.esVoladora()).thenReturn(true);
 

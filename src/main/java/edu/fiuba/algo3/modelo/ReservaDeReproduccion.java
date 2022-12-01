@@ -39,5 +39,13 @@ public class ReservaDeReproduccion extends EdificioZerg {
         turnosParaConstruir = unidadEnConstruccion.turnosParaConstruir();
     }
 
+    public void recibirDanio(Danio danio){
+        try {
+            super.recibirDanio(danio);
+        } catch (Exception EstaDestruido){
+            this.casillero.desocupar();
+        }
+    }
+
 }
 

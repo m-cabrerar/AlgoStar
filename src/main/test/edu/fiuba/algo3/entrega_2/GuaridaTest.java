@@ -11,7 +11,9 @@ public class GuaridaTest {
     @Test
     public void test01GuaridaEngendraHidraliscoYDespuesDe4TurnosEstaListo(){
         //ARRANGE
+        
         Casillero casilleroMock = mock(Casillero.class);
+        when(casilleroMock.obtenerAdyacente()).thenReturn(casilleroMock);
         Inventario inventarioMock = mock(Inventario.class);
 
         when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
@@ -34,6 +36,7 @@ public class GuaridaTest {
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
+        Danio danio = new Danio(0,5);
 
         when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         when(inventarioMock.tieneSuministros(anyInt())).thenReturn(true);
@@ -47,7 +50,7 @@ public class GuaridaTest {
         }
         Unidad hidralisco = guarida.obtenerUnidad();
         //ASSERT
-        assertThrows(NullPointerException.class, () -> hidralisco.recibirDanio(5));
+        assertThrows(NullPointerException.class, () -> hidralisco.recibirDanio(danio));
     }
 
     @Test

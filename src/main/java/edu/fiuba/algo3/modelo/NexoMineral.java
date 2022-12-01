@@ -31,5 +31,12 @@ public class NexoMineral extends EdificioProtoss {
         return cantidad;
     }
 
+    public void recibirDanio(Danio danio){
+        try {
+            super.recibirDanio(danio);
+        } catch (Exception EstaDestruido){
+            this.casillero.desocupar();
+        }
+    }
 
 }

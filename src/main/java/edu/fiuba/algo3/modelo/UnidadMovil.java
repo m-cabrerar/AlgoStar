@@ -6,9 +6,11 @@ import java.util.List;
 
 public abstract class UnidadMovil implements Unidad, Construible {
 
-    Casillero casilleroActual;
-    Inventario inventario;
-    int vida;
+    protected Casillero casillero;
+    protected Inventario inventario;
+    protected Superficie superficie;
+    protected Vida vida;
+
     UnidadMovil(Inventario inventario, int costoMineral, int costoGas, int costoSuministro){
         if(!inventario.tieneRecursos(costoMineral, costoGas)){
             throw new RecursosInsuficientes("No tiene recursos");
@@ -20,26 +22,32 @@ public abstract class UnidadMovil implements Unidad, Construible {
             throw new PoblacionMaximaAlcanzada("No se pueden crear mas unidades.");
         }
         inventario.suministrarUnidad(costoSuministro);
-        casilleroActual = null;
+        casillero = null;
         this.inventario = inventario;
     }
 
-    protected boolean estaDestruida() {
-        return vida <= 0;
-    }
-    public boolean esVoladora() {
-        return false;
-    }
     public void ubicarEn(Casillero casillero){
-        casilleroActual = casillero;
+        this.casillero = casillero;
+        casillero.ocupar(this);
     }
 
     public boolean tieneEnRangoA(Unidad unidadAAtacar, int rango) {
-        return (casilleroActual.tieneEnRango(unidadAAtacar, rango));
+        return (casillero.tieneEnRango(unidadAAtacar, rango));
     }
+
     public boolean estaPorAca(List<Casillero> casilleros){
-        return casilleros.contains(casilleroActual);
+        return casilleros.contains(casillero);
     }
 
+    public boolean esVoladora(){
+        return (superficie.puedeVolar());
+    }
+    public void recibirDanio(Danio danio) {
+        try {
+            vida.sufrirAtaque(superficie.danio(danio));
+        } catch (Exception EstaDestruido){
+            casillero.desocupar();
+        }
 
+    }
 }

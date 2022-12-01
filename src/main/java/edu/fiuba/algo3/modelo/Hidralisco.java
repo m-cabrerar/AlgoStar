@@ -14,27 +14,26 @@ public class Hidralisco extends UnidadMovilZerg {
 
     private static int COSTO_SUMINISTRO = 2;
 
+    private Danio danio;
+
     public Hidralisco(Inventario inventario){
         super(inventario, COSTO_MINERAL, COSTO_GASEOSO, VIDA_MAXIMA, COSTO_SUMINISTRO);
+        danio = new Danio(DANIO_AIRE, DANIO_TIERRA);
+        superficie = new Tierra();
     }
     public int turnosParaConstruir(){
         return TURNOS_PARA_CONSTRUIR;
-    }
-
-    @Override
-    public void recibirDanio(int danio) throws EstaDestruido {
-
     }
 
     public void atacar(UnidadMovil unidadAAtacar){
         if(!this.tieneEnRangoA(unidadAAtacar, RANGO_DE_ATAQUE)){
             throw new AtaqueFueraDeRango("El ataque está fuera de rango");
         }
-        if (unidadAAtacar.esVoladora()){
-            unidadAAtacar.recibirDanio(DANIO_AIRE);
+        try {
+            unidadAAtacar.recibirDanio(danio);
+        } catch (Exception EstaDestruido){
+            throw new EstaDestruido("Edificio Destruido");
         }
-        else{
-            unidadAAtacar.recibirDanio(DANIO_TIERRA);
-        }
+
     }
 }

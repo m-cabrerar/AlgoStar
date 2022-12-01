@@ -4,33 +4,29 @@ import edu.fiuba.algo3.exceptions.*;
 import java.util.List;
 
 abstract class EdificioConcreto implements Unidad, Construible{
-    protected int vida;
+    
+    protected Superficie superficie;
+    protected Vida vida;
     protected Casillero casillero;
     protected UnidadMovil unidadEnConstruccion = null;
     protected int turnosParaConstruir = 0;
     protected Inventario inventario;
-    public EdificioConcreto(Casillero unCasillero, Inventario unInventario, int vidaInicial) throws UbicacionInvalida {
+    
+    public EdificioConcreto(Casillero unCasillero, Inventario unInventario) throws UbicacionInvalida {
         this.casillero = unCasillero;
         unInventario.agregar(this);
-        this.vida = vidaInicial;
         this.inventario = unInventario;
+        superficie = new Tierra();
     }
+    
     public void pasarTurno(){
         if (unidadEnConstruccion()) {
             turnosParaConstruir--;
         }
     }
-    protected boolean estaDestruido() {
-        return this.vida <= 0;
-    }
-    public void recibirDanio(int danio) throws EstaDestruido {
-        if (this.estaDestruido()){
-            throw new EstaDestruido("El edificio está destruido");
-        }
-        this.vida -= danio;
-        if (this.estaDestruido()){
-            this.casillero.desocupar();
-        }
+    
+    public void recibirDanio(Danio danio) throws EstaDestruido{
+        vida.sufrirAtaque(superficie.danio(danio));
     }
     // TODO: evitar null
     protected boolean unidadEnConstruccion() {

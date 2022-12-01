@@ -26,13 +26,13 @@ class EdificioEnConstruccion{
  + EdificioEnConstruccion(EdificioConcreto vaASer, casillero, inventario)
  - boolean:estaListo()
  + void:pasarTurno()
- + void:recibirDanio(int danio)
+ + void:recibirDanio(Danio danio)
 }
 
 class EdificioZerg{
  - int:vidaMaxima
  + EdificioZerg(TipoCasillero casillero, Inventario inventario, int vida_)
- + void:recibirDanio(int danio)
+ + void:recibirDanio(Danio danio)
  + void:pasarTurno()
 }
 
@@ -40,7 +40,7 @@ class EdificioProtoss{
  - int:escudo
  - int:escudoMaximo
  + EdificioProtoss(Casillero casillero, Inventario inventario, int vidaInicial, int escudoInicial)
- + void:recibirDanio(int danio)
+ + void:recibirDanio(Danio danio)
  + void:pasarTurno()
 }
 

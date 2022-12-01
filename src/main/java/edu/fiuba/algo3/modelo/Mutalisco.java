@@ -14,34 +14,28 @@ public class Mutalisco extends UnidadMovilZerg {
 
     private static int COSTO_SUMINISTRO = 4;
 
+    private Danio danio;
+
     public Mutalisco(Inventario inventario){
         super(inventario, COSTO_MINERAL, COSTO_GASEOSO, VIDA_MAXIMA, COSTO_SUMINISTRO);
+        danio = new Danio(DANIO_AIRE, DANIO_TIERRA);
+        superficie = new Aire();
     }
     public int turnosParaConstruir(){
         return TURNOS_PARA_CONSTRUIR;
     }
 
-    @Override
-    public void recibirDanio(int danio) throws EstaDestruido {
-
-    }
-
-    public void atacar(UnidadMovil unidadAAtacar){
+    public void atacar(UnidadMovil unidadAAtacar) throws EstaDestruido{
         if(!this.tieneEnRangoA(unidadAAtacar, RANGO_DE_ATAQUE)){
             throw new AtaqueFueraDeRango("El ataque está fuera de rango");
         }
-        if (unidadAAtacar.esVoladora()){
-            unidadAAtacar.recibirDanio(DANIO_AIRE);
-        }
-        else{
-            unidadAAtacar.recibirDanio(DANIO_TIERRA);
-        }
+        unidadAAtacar.recibirDanio(danio);
     }
 
     public void evolucionarADevorador (Inventario inventario) throws RecursosInsuficientes {
         Devorador devorador = new Devorador(inventario);
-        this.casilleroActual.desocupar();
+        this.casillero.desocupar();
         //sacar del inventario
-        new UnidadEnEvolucion(this.casilleroActual, inventario, devorador);
+        new UnidadEnEvolucion(this.casillero, inventario, devorador);
     }
 }

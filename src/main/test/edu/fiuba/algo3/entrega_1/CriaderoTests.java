@@ -95,6 +95,7 @@ public class CriaderoTests {
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
+        Danio danio = new Danio(0,5);
 
         when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         try {
@@ -105,7 +106,7 @@ public class CriaderoTests {
             criadero.pasarTurno();
             criadero.pasarTurno();
             //ASSERT
-            assertDoesNotThrow(() -> criadero.recibirDanio(5));
+            assertDoesNotThrow(() -> criadero.recibirDanio(danio));
         } catch (Exception e) {
             fail();
         }
@@ -115,6 +116,7 @@ public class CriaderoTests {
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
+        Danio danio = new Danio(0,5);
 
         when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         try {
@@ -123,9 +125,9 @@ public class CriaderoTests {
             criadero.pasarTurno();
             criadero.pasarTurno();
             criadero.pasarTurno();
-            criadero.recibirDanio(5);
+            criadero.recibirDanio(danio);
             //ASSERT
-            assertThrows(EstaDestruido.class, () -> criadero.recibirDanio(5));
+            assertThrows(EstaDestruido.class, () -> criadero.recibirDanio(danio));
         } catch (Exception e) {
             fail();
         }

@@ -18,6 +18,7 @@ public class ReservaDeReproduccionTests {
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
+        Danio danio = new Danio(0,5);
 
         when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         try {
@@ -27,7 +28,7 @@ public class ReservaDeReproduccionTests {
                 reserva.pasarTurno();
             }
             //ASSERT
-                assertDoesNotThrow(() -> reserva.recibirDanio(5));
+                assertDoesNotThrow(() -> reserva.recibirDanio(danio));
         } catch (Exception e) {
             fail();
         }
@@ -37,6 +38,7 @@ public class ReservaDeReproduccionTests {
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
+        Danio danio = new Danio(0,5);
 
         when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         try {
@@ -45,9 +47,9 @@ public class ReservaDeReproduccionTests {
             for (int i = 0; i < 11; i++) {
                 reserva.pasarTurno();
             }
-            reserva.recibirDanio(5);
+            reserva.recibirDanio(danio);
             // ASSERT
-            assertThrows(EstaDestruido.class, () -> reserva.recibirDanio(5));
+            assertThrows(EstaDestruido.class, () -> reserva.recibirDanio(danio));
         } catch (Exception e) {
             fail();
         }
