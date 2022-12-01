@@ -100,4 +100,10 @@ public class Mapa {
     public Casillero obtenerCasillero(int x, int y){
         return this.tableroActual.get(x).get(y);
     }
+    public int getAlto(){
+        return this.altoMapa;
+    }
+    public int getAncho(){
+        return this.anchoMapa;
+    }
 }
