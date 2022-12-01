@@ -6,14 +6,16 @@ import java.util.List;
 
 public class Juego {
     private final int CANTIDAD_DE_JUGADORES = 2;
+    private int cantidadDeJugadores = 0;
     private Jugador[] jugadores = new Jugador[CANTIDAD_DE_JUGADORES];
 
     private int turnos;
 
-    public void registrarJugador(String nombre, String color, String raza, int n, Jugador jugador) throws ParametrosInvalidos {
+    public void registrarJugador(String nombre, String color, String raza, Jugador jugador) throws ParametrosInvalidos {
         if (Jugador.nombreValido(nombre, jugadores) && Jugador.colorValido(color, jugadores) && Jugador.razaValida(raza, jugadores)){
             jugador.setDatos(nombre,color,raza);
-            jugadores[n] = jugador;//new Jugador(nombre, color, raza);
+            jugadores[cantidadDeJugadores] = jugador;//new Jugador(nombre, color, raza);
+            cantidadDeJugadores++;
         }
         else {
             throw new ParametrosInvalidos("Los parametros ingresados no son validos");
@@ -56,6 +58,13 @@ public class Juego {
         }
         turnos ++; //esto tampoco se hará aca
         return null;
+    }
+
+    public int cantidadDeJugadores(){
+        return cantidadDeJugadores;
+    }
+    public int cantidadDeJugadoresMaxima(){
+        return CANTIDAD_DE_JUGADORES;
     }
 
 }
