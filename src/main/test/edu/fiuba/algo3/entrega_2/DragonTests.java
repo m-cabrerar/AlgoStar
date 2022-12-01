@@ -5,6 +5,7 @@ import edu.fiuba.algo3.exceptions.EstaDestruido;
 import edu.fiuba.algo3.modelo.*;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.*;
@@ -19,22 +20,24 @@ public class DragonTests {
         when(inventarioMock.tieneSuministros(anyInt())).thenReturn(true);
         when(inventarioMock.puedeCrecerPoblacion(anyInt())).thenReturn(true);
 
-        UnidadMovil unidadMock = mock(UnidadMovil.class);
-        when(unidadMock.esVoladora()).thenReturn(true);
-
         Casillero casilleroMock = mock(Casillero.class);
         when(casilleroMock.tieneEnRango(any(), anyInt())).thenReturn(true);
 
         Dragon dragon = new Dragon(inventarioMock);
+        Mutalisco mutalisco = new Mutalisco(inventarioMock); //120 vida
         //ACT
         try {
             dragon.ubicarEn(casilleroMock);
-            dragon.atacar(unidadMock);
-            //ASSERT
-            verify(unidadMock, times(1)).recibirDanio(20);
+            mutalisco.ubicarEn(casilleroMock);
+            for(int i=0; i<6; i++){
+                dragon.atacar(mutalisco);
+            }
         } catch (Exception e) {
             fail();
         }
+        //ASSERT
+        verify(casilleroMock, times(1)).desocupar();
+
     }
 
     @Test
@@ -45,22 +48,24 @@ public class DragonTests {
         when(inventarioMock.tieneSuministros(anyInt())).thenReturn(true);
         when(inventarioMock.puedeCrecerPoblacion(anyInt())).thenReturn(true);
 
-        UnidadMovil unidadMock = mock(UnidadMovil.class);
-        when(unidadMock.esVoladora()).thenReturn(false);
-
         Casillero casilleroMock = mock(Casillero.class);
         when(casilleroMock.tieneEnRango(any(), anyInt())).thenReturn(true);
 
         Dragon dragon = new Dragon(inventarioMock);
+        Hidralisco hidra = new Hidralisco(inventarioMock); //80 de vida
+        
         //ACT
         try {
             dragon.ubicarEn(casilleroMock);
-            dragon.atacar(unidadMock);
-            //ASSERT
-            verify(unidadMock, times(1)).recibirDanio(20);
+            hidra.ubicarEn(casilleroMock);
+            for(int i=0; i<4; i++){
+                dragon.atacar(hidra);
+            }
         } catch (Exception e) {
             fail();
         }
+        //ASSERT 
+        verify(casilleroMock, times(1)).desocupar();
     }
 
     @Test

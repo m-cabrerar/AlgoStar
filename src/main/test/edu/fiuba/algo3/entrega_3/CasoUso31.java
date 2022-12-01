@@ -6,8 +6,8 @@ import edu.fiuba.algo3.modelo.*;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
 
 public class CasoUso31{
     //Verificar que al destruir pilones, amos supremos o criaderos disminuye la capacidad de
@@ -16,20 +16,19 @@ public class CasoUso31{
     public void TengoDosCriaderosYDestruyoUnoSoloPuedoHacer5ZerlingsYMeQuedoSinSuministros() {
 
         //ARRANGE
+        Danio danio = new Danio(600,600);
         Inventario inventario = new Inventario();
         inventario.agregarGas(150);
 
-        Casillero casillero = mock(Casillero.class);
-        Criadero criadero = new Criadero(casillero, inventario);
-
-        Casillero casillero2 = mock(Casillero.class);
-        Criadero criadero2 = new Criadero(casillero2, inventario);
+        Casillero casilleroMock = mock(Casillero.class);
+        new Criadero(casilleroMock, inventario);
+        Criadero criadero = new Criadero(casilleroMock, inventario);
 
         for (int i = 0; i < 5; i++) {
-            Zerling zerling = new Zerling(inventario);
+            new Zerling(inventario);
         }
-        criadero2.recibirDanio(600);
-        assertThrows(EstaDestruido.class, () -> criadero2.recibirDanio(600));
+        criadero.recibirDanio(danio);
+        verify(casilleroMock, times(1)).desocupar();
         //act & assert
         assertFalse(inventario.tieneSuministros(1));
 
@@ -38,19 +37,20 @@ public class CasoUso31{
     public void TengoDosPilonesYDestruyoUnoSoloPuedoHacer5ZerlingsYMeQuedoSinSuministros() {
 
         //ARRANGE
+        Danio danio = new Danio(600,600);
         Inventario inventario = new Inventario();
-        inventario.agregarGas(150);
+        inventario.agregarGas(300);
+        inventario.agregarMineral(300);
 
-        Casillero casillero = mock(Casillero.class);
-        Pilon pilon = new Pilon(casillero, inventario);
-
-        Casillero casillero2 = mock(Casillero.class);
-        Pilon pilon2 = new Pilon(casillero2, inventario);
+        Casillero casilleroMock = mock(Casillero.class);
+        new Pilon(casilleroMock, inventario);
+        Pilon pilon2 = new Pilon(casilleroMock, inventario);
 
         for (int i = 0; i < 5; i++) {
-            Zerling zerling = new Zerling(inventario);
+            new Zerling(inventario);
         }
-        pilon2.recibirDanio(600);
+        pilon2.recibirDanio(danio);
+        pilon2.recibirDanio(danio);
 
         //act & assert
         assertFalse(inventario.tieneSuministros(1));
@@ -61,17 +61,20 @@ public class CasoUso31{
     public void TengoDosAmosSupremosYDestruyoUnoSoloPuedoHacer5ZerlingsYMeQuedoSinSuministros() {
 
         //ARRANGE
+        Danio danio = new Danio(600,600);
+        Casillero casilleroMock = mock(Casillero.class);
         Inventario inventario = new Inventario();
         inventario.agregarGas(150);
-        inventario.agregarMineral(150);
+        inventario.agregarMineral(300);
 
-        AmoSupremo amo1 = new AmoSupremo(inventario);
+        new AmoSupremo(inventario);
         AmoSupremo amo2 = new AmoSupremo(inventario);
+        amo2.ubicarEn(casilleroMock);
 
         for (int i = 0; i < 5; i++) {
-            Zerling zerling = new Zerling(inventario);
+            new Zerling(inventario);
         }
-        amo2.recibirDanio(600);
+        amo2.recibirDanio(danio);
 
         //act & assert
         assertFalse(inventario.tieneSuministros(1));

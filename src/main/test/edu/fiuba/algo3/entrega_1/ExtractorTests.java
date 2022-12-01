@@ -15,6 +15,7 @@ public class ExtractorTests {
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
+        Danio danio = new Danio(0,5);
 
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         try {
@@ -24,7 +25,7 @@ public class ExtractorTests {
                 extractor.pasarTurno();
             }
             //ASSERT
-            assertDoesNotThrow(() -> extractor.recibirDanio(5));
+            assertDoesNotThrow(() -> extractor.recibirDanio(danio));
         } catch (Exception e) {
             fail();
         }
@@ -35,7 +36,7 @@ public class ExtractorTests {
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-
+        Danio danio = new Danio(0,5);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         try{
             Unidad extractor = Extractor.construir(casilleroMock, inventarioMock);
@@ -43,9 +44,9 @@ public class ExtractorTests {
             for(int i=0; i<5; i++){
                 extractor.pasarTurno();
             }
-            extractor.recibirDanio(5);
+            extractor.recibirDanio(danio);
             // ASSERT
-            assertThrows(EstaDestruido.class, () -> extractor.recibirDanio(5));
+            assertThrows(EstaDestruido.class, () -> extractor.recibirDanio(danio));
         } catch (Exception e) {
             fail();
         }

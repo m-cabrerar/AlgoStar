@@ -28,7 +28,7 @@ public class EdificioEnConstruccion implements Unidad {
         }
     }
 
-    public void recibirDanio(int danio) throws EstaDestruido {
+    public void recibirDanio(Danio danio) throws EstaDestruido {
         if (destruido){
             throw new EstaDestruido("El edificio está destruido");
         }

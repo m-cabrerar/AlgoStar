@@ -1,11 +1,10 @@
 package edu.fiuba.algo3.entrega_2;
 
-import edu.fiuba.algo3.exceptions.AtaqueFueraDeRango;
+import edu.fiuba.algo3.exceptions.*;
 import edu.fiuba.algo3.modelo.*;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class ZerlingTests {
@@ -16,20 +15,23 @@ public class ZerlingTests {
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         when(inventarioMock.tieneSuministros(anyInt())).thenReturn(true);
         when(inventarioMock.puedeCrecerPoblacion(anyInt())).thenReturn(true);
-        UnidadMovil unidadMock = mock(UnidadMovil.class);
-        when(unidadMock.esVoladora()).thenReturn(true);
         Casillero casilleroMock = mock(Casillero.class);
         when(casilleroMock.tieneEnRango(any(), anyInt())).thenReturn(true);
+
         Zerling zerling = new Zerling(inventarioMock);
+        Mutalisco muta = new Mutalisco(inventarioMock);
         //ACT
         try {
             zerling.ubicarEn(casilleroMock);
-            zerling.atacar(unidadMock);
-            //ASSERT
-            verify(unidadMock, times(1)).recibirDanio(0);
+            muta.ubicarEn(casilleroMock);
+            for(int i=0; i<20; i++){
+                zerling.atacar(muta);
+            }
         } catch (Exception e) {
             fail();
         }
+        //ASSERT 
+        verify(casilleroMock, times(0)).desocupar();
     }
 
     @Test
@@ -39,20 +41,23 @@ public class ZerlingTests {
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         when(inventarioMock.tieneSuministros(anyInt())).thenReturn(true);
         when(inventarioMock.puedeCrecerPoblacion(anyInt())).thenReturn(true);
-        UnidadMovil unidadMock = mock(UnidadMovil.class);
-        when(unidadMock.esVoladora()).thenReturn(false);
         Casillero casilleroMock = mock(Casillero.class);
         when(casilleroMock.tieneEnRango(any(), anyInt())).thenReturn(true);
+
         Zerling zerling = new Zerling(inventarioMock);
+        Hidralisco hidra = new Hidralisco(inventarioMock);
         //ACT
         try {
             zerling.ubicarEn(casilleroMock);
-            zerling.atacar(unidadMock);
-            //ASSERT
-            verify(unidadMock, times(1)).recibirDanio(4);
+            hidra.ubicarEn(casilleroMock);
+            for(int i=0; i<20; i++){
+                zerling.atacar(hidra);
+            }
         } catch (Exception e) {
             fail();
         }
+        //ASSERT 
+        verify(casilleroMock, times(1)).desocupar();
     }
     public void test03ZerlingNoPuedeAtacarAUnaUnidadFueraDeRango() {
         //ARRANGE

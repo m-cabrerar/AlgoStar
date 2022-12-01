@@ -14,26 +14,24 @@ public class Zerling extends UnidadMovilZerg {
 
     private static int COSTO_SUMINISTRO = 1;
 
+    private Danio danio;
+
     public Zerling(Inventario inventario){
         super(inventario, COSTO_MINERAL, COSTO_GASEOSO, VIDA_MAXIMA, COSTO_SUMINISTRO);
+        danio = new Danio(DANIO_AIRE, DANIO_TIERRA);
+        superficie = new Tierra();
     }
     public int turnosParaConstruir(){
         return TURNOS_PARA_CONSTRUIR;
     }
 
-    @Override
-    public void recibirDanio(int danio) throws EstaDestruido {
-
+    public void recibirDanio(Danio danio) throws EstaDestruido {
+        vida.sufrirAtaque(superficie.danio(danio));
     }
-    public void atacar(UnidadMovil unidadAAtacar){
+    public void atacar(UnidadMovil unidadAAtacar) throws EstaDestruido{
         if(!this.tieneEnRangoA(unidadAAtacar, RANGO_DE_ATAQUE)){
             throw new AtaqueFueraDeRango("El ataque está fuera de rango");
         }
-        if (unidadAAtacar.esVoladora()){
-            unidadAAtacar.recibirDanio(DANIO_AIRE);
-        }
-        else{
-            unidadAAtacar.recibirDanio(DANIO_TIERRA);
-        }
+        unidadAAtacar.recibirDanio(danio);
     }
 }

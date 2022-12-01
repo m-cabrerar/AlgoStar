@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.entrega_2;
 
-import edu.fiuba.algo3.exceptions.AtaqueFueraDeRango;
+import edu.fiuba.algo3.exceptions.*;
 import edu.fiuba.algo3.modelo.*;
 import org.junit.jupiter.api.Test;
 
@@ -16,20 +16,24 @@ public class MutaliscoTests {
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         when(inventarioMock.tieneSuministros(anyInt())).thenReturn(true);
         when(inventarioMock.puedeCrecerPoblacion(anyInt())).thenReturn(true);
+
         Casillero casilleroMock = mock(Casillero.class);
         when(casilleroMock.tieneEnRango(any(), anyInt())).thenReturn(true);
+        
         Mutalisco mutalisco = new Mutalisco(inventarioMock);
-        UnidadMovil unidadMock = mock(UnidadMovil.class);
-        when(unidadMock.esVoladora()).thenReturn(true);
+        Mutalisco muta2 = new Mutalisco(inventarioMock);
         //ACT
         try {
             mutalisco.ubicarEn(casilleroMock);
-            mutalisco.atacar(unidadMock);
-            //ASSERT
-            verify(unidadMock, times(1)).recibirDanio(9);
+            muta2.ubicarEn(casilleroMock);
+            for(int i=0; i<14; i++){
+                mutalisco.atacar(muta2);
+            }
         } catch (Exception e) {
             fail();
         }
+        //ASSERT 
+        verify(casilleroMock, times(1)).desocupar();
     }
 
     @Test
@@ -38,21 +42,26 @@ public class MutaliscoTests {
         Inventario inventarioMock = mock(Inventario.class);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         when(inventarioMock.tieneSuministros(anyInt())).thenReturn(true);
-        when(inventarioMock.puedeCrecerPoblacion(anyInt())).thenReturn(true);
-        UnidadMovil unidadMock = mock(UnidadMovil.class);
-        when(unidadMock.esVoladora()).thenReturn(true);
+        when(inventarioMock.puedeCrecerPoblacion(anyInt())).thenReturn(true);;
+
         Casillero casilleroMock = mock(Casillero.class);
         when(casilleroMock.tieneEnRango(any(), anyInt())).thenReturn(true);
+
         Mutalisco mutalisco = new Mutalisco(inventarioMock);
+        Hidralisco hidra = new Hidralisco(inventarioMock);
+
         //ACT
         try {
             mutalisco.ubicarEn(casilleroMock);
-            mutalisco.atacar(unidadMock);
-            //ASSERT
-            verify(unidadMock, times(1)).recibirDanio(9);
+            hidra.ubicarEn(casilleroMock);
+            for(int i=0; i<9; i++){
+                mutalisco.atacar(hidra);
+            }
         } catch (Exception e) {
             fail();
         }
+        //ASSERT 
+        verify(casilleroMock, times(1)).desocupar();
     }
 
     public void test03MutaliscoNoPuedeAtacarAUnaUnidadFueraDeRango() {

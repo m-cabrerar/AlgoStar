@@ -7,7 +7,7 @@ class EdificioProtoss{
  - int:escudo
  - int:escudoMaximo
  + EdificioProtoss(Casillero casillero, Inventario inventario, int vidaInicial, int escudoInicial)
- + void:recibirDanio(int danio)
+ + void:recibirDanio(Danio danio)
  + void:pasarTurno()
 }
 

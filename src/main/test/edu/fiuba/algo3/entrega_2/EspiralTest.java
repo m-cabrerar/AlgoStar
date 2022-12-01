@@ -12,10 +12,12 @@ public class EspiralTest {
     public void test01EspiralEngendraMutaliscoYDespuesDe7TurnosEstaListo(){
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
+        when(casilleroMock.obtenerAdyacente()).thenReturn(casilleroMock);
         Inventario inventarioMock = mock(Inventario.class);
         when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         when(inventarioMock.tieneSuministros(anyInt())).thenReturn(true);
         when(inventarioMock.puedeCrecerPoblacion(anyInt())).thenReturn(true);
+
         Espiral espiral = new Espiral(casilleroMock, inventarioMock);
         Larva larva = new Larva(inventarioMock);
         //ACT
@@ -34,6 +36,7 @@ public class EspiralTest {
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
+        Danio danio = new Danio(0,5);
 
         when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         when(inventarioMock.tieneSuministros(anyInt())).thenReturn(true);
@@ -47,7 +50,7 @@ public class EspiralTest {
         }
         Unidad mutalisco = espiral.obtenerUnidad();
         //ASSERT
-        assertThrows(NullPointerException.class, () -> mutalisco.recibirDanio(5));
+        assertThrows(NullPointerException.class, () -> mutalisco.recibirDanio(danio));
     }
 
     @Test

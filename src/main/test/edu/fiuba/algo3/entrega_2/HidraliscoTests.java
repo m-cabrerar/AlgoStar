@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.entrega_2;
 
-import edu.fiuba.algo3.exceptions.AtaqueFueraDeRango;
+import edu.fiuba.algo3.exceptions.*;
 import edu.fiuba.algo3.modelo.*;
 import org.junit.jupiter.api.Test;
 
@@ -16,20 +16,24 @@ public class HidraliscoTests {
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         when(inventarioMock.tieneSuministros(anyInt())).thenReturn(true);
         when(inventarioMock.puedeCrecerPoblacion(anyInt())).thenReturn(true);
-        UnidadMovil unidadMock = mock(UnidadMovil.class);
-        when(unidadMock.esVoladora()).thenReturn(true);
+
         Casillero casilleroMock = mock(Casillero.class);
         when(casilleroMock.tieneEnRango(any(), anyInt())).thenReturn(true);
+
         Hidralisco hidra = new Hidralisco(inventarioMock);
+        Mutalisco mutalisco = new Mutalisco(inventarioMock);
         //ACT
         try {
             hidra.ubicarEn(casilleroMock);
-            hidra.atacar(unidadMock);
-            //ASSERT
-            verify(unidadMock, times(1)).recibirDanio(10);
+            mutalisco.ubicarEn(casilleroMock);
+            for(int i=0; i<12; i++){
+                hidra.atacar(mutalisco);
+            }
         } catch (Exception e) {
             fail();
         }
+        //ASSERT 
+        verify(casilleroMock, times(1)).desocupar();
     }
 
     @Test
@@ -39,20 +43,24 @@ public class HidraliscoTests {
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         when(inventarioMock.tieneSuministros(anyInt())).thenReturn(true);
         when(inventarioMock.puedeCrecerPoblacion(anyInt())).thenReturn(true);
+
         Casillero casilleroMock = mock(Casillero.class);
         when(casilleroMock.tieneEnRango(any(), anyInt())).thenReturn(true);
+
         Hidralisco hidralisco = new Hidralisco(inventarioMock);
-        UnidadMovil unidadMock = mock(UnidadMovil.class);
-        when(unidadMock.esVoladora()).thenReturn(false);
+        Hidralisco hidra2 = new Hidralisco(inventarioMock);
         //ACT
         try {
             hidralisco.ubicarEn(casilleroMock);
-            hidralisco.atacar(unidadMock);
-            //ASSERT
-            verify(unidadMock, times(1)).recibirDanio(10);
+            hidra2.ubicarEn(casilleroMock);
+            for(int i=0; i<8; i++){
+                hidralisco.atacar(hidra2);
+            }
         } catch (Exception e) {
             fail();
         }
+        //ASSERT 
+        verify(casilleroMock, times(1)).desocupar();
     }
 
     public void test03HidraliscoNoPuedeAtacarAUnaUnidadFueraDeRango() {

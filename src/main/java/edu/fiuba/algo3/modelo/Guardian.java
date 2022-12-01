@@ -13,13 +13,17 @@ public class Guardian extends UnidadMovilZerg {
 
     private static int COSTO_SUMINISTRO = 0;
 
+    private Danio danio;
+
     public Guardian(Inventario inventario){
         super(inventario, COSTO_MINERAL, COSTO_GASEOSO, VIDA_MAXIMA, COSTO_SUMINISTRO);
+        danio = new Danio(DANIO_AIRE, DANIO_TIERRA);
+        superficie = new Aire();
     }
 
     @Override
-    public void recibirDanio(int danio) throws EstaDestruido {
-
+    public void recibirDanio(Danio danio) throws EstaDestruido {
+        vida.sufrirAtaque(superficie.danio(danio));
     }
 
     @Override
@@ -27,16 +31,11 @@ public class Guardian extends UnidadMovilZerg {
         return TURNOS_PARA_CONSTRUIR;
     }
 
-    public void atacar(UnidadMovil unidadAAtacar){
+    public void atacar(UnidadMovil unidadAAtacar) throws EstaDestruido{
         if(!this.tieneEnRangoA(unidadAAtacar, RANGO_DE_ATAQUE)){
             throw new AtaqueFueraDeRango("El ataque está fuera de rango");
         }
-        if (unidadAAtacar.esVoladora()){
-            unidadAAtacar.recibirDanio(DANIO_AIRE);
-        }
-        else{
-            unidadAAtacar.recibirDanio(DANIO_TIERRA);
-        }
+        unidadAAtacar.recibirDanio(danio);
     }
 }
 

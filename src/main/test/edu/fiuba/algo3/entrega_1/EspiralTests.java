@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 import edu.fiuba.algo3.exceptions.*;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -17,6 +16,7 @@ public class EspiralTests {
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
+        Danio danio = new Danio(0,5);
         try {
             Unidad espiral = new Espiral(casilleroMock, inventarioMock);
 
@@ -25,7 +25,7 @@ public class EspiralTests {
                 espiral.pasarTurno();
             }
             //ASSERT
-            assertDoesNotThrow(() -> espiral.recibirDanio(5));
+            assertDoesNotThrow(() -> espiral.recibirDanio(danio));
         } catch (Exception e) {
             fail();
         }
@@ -37,15 +37,16 @@ public class EspiralTests {
         Inventario inventarioMock = mock(Inventario.class);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         when(inventarioMock.tieneGuarida()).thenReturn(true);
+        Danio danio = new Danio(0,5);
         try{
             Unidad espiral = Espiral.construir(casilleroMock, inventarioMock);
             //ACT
             for(int i=0; i<9; i++){
                 espiral.pasarTurno();
             }
-            espiral.recibirDanio(5);
+            espiral.recibirDanio(danio);
             // ASSERT
-            assertThrows(EstaDestruido.class, () -> espiral.recibirDanio(5));
+            assertThrows(EstaDestruido.class, () -> espiral.recibirDanio(danio));
         } catch (Exception e) {
             fail();
         }

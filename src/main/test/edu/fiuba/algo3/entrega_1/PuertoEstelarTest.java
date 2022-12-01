@@ -57,6 +57,7 @@ public class PuertoEstelarTest {
     @Test
     public void test05ConstruyoUnPuertoEstelarQueEstaraListoEn10Turnos() {
         // Arrange
+        Danio danio = new Danio(0,1);
         Casillero mockedCasillero = mock(Casillero.class);
         when(mockedCasillero.tieneEnergia()).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
@@ -67,15 +68,16 @@ public class PuertoEstelarTest {
             puertoEstelar.pasarTurno();
         }
         // Act
-        try{puertoEstelar.recibirDanio(1);}
+        try{puertoEstelar.recibirDanio(danio);}
         catch(Exception e){}
         // Assert
-        assertDoesNotThrow(() -> puertoEstelar.recibirDanio(1));
+        assertDoesNotThrow(() -> puertoEstelar.recibirDanio(danio));
     }
 
     @Test
     public void test06ConstruyoUnPuertoEstelarYNoEstaListo() {
         // Arrange
+        Danio danio = new Danio(0,1);
         Casillero mockedCasillero = mock(Casillero.class);
         when(mockedCasillero.tieneEnergia()).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
@@ -83,15 +85,16 @@ public class PuertoEstelarTest {
         when(mockedInventario.tieneAcceso()).thenReturn(true);
         Unidad puertoEstelar = PuertoEstelar.construir(mockedCasillero, mockedInventario);
         // Act
-        try{puertoEstelar.recibirDanio(1);}
+        try{puertoEstelar.recibirDanio(danio);}
         catch(Exception e){}
         // Assert
-        assertThrows(EstaDestruido.class, () -> puertoEstelar.recibirDanio(1));
+        assertThrows(EstaDestruido.class, () -> puertoEstelar.recibirDanio(danio));
     }
 
     @Test
     public void test07ConstruyoUnPuertoEstelarYLuegoDe9turnosNoEstaListo() {
         // Arrange
+        Danio danio = new Danio(0,1);
         Casillero mockedCasillero = mock(Casillero.class);
         when(mockedCasillero.tieneEnergia()).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
@@ -102,10 +105,10 @@ public class PuertoEstelarTest {
             puertoEstelar.pasarTurno();
         }
         // Act
-        try{puertoEstelar.recibirDanio(1);}
+        try{puertoEstelar.recibirDanio(danio);}
         catch(Exception e){}
         // Assert
-        assertThrows(EstaDestruido.class, () -> puertoEstelar.recibirDanio(1));
+        assertThrows(EstaDestruido.class, () -> puertoEstelar.recibirDanio(danio));
     }
 
     @Test
@@ -117,15 +120,17 @@ public class PuertoEstelarTest {
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         when(mockedInventario.tieneAcceso()).thenReturn(true);
         Unidad puertoEstelar = new PuertoEstelar(mockedCasillero, mockedInventario);
+        Danio danio = new Danio(0,50);
+        Danio danio2 = new Danio(0,1199);
         // Act
-        try{puertoEstelar.recibirDanio(50);}
+        try{puertoEstelar.recibirDanio(danio);}
         catch(Exception e){}
         puertoEstelar.pasarTurno();
         puertoEstelar.pasarTurno();
         puertoEstelar.pasarTurno();
         puertoEstelar.pasarTurno();
         puertoEstelar.pasarTurno();
-        try{puertoEstelar.recibirDanio(1199);}
+        try{puertoEstelar.recibirDanio(danio2);}
         catch(Exception e){}
         // Assert
         verify(mockedCasillero, times(0)).desocupar();
@@ -140,21 +145,24 @@ public class PuertoEstelarTest {
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
         when(mockedInventario.tieneAcceso()).thenReturn(true);
         Unidad puertoEstelar = new PuertoEstelar(mockedCasillero, mockedInventario);
+        Danio danio = new Danio(0,650);
+        Danio danio2 = new Danio(0,1150);
         // Act
-        try{puertoEstelar.recibirDanio(650);}
+        try{puertoEstelar.recibirDanio(danio);}
         catch(Exception e){}
         for (int i = 0; i < 65; i++) {
             puertoEstelar.pasarTurno();
         }
-        try{puertoEstelar.recibirDanio(1150);}
+        try{puertoEstelar.recibirDanio(danio2);}
         catch(Exception e){}
         // Assert
-        verify(mockedCasillero, times(1)).desocupar();
+        verify(mockedCasillero, times(0)).desocupar();
     }
 
     @Test
     public void test10PuertoEstelarRecibeDanioYSeDestruye() {
         // Arrange
+        Danio danio = new Danio(0,1200);
         Casillero mockedCasillero = mock(Casillero.class);
         when(mockedCasillero.tieneEnergia()).thenReturn(true);
         Inventario mockedInventario = mock(Inventario.class);
@@ -162,8 +170,13 @@ public class PuertoEstelarTest {
         when(mockedInventario.tieneAcceso()).thenReturn(true);
         Unidad puertoEstelar = new PuertoEstelar(mockedCasillero, mockedInventario);
         // Act
-        try{puertoEstelar.recibirDanio(1200);}
-        catch(Exception e){}
+        try{
+            puertoEstelar.recibirDanio(danio);
+            puertoEstelar.recibirDanio(danio);
+        }
+        catch(Exception e){
+            fail();
+        }
         // Assert
         verify(mockedCasillero, times(1)).desocupar();
     }
