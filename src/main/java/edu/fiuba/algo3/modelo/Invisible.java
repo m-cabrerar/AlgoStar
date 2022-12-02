@@ -5,5 +5,7 @@ public class Invisible implements Visibilidad{
 
     @Override
     public Danio danioARecibir(Danio danioA) {
-        return(new Danio(0,0));
+        return (new Danio(0, 0));
     }
+}
+
