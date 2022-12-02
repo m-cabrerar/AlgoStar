@@ -57,12 +57,12 @@ public class Criadero extends EdificioZerg{
         return cantidadLarvas == 3;
     }
 
-    public void recibirDanio(Danio danio){
+    public void recibirDanio(Danio danio) throws EstaDestruido{
         try {
             super.recibirDanio(danio);
         } catch (Exception EstaDestruido){
-            this.casillero.desocupar();
             this.inventario.perderSuministro(SUMINISTRA);
+            throw new EstaDestruido("Unidad destruida");
         }
     }
 }

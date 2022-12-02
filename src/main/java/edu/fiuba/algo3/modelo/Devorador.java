@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.exceptions.AtaqueFueraDeRango;
 import edu.fiuba.algo3.exceptions.EstaDestruido;
 
 public class Devorador extends UnidadMovilZerg {
@@ -14,19 +15,23 @@ public class Devorador extends UnidadMovilZerg {
 
     private static final int COSTO_SUMINISTRO = 0;
 
-    Devorador(Inventario inventario) {
+    private Danio danio;
+
+    public Devorador(Inventario inventario) {
         super(inventario, COSTO_MINERAL, COSTO_GASEOSO, VIDA, COSTO_SUMINISTRO);
+        danio = new Danio(DANIO_AIRE,DANIO_TIERRA);
         superficie = new Aire();
     }
-
     @Override
     public int turnosParaConstruir() {
         return TURNOS_PARA_CONSTRUIR;
     }
-
-    public void recibirDanio(Danio danio){
-        vida.sufrirAtaque(superficie.danio(danio));
+    public void atacar(UnidadMovil unidadAAtacar){
+        try{
+            super.atacar(unidadAAtacar, RANGO_DE_ATAQUE, danio);
+        } catch (Exception EstaDestruido){
+            //no tiene comportamiento si mata una unidad
+        }
     }
-
 
 }

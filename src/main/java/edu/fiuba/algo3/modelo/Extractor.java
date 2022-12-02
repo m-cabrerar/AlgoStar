@@ -37,12 +37,4 @@ public class Extractor extends EdificioZerg {
             throw new ExtractorError("El extractor ya tiene 3 zanganos trabajando");
         }
     }
-
-    public void recibirDanio(Danio danio){
-        try {
-            super.recibirDanio(danio);
-        } catch (Exception EstaDestruido){
-            this.casillero.desocupar();
-        }
-    }
 }

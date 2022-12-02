@@ -25,11 +25,12 @@ public class Mutalisco extends UnidadMovilZerg {
         return TURNOS_PARA_CONSTRUIR;
     }
 
-    public void atacar(UnidadMovil unidadAAtacar) throws EstaDestruido{
-        if(!this.tieneEnRangoA(unidadAAtacar, RANGO_DE_ATAQUE)){
-            throw new AtaqueFueraDeRango("El ataque está fuera de rango");
+    public void atacar(UnidadMovil unidadAAtacar){
+        try{
+            super.atacar(unidadAAtacar, RANGO_DE_ATAQUE, danio);
+        } catch (Exception EstaDestruido){
+            //no tiene comportamiento si mata una unidad
         }
-        unidadAAtacar.recibirDanio(danio);
     }
 
     public void evolucionarADevorador (Inventario inventario) throws RecursosInsuficientes {

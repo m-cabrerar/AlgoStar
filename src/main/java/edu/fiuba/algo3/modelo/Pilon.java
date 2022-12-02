@@ -27,12 +27,12 @@ public class Pilon extends EdificioProtoss {
         return new EdificioEnConstruccion(pilon, casillero, inventario);
     }
 
-    public void recibirDanio(Danio danio){
+    public void recibirDanio(Danio danio) throws EstaDestruido{
         try {
             super.recibirDanio(danio);
         } catch (Exception EstaDestruido){
-            this.casillero.desocupar();
-            this.inventario.perderSuministro(SUMINISTRA);   
+            this.inventario.perderSuministro(SUMINISTRA);
+            throw new EstaDestruido("unidad destruida");
         }
     }
 

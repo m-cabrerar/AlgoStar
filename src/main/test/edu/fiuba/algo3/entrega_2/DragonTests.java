@@ -76,21 +76,19 @@ public class DragonTests {
         when(inventarioMock.tieneSuministros(anyInt())).thenReturn(true);
         when(inventarioMock.puedeCrecerPoblacion(anyInt())).thenReturn(true);
 
-        UnidadMovil unidadMock = mock(UnidadMovil.class);
-        when(unidadMock.esVoladora()).thenReturn(false);
+        Devorador devorador = new Devorador(inventarioMock);//200 de vida unidad de Aire
 
         Casillero casilleroMock = mock(Casillero.class);
         when(casilleroMock.tieneEnRango(any(), anyInt())).thenReturn(false);
-        Dragon dragon = new Dragon(inventarioMock);
+
+        Dragon dragon = new Dragon(inventarioMock); //20 danio aereo
         //ACT
-        try {
-            dragon.ubicarEn(casilleroMock);
-            //ASSERT
-            assertThrows(AtaqueFueraDeRango.class, () -> dragon.atacar(unidadMock));
-
-        } catch (Exception e) {
-            fail();
+        dragon.ubicarEn(casilleroMock);
+        devorador.ubicarEn(casilleroMock);
+        //ASSERT
+        for(int i=0; i<9; i++){
+            dragon.atacar(devorador);
         }
-
+        verify(casilleroMock, times(0)).desocupar();
     }
 }

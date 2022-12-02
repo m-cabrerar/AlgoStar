@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.entrega_3;
+/*package edu.fiuba.algo3.entrega_3;
 
 import edu.fiuba.algo3.exceptions.UnidadInvisible;
 import edu.fiuba.algo3.modelo.*;
@@ -33,7 +33,7 @@ public class casoUso28 {
         zerling.ubicarEn(casilleroMock);
 
         //ACT
-        zealot.volverseInvisible();
+        zealot.invisibilizar();
 
         //ASSERT
         assertThrows(UnidadInvisible.class, () -> zerling.atacar(zealot));
@@ -69,7 +69,7 @@ public class casoUso28 {
         amo.ubicarEn(casilleroMock1);
 
         zealot.ubicarEn(casilleroMock2);
-        zealot.volverseInvisible();
+        zealot.invisibilizar();
         zealot.pasarTurno();
 
         zerling.ubicarEn(casilleroMock3);
@@ -80,4 +80,4 @@ public class casoUso28 {
     }
 
 
-}
+}*/

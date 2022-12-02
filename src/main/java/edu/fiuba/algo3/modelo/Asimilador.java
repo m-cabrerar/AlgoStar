@@ -28,11 +28,4 @@ public class Asimilador extends EdificioProtoss {
         return casillero.extraerGas(20);
     }
 
-    public void recibirDanio(Danio danio){
-        try {
-            super.recibirDanio(danio);
-        } catch (Exception EstaDestruido){
-            this.casillero.desocupar();
-        }
-    }
 }
