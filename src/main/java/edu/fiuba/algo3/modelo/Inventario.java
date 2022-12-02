@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.exceptions.ParametrosInvalidos;
 import edu.fiuba.algo3.exceptions.PoblacionMaximaAlcanzada;
 import edu.fiuba.algo3.exceptions.RecursosInsuficientes;
-import edu.fiuba.algo3.exceptions.UbicacionInvalida;
+import edu.fiuba.algo3.modelo.unidades.moviles.AmoSupremo;
+import edu.fiuba.algo3.modelo.unidades.Unidad;
 
 import java.util.ArrayList;
 import java.util.List;

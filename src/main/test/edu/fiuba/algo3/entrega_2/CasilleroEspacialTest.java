@@ -2,6 +2,8 @@ package edu.fiuba.algo3.entrega_2;
 
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.exceptions.*;
+import edu.fiuba.algo3.modelo.casillero.CasilleroEspacial;
+import edu.fiuba.algo3.modelo.unidades.moviles.UnidadMovil;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;

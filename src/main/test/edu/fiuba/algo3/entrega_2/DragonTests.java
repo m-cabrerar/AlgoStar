@@ -1,8 +1,11 @@
 package edu.fiuba.algo3.entrega_2;
 
-import edu.fiuba.algo3.exceptions.AtaqueFueraDeRango;
-import edu.fiuba.algo3.exceptions.EstaDestruido;
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.casillero.Casillero;
+import edu.fiuba.algo3.modelo.unidades.moviles.Devorador;
+import edu.fiuba.algo3.modelo.unidades.moviles.Dragon;
+import edu.fiuba.algo3.modelo.unidades.moviles.Hidralisco;
+import edu.fiuba.algo3.modelo.unidades.moviles.Mutalisco;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
