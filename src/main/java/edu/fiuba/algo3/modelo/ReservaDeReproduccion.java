@@ -6,6 +6,8 @@ public class ReservaDeReproduccion extends EdificioZerg {
     private static int VIDA_MAXIMA = 1000;
     public ReservaDeReproduccion(Casillero casillero, Inventario inventario){
         super(casillero, inventario,VIDA_MAXIMA);
+        casillero.ocupar(this);
+        inventario.subirNivelConstruccion(1);
     }
     public void pasarTurno(){
         super.pasarTurno();
@@ -23,8 +25,10 @@ public class ReservaDeReproduccion extends EdificioZerg {
         if(!inventario.tieneRecursos(150,0)){
             throw new RecursosInsuficientes("No tiene recursos");
         }
+        if(!inventario.puedeConstruir(0)){
+            throw new CorrelativasInsuficientes("Aún no se puede contruir este edificio");
+        }
         ReservaDeReproduccion reserva = new ReservaDeReproduccion(casillero, inventario);
-        casillero.ocupar(reserva);
         return new EdificioEnConstruccion(reserva, casillero, inventario);
     }
     public UnidadMovil crearEvolucion(Inventario inventario) throws RecursosInsuficientes {

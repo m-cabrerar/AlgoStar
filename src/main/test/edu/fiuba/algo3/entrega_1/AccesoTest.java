@@ -12,10 +12,9 @@ public class AccesoTest {
         // Arrange
         Casillero casillero = new Casillero(0,0,mock(Mapa.class));
         casillero.energizar();
-        Inventario mockedInventario = mock(Inventario.class);
-        when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
+        Inventario inventario = new Inventario();
         // Act & Assert
-        assertDoesNotThrow(() -> Acceso.construir(casillero, mockedInventario));
+        assertDoesNotThrow(() -> Acceso.construir(casillero, inventario));
     }
 
     @Test
@@ -23,20 +22,21 @@ public class AccesoTest {
         // Arrange
         Casillero casillero = new Casillero(0,0,mock(Mapa.class));
         casillero.energizar();
-        Inventario mockedInventario = mock(Inventario.class);
-        when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(false);
+        Inventario inventario = new Inventario();
+        //Vacio inventario
+        inventario.pagarMateriales(0,200);
+
         // Act & Assert
-        assertThrows(RecursosInsuficientes.class, () -> Acceso.construir(casillero, mockedInventario));
+        assertThrows(RecursosInsuficientes.class, () -> Acceso.construir(casillero, inventario));
     }
 
     @Test
     public void test03AccesoSeConstruyeEnLaCasillaIncorrectaPeroConRecursosSuficientes() {
         // Arrange
         Casillero casillero = new Casillero(0,0,mock(Mapa.class));
-        Inventario mockedInventario = mock(Inventario.class);
-        when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
+        Inventario inventario = new Inventario();
         // Act & Assert
-        assertThrows(UbicacionInvalida.class, () -> Acceso.construir(casillero, mockedInventario));
+        assertThrows(UbicacionInvalida.class, () -> Acceso.construir(casillero, inventario));
     }
 
     @Test
@@ -44,13 +44,11 @@ public class AccesoTest {
         // Arrange
         Casillero casillero = new Casillero(0,0,mock(Mapa.class));
         casillero.energizar();
-
-        Inventario mockedInventario = mock(Inventario.class);
-        when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
+        Inventario inventario = new Inventario();
         Danio mockedDanio = mock(Danio.class);
         when(mockedDanio.ataqueTerrestre()).thenReturn(1);
 
-        Unidad acceso = Acceso.construir(casillero, mockedInventario);
+        Unidad acceso = Acceso.construir(casillero, inventario);
         
         for (int i = 0; i < 8; i++) {
             acceso.pasarTurno();
@@ -67,12 +65,10 @@ public class AccesoTest {
         // Arrange
         Casillero casillero = new Casillero(0,0,mock(Mapa.class));
         casillero.energizar();
-
-        Inventario mockedInventario = mock(Inventario.class);
-        when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
+        Inventario inventario = new Inventario();
         Danio danio = new Danio(0,1);
 
-        Unidad acceso = Acceso.construir(casillero, mockedInventario);
+        Unidad acceso = Acceso.construir(casillero, inventario);
 
         // Act
         try{acceso.recibirDanio(danio);}
@@ -87,12 +83,11 @@ public class AccesoTest {
         Casillero casillero = new Casillero(0,0,mock(Mapa.class));
         casillero.energizar();
 
-        Inventario mockedInventario = mock(Inventario.class);
-        when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
+        Inventario inventario = new Inventario();
         
         Danio danio = new Danio(0,1);
 
-        Unidad acceso = Acceso.construir(casillero, mockedInventario);
+        Unidad acceso = Acceso.construir(casillero, inventario);
         for (int i = 0; i < 7; i++) {
             acceso.pasarTurno();
         }
@@ -109,14 +104,12 @@ public class AccesoTest {
         Casillero casillero = new Casillero(0,0,mock(Mapa.class));
         casillero.energizar();
 
-        Inventario mockedInventario = mock(Inventario.class);
+        Inventario inventario = new Inventario();
         
         Danio danio = new Danio(0,50);
         Danio danio2 = new Danio(0,999);
 
-        when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
-
-        Unidad acceso = new Acceso(casillero, mockedInventario);
+        Unidad acceso = new Acceso(casillero, inventario);
         // Act
         try{acceso.recibirDanio(danio);}
         catch(Exception e){}
@@ -140,10 +133,9 @@ public class AccesoTest {
         Danio danio = new Danio(0,550);
         Danio danio2 = new Danio(0,950);
 
-        Inventario mockedInventario = mock(Inventario.class);
-        when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
+        Inventario inventario = new Inventario();
     
-        Unidad acceso = new Acceso(casillero, mockedInventario);
+        Unidad acceso = new Acceso(casillero, inventario);
         // Act
         try{acceso.recibirDanio(danio);}
         catch(Exception e){}
@@ -154,25 +146,25 @@ public class AccesoTest {
         catch(Exception e){
         }
         //ASSERT
-        assertFalse(casillero.estaOcupado());
+        assertTrue(casillero.estaOcupado());
     }
 
     @Test
     public void test09AccesoRecibeDanioYSeDestruye() {
         // Arrange
-        Casillero casillero = new Casillero(0,0,mock(Mapa.class));
+        Casillero casillero = mock(Casillero.class);
         casillero.energizar();
 
-        Inventario mockedInventario = mock(Inventario.class);
-        when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
-        Danio danio = new Danio(0,1200);
+        Inventario inventario = new Inventario();
 
-        Unidad acceso = new Acceso(casillero, mockedInventario);
+        Danio danio = new Danio(0,5000);
+
+        Unidad acceso = new Acceso(casillero, inventario);
         // Act
-        try{acceso.recibirDanio(danio);}
-        catch(Exception e){}
+        acceso.recibirDanio(danio);
+        acceso.recibirDanio(danio);
         //ASSERT
-        assertFalse(casillero.estaOcupado());
+        verify(casillero, times(1)).desocupar();
     }
 }
 
