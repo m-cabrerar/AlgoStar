@@ -2,6 +2,7 @@ package edu.fiuba.algo3.entrega_3;
 
 import edu.fiuba.algo3.exceptions.PoblacionMaximaAlcanzada;
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.unidades.moviles.Zerling;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.vistas;
 
-import edu.fiuba.algo3.modelo.Casillero;
+import edu.fiuba.algo3.modelo.casillero.Casillero;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 

@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.vistas;
 
-import edu.fiuba.algo3.modelo.Casillero;
+import edu.fiuba.algo3.modelo.casillero.Casillero;
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Mapa;
 import javafx.beans.binding.Bindings;
