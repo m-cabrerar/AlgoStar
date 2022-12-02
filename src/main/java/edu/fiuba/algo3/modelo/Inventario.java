@@ -19,12 +19,24 @@ public class Inventario {
     private int suministrosDisponibles;
     int suministrosEmpleados;
 
+    private int nivelConstruccion;
     public Inventario(){
         this.cantidadGas = 0;
         this.cantidadMineral = 200;
         this.suministrosDisponibles = 0;
         this.suministrosEmpleados = 0;
         this.unidades = new ArrayList<>();
+        this.nivelConstruccion = 0;
+    }
+    public boolean puedeConstruir(int nivelDificultadConstruccion) {
+        return (nivelDificultadConstruccion <= this.nivelConstruccion);
+    }
+
+    public void subirNivelConstruccion(int nivelOtorga){
+        //Si puedo construir algo que otorga mayor nivel al mio, sube mi nivel de construccion
+        if(nivelOtorga > this.nivelConstruccion){
+            this.nivelConstruccion = nivelOtorga;
+        }
     }
     public void agregarGas(int i) {
         this.cantidadGas += i;
@@ -60,39 +72,11 @@ public class Inventario {
         return ((this.cantidadMineral >= cantMineral) && (this.cantidadGas >= cantidadGas));
     }
     public void pagarMateriales(int cantidadGas, int cantidadMineral){
-        if(!this.tieneRecursos(cantidadMineral,cantidadGas)){
+        if(!this.tieneRecursos(cantidadGas,cantidadMineral)){
             throw new RecursosInsuficientes("Recursos insuficientes");
         }
         this.cantidadMineral -= cantidadMineral;
         this.cantidadGas -= cantidadGas;
-    }
-    //TODO: evitar instanceof
-
-    public boolean tieneGuarida() {
-        for (Unidad unidad : this.unidades) {
-            if (unidad instanceof Guarida) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean tieneReservaDeReproduccion() {
-        for (Unidad unidad : this.unidades) {
-            if (unidad instanceof ReservaDeReproduccion) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean tieneAcceso() {
-        for (Unidad unidad : this.unidades) {
-            if (unidad instanceof Acceso) {
-                return true;
-            }
-        }
-        return false;
     }
 
 
@@ -115,33 +99,3 @@ public class Inventario {
         return amosSupremos;
     }
 }
-
-
-    /*int cantidadGas;
-    int cantidadMineral;
-
-
-    public Inventario(int cantidadInicialGas, int cantidadInicialMineral){
-        this.cantidadGas = cantidadInicialGas;
-        this.cantidadMineral = cantidadInicialMineral;
-    }
-
-    private boolean puedePagar(int pagoDeMineral, int pagoDeGas){
-        if((this.cantidadMineral < pagoDeMineral) || (this.cantidadGas < pagoDeGas)){
-            return false;
-        }
-        return true;
-    }
-    public void pagar(int pagoDeGas, int pagoDeMineral) throws Exception {
-        if (!this.puedePagar(pagoDeGas, pagoDeMineral)) {
-            throw new Exception("Materiales insuficientes");
-        }
-        this.cantidadGas -= pagoDeGas;
-        this.cantidadMineral -= pagoDeMineral;
-    }
-    public void recibirMineral(int cantidad){
-        this.cantidadMineral += cantidad;
-    }
-    public void recibirGas(int cantidad){
-        this.cantidadGas += cantidad;
-    }*/

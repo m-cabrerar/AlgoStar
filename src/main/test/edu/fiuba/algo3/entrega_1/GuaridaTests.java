@@ -20,7 +20,7 @@ public class GuaridaTests {
         Danio danio = new Danio(0,5);
 
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
-        when(inventarioMock.tieneReservaDeReproduccion()).thenReturn(true);
+        when(inventarioMock.puedeConstruir(anyInt())).thenReturn(true);
         try {
             Unidad guarida = Guarida.construir(casilleroMock, inventarioMock);
             //ACT
@@ -42,7 +42,7 @@ public class GuaridaTests {
         Danio danio = new Danio(0,5);
 
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
-        when(inventarioMock.tieneReservaDeReproduccion()).thenReturn(true);
+        when(inventarioMock.puedeConstruir(anyInt())).thenReturn(true);
         try {
             Unidad guarida = Guarida.construir(casilleroMock, inventarioMock);
             //ACT
@@ -59,15 +59,15 @@ public class GuaridaTests {
     @Test
     public void test03NoSePuedeConstruirUnaGuaridaSinTenerUnaReservaDeReproduccion(){
         //ARRANGE
-        String mensaje = "Aun no se puede construir este edificio";
+        String mensaje = "Aún no se puede construir este edificio";
         Casillero casilleroMock = mock(Casillero.class);
-        Inventario inventarioMock = mock(Inventario.class);
+        Inventario inventario = new Inventario();
+        inventario.agregarMineral(1000);
+        inventario.agregarGas(1000);
 
-        when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
-        when(inventarioMock.tieneReservaDeReproduccion()).thenReturn(false);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            Guarida.construir(casilleroMock, inventarioMock);
+            Guarida.construir(casilleroMock, inventario);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
@@ -77,14 +77,17 @@ public class GuaridaTests {
     public void test04SePuedeConstruirUnaGuaridaSiTengoUnaReservaDeReproduccion(){
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
-        Inventario inventarioMock = mock(Inventario.class);
+        Casillero casillero= mock(Casillero.class);
+
+        Inventario inventario = new Inventario();
+        inventario.agregarGas(1000);
+        inventario.agregarMineral(1000);
         //ACT
         try {
 
-            when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
-            when(inventarioMock.tieneReservaDeReproduccion()).thenReturn(true);
+            ReservaDeReproduccion.construir(casillero, inventario);
             //ASSERT
-            Guarida.construir(casilleroMock, inventarioMock);
+            Guarida.construir(casilleroMock, inventario);
         } catch (Exception e) {
             fail();
         }
