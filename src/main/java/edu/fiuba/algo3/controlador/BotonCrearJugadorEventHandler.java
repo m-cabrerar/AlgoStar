@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.controlador;
 
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.vistas.ContenedorPrincipal;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -24,8 +25,9 @@ public class BotonCrearJugadorEventHandler implements EventHandler<ActionEvent> 
     private Button botonAmarillo;
     private Button botonProtoss;
     private Button botonZerg;
+    private final ContenedorPrincipal contenedorPrincipal;
 
-    public BotonCrearJugadorEventHandler(Label error, Label titulo, TextField nombreJugador, Button botonRojo, Button botonAzul, Button botonAmarillo, Button botonVerde, Button botonProtoss, Button botonZerg, Juego juego, Stage stage, Scene proximaEscena) {
+    public BotonCrearJugadorEventHandler(Label error, Label titulo, TextField nombreJugador, Button botonRojo, Button botonAzul, Button botonAmarillo, Button botonVerde, Button botonProtoss, Button botonZerg, Juego juego, Stage stage, Scene proximaEscena, ContenedorPrincipal contenedorPrincipal) {
 
         this.nombreJugador = nombreJugador;
         this.error = error;
@@ -39,6 +41,7 @@ public class BotonCrearJugadorEventHandler implements EventHandler<ActionEvent> 
         this.juego = juego;
         this.stage = stage;
         this.proximaEscena = proximaEscena;
+        this.contenedorPrincipal = contenedorPrincipal;
     }
 
     @Override
@@ -119,6 +122,9 @@ public class BotonCrearJugadorEventHandler implements EventHandler<ActionEvent> 
         if (juego.cantidadDeJugadores() == juego.cantidadDeJugadoresMaxima()) {
             stage.setScene(proximaEscena);
             stage.setFullScreen(true);
+            juego.crearBases();
+
+            contenedorPrincipal.actualizar();
         }
 
     }

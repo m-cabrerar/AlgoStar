@@ -16,7 +16,7 @@ public class ContenedorCreacionDeJugadores extends VBox {
     private Scene proximaEscena;
     private final Juego juego;
 
-    public ContenedorCreacionDeJugadores(Stage stage, Scene proximaEscena, Juego juego) {
+    public ContenedorCreacionDeJugadores(Stage stage, Scene proximaEscena, Juego juego, ContenedorPrincipal contenedorPrincipal) {
         super();
         this.stage = stage;
         this.proximaEscena = proximaEscena;
@@ -80,7 +80,7 @@ public class ContenedorCreacionDeJugadores extends VBox {
         });
 
         Button siguiente = new Button("Siguiente");
-        siguiente.setOnAction(new BotonCrearJugadorEventHandler(error, titulo, nombre, rojo, azul, amarillo, verde, protoss, zerg, juego, stage, proximaEscena));
+        siguiente.setOnAction(new BotonCrearJugadorEventHandler(error, titulo, nombre, rojo, azul, amarillo, verde, protoss, zerg, juego, stage, proximaEscena, contenedorPrincipal));
 
         HBox botonesRaza = new HBox(protoss, zerg);
         botonesRaza.setSpacing(10);
