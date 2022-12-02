@@ -2,10 +2,8 @@ package edu.fiuba.algo3.vistas;
 
 import edu.fiuba.algo3.modelo.Juego;
 import javafx.geometry.Pos;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 public class ContenedorPrincipal extends BorderPane {
@@ -27,10 +25,16 @@ public class ContenedorPrincipal extends BorderPane {
 
     private void setCentro(Juego juego) {
         tablero = new GridPane();
-        vistaJuego = new VistaJuego(juego, tablero);
-        contenedorCentral = new VBox(tablero);
+        tablero.setAlignment(Pos.CENTER);
+        StackPane centerPane = new StackPane(tablero);
+        vistaJuego = new VistaJuego(juego, tablero, centerPane);
+        contenedorCentral = new VBox(centerPane);
         contenedorCentral.setAlignment(Pos.CENTER);
         contenedorCentral.setSpacing(10);
+
+        Image backgroundImg = new Image("file:src/main/java/edu/fiuba/algo3/vistas/img/background.jpg");
+        BackgroundSize backgroundSize = new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, false, true);
+        contenedorCentral.setBackground(new Background(new BackgroundImage(backgroundImg, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize)));
 
         this.setCenter(contenedorCentral);
     }
