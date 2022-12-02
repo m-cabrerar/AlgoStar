@@ -18,7 +18,8 @@ public class CriaderoTests {
         //ARRANGE
         String mensaje = "Ya no quedan larvas disponibles";
         Casillero casillero = mock(Casillero.class);
-        Inventario inventario = mock(Inventario.class);
+        Inventario inventario =new Inventario();
+
         Criadero criadero = new Criadero(casillero, inventario);
         //ACT
         try {
@@ -43,7 +44,7 @@ public class CriaderoTests {
         //ARRANGE
         String mensaje = "Ya no quedan larvas disponibles";
         Casillero casillero = mock(Casillero.class);
-        Inventario inventario = mock(Inventario.class);
+        Inventario inventario =new Inventario();
         Criadero criadero = new Criadero(casillero, inventario);
         //ACT
         try {
@@ -68,8 +69,8 @@ public class CriaderoTests {
         //ARRANGE
         String mensaje = "Ya no quedan larvas disponibles";
         Casillero casilleroMock = mock(Casillero.class);
-        Inventario inventarioMock = mock(Inventario.class);
-        Criadero criadero = new Criadero(casilleroMock, inventarioMock);
+        Inventario inventario =new Inventario();
+        Criadero criadero = new Criadero(casilleroMock, inventario);
         //ACT
         try {
             criadero.engendrarZangano();
@@ -94,31 +95,30 @@ public class CriaderoTests {
     public void test04ConstruyoUnCriaderoQueEstaraListoEn4Turnos() {
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
-        Inventario inventarioMock = mock(Inventario.class);
+        Inventario inventario =new Inventario();
         Danio danio = new Danio(0,5);
+        Criadero criadero = new Criadero(casilleroMock, inventario);
 
-        when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
-        try {
-            Unidad criadero = Criadero.construir(casilleroMock, inventarioMock);
-            //ACT
-            criadero.pasarTurno();
-            criadero.pasarTurno();
-            criadero.pasarTurno();
-            criadero.pasarTurno();
-            //ASSERT
-            assertDoesNotThrow(() -> criadero.recibirDanio(danio));
-        } catch (Exception e) {
-            fail();
-        }
+        //ACT
+        criadero.pasarTurno();
+        criadero.pasarTurno();
+        criadero.pasarTurno();
+        criadero.pasarTurno();
+        //ASSERT
+        assertDoesNotThrow(() -> criadero.recibirDanio(danio));
+
     }
     @Test
     public void test05ConstruyoUnCriaderoQueNoSePuedeUsarPasados3Turnos() {
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
+
         Danio danio = new Danio(0,5);
 
         when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
+        when(inventarioMock.puedeConstruir(anyInt())).thenReturn(true);
+
         try {
             Unidad criadero = Criadero.construir(casilleroMock, inventarioMock);
             //ACT
@@ -138,11 +138,10 @@ public class CriaderoTests {
         String mensaje = "Ubicacion invalida";
         Casillero casillero = new Casillero(0,0,mock(Mapa.class));
         casillero.setTipoCasillero(new NodoGas());
-        Inventario inventarioMock = mock(Inventario.class);
-        when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
+        Inventario inventario =new Inventario();
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            Criadero.construir(casillero, inventarioMock);
+            Criadero criadero = new Criadero(casillero, inventario);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
@@ -151,10 +150,10 @@ public class CriaderoTests {
     public void test07NoPuedoConstruirUnCriaderoSinLosRecursos(){
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
-        Inventario inventarioMock = mock(Inventario.class);
-        when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(false);
+        Inventario inventario =new Inventario();
+        inventario.pagarMateriales(0,200);
         //ACT & ASSERT
-        assertThrows(RecursosInsuficientes.class, () -> Criadero.construir(casilleroMock, inventarioMock));
+        assertThrows(RecursosInsuficientes.class, () -> Criadero.construir(casilleroMock, inventario));
     }
 
     @Test
@@ -162,11 +161,10 @@ public class CriaderoTests {
         //ARRANGE
         String mensaje = "Ubicacion invalida";
         Casillero casillero = new Casillero(0,0,mock(Mapa.class));
-        Inventario inventarioMock = mock(Inventario.class);
-        when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
+        Inventario inventario =new Inventario();
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            Criadero.construir(casillero, inventarioMock);
+            Criadero criadero = new Criadero(casillero, inventario);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());

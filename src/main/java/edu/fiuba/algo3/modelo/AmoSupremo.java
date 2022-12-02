@@ -24,13 +24,20 @@ public class AmoSupremo extends UnidadMovilZerg {
         
         //Amo supremo no ataca
 
-        public void recibirDanio(Danio danio){
+        public void recibirDanio(Danio danio) throws EstaDestruido {
             try {
-                vida.sufrirAtaque(superficie.danio(danio));
+                super.recibirDanio(danio);
             } catch (Exception EstaDestruido){
-                this.casillero.desocupar();
-                this.inventario.perderSuministro(SUMINISTRA);   
+                this.inventario.perderSuministro(SUMINISTRA);
+                throw new EstaDestruido("Unidad destruida");
             }
+        }
+
+        @Override
+        public void ubicarEn(Casillero casillero){
+            this.casillero = casillero;
+            casillero.ocupar(this);
+            casillero.quitarInvisibilidadEnRango(4);
         }
 
 }

@@ -13,6 +13,8 @@ public class PilonTest {
         Casillero casillero = new Casillero(0,0,mock(Mapa.class));
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
+        when(mockedInventario.puedeConstruir(anyInt())).thenReturn(true);
+
         // Act & Assert
         assertDoesNotThrow(() -> Pilon.construir(casillero, mockedInventario));
     }
@@ -45,6 +47,8 @@ public class PilonTest {
         Inventario mockedInventario = mock(Inventario.class);
         Danio danio = new Danio(0,1);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
+        when(mockedInventario.puedeConstruir(anyInt())).thenReturn(true);
+
         Unidad pilon = Pilon.construir(mockedCasillero, mockedInventario);
         for (int i = 0; i < 5; i++) {
             pilon.pasarTurno();
@@ -63,6 +67,8 @@ public class PilonTest {
         Inventario mockedInventario = mock(Inventario.class);
         Danio danio = new Danio(0,1);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
+        when(mockedInventario.puedeConstruir(anyInt())).thenReturn(true);
+
         Unidad pilon = Pilon.construir(mockedCasillero, mockedInventario);
         // Act
         try{pilon.recibirDanio(danio);}
@@ -78,6 +84,8 @@ public class PilonTest {
         Inventario mockedInventario = mock(Inventario.class);
         Danio danio = new Danio(0,1);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
+        when(mockedInventario.puedeConstruir(anyInt())).thenReturn(true);
+
         Unidad pilon = Pilon.construir(mockedCasillero, mockedInventario);
         for (int i = 0; i < 4; i++) {
             pilon.pasarTurno();
@@ -140,10 +148,16 @@ public class PilonTest {
         Casillero casillero = new Casillero(0,0,mock(Mapa.class));
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
+        when(mockedInventario.puedeConstruir(anyInt())).thenReturn(true);
+
         Unidad pilon = new Pilon(casillero, mockedInventario);
         // Act
-        try{pilon.recibirDanio(danio);}
-        catch(Exception e){}
+        pilon.recibirDanio(danio);
+        try{
+            pilon.recibirDanio(danio);
+        } catch (Exception e){}
+
+
         // Assert
         assertFalse(casillero.estaOcupado());
     }

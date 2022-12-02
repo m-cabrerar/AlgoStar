@@ -26,7 +26,12 @@ abstract class EdificioConcreto implements Unidad, Construible{
     }
     
     public void recibirDanio(Danio danio) throws EstaDestruido{
-        vida.sufrirAtaque(superficie.danio(danio));
+        try {
+            vida.sufrirAtaque(superficie.danio(danio));
+        } catch (Exception EstaDestruido){
+            casillero.desocupar();
+            throw new EstaDestruido("Unidad destruida");
+        }
     }
     // TODO: evitar null
     protected boolean unidadEnConstruccion() {

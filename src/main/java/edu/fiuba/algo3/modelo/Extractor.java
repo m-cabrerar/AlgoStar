@@ -7,6 +7,8 @@ public class Extractor extends EdificioZerg {
     public Extractor(Casillero casillero, Inventario inventario){
         super(casillero, inventario, VIDA_MAXIMA);
         this.zanganosTrabajando = 0;
+        casillero.ocupar(this);
+        inventario.subirNivelConstruccion(0);
     }
     public void pasarTurno(){
         super.pasarTurno();
@@ -19,8 +21,10 @@ public class Extractor extends EdificioZerg {
         if(!inventario.tieneRecursos(100, 0)){
             throw new RecursosInsuficientes("No tiene recursos");
         }
+        if(!inventario.puedeConstruir(0)){
+            throw new CorrelativasInsuficientes("Aún no se puede contruir este edificio");
+        }
         Extractor extractor = new Extractor(casillero, inventario);
-        casillero.ocupar(extractor);
         return new EdificioEnConstruccion(extractor, casillero, inventario);
     }
     public void extraerGas(Inventario inventario) throws ExtractorError {
@@ -35,14 +39,6 @@ public class Extractor extends EdificioZerg {
             this.zanganosTrabajando += 1;
         } else {
             throw new ExtractorError("El extractor ya tiene 3 zanganos trabajando");
-        }
-    }
-
-    public void recibirDanio(Danio danio){
-        try {
-            super.recibirDanio(danio);
-        } catch (Exception EstaDestruido){
-            this.casillero.desocupar();
         }
     }
 }

@@ -24,14 +24,11 @@ public class Zerling extends UnidadMovilZerg {
     public int turnosParaConstruir(){
         return TURNOS_PARA_CONSTRUIR;
     }
-
-    public void recibirDanio(Danio danio) throws EstaDestruido {
-        vida.sufrirAtaque(superficie.danio(danio));
-    }
-    public void atacar(UnidadMovil unidadAAtacar) throws EstaDestruido{
-        if(!this.tieneEnRangoA(unidadAAtacar, RANGO_DE_ATAQUE)){
-            throw new AtaqueFueraDeRango("El ataque está fuera de rango");
+    public void atacar(Unidad unidadAAtacar){
+        try{
+            super.atacar(unidadAAtacar, RANGO_DE_ATAQUE, danio);
+        } catch (Exception EstaDestruido){
+            //no tiene comportamiento si mata una unidad
         }
-        unidadAAtacar.recibirDanio(danio);
     }
 }

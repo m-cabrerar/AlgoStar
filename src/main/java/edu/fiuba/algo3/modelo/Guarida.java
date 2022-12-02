@@ -6,6 +6,8 @@ public class Guarida extends EdificioZerg {
     private static int VIDA_MAXIMA = 1250;
     public Guarida(Casillero casillero, Inventario inventario){
     super(casillero, inventario, VIDA_MAXIMA);
+        casillero.ocupar(this);
+        inventario.subirNivelConstruccion(2);
     }
     public void pasarTurno(){
         super.pasarTurno();
@@ -23,11 +25,10 @@ public class Guarida extends EdificioZerg {
         if(!inventario.tieneRecursos(200, 100)){
             throw new RecursosInsuficientes("No tiene recursos");
         }
-        if(!inventario.tieneReservaDeReproduccion()){
-            throw new UbicacionInvalida("Aun no se puede construir este edificio");
+        if(!inventario.puedeConstruir(1)){
+            throw new CorrelativasInsuficientes("Aún no se puede construir este edificio");
         }
         Guarida guarida = new Guarida(casillero, inventario);
-        casillero.ocupar(guarida);
         return new EdificioEnConstruccion(guarida, casillero, inventario);
     }
     public UnidadMovil crearEvolucion(Inventario inventario) throws RecursosInsuficientes {
@@ -39,14 +40,6 @@ public class Guarida extends EdificioZerg {
         }
         unidadEnConstruccion = crearEvolucion(inventario);
         turnosParaConstruir = unidadEnConstruccion.turnosParaConstruir();
-    }
-
-    public void recibirDanio(Danio danio){
-        try {
-            super.recibirDanio(danio);
-        } catch (Exception EstaDestruido){
-            this.casillero.desocupar();
-        }
     }
 
 }

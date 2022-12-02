@@ -3,8 +3,11 @@ package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.exceptions.*;
 
 public class Asimilador extends EdificioProtoss {
+
     public Asimilador(Casillero unCasillero, Inventario unInventario){
         super(unCasillero, unInventario, 450, 450);
+        casillero.ocupar(this);
+        inventario.subirNivelConstruccion(0);
     }
 
     public int turnosParaConstruir(){
@@ -20,7 +23,9 @@ public class Asimilador extends EdificioProtoss {
         if(!inventario.tieneRecursos(0, 100)){
             throw new RecursosInsuficientes("No tiene recursos");
         }
-        casillero.ocupar(asimilador);
+        if(!inventario.puedeConstruir(0)){
+            throw new CorrelativasInsuficientes("Aún no se puede contruir este edificio");
+        }
         return new EdificioEnConstruccion(asimilador, casillero, inventario);
     }
 
@@ -28,11 +33,4 @@ public class Asimilador extends EdificioProtoss {
         return casillero.extraerGas(20);
     }
 
-    public void recibirDanio(Danio danio){
-        try {
-            super.recibirDanio(danio);
-        } catch (Exception EstaDestruido){
-            this.casillero.desocupar();
-        }
-    }
 }

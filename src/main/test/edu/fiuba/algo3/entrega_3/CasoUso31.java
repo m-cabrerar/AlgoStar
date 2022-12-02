@@ -13,7 +13,7 @@ public class CasoUso31{
     //Verificar que al destruir pilones, amos supremos o criaderos disminuye la capacidad de
     //suministros del jugador.
     @Test
-    public void TengoDosCriaderosYDestruyoUnoSoloPuedoHacer5ZerlingsYMeQuedoSinSuministros() {
+    public void Test01TengoDosCriaderosYDestruyoUnoSoloPuedoHacer5ZerlingsYMeQuedoSinSuministros() {
 
         //ARRANGE
         Danio danio = new Danio(600,600);
@@ -27,14 +27,19 @@ public class CasoUso31{
         for (int i = 0; i < 5; i++) {
             new Zerling(inventario);
         }
-        criadero.recibirDanio(danio);
+        try {
+            criadero.recibirDanio(danio);
+        } catch (Exception EstaDestruido){
+
+        }
+
         verify(casilleroMock, times(1)).desocupar();
         //act & assert
         assertFalse(inventario.tieneSuministros(1));
 
     }
     @Test
-    public void TengoDosPilonesYDestruyoUnoSoloPuedoHacer5ZerlingsYMeQuedoSinSuministros() {
+    public void Test02TengoDosPilonesYDestruyoUnoSoloPuedoHacer5ZerlingsYMeQuedoSinSuministros() {
 
         //ARRANGE
         Danio danio = new Danio(600,600);
@@ -50,7 +55,11 @@ public class CasoUso31{
             new Zerling(inventario);
         }
         pilon2.recibirDanio(danio);
-        pilon2.recibirDanio(danio);
+        try {
+            pilon2.recibirDanio(danio);
+        } catch (Exception EstaDestruido){
+
+        }
 
         //act & assert
         assertFalse(inventario.tieneSuministros(1));
@@ -58,7 +67,7 @@ public class CasoUso31{
     }
 
     @Test
-    public void TengoDosAmosSupremosYDestruyoUnoSoloPuedoHacer5ZerlingsYMeQuedoSinSuministros() {
+    public void Test03TengoDosAmosSupremosYDestruyoUnoSoloPuedoHacer5ZerlingsYMeQuedoSinSuministros() {
 
         //ARRANGE
         Danio danio = new Danio(600,600);
@@ -74,7 +83,11 @@ public class CasoUso31{
         for (int i = 0; i < 5; i++) {
             new Zerling(inventario);
         }
-        amo2.recibirDanio(danio);
+        try {
+            amo2.recibirDanio(danio);
+        } catch (Exception EstaDestruido){
+
+        }
 
         //act & assert
         assertFalse(inventario.tieneSuministros(1));

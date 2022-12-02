@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.exceptions.EstaDestruido;
+
 public class VidaZerg extends Vida implements Regenerativo{
     
     private int vidaMaxima;
@@ -9,7 +11,7 @@ public class VidaZerg extends Vida implements Regenerativo{
         this.vidaMaxima = cantidadVida;
     }
 
-    public void sufrirAtaque(int danio){
+    public void sufrirAtaque(int danio) throws EstaDestruido {
         this.vida -= danio;
         this.chequeoDeVida();
     }

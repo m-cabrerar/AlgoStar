@@ -13,6 +13,8 @@ public class Criadero extends EdificioZerg{
         this.cantidadLarvas = 3;
         this.cantidadZanganos = 0;
         inventario.agregarSuministro(SUMINISTRA);
+        casillero.ocupar(this);
+        inventario.subirNivelConstruccion(0);
     }
     
     public void pasarTurno() {
@@ -32,12 +34,13 @@ public class Criadero extends EdificioZerg{
     }
     
     public static EdificioEnConstruccion construir(Casillero casillero, Inventario inventario) throws UbicacionInvalida, RecursosInsuficientes {
-        // TODO: hacer checkeos de casilla y materiales
         if(!inventario.tieneRecursos(50, 0)){
             throw new RecursosInsuficientes("No tiene recursos");
         }
+        if(!inventario.puedeConstruir(0)){
+            throw new CorrelativasInsuficientes("Aún no se puede contruir este edificio");
+        }
         Criadero criadero = new Criadero(casillero, inventario);
-        casillero.ocupar(criadero);
         return new EdificioEnConstruccion(criadero, casillero, inventario);
     }
     
@@ -57,12 +60,12 @@ public class Criadero extends EdificioZerg{
         return cantidadLarvas == 3;
     }
 
-    public void recibirDanio(Danio danio){
+    public void recibirDanio(Danio danio) throws EstaDestruido{
         try {
             super.recibirDanio(danio);
         } catch (Exception EstaDestruido){
-            this.casillero.desocupar();
             this.inventario.perderSuministro(SUMINISTRA);
+            throw new EstaDestruido("Unidad destruida");
         }
     }
 }

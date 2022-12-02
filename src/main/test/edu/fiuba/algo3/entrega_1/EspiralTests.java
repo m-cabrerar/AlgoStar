@@ -35,8 +35,8 @@ public class EspiralTests {
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
-        when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
-        when(inventarioMock.tieneGuarida()).thenReturn(true);
+        when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
+        when(inventarioMock.puedeConstruir(anyInt())).thenReturn(true);
         Danio danio = new Danio(0,5);
         try{
             Unidad espiral = Espiral.construir(casilleroMock, inventarioMock);
@@ -54,15 +54,16 @@ public class EspiralTests {
     @Test
     public void test03NoSePuedeConstruirUnEspiralSinTenerUnaGuarida(){
         //ARRANGE
-        String mensaje = "Aun no se puede construir este edificio";
-        Inventario inventarioMock = mock(Inventario.class);
+        String mensaje = "Aún no se puede construir este edificio";
+        Inventario inventario = new Inventario();
+        inventario.agregarGas(200);
+        inventario.agregarMineral(150);
+
         Casillero casilleroMock = mock(Casillero.class);
 
-        when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
-        when(inventarioMock.tieneGuarida()).thenReturn(false);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            Espiral.construir(casilleroMock, inventarioMock);
+            Espiral.construir(casilleroMock, inventario);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());
@@ -70,29 +71,30 @@ public class EspiralTests {
     @Test
     public void test04SePuedeConstruirUnEspiralSiTengoUnaGuarida(){
         //ARRANGE
-        Inventario inventarioMock = mock(Inventario.class);
+        Inventario inventario = new Inventario();
+        inventario.agregarGas(1000);
+        inventario.agregarMineral(1000);
         Casillero casilleroMock = mock(Casillero.class);
-        try{
-            //ACT
-            when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
-            when(inventarioMock.tieneGuarida()).thenReturn(true);
-            //ASSERT
-            assertDoesNotThrow(() -> Espiral.construir(casilleroMock, inventarioMock));
-        } catch (Exception e) {
-            fail();
-        }
+        Casillero casillero2 = mock(Casillero.class);
+        Casillero casillero3 = mock(Casillero.class);
+
+        //ACT
+            new ReservaDeReproduccion(casillero3,inventario);
+            new Guarida(casillero2,inventario);
+        //ASSERT
+            assertDoesNotThrow(() -> Espiral.construir(casilleroMock, inventario));
+
     }
     @Test
     public void test05NoPuedoConstruirUnEspiralSinLosRecursos(){
         //ARRANGE
         String mensaje = "No tiene recursos";
         Casillero casilleroMock = mock(Casillero.class);
-        Inventario inventarioMock = mock(Inventario.class);
+        Inventario inventario = new Inventario();
 
-        when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(false);
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
-            Espiral.construir(casilleroMock, inventarioMock);
+            Espiral.construir(casilleroMock, inventario);
         });
         //ASSERT
         assertEquals(mensaje, exception.getMessage());

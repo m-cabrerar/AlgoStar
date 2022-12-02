@@ -29,6 +29,7 @@ public abstract class UnidadMovil implements Unidad, Construible {
     public void ubicarEn(Casillero casillero){
         this.casillero = casillero;
         casillero.ocupar(this);
+        casillero.quitarInvisibilidadEnRango(1);
     }
 
     public boolean tieneEnRangoA(Unidad unidadAAtacar, int rango) {
@@ -42,12 +43,26 @@ public abstract class UnidadMovil implements Unidad, Construible {
     public boolean esVoladora(){
         return (superficie.puedeVolar());
     }
-    public void recibirDanio(Danio danio) {
+    public void recibirDanio(Danio danio) throws EstaDestruido {
         try {
             vida.sufrirAtaque(superficie.danio(danio));
         } catch (Exception EstaDestruido){
             casillero.desocupar();
+            throw new EstaDestruido("Unidad destruida");
         }
 
     }
+
+    public void atacar(Unidad unidadAAtacar, int rango, Danio danio){
+        if(!this.tieneEnRangoA(unidadAAtacar, rango)){
+            throw new AtaqueFueraDeRango("El ataque está fuera de rango");
+        }
+        try{
+            unidadAAtacar.recibirDanio(danio);
+        } catch (Exception EstaDestruido){
+            throw new EstaDestruido("Unidad Destruida");
+        }
+    }
+
+
 }
