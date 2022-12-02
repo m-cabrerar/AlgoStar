@@ -153,7 +153,10 @@ public class PilonTest {
         Unidad pilon = new Pilon(casillero, mockedInventario);
         // Act
         pilon.recibirDanio(danio);
-        pilon.recibirDanio(danio);
+        try{
+            pilon.recibirDanio(danio);
+        } catch (Exception e){}
+
 
         // Assert
         assertFalse(casillero.estaOcupado());

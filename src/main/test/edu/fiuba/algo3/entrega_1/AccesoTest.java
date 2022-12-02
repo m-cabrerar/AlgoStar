@@ -162,7 +162,9 @@ public class AccesoTest {
         Unidad acceso = new Acceso(casillero, inventario);
         // Act
         acceso.recibirDanio(danio);
-        acceso.recibirDanio(danio);
+        try{
+            acceso.recibirDanio(danio);
+        } catch (Exception e){}
         //ASSERT
         verify(casillero, times(1)).desocupar();
     }
