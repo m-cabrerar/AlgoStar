@@ -33,6 +33,6 @@ public class Escudo implements Regenerativo, Atacable {
     }
 
     private boolean quedaEscudo(){
-        return (escudo>=0);
+        return (escudo>0);
     }
 }

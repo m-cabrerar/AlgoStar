@@ -1,16 +1,15 @@
-/*package edu.fiuba.algo3.entrega_3;
+package edu.fiuba.algo3.entrega_3;
 
 import edu.fiuba.algo3.exceptions.UnidadInvisible;
 import edu.fiuba.algo3.modelo.*;
 import org.junit.jupiter.api.Test;
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
 
 public class casoUso28 {
 
@@ -28,15 +27,26 @@ public class casoUso28 {
         Casillero casilleroMock = mock(Casillero.class);
         when(casilleroMock.tieneEnRango(any(Unidad.class), anyInt())).thenReturn(true);
 
+        Criadero cria1 = new Criadero(casilleroMock, inventarioMock);
+        Criadero cria2 = new Criadero(casilleroMock, inventarioMock);
+        Criadero cria3 = new Criadero(casilleroMock, inventarioMock);
+
         Zealot zealot = new Zealot(inventarioMock);
         Zerling zerling = new Zerling(inventarioMock);
         zerling.ubicarEn(casilleroMock);
 
         //ACT
-        zealot.invisibilizar();
+        for (int i = 0; i < 63; i++) {
+            zealot.atacar(cria1);
+            zealot.atacar(cria2);
+            zealot.atacar(cria3);
+        }
 
         //ASSERT
-        assertThrows(UnidadInvisible.class, () -> zerling.atacar(zealot));
+        for (int i = 0; i < 42; i++) {
+            zerling.atacar(zealot);
+        }
+        verify(casilleroMock, times(0)).desocupar();
     }
 
     @Test
@@ -48,36 +58,41 @@ public class casoUso28 {
         when(inventarioMock.tieneSuministros(anyInt())).thenReturn(true);
         when(inventarioMock.puedeCrecerPoblacion(anyInt())).thenReturn(true);
 
+        Casillero casilleroMock = mock(Casillero.class);
+        when(casilleroMock.tieneEnRango(any(Unidad.class), anyInt())).thenReturn(true);
+        when(casilleroMock.casilleroQuitaInvisibilidad()).thenReturn(true);
+
         Casillero casilleroMock1 = mock(Casillero.class);
         when(casilleroMock1.tieneEnRango(any(Unidad.class), anyInt())).thenReturn(true);
 
-        Casillero casilleroMock2 = mock(Casillero.class);
-        Casillero casilleroMock3 = mock(Casillero.class);
-        when(casilleroMock3.tieneEnRango(any(Unidad.class), anyInt())).thenReturn(true);
-
         Zealot zealot = new Zealot(inventarioMock);
         Zerling zerling = new Zerling(inventarioMock);
-        AmoSupremo amo = new AmoSupremo(inventarioMock);
-
-        List<AmoSupremo> amosEnRango = new ArrayList<>();
-        amosEnRango.add(amo);
-
-        when(casilleroMock2.tengoEnRangoAmoSupremo(inventarioMock)).thenReturn(true);
-        when(inventarioMock.obtenerAmosSupremos()).thenReturn(amosEnRango);
 
         //ACT
-        amo.ubicarEn(casilleroMock1);
+        zerling.ubicarEn(casilleroMock1);
+        zealot.ubicarEn(casilleroMock);
 
-        zealot.ubicarEn(casilleroMock2);
-        zealot.invisibilizar();
+        Criadero cria1 = new Criadero(casilleroMock1, inventarioMock);
+        Criadero cria2 = new Criadero(casilleroMock1, inventarioMock);
+        Criadero cria3 = new Criadero(casilleroMock1, inventarioMock);
+        for (int i = 0; i < 63; i++) {
+            zealot.atacar(cria1);
+            zealot.atacar(cria2);
+            zealot.atacar(cria3);
+        }
+
         zealot.pasarTurno();
 
-        zerling.ubicarEn(casilleroMock3);
-
         //ASSERT
-        assertDoesNotThrow(() -> zerling.atacar(zealot));
+        try{
+            for (int i = 0; i < 40; i++) {
+                zerling.atacar(zealot);
+            }
+        } catch (Exception e){}
+
+        verify(casilleroMock, times(1)).desocupar();
 
     }
 
 
-}*/
+}

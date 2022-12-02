@@ -30,7 +30,7 @@ public class Scout extends UnidadMovilProtoss {
         return TURNOS_PARA_CONSTRUIR;
     }
 
-    public void atacar(UnidadMovil unidadAAtacar){
+    public void atacar(Unidad unidadAAtacar){
         try{
             super.atacar(unidadAAtacar, RANGO_DE_ATAQUE, danio);
         } catch (Exception EstaDestruido){

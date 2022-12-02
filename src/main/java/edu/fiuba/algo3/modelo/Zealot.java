@@ -15,10 +15,8 @@ public class Zealot extends UnidadMovilProtoss {
     private static int COSTO_SUMINISTRO = 2;
 
     private Danio danio;
-    private boolean esVisible;
     private Visibilidad visibilidad;
-
-    int unidadesDestruidas;
+    private int unidadesDestruidas;
 
     public Zealot(Inventario inventario){
         super(inventario, COSTO_MINERAL, COSTO_GASEOSO, VIDA_MAXIMA, ESCUDO_MAXIMO, COSTO_SUMINISTRO);
@@ -27,17 +25,19 @@ public class Zealot extends UnidadMovilProtoss {
         visibilidad = new Visible();
         unidadesDestruidas = 0;
     }
-
-    public void recibirDanio(Danio danioRecibido) throws UnidadInvisible, EstaDestruido {
+    public void recibirDanio(Danio danioRecibido) throws EstaDestruido {
         Danio danioARecibir = visibilidad.danioARecibir(danioRecibido);
-        super.recibirDanio(danioARecibir);
+        try {
+            super.recibirDanio(danioARecibir);
+        } catch (Exception EstaDestruido){
+            throw new EstaDestruido("Unidad destruida");
+        }
     }
-    
     public int turnosParaConstruir() {
         return TURNOS_PARA_CONSTRUIR;
     }
 
-    public void atacar(UnidadMovil unidadAAtacar){
+    public void atacar(Unidad unidadAAtacar){
         try{
             super.atacar(unidadAAtacar, RANGO_DE_ATAQUE, danio);
             this.visibilizar();
@@ -50,14 +50,19 @@ public class Zealot extends UnidadMovilProtoss {
     }
     private void visibilizar(){
         visibilidad = new Visible();
-        unidadesDestruidas = 0;
     }
     public void pasarTurno(){
-        if(casillero.tengoEnRangoAmoSupremo(inventario)){
-            this.esVisible = true;
-        }
         if(unidadesDestruidas>=3){
             this.invisibilizar();
         }
+        if(casillero.casilleroQuitaInvisibilidad()){
+            this.visibilizar();
+        }
+    }
+
+    @Override
+    public void ubicarEn(Casillero casillero){
+        this.casillero = casillero;
+        casillero.ocupar(this);
     }
 }
