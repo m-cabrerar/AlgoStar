@@ -16,6 +16,8 @@ public class NexoMineralTest {
         casillero.setTipoCasillero(new NodoMineral());
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
+        when(mockedInventario.puedeConstruir(anyInt())).thenReturn(true);
+
         // Act & Assert
         assertDoesNotThrow(() -> NexoMineral.construir(casillero, mockedInventario));
     }
@@ -49,6 +51,8 @@ public class NexoMineralTest {
         Inventario mockedInventario = mock(Inventario.class);
         Danio danio = new Danio(0,1);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
+        when(mockedInventario.puedeConstruir(anyInt())).thenReturn(true);
+
         Unidad nexoMineral = NexoMineral.construir(mockedCasillero, mockedInventario);
         for (int i = 0; i < 4; i++) {
             nexoMineral.pasarTurno();
@@ -66,6 +70,8 @@ public class NexoMineralTest {
         Casillero mockedCasillero = mock(Casillero.class);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
+        when(mockedInventario.puedeConstruir(anyInt())).thenReturn(true);
+
         Unidad nexoMineral = NexoMineral.construir(mockedCasillero, mockedInventario);
         Danio danio = new Danio(0,1);
         // Act
@@ -81,6 +87,7 @@ public class NexoMineralTest {
         Casillero mockedCasillero = mock(Casillero.class);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
+        when(mockedInventario.puedeConstruir(anyInt())).thenReturn(true);
         Unidad nexoMineral = NexoMineral.construir(mockedCasillero, mockedInventario);
         Danio danio = new Danio(0,1);
         for (int i = 0; i < 3; i++) {
@@ -145,9 +152,11 @@ public class NexoMineralTest {
         Casillero casillero = new Casillero(0,0,mock(Mapa.class));
         casillero.setTipoCasillero(new NodoMineral());
         Danio danio = new Danio(0,500);
-        Inventario mockedInventario = mock(Inventario.class);
-        when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
-        EdificioEnConstruccion nexoMineral = NexoMineral.construir(casillero, mockedInventario);
+        Inventario inventario = new Inventario();
+        inventario.agregarGas(1000);
+        inventario.agregarMineral(1000);
+
+        EdificioEnConstruccion nexoMineral = NexoMineral.construir(casillero, inventario);
         // Act
         try{nexoMineral.recibirDanio(danio);}
         catch(Exception e){}

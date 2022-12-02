@@ -6,6 +6,8 @@ public class NexoMineral extends EdificioProtoss {
 
     public NexoMineral(Casillero casillero, Inventario inventario) {
         super(casillero, inventario, 250, 250);
+        casillero.ocupar(this);
+        inventario.subirNivelConstruccion(0);
     }
 
     public void pasarTurno() {
@@ -21,7 +23,10 @@ public class NexoMineral extends EdificioProtoss {
         if(!inventario.tieneRecursos(0, 50)){
             throw new RecursosInsuficientes("No tiene recursos");
         }
-        casillero.ocupar(nexoMineral);
+        if(!inventario.puedeConstruir(0)){
+            throw new CorrelativasInsuficientes("Aún no se puede contruir este edificio");
+        }
+
         return new EdificioEnConstruccion(nexoMineral, casillero, inventario);
     }
 

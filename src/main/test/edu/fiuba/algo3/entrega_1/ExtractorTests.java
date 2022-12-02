@@ -17,7 +17,8 @@ public class ExtractorTests {
         Inventario inventarioMock = mock(Inventario.class);
         Danio danio = new Danio(0,5);
 
-        when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
+        when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
+        when(inventarioMock.puedeConstruir(anyInt())).thenReturn(true);
         try {
             Unidad extractor = Extractor.construir(casilleroMock, inventarioMock);
             //ACT
@@ -37,7 +38,8 @@ public class ExtractorTests {
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
         Danio danio = new Danio(0,5);
-        when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
+        when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
+        when(inventarioMock.puedeConstruir(anyInt())).thenReturn(true);
         try{
             Unidad extractor = Extractor.construir(casilleroMock, inventarioMock);
             //ACT
@@ -58,7 +60,8 @@ public class ExtractorTests {
         casillero.setTipoCasillero(new NodoGas());
         Inventario inventarioMock = mock(Inventario.class);
 
-        when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
+        when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
+        when(inventarioMock.puedeConstruir(anyInt())).thenReturn(true);
         //ACT
         Extractor.construir(casillero, inventarioMock);
         //ASSERT
@@ -71,7 +74,9 @@ public class ExtractorTests {
         Casillero casillero = new Casillero(0,0,mock(Mapa.class));
         casillero.setTipoCasillero(new Moho());
         Inventario inventarioMock = mock(Inventario.class);
-        when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
+        when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
+        when(inventarioMock.puedeConstruir(anyInt())).thenReturn(true);
+
         //ACT
         Exception exception = assertThrows(Exception.class, () -> {
             Extractor.construir(casillero, inventarioMock);

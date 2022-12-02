@@ -23,6 +23,9 @@ public class Casillero{
     public void setTipoCasillero(TipoCasillero unTipoCasilleroNuevo){
         tipoCasillero = unTipoCasilleroNuevo;
     }
+    public TipoCasillero getTipo(){
+        return tipoCasillero;
+    }
     public boolean tieneEnergia(){
         return this.energia > 0;
     }

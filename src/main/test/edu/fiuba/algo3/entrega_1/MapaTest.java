@@ -60,6 +60,8 @@ class MapaTest {
         Mapa mapa = new Mapa(5, 5);
         Inventario inventarioMock = mock(Inventario.class);
         when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
+        when(inventarioMock.puedeConstruir(anyInt())).thenReturn(true);
+
         //Act
         mapa.cambiarTipoCasilla(0, 0, new NodoMineral());
         Casillero casilleroObtenido = mapa.obtenerCasillero(0, 0);
@@ -186,6 +188,8 @@ class MapaTest {
         mapa.cambiarTipoCasilla(0, 0, new Moho());
         Inventario inventarioMock = mock(Inventario.class);
         when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
+        when(inventarioMock.puedeConstruir(anyInt())).thenReturn(true);
+
         //act
         mapa.pasarTurno();
 

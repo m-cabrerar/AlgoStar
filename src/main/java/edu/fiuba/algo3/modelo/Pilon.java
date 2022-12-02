@@ -3,10 +3,13 @@ package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.exceptions.*;
 
 public class Pilon extends EdificioProtoss {
+
     private static int SUMINISTRA = 5;
     public Pilon(Casillero casillero, Inventario inventario) {
         super(casillero, inventario, 300, 300);
         inventario.agregarSuministro(SUMINISTRA);
+        casillero.ocupar(this);
+        inventario.subirNivelConstruccion(0);
     }
 
     public void pasarTurno() {
@@ -22,7 +25,9 @@ public class Pilon extends EdificioProtoss {
         if (!inventario.tieneRecursos(0, 100)) {
             throw new RecursosInsuficientes("No tiene recursos");
         }
-        casillero.ocupar(pilon);
+        if(!inventario.puedeConstruir(0)){
+            throw new CorrelativasInsuficientes("Aún no se puede contruir este edificio");
+        }
         casillero.energizarEnRango(5);
         return new EdificioEnConstruccion(pilon, casillero, inventario);
     }

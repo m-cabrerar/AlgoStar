@@ -21,6 +21,8 @@ public class ReservaDeReproduccionTests {
         Danio danio = new Danio(0,5);
 
         when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
+        when(inventarioMock.puedeConstruir(anyInt())).thenReturn(true);
+
         try {
             Unidad reserva = ReservaDeReproduccion.construir(casilleroMock, inventarioMock);
             //ACT
@@ -41,6 +43,8 @@ public class ReservaDeReproduccionTests {
         Danio danio = new Danio(0,5);
 
         when(inventarioMock.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
+        when(inventarioMock.puedeConstruir(anyInt())).thenReturn(true);
+
         try {
             Unidad reserva = ReservaDeReproduccion.construir(casilleroMock, inventarioMock);
             //ACT

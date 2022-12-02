@@ -2,8 +2,11 @@ package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.exceptions.*;
 
 public class Acceso extends EdificioProtoss {
+
     public Acceso(Casillero unCasillero, Inventario unInventario){
         super(unCasillero, unInventario, 500, 500);
+        casillero.ocupar(this);
+        inventario.subirNivelConstruccion(1);
     }
 
     public void pasarTurno() {
@@ -27,7 +30,9 @@ public class Acceso extends EdificioProtoss {
         if(!inventario.tieneRecursos(0, 150)){
             throw new RecursosInsuficientes("No tiene recursos");
         }
-        casillero.ocupar(acceso);
+        if(!inventario.puedeConstruir(0)){
+            throw new CorrelativasInsuficientes("Aún no se puede contruir este edificio");
+        }
         return new EdificioEnConstruccion(acceso, casillero, inventario);
     }
 }
