@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.exceptions.EstaDestruido;
+
 public class VidaProtoss extends Vida {
 
     private Escudo escudo;
@@ -8,8 +10,7 @@ public class VidaProtoss extends Vida {
         super(vida);
         this.escudo = new Escudo(escudo);
     }
-
-    public void sufrirAtaque(int danio){
+    public void sufrirAtaque(int danio) throws EstaDestruido {
         try{
             this.escudo.sufrirAtaque(danio);
         } catch (Exception EstaDestruido) {
@@ -17,7 +18,6 @@ public class VidaProtoss extends Vida {
             super.chequeoDeVida();
         }
     }
-
     public void pasarTurno(){
         this.escudo.regenerar();
     }

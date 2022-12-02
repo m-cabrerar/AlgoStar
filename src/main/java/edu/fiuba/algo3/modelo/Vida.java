@@ -14,7 +14,6 @@ abstract public class Vida implements Atacable, ModificablePorTurno{
             throw new EstaDestruido("Unidad destruida");
         }
     }
-
     protected boolean quedaVida(){
         return (vida>0);
     }

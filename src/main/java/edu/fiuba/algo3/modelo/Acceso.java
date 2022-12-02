@@ -18,14 +18,6 @@ public class Acceso extends EdificioProtoss {
         }
     }
 
-    public void recibirDanio(Danio danio){
-        try {
-            super.recibirDanio(danio);
-        } catch (Exception EstaDestruido){
-            this.casillero.desocupar();
-        }
-    }
-
     public int turnosParaConstruir() {
         return 8;
     }

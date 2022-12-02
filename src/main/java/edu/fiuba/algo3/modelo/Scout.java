@@ -24,10 +24,6 @@ public class Scout extends UnidadMovilProtoss {
         superficie = new Aire();
     }
 
-    @Override
-    public void recibirDanio(Danio danio) throws EstaDestruido {
-        vida.sufrirAtaque(superficie.danio(danio));
-    }
 
     @Override
     public int turnosParaConstruir() {
@@ -35,9 +31,10 @@ public class Scout extends UnidadMovilProtoss {
     }
 
     public void atacar(UnidadMovil unidadAAtacar){
-        if(!this.tieneEnRangoA(unidadAAtacar, RANGO_DE_ATAQUE)){
-            throw new AtaqueFueraDeRango("El ataque está fuera de rango");
+        try{
+            super.atacar(unidadAAtacar, RANGO_DE_ATAQUE, danio);
+        } catch (Exception EstaDestruido){
+            //no tiene comportamiento si mata una unidad
         }
-        unidadAAtacar.recibirDanio(danio);
     }
 }

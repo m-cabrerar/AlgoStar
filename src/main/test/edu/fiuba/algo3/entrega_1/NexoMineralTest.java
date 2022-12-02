@@ -129,6 +129,7 @@ public class NexoMineralTest {
         Casillero mockedCasillero = mock(Casillero.class);
         Inventario mockedInventario = mock(Inventario.class);
         when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
+
         Unidad nexoMineral = new NexoMineral(mockedCasillero, mockedInventario);
         Danio danio = new Danio(0,300);
         // Act
@@ -137,14 +138,12 @@ public class NexoMineralTest {
         for (int i = 0; i < 50; i++) {
             nexoMineral.pasarTurno();
         }
-        try{
+        try {
             nexoMineral.recibirDanio(danio);
-            nexoMineral.recibirDanio(danio);
-        } catch(Exception e) {
+            assertThrows(EstaDestruido.class, () -> nexoMineral.recibirDanio(danio));
+        } catch (Exception e){
             fail();
         }
-        // Assert
-        verify(mockedCasillero, times(1)).desocupar();
     }
 
     @Test
