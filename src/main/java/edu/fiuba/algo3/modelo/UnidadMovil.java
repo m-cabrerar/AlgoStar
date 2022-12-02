@@ -29,6 +29,7 @@ public abstract class UnidadMovil implements Unidad, Construible {
     public void ubicarEn(Casillero casillero){
         this.casillero = casillero;
         casillero.ocupar(this);
+        casillero.quitarInvisibilidadEnRango(1);
     }
 
     public boolean tieneEnRangoA(Unidad unidadAAtacar, int rango) {
@@ -52,7 +53,7 @@ public abstract class UnidadMovil implements Unidad, Construible {
 
     }
 
-    public void atacar(UnidadMovil unidadAAtacar, int rango, Danio danio){
+    public void atacar(Unidad unidadAAtacar, int rango, Danio danio){
         if(!this.tieneEnRangoA(unidadAAtacar, rango)){
             throw new AtaqueFueraDeRango("El ataque está fuera de rango");
         }

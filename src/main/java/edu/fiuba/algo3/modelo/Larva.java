@@ -26,7 +26,7 @@ public class Larva extends UnidadMovilZerg {
 
     }
 
-    public void atacar(UnidadMovil unidadAAtacar){
+    public void atacar(Unidad unidadAAtacar){
         unidadAAtacar.recibirDanio(danio);
     }
 

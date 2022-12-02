@@ -5,6 +5,8 @@ import java.util.*;
 public class Casillero{
     private TipoCasillero tipoCasillero;
     private int energia;
+
+    private boolean quitarInvisibilidad;
     private int coordenadaX;
     private int coordenadaY;
     private boolean estaOcupado;
@@ -19,7 +21,9 @@ public class Casillero{
         this.estaOcupado = false;
         this.tipoCasillero = new CasilleroVacio();
         this.mapa = mapa;
+        this.quitarInvisibilidad = false;
     }
+
     public void setTipoCasillero(TipoCasillero unTipoCasilleroNuevo){
         tipoCasillero = unTipoCasilleroNuevo;
     }
@@ -44,6 +48,7 @@ public class Casillero{
         this.turno = turnoActual;
         List<Casillero> adyacentesVisitados = this.visitarAdyacentes(turnoActual,mapa);
         this.tipoCasillero.expandirMoho(adyacentesVisitados);
+        this.quitarInvisibilidad = false;
     }
 
     public int extraerMineral(int cantidad) {
@@ -98,14 +103,21 @@ public class Casillero{
         }
         return null;
     }
-    public boolean tengoEnRangoAmoSupremo(Inventario inventario){
-        List<AmoSupremo> amos = inventario.obtenerAmosSupremos();
-        for (AmoSupremo amo : amos) {
-            if(this.tieneEnRango(amo,4)){
-                return true;
-            }
+    public void quitarInvisibilidadEnRango(int rango){
+        List<Casillero> casilleros = mapa.casillerosEnRango(coordenadaX,coordenadaY,rango);
+        //si el casillero de unidadAAtacar esta en la lista de casilleros, entonces esta en rango
+        for (Casillero casillero : casilleros) {
+            casillero.quitarInvisibilidad();
         }
-        return false;
+        this.quitarInvisibilidad();
+    }
+
+    public void quitarInvisibilidad(){
+        this.quitarInvisibilidad = true;
+    }
+
+    public boolean casilleroQuitaInvisibilidad(){
+        return this.quitarInvisibilidad;
     }
 
 
