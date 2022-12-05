@@ -7,12 +7,13 @@ import edu.fiuba.algo3.modelo.unidades.moviles.Mutalisco;
 import edu.fiuba.algo3.modelo.unidades.moviles.UnidadMovil;
 
 public class Espiral extends EdificioZerg {
+    private static final int NIVEL_DE_CONSTRUCCION = 3;
 
     private static int VIDA_MAXIMA = 1300;
     public Espiral(Casillero casillero, Inventario inventario){
         super(casillero, inventario, VIDA_MAXIMA);
         casillero.ocupar(this);
-        inventario.subirNivelConstruccion(3);
+        inventario.subirNivelConstruccion(NIVEL_DE_CONSTRUCCION);
     }
     public void pasarTurno(){
         super.pasarTurno();
@@ -47,5 +48,7 @@ public class Espiral extends EdificioZerg {
         unidadEnConstruccion = crearEvolucion(inventario);
         turnosParaConstruir = unidadEnConstruccion.turnosParaConstruir();
     }
-
+    public int getNivelDeConstruccion(){
+        return NIVEL_DE_CONSTRUCCION;
+    }
 }

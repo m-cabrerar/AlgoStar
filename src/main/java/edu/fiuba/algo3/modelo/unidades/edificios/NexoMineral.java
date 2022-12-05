@@ -5,11 +5,11 @@ import edu.fiuba.algo3.modelo.casillero.Casillero;
 import edu.fiuba.algo3.modelo.Inventario;
 
 public class NexoMineral extends EdificioProtoss {
-
+    private static final int NIVEL_DE_CONSTRUCCION = 0;
     public NexoMineral(Casillero casillero, Inventario inventario) {
         super(casillero, inventario, 250, 250);
         casillero.ocupar(this);
-        inventario.subirNivelConstruccion(0);
+        inventario.subirNivelConstruccion(NIVEL_DE_CONSTRUCCION);
     }
 
     public void pasarTurno() {
@@ -37,6 +37,8 @@ public class NexoMineral extends EdificioProtoss {
         inventario.agregarMineral(cantidad);
         return cantidad;
     }
-
+    public int getNivelDeConstruccion(){
+        return NIVEL_DE_CONSTRUCCION;
+    }
 
 }

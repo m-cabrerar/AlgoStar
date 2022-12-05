@@ -4,13 +4,14 @@ import edu.fiuba.algo3.modelo.casillero.Casillero;
 import edu.fiuba.algo3.modelo.Inventario;
 
 public class Extractor extends EdificioZerg {
+    private static final int NIVEL_DE_CONSTRUCCION = 0;
     private int zanganosTrabajando;
     private static int VIDA_MAXIMA = 750;
     public Extractor(Casillero casillero, Inventario inventario){
         super(casillero, inventario, VIDA_MAXIMA);
         this.zanganosTrabajando = 0;
         casillero.ocupar(this);
-        inventario.subirNivelConstruccion(0);
+        inventario.subirNivelConstruccion(NIVEL_DE_CONSTRUCCION);
     }
     public void pasarTurno(){
         super.pasarTurno();
@@ -42,5 +43,8 @@ public class Extractor extends EdificioZerg {
         } else {
             throw new ExtractorError("El extractor ya tiene 3 zanganos trabajando");
         }
+    }
+    public int getNivelDeConstruccion(){
+        return NIVEL_DE_CONSTRUCCION;
     }
 }

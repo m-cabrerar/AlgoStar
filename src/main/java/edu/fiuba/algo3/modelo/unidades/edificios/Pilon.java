@@ -6,13 +6,13 @@ import edu.fiuba.algo3.modelo.Inventario;
 import edu.fiuba.algo3.modelo.unidades.Danio;
 
 public class Pilon extends EdificioProtoss {
-
+    private static final int NIVEL_DE_CONSTRUCCION = 0;
     private static int SUMINISTRA = 5;
     public Pilon(Casillero casillero, Inventario inventario) {
         super(casillero, inventario, 300, 300);
         inventario.agregarSuministro(SUMINISTRA);
         casillero.ocupar(this);
-        inventario.subirNivelConstruccion(0);
+        inventario.subirNivelConstruccion(NIVEL_DE_CONSTRUCCION);
     }
 
     public void pasarTurno() {
@@ -43,6 +43,8 @@ public class Pilon extends EdificioProtoss {
             throw new EstaDestruido("unidad destruida");
         }
     }
-
+    public int getNivelDeConstruccion(){
+        return NIVEL_DE_CONSTRUCCION;
+    }
 
 }

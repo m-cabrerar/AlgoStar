@@ -6,12 +6,12 @@ import edu.fiuba.algo3.modelo.unidades.moviles.UnidadMovil;
 import edu.fiuba.algo3.modelo.unidades.moviles.Zerling;
 
 public class ReservaDeReproduccion extends EdificioZerg {
-
+    private static final int NIVEL_DE_CONSTRUCCION = 1;
     private static int VIDA_MAXIMA = 1000;
     public ReservaDeReproduccion(Casillero casillero, Inventario inventario){
         super(casillero, inventario,VIDA_MAXIMA);
         casillero.ocupar(this);
-        inventario.subirNivelConstruccion(1);
+        inventario.subirNivelConstruccion(NIVEL_DE_CONSTRUCCION);
     }
     public void pasarTurno(){
         super.pasarTurno();

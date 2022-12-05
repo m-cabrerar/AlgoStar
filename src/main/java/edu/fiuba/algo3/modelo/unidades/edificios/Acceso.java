@@ -5,11 +5,12 @@ import edu.fiuba.algo3.modelo.Inventario;
 import edu.fiuba.algo3.modelo.unidades.moviles.UnidadMovil;
 
 public class Acceso extends EdificioProtoss {
+    private static final int NIVEL_DE_CONSTRUCCION = 1;
 
     public Acceso(Casillero unCasillero, Inventario unInventario){
         super(unCasillero, unInventario, 500, 500);
         casillero.ocupar(this);
-        inventario.subirNivelConstruccion(1);
+        inventario.subirNivelConstruccion(NIVEL_DE_CONSTRUCCION);
     }
 
     public void pasarTurno() {
@@ -37,5 +38,8 @@ public class Acceso extends EdificioProtoss {
             throw new CorrelativasInsuficientes("Aún no se puede contruir este edificio");
         }
         return new EdificioEnConstruccion(acceso, casillero, inventario);
+    }
+    public int getNivelDeConstruccion(){
+        return NIVEL_DE_CONSTRUCCION;
     }
 }

@@ -6,10 +6,11 @@ import edu.fiuba.algo3.modelo.Inventario;
 import edu.fiuba.algo3.modelo.unidades.moviles.UnidadMovil;
 
 public class PuertoEstelar extends EdificioProtoss {
-
+    private static final int NIVEL_DE_CONSTRUCCION = 0;
     public PuertoEstelar(Casillero casillero, Inventario inventario) {
         super(casillero, inventario, 600, 600);
         casillero.ocupar(this);
+        inventario.subirNivelConstruccion(NIVEL_DE_CONSTRUCCION);
     }
 
     public void pasarTurno() {
@@ -39,4 +40,7 @@ public class PuertoEstelar extends EdificioProtoss {
         return new EdificioEnConstruccion(puertoEstelar, casillero, inventario);
     }
 
+    public int getNivelDeConstruccion(){
+        return NIVEL_DE_CONSTRUCCION;
+    }
 }

@@ -5,11 +5,11 @@ import edu.fiuba.algo3.modelo.casillero.Casillero;
 import edu.fiuba.algo3.modelo.Inventario;
 
 public class Asimilador extends EdificioProtoss {
-
+    private static final int NIVEL_DE_CONSTRUCCION = 0;
     public Asimilador(Casillero unCasillero, Inventario unInventario){
         super(unCasillero, unInventario, 450, 450);
         casillero.ocupar(this);
-        inventario.subirNivelConstruccion(0);
+        inventario.subirNivelConstruccion(NIVEL_DE_CONSTRUCCION);
     }
 
     public int turnosParaConstruir(){
@@ -34,5 +34,7 @@ public class Asimilador extends EdificioProtoss {
     public int extraerGas() { //TODO: hacer privado y que se llame desde pasarTurno
         return casillero.extraerGas(20);
     }
-
+    public int getNivelDeConstruccion(){
+        return NIVEL_DE_CONSTRUCCION;
+    }
 }
