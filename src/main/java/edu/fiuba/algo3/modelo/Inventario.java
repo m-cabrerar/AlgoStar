@@ -98,4 +98,17 @@ public class Inventario {
         }
         return amosSupremos;
     }
+    public List<Unidad> getUnidades(){
+        return this.unidades;
+    }
+    public int getGas(){
+        return this.cantidadGas;
+    }
+    public int getMineral(){
+        return this.cantidadMineral;
+    }
+
+    public int getSuministros(){
+        return this.suministrosDisponibles;
+    }
 }

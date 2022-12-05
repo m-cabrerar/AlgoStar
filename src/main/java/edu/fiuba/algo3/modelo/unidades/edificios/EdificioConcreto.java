@@ -61,4 +61,11 @@ abstract class EdificioConcreto implements Unidad, Construible {
         return null;
     }
 
+    public int[] obtenerPosicion(){
+        int[] posicion = new int[2];
+        posicion[0] = casillero.posicionX();
+        posicion[1] = casillero.posicionY();
+        return posicion;
+    }
+
 }

@@ -48,4 +48,8 @@ public class EdificioEnConstruccion implements Unidad {
         return casilleros.contains(casillero);
     }
 
+    public int[] obtenerPosicion() {
+        return vaASer.obtenerPosicion();
+    }
+
 }

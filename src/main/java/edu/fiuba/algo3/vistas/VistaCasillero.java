@@ -8,16 +8,22 @@ public class VistaCasillero extends StackPane {
     public VistaCasillero(Casillero casillero) {
         this.setPrefSize(50, 50);
         Image imagen;
-        if (casillero.getTipo().getClass().getSimpleName().equals("CasilleroEspacial")) {
-            imagen = new Image("file:src/main/java/edu/fiuba/algo3/vistas/img/casilleros/especial.png");
-        } else if (casillero.getTipo().getClass().getSimpleName().equals("Moho")) {
-            imagen = new Image("file:src/main/java/edu/fiuba/algo3/vistas/img/casilleros/moho.png");
-        } else if (casillero.getTipo().getClass().getSimpleName().equals("NodoGas")) {
-            imagen = new Image("file:src/main/java/edu/fiuba/algo3/vistas/img/casilleros/nodoGas.png");
-        } else if (casillero.getTipo().getClass().getSimpleName().equals("NodoMineral")) {
-            imagen = new Image("file:src/main/java/edu/fiuba/algo3/vistas/img/casilleros/nodoMineral.png");
-        } else {
-            imagen = new Image("file:src/main/java/edu/fiuba/algo3/vistas/img/casilleros/vacio.png");
+        switch (casillero.getTipo().getClass().getSimpleName()) {
+            case "CasilleroEspacial":
+                imagen = new Image("file:src/main/java/edu/fiuba/algo3/vistas/img/casilleros/especial.png");
+                break;
+            case "Moho":
+                imagen = new Image("file:src/main/java/edu/fiuba/algo3/vistas/img/casilleros/moho.png");
+                break;
+            case "NodoGas":
+                imagen = new Image("file:src/main/java/edu/fiuba/algo3/vistas/img/casilleros/nodoGas.png");
+                break;
+            case "NodoMineral":
+                imagen = new Image("file:src/main/java/edu/fiuba/algo3/vistas/img/casilleros/nodoMineral.png");
+                break;
+            default:
+                imagen = new Image("file:src/main/java/edu/fiuba/algo3/vistas/img/casilleros/vacio.png");
+                break;
         }
         BackgroundSize backgroundSize = new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, false, true);
         this.setBackground(new Background(new BackgroundImage(imagen, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize)));

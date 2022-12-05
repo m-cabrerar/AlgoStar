@@ -83,4 +83,17 @@ public class Jugador {
     public void pasarTurno(){
         inventario.pasarTurno();
     }
+    public Inventario getInventario(){
+        return inventario;
+    }
+
+    public String getColor() {
+        return color;
+    }
+    public String getNombre() {
+        return nombre;
+    }
+    public String getRaza() {
+        return raza;
+    }
 }
