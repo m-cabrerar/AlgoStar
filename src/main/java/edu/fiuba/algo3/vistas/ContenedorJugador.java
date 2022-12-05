@@ -40,8 +40,9 @@ public class ContenedorJugador extends HBox {
         HBox contenedorInventario = new HBox();
         Label mineral = new Label("Mineral: "+inventario.getMineral() + " ");
         Label gas = new Label("Gas: "+inventario.getGas() + " ");
-        Label suministros = new Label("Suministros: "+inventario.getSuministros() + " ");
-        contenedorInventario.getChildren().addAll(mineral, gas, suministros);
+        Label suministros = new Label("Suministros: "+inventario.getSuministros() + "/" + inventario.getSuministrosMaximos());
+        Label poblacion = new Label("Poblacion: "+inventario.getSuministrosEmpleados() + "/" + inventario.getPoblacionMaxima());
+        contenedorInventario.getChildren().addAll(mineral, gas, suministros, poblacion);
         contenedorInventario.setAlignment(Pos.CENTER);
 
         this.getChildren().addAll(retrato, contenedorInventario);

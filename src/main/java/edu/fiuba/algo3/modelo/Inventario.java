@@ -111,4 +111,13 @@ public class Inventario {
     public int getSuministros(){
         return this.suministrosDisponibles;
     }
+    public int getSuministrosMaximos(){
+        return SUMINISTROS_MAXIMOS;
+    }
+    public int getSuministrosEmpleados(){
+        return this.suministrosEmpleados;
+    }
+    public int getPoblacionMaxima(){
+        return POBLACION_MAXIMA;
+    }
 }
