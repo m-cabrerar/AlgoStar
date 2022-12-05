@@ -46,6 +46,9 @@ public class ReservaDeReproduccion extends EdificioZerg {
         unidadEnConstruccion = crearEvolucion(inventario);
         turnosParaConstruir = unidadEnConstruccion.turnosParaConstruir();
     }
+    public static int getNivelDeConstruccion(){
+        return NIVEL_DE_CONSTRUCCION;
+    }
 
 }
 

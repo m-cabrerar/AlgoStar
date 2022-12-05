@@ -34,7 +34,6 @@ public class Asimilador extends EdificioProtoss {
     public int extraerGas() { //TODO: hacer privado y que se llame desde pasarTurno
         return casillero.extraerGas(20);
     }
-    public int getNivelDeConstruccion(){
+    public static int getNivelDeConstruccion(){
         return NIVEL_DE_CONSTRUCCION;
     }
-}

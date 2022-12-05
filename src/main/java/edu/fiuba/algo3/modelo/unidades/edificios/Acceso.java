@@ -39,7 +39,7 @@ public class Acceso extends EdificioProtoss {
         }
         return new EdificioEnConstruccion(acceso, casillero, inventario);
     }
-    public int getNivelDeConstruccion(){
+    public static int getNivelDeConstruccion(){
         return NIVEL_DE_CONSTRUCCION;
     }
 }

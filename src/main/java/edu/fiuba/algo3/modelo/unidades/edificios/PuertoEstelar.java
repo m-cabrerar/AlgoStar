@@ -40,7 +40,7 @@ public class PuertoEstelar extends EdificioProtoss {
         return new EdificioEnConstruccion(puertoEstelar, casillero, inventario);
     }
 
-    public int getNivelDeConstruccion(){
+    public static int getNivelDeConstruccion(){
         return NIVEL_DE_CONSTRUCCION;
     }
 }

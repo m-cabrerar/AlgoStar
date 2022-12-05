@@ -43,7 +43,7 @@ public class Pilon extends EdificioProtoss {
             throw new EstaDestruido("unidad destruida");
         }
     }
-    public int getNivelDeConstruccion(){
+    public static int getNivelDeConstruccion(){
         return NIVEL_DE_CONSTRUCCION;
     }
 

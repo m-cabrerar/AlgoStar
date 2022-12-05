@@ -48,7 +48,7 @@ public class Espiral extends EdificioZerg {
         unidadEnConstruccion = crearEvolucion(inventario);
         turnosParaConstruir = unidadEnConstruccion.turnosParaConstruir();
     }
-    public int getNivelDeConstruccion(){
+    public static int getNivelDeConstruccion(){
         return NIVEL_DE_CONSTRUCCION;
     }
 }

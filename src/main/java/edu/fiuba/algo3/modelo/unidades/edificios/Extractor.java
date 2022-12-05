@@ -44,7 +44,7 @@ public class Extractor extends EdificioZerg {
             throw new ExtractorError("El extractor ya tiene 3 zanganos trabajando");
         }
     }
-    public int getNivelDeConstruccion(){
+    public static int getNivelDeConstruccion(){
         return NIVEL_DE_CONSTRUCCION;
     }
 }

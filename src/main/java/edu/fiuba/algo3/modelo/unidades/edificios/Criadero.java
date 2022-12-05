@@ -73,7 +73,7 @@ public class Criadero extends EdificioZerg{
             throw new EstaDestruido("Unidad destruida");
         }
     }
-    public int getNivelDeConstruccion(){
+    public static int getNivelDeConstruccion(){
         return NIVEL_DE_CONSTRUCCION;
     }
 }

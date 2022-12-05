@@ -37,7 +37,7 @@ public class NexoMineral extends EdificioProtoss {
         inventario.agregarMineral(cantidad);
         return cantidad;
     }
-    public int getNivelDeConstruccion(){
+    public static int getNivelDeConstruccion(){
         return NIVEL_DE_CONSTRUCCION;
     }
 
