@@ -8,8 +8,8 @@ import edu.fiuba.algo3.modelo.unidades.moviles.UnidadMovil;
 
 public class Criadero extends EdificioZerg{
 
-    private static int COSTO_GASEOSO = 50;
-    private static int COSTO_MINERAL = 0;
+    private static int COSTO_GASEOSO = 0;
+    private static int COSTO_MINERAL = 50;
     private int cantidadLarvas;
     private static int VIDA_MAXIMA = 500;
     private int cantidadZanganos;
