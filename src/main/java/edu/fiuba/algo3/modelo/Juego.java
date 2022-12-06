@@ -1,9 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.exceptions.*;
-import edu.fiuba.algo3.modelo.casillero.Casillero;
-import edu.fiuba.algo3.modelo.casillero.NodoGas;
-import edu.fiuba.algo3.modelo.casillero.NodoMineral;
+import edu.fiuba.algo3.modelo.casillero.*;
 
 import java.util.List;
 import java.util.Random;

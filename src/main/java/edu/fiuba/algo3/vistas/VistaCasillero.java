@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.vistas;
 
-import edu.fiuba.algo3.modelo.Casillero;
+
+import edu.fiuba.algo3.modelo.casillero.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 
@@ -9,7 +10,7 @@ public class VistaCasillero extends StackPane {
         this.setPrefSize(50, 50);
         Image imagen;
         if (casillero.getTipo().getClass().getSimpleName().equals("CasilleroEspacial")) {
-            imagen = new Image("file:src/main/java/edu/fiuba/algo3/vistas/img/casilleros/especial.png");
+            imagen = new Image("file:src/main/java/edu/fiuba/algo3/vistas/img/casilleros/espacial.png");
         } else if (casillero.getTipo().getClass().getSimpleName().equals("Moho")) {
             imagen = new Image("file:src/main/java/edu/fiuba/algo3/vistas/img/casilleros/moho.png");
         } else if (casillero.getTipo().getClass().getSimpleName().equals("NodoGas")) {
