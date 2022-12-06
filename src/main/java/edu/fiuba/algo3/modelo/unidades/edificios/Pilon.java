@@ -14,7 +14,6 @@ public class Pilon extends EdificioProtoss {
     private static int SUMINISTRA = 5;
     public Pilon(Casillero casillero, Inventario inventario) {
         super(casillero, inventario, 300, 300);
-        inventario.agregarSuministro(SUMINISTRA);
         casillero.ocupar(this);
         inventario.pagarMateriales(COSTO_GASEOSO,COSTO_MINERAL);
         inventario.subirNivelConstruccion(NIVEL_DE_CONSTRUCCION);
