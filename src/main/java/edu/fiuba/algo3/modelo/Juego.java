@@ -15,7 +15,7 @@ public class Juego {
     private int turnos;
 
     public Juego() {
-        this.mapa = new Mapa(30, 30);
+        this.mapa = new Mapa(20, 20);
         this.turnos = 0;
     }
 
@@ -91,6 +91,7 @@ public class Juego {
     }
 
     public void pasarTurno(){
+        turnos++;
         for (Jugador jugador : jugadores) {
             jugador.pasarTurno();
         }

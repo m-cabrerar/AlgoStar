@@ -29,6 +29,7 @@ public class NexoMineral extends EdificioProtoss {
             throw new CorrelativasInsuficientes("Aún no se puede contruir este edificio");
         }
 
+        System.out.println("Nexo Mineral creado");
         return new EdificioEnConstruccion(nexoMineral, casillero, inventario);
     }
 

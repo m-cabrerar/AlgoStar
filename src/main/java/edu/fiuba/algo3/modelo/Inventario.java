@@ -12,7 +12,7 @@ public class Inventario {
     private int cantidadGas;
     private int cantidadMineral;
     List<Unidad> unidades;
-    //List<Unidad> edificios;
+    List<Unidad> edificios;
 
     private static int POBLACION_MAXIMA =200;
     private static int SUMINISTROS_MAXIMOS = 200;
@@ -26,6 +26,7 @@ public class Inventario {
         this.suministrosDisponibles = 0;
         this.suministrosEmpleados = 0;
         this.unidades = new ArrayList<>();
+        this.edificios = new ArrayList<>();
         this.nivelConstruccion = 0;
     }
     public boolean puedeConstruir(int nivelDificultadConstruccion) {
@@ -44,8 +45,11 @@ public class Inventario {
     public void agregarMineral(int i) {
         this.cantidadMineral += i;
     }
-    public void agregar(Unidad unidad) {
+    public void agregarUnidad(Unidad unidad) {
         this.unidades.add(unidad);
+    }
+    public void agregarEdifico(Unidad edificio) {
+        this.edificios.add(edificio);
     }
 
     public void agregarSuministro(int cantidad){
@@ -99,6 +103,9 @@ public class Inventario {
     }
     public List<Unidad> getUnidades(){
         return this.unidades;
+    }
+    public List<Unidad> getEdificios(){
+        return this.edificios;
     }
     public int getGas(){
         return this.cantidadGas;

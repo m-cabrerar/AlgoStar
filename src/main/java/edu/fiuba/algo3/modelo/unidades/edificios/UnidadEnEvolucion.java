@@ -22,7 +22,7 @@ public class UnidadEnEvolucion extends EdificioZerg {
         turnosTranscurridos++;
         if (turnosTranscurridos == turnosParaConstruir){
             casillero.desocupar();
-            inventario.agregar(unidad);
+            inventario.agregarUnidad(unidad);
             unidad.ubicarEn(casillero);
         }
     }
