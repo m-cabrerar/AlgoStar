@@ -14,10 +14,12 @@ public class ContenedorPrincipal extends BorderPane {
     GridPane tableroUnidades;
     VBox contenedorCentral;
     ContenedorJugador contenedorJugador;
+    Botonera botonera;
     public ContenedorPrincipal(Stage stage, Juego juego) {
         this.setMenu(stage);
         this.setCentro(juego);
         this.setJugador(juego);
+        this.setBotonera(juego);
     }
 
     private void setMenu(Stage stage) {
@@ -48,12 +50,20 @@ public class ContenedorPrincipal extends BorderPane {
         this.setBottom(contenedorJugador);
     }
 
+    private void setBotonera(Juego juego) {
+        botonera = new Botonera(juego, this);
+        this.setLeft(botonera);
+    }
+
     public void actualizar() {
-        vistaJuego.actualizar();
+        vistaJuego.update();
+        contenedorJugador.update();
+        botonera.update();
     }
     public void iniciarJuego() {
         vistaJuego.iniciarJuego();
         contenedorJugador.iniciarJuego();
+        botonera.iniciarJuego();
     }
 
 }

@@ -29,14 +29,14 @@ public class VistaJuego {
 
     public void iniciarJuego() {
         inventarios = juego.getInventarios();
-        actualizar();
+        update();
     }
 
-    public void actualizar() {
-        actualizarMapa();
-        actualizarUnidades();
+    public void update() {
+        updateMapa();
+        updateUnidades();
     }
-    public void actualizarMapa() {
+    public void updateMapa() {
         int alto = mapa.getAlto();
         int ancho = mapa.getAncho();
 
@@ -54,7 +54,7 @@ public class VistaJuego {
         }
     }
 
-    public void actualizarUnidades() {
+    public void updateUnidades() {
         int alto = mapa.getAlto();
         int ancho = mapa.getAncho();
 
