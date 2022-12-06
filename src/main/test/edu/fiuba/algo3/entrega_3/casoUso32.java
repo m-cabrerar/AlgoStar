@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 
 import edu.fiuba.algo3.modelo.casillero.Casillero;
+import edu.fiuba.algo3.modelo.unidades.edificios.Pilon;
 import org.junit.jupiter.api.Test;
 
 public class casoUso32 {
@@ -28,7 +29,7 @@ contrario.
 
         Casillero mockedCasillero = mock(Casillero.class);
 
-        jugador1.construirPilon(mockedCasillero);
+        Pilon.construir(mockedCasillero, jugador1.getInventario());
         juego.verificar_ganador();
         //ACT
         String ganador = juego.verificar_ganador();

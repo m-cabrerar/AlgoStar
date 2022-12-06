@@ -2,6 +2,7 @@ package edu.fiuba.algo3.entrega_3;
 
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.casillero.Casillero;
+import edu.fiuba.algo3.modelo.unidades.edificios.Pilon;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -15,7 +16,7 @@ public class JugadorTest {
         Casillero mockedCasillero = mock(Casillero.class);
         Jugador unJugador = new Jugador();
         //ACT
-        unJugador.construirPilon(mockedCasillero);
+        Pilon.construir(mockedCasillero, unJugador.getInventario());
         //ASSERT
         assertTrue(unJugador.tieneEdificios());
     }
