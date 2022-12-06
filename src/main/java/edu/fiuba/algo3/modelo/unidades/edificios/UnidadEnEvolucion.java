@@ -2,7 +2,6 @@ package edu.fiuba.algo3.modelo.unidades.edificios;
 
 import edu.fiuba.algo3.modelo.casillero.Casillero;
 import edu.fiuba.algo3.modelo.Inventario;
-import edu.fiuba.algo3.modelo.unidades.edificios.EdificioZerg;
 import edu.fiuba.algo3.modelo.unidades.moviles.UnidadMovilZerg;
 
 public class UnidadEnEvolucion extends EdificioZerg {

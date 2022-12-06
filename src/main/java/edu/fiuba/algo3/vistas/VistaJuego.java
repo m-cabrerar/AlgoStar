@@ -67,7 +67,7 @@ public class VistaJuego {
                         centerPane.heightProperty().divide(mapa.getAlto())));
                 vistaUnidad.prefHeightProperty().bind(Bindings.min(centerPane.widthProperty().divide(mapa.getAlto()),
                         centerPane.heightProperty().divide(mapa.getAlto())));
-                int[] posicion = unidad.obtenerPosicion();
+                Integer[] posicion = unidad.obtenerPosicion();
                 tablero.add(vistaUnidad, posicion[0], posicion[1]);
             }
         }
