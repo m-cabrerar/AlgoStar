@@ -9,7 +9,7 @@ import edu.fiuba.algo3.modelo.unidades.moviles.UnidadMovil;
 public class Criadero extends EdificioZerg{
 
     private static int COSTO_GASEOSO = 0;
-    private static int COSTO_MINERAL = 50;
+    private static int COSTO_MINERAL = 200;
     private int cantidadLarvas;
     private static int VIDA_MAXIMA = 500;
     private int cantidadZanganos;
@@ -46,7 +46,7 @@ public class Criadero extends EdificioZerg{
     }
     
     public static EdificioEnConstruccion construir(Casillero casillero, Inventario inventario) throws UbicacionInvalida, RecursosInsuficientes {
-        if(!inventario.tieneRecursos(50, 0)){
+        if(!inventario.tieneRecursos(COSTO_GASEOSO, COSTO_MINERAL)){
             throw new RecursosInsuficientes("No tiene recursos");
         }
         if(!inventario.puedeConstruir(0)){
