@@ -23,8 +23,8 @@ public class NodoMineral extends TipoCasillero {
     }
 
     @Override
-    public boolean ocupar(NexoMineral nexo){
-        return true;
+    public void ocupar(NexoMineral nexo){
+        return;
     }
 
 }

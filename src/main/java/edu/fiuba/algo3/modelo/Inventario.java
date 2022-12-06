@@ -79,10 +79,9 @@ public class Inventario {
         this.cantidadGas -= cantidadGas;
     }
 
-
     public boolean tieneEdificios(){
         return !(unidades.isEmpty());
-        //cuando esten separados los edificios se manda a edificios
+        //TODO cuando esten separados los edificios se manda a edificios
     }
     public void pasarTurno(){
         for(Unidad unidad :unidades){

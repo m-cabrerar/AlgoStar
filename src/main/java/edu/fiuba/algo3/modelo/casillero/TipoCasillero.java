@@ -9,7 +9,7 @@ import edu.fiuba.algo3.modelo.unidades.moviles.UnidadMovil;
 
 import java.util.List;
 
-public abstract class TipoCasillero{
+public class TipoCasillero{
 
     public int extraerMineral(int cantidad){
         return 0;
@@ -21,17 +21,15 @@ public abstract class TipoCasillero{
     public void expandirMoho(List<Casillero> casillasAContagiar){}
 
     //METODOS PARA DOUBLE DISPATCH ---------------------------------------------------------------
-    public boolean ocupar(UnidadMovil unidad){
-        return true;
-    }
-    public boolean ocupar(Extractor extractor){throw new UbicacionInvalida("Ubicacion invalida");}
-    public boolean ocupar(Asimilador asimilador){throw new UbicacionInvalida("Ubicacion invalida");}
-    public boolean ocupar(NexoMineral nexo){
+    public void ocupar(UnidadMovil unidad){}
+    public void ocupar(Extractor extractor){throw new UbicacionInvalida("Ubicacion invalida");}
+    public void ocupar(Asimilador asimilador){throw new UbicacionInvalida("Ubicacion invalida");}
+    public void ocupar(NexoMineral nexo){
         throw new UbicacionInvalida("Ubicacion invalida");
     }
-    public boolean ocupar(Criadero criadero){
+    public void ocupar(Criadero criadero){
         throw new UbicacionInvalida("Ubicacion invalida");
     }
-    public boolean ocupar (Unidad unidad) throws UbicacionInvalida { throw new UbicacionInvalida("Ubicacion invalida");
+    public void ocupar (Unidad unidad) throws UbicacionInvalida { throw new UbicacionInvalida("Ubicacion invalida");
     }
 }

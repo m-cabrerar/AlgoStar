@@ -49,12 +49,12 @@ public class Casillero{
         this.energia -= 1;
     }
 
-    public void pasarTurno(int turnoActual, Mapa mapa){
+    public void pasarTurno(int turnoActual){
         if(this.turno == turnoActual){ //ya la visite en este turno
             return;
         }
         this.turno = turnoActual;
-        List<Casillero> adyacentesVisitados = this.visitarAdyacentes(turnoActual,mapa);
+        List<Casillero> adyacentesVisitados = this.visitarAdyacentes(turnoActual,this.mapa);
         this.tipoCasillero.expandirMoho(adyacentesVisitados);
         this.quitarInvisibilidad = false;
     }
@@ -89,6 +89,7 @@ public class Casillero{
         return this.coordenadaY;
     }
     public void energizarEnRango(int i) {
+        this.mapa.energizar(this.coordenadaX,this.coordenadaY,i);
     }
 
     public boolean tieneEnRango(Unidad unidadAAtacar, int rango){
