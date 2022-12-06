@@ -14,6 +14,8 @@ public class Acceso extends EdificioProtoss {
         super(unCasillero, unInventario, 500, 500);
         casillero.ocupar(this);
         inventario.pagarMateriales(COSTO_GASEOSO, COSTO_MINERAL);
+    }
+    public void ubicarEnInventario(){
         inventario.subirNivelConstruccion(NIVEL_DE_CONSTRUCCION);
     }
 

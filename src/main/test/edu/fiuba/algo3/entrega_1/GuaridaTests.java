@@ -90,7 +90,8 @@ public class GuaridaTests {
         //ACT
         try {
 
-            ReservaDeReproduccion.construir(casillero, inventario);
+            ReservaDeReproduccion reserva = new ReservaDeReproduccion(casillero, inventario);
+            reserva.ubicarEnInventario();
             //ASSERT
             Guarida.construir(casilleroMock, inventario);
         } catch (Exception e) {

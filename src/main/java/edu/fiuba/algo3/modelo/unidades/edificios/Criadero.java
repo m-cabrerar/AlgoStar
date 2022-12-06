@@ -22,6 +22,9 @@ public class Criadero extends EdificioZerg{
         this.cantidadZanganos = 0;
         casillero.ocupar(this);
         inventario.pagarMateriales(COSTO_GASEOSO, COSTO_MINERAL);
+        inventario.agregarSuministro(SUMINISTRA);
+    }
+    public void ubicarEnInventario(){
         inventario.subirNivelConstruccion(NIVEL_DE_CONSTRUCCION);
         inventario.agregarSuministro(SUMINISTRA);
     }

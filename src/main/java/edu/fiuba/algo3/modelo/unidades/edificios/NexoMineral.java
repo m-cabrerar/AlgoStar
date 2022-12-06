@@ -13,6 +13,8 @@ public class NexoMineral extends EdificioProtoss {
         super(casillero, inventario, 250, 250);
         casillero.ocupar(this);
         inventario.pagarMateriales(COSTO_GASEOSO,COSTO_MINERAL);
+    }
+    public void ubicarEnInventario(){
         inventario.subirNivelConstruccion(NIVEL_DE_CONSTRUCCION);
     }
 

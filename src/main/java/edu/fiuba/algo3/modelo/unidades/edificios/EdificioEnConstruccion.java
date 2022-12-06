@@ -9,11 +9,12 @@ import edu.fiuba.algo3.modelo.unidades.Unidad;
 import java.util.List;
 
 public class EdificioEnConstruccion implements Unidad {
-    private Unidad vaASer;
+    private EdificioConcreto vaASer;
     private Casillero casillero;
     private int turnosRestantes;
     private boolean destruido;
     private Inventario inventario;
+    private boolean enInventario;
 
     public EdificioEnConstruccion(EdificioConcreto vaASer, Casillero casillero, Inventario inventario) {
         this.vaASer = vaASer;
@@ -22,6 +23,7 @@ public class EdificioEnConstruccion implements Unidad {
         this.destruido = false;
         inventario.agregarEdificio(this);
         this.inventario = inventario;
+        enInventario = false;
     }
 
     private boolean estaListo() {
@@ -32,6 +34,10 @@ public class EdificioEnConstruccion implements Unidad {
             vaASer.pasarTurno();
         } else {
             turnosRestantes--;
+        }
+        if (estaListo() && !enInventario ){
+            vaASer.ubicarEnInventario();
+            enInventario = true;
         }
     }
 

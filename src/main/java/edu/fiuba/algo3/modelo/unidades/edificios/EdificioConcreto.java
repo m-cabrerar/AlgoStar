@@ -67,4 +67,6 @@ abstract class EdificioConcreto implements Unidad, Construible {
         return posicion;
     }
 
+    public abstract void ubicarEnInventario();
+
 }

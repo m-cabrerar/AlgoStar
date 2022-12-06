@@ -51,8 +51,10 @@ public class CasoUso31{
         inventario.agregarMineral(600);
 
         Casillero casilleroMock = mock(Casillero.class);
-        new Pilon(casilleroMock, inventario);
+        Pilon pilon1 = new Pilon(casilleroMock, inventario);
+        pilon1.ubicarEnInventario();
         Pilon pilon2 = new Pilon(casilleroMock, inventario);
+        pilon2.ubicarEnInventario();
 
         for (int i = 0; i < 5; i++) {
             new Zerling(inventario);
