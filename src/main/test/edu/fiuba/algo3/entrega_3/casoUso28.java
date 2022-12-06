@@ -1,11 +1,13 @@
 package edu.fiuba.algo3.entrega_3;
 
-import edu.fiuba.algo3.exceptions.UnidadInvisible;
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.casillero.Casillero;
+import edu.fiuba.algo3.modelo.unidades.edificios.Criadero;
+import edu.fiuba.algo3.modelo.unidades.Unidad;
+import edu.fiuba.algo3.modelo.unidades.moviles.Zealot;
+import edu.fiuba.algo3.modelo.unidades.moviles.Zerling;
 import org.junit.jupiter.api.Test;
-import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;

@@ -1,6 +1,9 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.exceptions.*;
+import edu.fiuba.algo3.modelo.casillero.Casillero;
+import edu.fiuba.algo3.modelo.casillero.NodoGas;
+import edu.fiuba.algo3.modelo.casillero.NodoMineral;
 
 import java.util.List;
 import java.util.Random;
@@ -115,5 +118,18 @@ public class Juego {
     }
     public Mapa getMapa(){
         return mapa;
+    }
+    public Inventario[] getInventarios(){
+        Inventario[] inventarios = new Inventario[CANTIDAD_DE_JUGADORES];
+        for (int i = 0; i < CANTIDAD_DE_JUGADORES; i++) {
+            inventarios[i] = jugadores[i].getInventario();
+        }
+        return inventarios;
+    }
+    public Jugador[] getJugadores(){
+        return jugadores;
+    }
+    public int getTurnos(){
+        return turnos;
     }
 }

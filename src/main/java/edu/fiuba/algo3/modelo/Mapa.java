@@ -1,4 +1,7 @@
 package edu.fiuba.algo3.modelo;
+import edu.fiuba.algo3.modelo.casillero.Casillero;
+import edu.fiuba.algo3.modelo.casillero.TipoCasillero;
+
 import java.util.*;
 
 public class Mapa {

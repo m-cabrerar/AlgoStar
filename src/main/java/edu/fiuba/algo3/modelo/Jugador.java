@@ -1,5 +1,11 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.casillero.Casillero;
+import edu.fiuba.algo3.modelo.unidades.edificios.Extractor;
+import edu.fiuba.algo3.modelo.unidades.moviles.Hidralisco;
+import edu.fiuba.algo3.modelo.unidades.edificios.Pilon;
+import edu.fiuba.algo3.modelo.unidades.Unidad;
+
 public class Jugador {
     private /*final*/ String nombre;
     private  String color;
@@ -76,5 +82,18 @@ public class Jugador {
     }
     public void pasarTurno(){
         inventario.pasarTurno();
+    }
+    public Inventario getInventario(){
+        return inventario;
+    }
+
+    public String getColor() {
+        return color;
+    }
+    public String getNombre() {
+        return nombre;
+    }
+    public String getRaza() {
+        return raza;
     }
 }

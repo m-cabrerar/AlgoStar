@@ -2,6 +2,13 @@ package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.exceptions.*;
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.casillero.Casillero;
+import edu.fiuba.algo3.modelo.casillero.CasilleroVacio;
+import edu.fiuba.algo3.modelo.casillero.NodoMineral;
+import edu.fiuba.algo3.modelo.unidades.Danio;
+import edu.fiuba.algo3.modelo.unidades.edificios.EdificioEnConstruccion;
+import edu.fiuba.algo3.modelo.unidades.edificios.NexoMineral;
+import edu.fiuba.algo3.modelo.unidades.Unidad;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;

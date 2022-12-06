@@ -1,6 +1,11 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.casillero.Casillero;
+import edu.fiuba.algo3.modelo.casillero.Moho;
+import edu.fiuba.algo3.modelo.casillero.NodoMineral;
+import edu.fiuba.algo3.modelo.unidades.edificios.Criadero;
+import edu.fiuba.algo3.modelo.unidades.edificios.NexoMineral;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

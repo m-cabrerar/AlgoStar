@@ -2,6 +2,11 @@ package edu.fiuba.algo3.entrega_2;
 
 import edu.fiuba.algo3.exceptions.*;
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.casillero.Casillero;
+import edu.fiuba.algo3.modelo.unidades.Danio;
+import edu.fiuba.algo3.modelo.unidades.edificios.Espiral;
+import edu.fiuba.algo3.modelo.unidades.moviles.Larva;
+import edu.fiuba.algo3.modelo.unidades.Unidad;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

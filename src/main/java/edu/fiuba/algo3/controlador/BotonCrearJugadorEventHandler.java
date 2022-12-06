@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.controlador;
 
+import edu.fiuba.algo3.exceptions.ParametrosInvalidos;
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.vistas.ContenedorPrincipal;
 import javafx.event.ActionEvent;
@@ -60,19 +61,19 @@ public class BotonCrearJugadorEventHandler implements EventHandler<ActionEvent> 
         String color = "";
         String raza = "";
         if (botonRojo.getStyle().contains("-fx-border-color: #5DADE2;")) {
-            color = "Rojo";
+            color = "#DA4728";
             botonRojo.setDisable(true);
         }
         if (botonAzul.getStyle().contains("-fx-border-color: #5DADE2;")) {
-            color = "Azul";
+            color = "#3F58D2";
             botonAzul.setDisable(true);
         }
         if (botonAmarillo.getStyle().contains("-fx-border-color: #5DADE2;")) {
-            color = "Amarillo";
+            color = "#F1C532";
             botonAmarillo.setDisable(true);
         }
         if (botonVerde.getStyle().contains("-fx-border-color: #5DADE2;")) {
-            color = "Verde";
+            color = "#65D54F";
             botonVerde.setDisable(true);
         }
         if (botonProtoss.getStyle().contains("-fx-border-color: #5DADE2;")) {
@@ -97,27 +98,51 @@ public class BotonCrearJugadorEventHandler implements EventHandler<ActionEvent> 
         if (raza.equals("")) {
             this.error.setText("Debe seleccionar una raza");
             this.error.styleProperty().set("-fx-text-fill: #DA4728;");
-            if(color.equals("Rojo")){
+            if(color.equals("#DA4728")){
                 botonRojo.setDisable(false);
             }
-            if(color.equals("Azul")){
+            if(color.equals("#3F58D2")){
                 botonAzul.setDisable(false);
             }
-            if(color.equals("Amarillo")){
+            if(color.equals("#F1C532")){
                 botonAmarillo.setDisable(false);
             }
-            if(color.equals("Verde")){
+            if(color.equals("#65D54F")){
                 botonVerde.setDisable(false);
             }
             return;
         }
-        juego.registrarJugador(nombre, color, raza, new Jugador());
-        titulo.setText("Jugador " + (juego.cantidadDeJugadores() + 1));
-        nombreJugador.setText("");
-        botonRojo.styleProperty().set("-fx-background-color: #DA4728;");
-        botonAzul.styleProperty().set("-fx-background-color: #3F58D2;");
-        botonAmarillo.styleProperty().set("-fx-background-color: #F1C532;");
-        botonVerde.styleProperty().set("-fx-background-color: #65D54F;");
+        try {
+            juego.registrarJugador(nombre, color, raza, new Jugador());
+            titulo.setText("Jugador " + (juego.cantidadDeJugadores() + 1));
+            nombreJugador.setText("");
+            botonRojo.styleProperty().set("-fx-background-color: #DA4728;");
+            botonAzul.styleProperty().set("-fx-background-color: #3F58D2;");
+            botonAmarillo.styleProperty().set("-fx-background-color: #F1C532;");
+            botonVerde.styleProperty().set("-fx-background-color: #65D54F;");
+        } catch (ParametrosInvalidos e) {
+            error.setText("Nombre ya existente");
+            error.styleProperty().set("-fx-text-fill: #DA4728;");
+            if(color.equals("#DA4728")){
+                botonRojo.setDisable(false);
+            }
+            if(color.equals("#3F58D2")){
+                botonAzul.setDisable(false);
+            }
+            if(color.equals("#F1C532")){
+                botonAmarillo.setDisable(false);
+            }
+            if(color.equals("#65D54F")){
+                botonVerde.setDisable(false);
+            }
+            if(raza.equals("Protoss")){
+                botonProtoss.setDisable(false);
+            }
+            if(raza.equals("Zerg")){
+                botonZerg.setDisable(false);
+            }
+            return;
+        }
 
         if (juego.cantidadDeJugadores() == juego.cantidadDeJugadoresMaxima()) {
             stage.setScene(proximaEscena);
@@ -125,7 +150,7 @@ public class BotonCrearJugadorEventHandler implements EventHandler<ActionEvent> 
             juego.crearTerreno();
             juego.crearBases(4);
 
-            contenedorPrincipal.actualizar();
+            contenedorPrincipal.iniciarJuego();
         }
 
     }

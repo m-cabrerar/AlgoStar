@@ -11,11 +11,15 @@ public class ContenedorPrincipal extends BorderPane {
     BarraMenu barraMenu;
     VistaJuego vistaJuego;
     GridPane tablero;
+    GridPane tableroUnidades;
     VBox contenedorCentral;
-    HBox contenedorJugador;
+    ContenedorJugador contenedorJugador;
+    Botonera botonera;
     public ContenedorPrincipal(Stage stage, Juego juego) {
         this.setMenu(stage);
         this.setCentro(juego);
+        this.setJugador(juego);
+        this.setBotonera(juego);
     }
 
     private void setMenu(Stage stage) {
@@ -26,8 +30,10 @@ public class ContenedorPrincipal extends BorderPane {
     private void setCentro(Juego juego) {
         tablero = new GridPane();
         tablero.setAlignment(Pos.CENTER);
-        StackPane centerPane = new StackPane(tablero);
-        vistaJuego = new VistaJuego(juego, tablero, centerPane);
+        tableroUnidades = new GridPane();
+        tableroUnidades.setAlignment(Pos.CENTER);
+        StackPane centerPane = new StackPane(tablero, tableroUnidades);
+        vistaJuego = new VistaJuego(juego, tablero, tableroUnidades, centerPane);
         contenedorCentral = new VBox(centerPane);
         contenedorCentral.setAlignment(Pos.CENTER);
         contenedorCentral.setSpacing(10);
@@ -39,8 +45,25 @@ public class ContenedorPrincipal extends BorderPane {
         this.setCenter(contenedorCentral);
     }
 
+    private void setJugador(Juego juego) {
+        contenedorJugador = new ContenedorJugador(juego);
+        this.setBottom(contenedorJugador);
+    }
+
+    private void setBotonera(Juego juego) {
+        botonera = new Botonera(juego, this);
+        this.setLeft(botonera);
+    }
+
     public void actualizar() {
-        vistaJuego.actualizar();
+        vistaJuego.update();
+        contenedorJugador.update();
+        botonera.update();
+    }
+    public void iniciarJuego() {
+        vistaJuego.iniciarJuego();
+        contenedorJugador.iniciarJuego();
+        botonera.iniciarJuego();
     }
 
 }

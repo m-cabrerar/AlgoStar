@@ -3,11 +3,9 @@ package edu.fiuba.algo3.entrega_3;
 import edu.fiuba.algo3.modelo.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
+import edu.fiuba.algo3.modelo.casillero.Casillero;
 import org.junit.jupiter.api.Test;
 
 public class casoUso32 {
