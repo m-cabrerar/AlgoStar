@@ -21,12 +21,12 @@ public class NodoGas extends TipoCasillero {
     }
 
     @Override
-    public boolean ocupar(Extractor extractor){
-        return true;
+    public void ocupar(Extractor extractor){
+        return;
     }
     @Override
-    public boolean ocupar(Asimilador asimilador){
-        return true;
+    public void ocupar(Asimilador asimilador){
+        return;
     }
 
 

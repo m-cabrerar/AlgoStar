@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo.unidades;
 
 import java.util.List;
 import edu.fiuba.algo3.exceptions.*;
-import edu.fiuba.algo3.modelo.casillero.Casillero;
+import edu.fiuba.algo3.modelo.casillero.*;
 
 public interface Unidad {
     void pasarTurno();

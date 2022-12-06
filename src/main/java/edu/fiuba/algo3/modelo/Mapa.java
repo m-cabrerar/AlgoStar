@@ -23,18 +23,6 @@ public class Mapa {
         this.tiempoVida = 0;
     }
 
-    public Mapa mapaChico(){
-        return new Mapa(30,30);
-    }
-
-    public Mapa mapaMediano(){
-        return new Mapa(50,50);
-    }
-
-    public Mapa mapaGrande(){
-        return new Mapa(60,60);
-    }
-
     public void cambiarTipoCasilla(int x, int y, TipoCasillero tipoCasillero){
         obtenerCasillero(x,y).setTipoCasillero(tipoCasillero);
     }
@@ -83,7 +71,7 @@ public class Mapa {
         this.tiempoVida += 1;
         for (List<Casillero> listaCasilleros : this.tableroActual){
             for (Casillero casillero : listaCasilleros){
-                casillero.pasarTurno(tiempoVida,this);
+                casillero.pasarTurno(tiempoVida);
             }
         }
     }
