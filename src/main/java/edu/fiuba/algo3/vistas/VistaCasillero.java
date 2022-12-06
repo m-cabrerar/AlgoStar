@@ -9,7 +9,7 @@ public class VistaCasillero extends StackPane {
         this.setPrefSize(50, 50);
         Image imagen;
         if (casillero.getTipo().getClass().getSimpleName().equals("CasilleroEspacial")) {
-            imagen = new Image("file:src/main/java/edu/fiuba/algo3/vistas/img/casilleros/espacial.png");
+            imagen = new Image("file:src/main/java/edu/fiuba/algo3/vistas/img/casilleros/especial.png");
         } else if (casillero.getTipo().getClass().getSimpleName().equals("Moho")) {
             imagen = new Image("file:src/main/java/edu/fiuba/algo3/vistas/img/casilleros/moho.png");
         } else if (casillero.getTipo().getClass().getSimpleName().equals("NodoGas")) {
