@@ -1,0 +1,21 @@
+@startuml
+'https://plantuml.com/class-diagram
+title Juego
+
+class Juego {
+- Mapa: mapa
+- <u> int: cantidadJugadores
+- Jugador[]: cantidadJugadores
+- int: cantidadJugadores
+- int: turnos
+
++<u> Juego()
++ void: registrarJugador(String nombre, String color, String raza, String jugador)
++ void: crearTerreno()
++ void: crearBases(int cantBasesPares)
++ void: pasarTurno()
++ String: verificarGanador()
++ int: cantidadDeJugadores()
++ int: cantidadJugadoresMaxima()
+}
+@enduml

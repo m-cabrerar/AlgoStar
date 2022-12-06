@@ -1,0 +1,33 @@
+@startuml
+'https://plantuml.com/class-diagram
+title Inventario
+
+class Inventario {
+-int cantidadGas
+-int cantidadMineral
+-List<UnidadMovil>UnidadesMoviles
+-List<Edificios>Edificios
+-<u>int PoblacionMaxima
+-<u>int SuministrosMaximos
+-int suministrosDisponibles
+-int suministrosEmpleados
+-int nivelConstruccion
+
++<u>void: Inventario()
++boolean: puedeConstruir(int nivelDificultadConstruccion)
++void: subirNivelConstruccion(int nivelOtorga)
++void: agregarGas(int i)
++void: agregarMineral(int i)
++boolean: tieneRecursos(int cantidadGas, int cantidadMineral)
++void: pagarMateriales(int cantidadGas, int cantidadMineral)
++void: agregar(UnidadMovil unidad)
++void: agregar(Edificio edificio)
++void: agregarSuministro(int cantidad)
++void: perderSuministro(int cantidad)
++void: suministrarUnidad((int cantidad)
++boolean: tieneSuministros(int cantidad)
++boolean: puedeCrecerPoblacion(int cantidad)
++boolean: tieneEdificios()
++void: pasarTurno()
+}
+@enduml
