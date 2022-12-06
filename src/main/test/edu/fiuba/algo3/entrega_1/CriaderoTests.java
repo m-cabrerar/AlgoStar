@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.exceptions.*;
 import edu.fiuba.algo3.modelo.casillero.Casillero;
 import edu.fiuba.algo3.modelo.casillero.NodoGas;
+import edu.fiuba.algo3.modelo.unidades.edificios.Acceso;
 import edu.fiuba.algo3.modelo.unidades.edificios.Criadero;
 import edu.fiuba.algo3.modelo.unidades.Danio;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
@@ -166,16 +167,11 @@ public class CriaderoTests {
     }
 
     @Test
-    public void test08ConstruirUnCriaderoSobreCasillaVaciaError(){
+    public void test08ConstruirUnCriaderoSobreCasillaVaciaNoError(){
         //ARRANGE
         String mensaje = "Ubicacion invalida";
         Casillero casillero = new Casillero(0,0,mock(Mapa.class));
         Inventario inventario =new Inventario();
-        //ACT
-        Exception exception = assertThrows(Exception.class, () -> {
-            Criadero criadero = new Criadero(casillero, inventario);
-        });
-        //ASSERT
-        assertEquals(mensaje, exception.getMessage());
-    }
+        //ACT & ASSERT
+        assertDoesNotThrow(() -> Criadero.construir(casillero, inventario));    }
 }
