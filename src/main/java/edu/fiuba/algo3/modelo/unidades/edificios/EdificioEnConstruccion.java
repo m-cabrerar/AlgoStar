@@ -26,7 +26,7 @@ public class EdificioEnConstruccion implements Unidad {
         enInventario = false;
     }
 
-    private boolean estaListo() {
+    public boolean estaListo() {
         return turnosRestantes <= 0;
     }
     public void pasarTurno() {
@@ -63,4 +63,7 @@ public class EdificioEnConstruccion implements Unidad {
         return vaASer.obtenerPosicion();
     }
 
+    public Unidad getConstruido() {
+        return vaASer;
+    }
 }

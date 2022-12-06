@@ -14,7 +14,7 @@ public class Inventario {
     private int cantidadGas;
     private int cantidadMineral;
     List<Unidad> unidades;
-    List<Unidad> edificios;
+    List<EdificioEnConstruccion> edificios;
 
     private static int POBLACION_MAXIMA =200;
     private static int SUMINISTROS_MAXIMOS = 200;
@@ -50,7 +50,7 @@ public class Inventario {
     public void agregarUnidad(Unidad unidad) {
         this.unidades.add(unidad);
     }
-    public void agregarEdifico(Unidad edificio) {
+    public void agregarEdifico(EdificioEnConstruccion edificio) {
         this.edificios.add(edificio);
     }
 
@@ -103,7 +103,7 @@ public class Inventario {
     public List<Unidad> getUnidades(){
         return this.unidades;
     }
-    public List<Unidad> getEdificios(){
+    public List<EdificioEnConstruccion> getEdificios(){
         return this.edificios;
     }
     public int getGas(){
