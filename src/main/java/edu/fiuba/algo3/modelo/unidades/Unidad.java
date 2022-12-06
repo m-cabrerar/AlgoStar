@@ -8,6 +8,6 @@ public interface Unidad {
     void pasarTurno();
     void recibirDanio(Danio danio) throws EstaDestruido;
     boolean estaPorAca(List<Casillero> casilleros);
-    public int[] obtenerPosicion();
+    public Integer[] obtenerPosicion();
     
 }
