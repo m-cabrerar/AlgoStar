@@ -29,4 +29,8 @@ public class UnidadEnEvolucion extends EdificioZerg {
     public int turnosParaConstruir() {
         return 0;
     }
+
+    public void ubicarEnInventario(){
+
+    }
 }

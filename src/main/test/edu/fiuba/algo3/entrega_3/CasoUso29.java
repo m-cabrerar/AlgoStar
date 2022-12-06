@@ -18,7 +18,8 @@ public class CasoUso29 {
         inventario.agregarMineral(4200);
         // Act
         for (int i = 0; i < 41; i++) {
-            Pilon.construir(mockedCasillero, inventario);
+            Pilon pilon = new Pilon(mockedCasillero, inventario);
+            pilon.ubicarEnInventario();
         }
 
         //Assert

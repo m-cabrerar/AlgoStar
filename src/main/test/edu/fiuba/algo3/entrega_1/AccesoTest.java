@@ -113,7 +113,8 @@ public class AccesoTest {
         Danio danio = new Danio(0,50);
         Danio danio2 = new Danio(0,999);
 
-        Unidad acceso = new Acceso(casillero, inventario);
+        Acceso acceso = new Acceso(casillero, inventario);
+        acceso.ubicarEnInventario();
         // Act
         try{acceso.recibirDanio(danio);}
         catch(Exception e){}
@@ -139,7 +140,8 @@ public class AccesoTest {
 
         Inventario inventario = new Inventario();
     
-        Unidad acceso = new Acceso(casillero, inventario);
+        Acceso acceso = new Acceso(casillero, inventario);
+        acceso.ubicarEnInventario();
         // Act
         try{acceso.recibirDanio(danio);}
         catch(Exception e){}

@@ -13,6 +13,8 @@ public class PuertoEstelar extends EdificioProtoss {
         super(casillero, inventario, 600, 600);
         casillero.ocupar(this);
         inventario.pagarMateriales(COSTO_GASEOSO,COSTO_MINERAL);
+    }
+    public void ubicarEnInventario(){
         inventario.subirNivelConstruccion(NIVEL_DE_CONSTRUCCION);
     }
 
