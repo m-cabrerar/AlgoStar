@@ -14,11 +14,7 @@ public class Inventario {
     private int cantidadGas;
     private int cantidadMineral;
     List<Unidad> unidades;
-<<<<<<< Updated upstream
-    //List<Unidad> edificios;
-=======
-    List<EdificioEnConstruccion> edificios;
->>>>>>> Stashed changes
+    List<Unidad> edificios;
 
     private static int POBLACION_MAXIMA =200;
     private static int SUMINISTROS_MAXIMOS = 200;
@@ -32,6 +28,7 @@ public class Inventario {
         this.suministrosDisponibles = 0;
         this.suministrosEmpleados = 0;
         this.unidades = new ArrayList<>();
+        this.edificios = new ArrayList<>();
         this.nivelConstruccion = 0;
     }
     public boolean puedeConstruir(int nivelDificultadConstruccion) {
@@ -50,12 +47,12 @@ public class Inventario {
     public void agregarMineral(int i) {
         this.cantidadMineral += i;
     }
-<<<<<<< Updated upstream
-    public void agregar(Unidad unidad) {
+    public void agregarUnidad(Unidad unidad) {
         this.unidades.add(unidad);
     }
-=======
->>>>>>> Stashed changes
+    public void agregarEdifico(Unidad edificio) {
+        this.edificios.add(edificio);
+    }
 
     public void agregarSuministro(int cantidad){
         this.suministrosDisponibles += cantidad;
@@ -88,26 +85,15 @@ public class Inventario {
         this.cantidadGas -= cantidadGas;
     }
 
-
     public boolean tieneEdificios(){
         return !(unidades.isEmpty());
-        //cuando esten separados los edificios se manda a edificios
+        //TODO cuando esten separados los edificios se manda a edificios
     }
     public void pasarTurno(){
         for(Unidad unidad :unidades){
             unidad.pasarTurno();
         }
     }
-<<<<<<< Updated upstream
-    public List<AmoSupremo> obtenerAmosSupremos(){
-        List<AmoSupremo> amosSupremos = new ArrayList<>();
-        for (Unidad unidad : this.unidades) {
-            if (unidad instanceof AmoSupremo) {
-                amosSupremos.add((AmoSupremo) unidad);
-            }
-        }
-        return amosSupremos;
-=======
     public List<Unidad> getUnidades(){
         return this.unidades;
     }
@@ -144,6 +130,30 @@ public class Inventario {
     }
     public int getPoblacionMaxima(){
         return POBLACION_MAXIMA;
->>>>>>> Stashed changes
+    }
+    public List<Unidad> getUnidades(){
+        return this.unidades;
+    }
+    public List<Unidad> getEdificios(){
+        return this.edificios;
+    }
+    public int getGas(){
+        return this.cantidadGas;
+    }
+    public int getMineral(){
+        return this.cantidadMineral;
+    }
+
+    public int getSuministros(){
+        return this.suministrosDisponibles;
+    }
+    public int getSuministrosMaximos(){
+        return SUMINISTROS_MAXIMOS;
+    }
+    public int getSuministrosEmpleados(){
+        return this.suministrosEmpleados;
+    }
+    public int getPoblacionMaxima(){
+        return POBLACION_MAXIMA;
     }
 }

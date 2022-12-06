@@ -1,10 +1,46 @@
 @startuml
 title Modelado General
+class Inventario {
+-int cantidadGas
+-int cantidadMineral
+-List<UnidadMovil>UnidadesMoviles
+-List<Edificios>Edificios
+-<u>int PoblacionMaxima
+-<u>int SuministrosMaximos
+-int suministrosDisponibles
+-int suministrosEmpleados
+-int nivelConstruccion
+
++<u>void: Inventario()
++boolean: puedeConstruir(int nivelDificultadConstruccion)
++void: subirNivelConstruccion(int nivelOtorga)
++void: agregarGas(int i)
++void: agregarMineral(int i)
++boolean: tieneRecursos(int cantidadGas, int cantidadMineral)
++void: pagarMateriales(int cantidadGas, int cantidadMineral)
++void: agregar(UnidadMovil unidad)
++void: agregar(Edificio edificio)
++void: agregarSuministro(int cantidad)
++void: perderSuministro(int cantidad)
++void: suministrarUnidad((int cantidad)
++boolean: tieneSuministros(int cantidad)
++boolean: puedeCrecerPoblacion(int cantidad)
++boolean: tieneEdificios()
++void: pasarTurno()
+}
 
 class Mapa {
+    -int:anchoMapa
+    -int:altoMapa
     -List<List<Casillero>>: tableroActual
-    +Mapa(int:alto, int:ancho)
+    -int: tiempoVida
+
+    +<u>Mapa(int:alto, int:ancho)
     +void: cambiarTipoCasilla(int: x, int: y, TipoCasillero: tipo)
+    +List<Casillero>: casillerosAdyacentes(int:x, int:y)
+    +List<Casillero>: casillerosEnRango(int:xInicial, int:yInicial, int:rango)
+    +List<List<Integer>> equidistantesPares(int cantidad)
+    +boolean: enRango(int:x, int:y)
     +void: pasarTurno()
     +void: energizar(int:x,int:y,int:rango)
     +void: desenergizar(int:x,int:y,int:rango)
@@ -13,25 +49,37 @@ class Mapa {
 
 class Casillero {
  /'- TipoCasillero: tipoCasillero'/
- - int: energia
+- int: energia
  - int: coordenadaX
  - int: coordenadaY
- + Casillero(coordX, coordY)
+ - boolean: estaOcupado
+ - boolean: quitarInvisibilidad
+ - int: turno
+
+ + <u>Casillero(coordX, coordY)
  + void: setTipoCasillero(TipoCasillero: unTipoDeCasilleroNuevo)
+ + boolean: tieneEnergia()
  + void: energizar()
  + void: desenergizar()
- + void: pasarTurno(int: turnoActual, Mapa: mapa)
+ + boolean: casilleroQuitaInvisibilidad()
+ + void: quitarInvisibilidad()
+ + void: quitarInvisibilidadEnRango()
+ + void: pasarTurno(int: turnoActual)
  + int: extraerMineral(int: cant)
  + int: extraerGas(int: cant)
+ + boolean: estaOcupado()
  + void: ocupar()
  + void: desocupar()
+ + List<Casillero>: visitarAdyacentes(int turnoActual, Mapa mapa)
+ + int: posicionX()
+ + int: posicionY()
 }
 
-abstract class TipoCasillero{
- + {abstract}String: nombreDelCasillero();
+class TipoCasillero{
  + int: extraerMineral(int:cantidad)
  + int: extraerGas(int cantidad)
  + void: expandirMoho(List<Casillero> casillasAContagiar)
+ + void: ocupar()
 }
 
 interface Unidad {
@@ -75,12 +123,6 @@ class EdificioProtoss{
  + void:pasarTurno()
 }
 
-class Inventario {
- - int: cantGas
- - int: cantMineral
- + boolean: tieneRecursos(mineral, gas)
- + agregar(Unidad unidad)
-}
 
 class UnidadMovil {
  - Casillero: casilleroActual
@@ -105,15 +147,51 @@ class UnidadMovilZerg{
  {abstract}void: atacar(Unidad unidad)
 }
 
+class Jugador {
+    -String: nombre
+    -String: raza
+    -Inventario: inventario
+
+    +<u>Jugador()
+    +void: setDatos(String nombre, String color, String raza)
+    +boolean: nombreValido(String nombre, Jugador[] jugadores)
+    +boolean: colorValido(String color, Jugador[] jugadores)
+    +boolean: razaValida(String raza, Jugador[] jugadores)
+    +boolean: tieneEdificios()
+
+}
+
+class Juego {
+- Mapa: mapa
+- <u> int: cantidadJugadores
+- Jugador[]: cantidadJugadores
+- int: cantidadJugadores
+- int: turnos
+
++<u> Juego()
++ void: registrarJugador(String nombre, String color, String raza, String jugador)
++ void: crearTerreno()
++ void: crearBases(int cantBasesPares)
++ void: pasarTurno()
++ String: verificarGanador()
++ int: cantidadDeJugadores()
++ int: cantidadJugadoresMaxima()
+}
+
+
 Unidad <|.. EdificioConcreto
 Unidad <|.. EdificioEnConstruccion
 EdificioConcreto <|-- EdificioZerg
 EdificioConcreto <|-- EdificioProtoss
 EdificioEnConstruccion "1" o-- "1" EdificioConcreto
 EdificioEnConstruccion "1" o-- "1" Casillero
-EdificioConcreto "1" o-- "1" Casillero
-Mapa "1" *-- "*" Casillero
+
+Juego "1" *-- "2" Jugador
+Jugador "1" *-- "1"Inventario
+Mapa "1" <-- "1" Casillero
+Casillero "*" <-- "1" Mapa
 Casillero "1" *-- "1" TipoCasillero
+
 Inventario "1" o-- "*" Unidad
 Unidad <|.. UnidadMovil
 UnidadMovil <|-- UnidadMovilProtoss

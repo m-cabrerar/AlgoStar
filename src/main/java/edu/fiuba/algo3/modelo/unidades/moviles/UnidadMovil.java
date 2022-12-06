@@ -67,5 +67,11 @@ public abstract class UnidadMovil implements Unidad, Construible {
         }
     }
 
+    public Integer[] obtenerPosicion() {
+        Integer[] posicion = new Integer[2];
+        posicion[0] = casillero.posicionX();
+        posicion[1] = casillero.posicionY();
+        return posicion;
+    }
 
 }

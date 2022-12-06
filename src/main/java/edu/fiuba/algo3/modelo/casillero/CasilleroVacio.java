@@ -5,8 +5,8 @@ import edu.fiuba.algo3.modelo.unidades.Unidad;
 
 public class CasilleroVacio extends TipoCasillero{
     @Override
-    public boolean ocupar (Unidad unidad){
-        return true;
+    public void ocupar (Unidad unidad){
+        return;
     }
 }
 

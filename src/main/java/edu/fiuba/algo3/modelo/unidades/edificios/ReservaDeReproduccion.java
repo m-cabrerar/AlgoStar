@@ -6,23 +6,15 @@ import edu.fiuba.algo3.modelo.unidades.moviles.UnidadMovil;
 import edu.fiuba.algo3.modelo.unidades.moviles.Zerling;
 
 public class ReservaDeReproduccion extends EdificioZerg {
-
-<<<<<<< Updated upstream
-=======
     private static int COSTO_GASEOSO = 150;
     private static int COSTO_MINERAL = 0;
     private static final int NIVEL_DE_CONSTRUCCION = 1;
->>>>>>> Stashed changes
     private static int VIDA_MAXIMA = 1000;
     public ReservaDeReproduccion(Casillero casillero, Inventario inventario){
         super(casillero, inventario,VIDA_MAXIMA);
         casillero.ocupar(this);
-<<<<<<< Updated upstream
-        inventario.subirNivelConstruccion(1);
-=======
         inventario.pagarMateriales(COSTO_GASEOSO,COSTO_MINERAL);
         inventario.subirNivelConstruccion(NIVEL_DE_CONSTRUCCION);
->>>>>>> Stashed changes
     }
     public void pasarTurno(){
         super.pasarTurno();
@@ -56,6 +48,9 @@ public class ReservaDeReproduccion extends EdificioZerg {
         }
         unidadEnConstruccion = crearEvolucion(inventario);
         turnosParaConstruir = unidadEnConstruccion.turnosParaConstruir();
+    }
+    public static int getNivelDeConstruccion(){
+        return NIVEL_DE_CONSTRUCCION;
     }
 
 }

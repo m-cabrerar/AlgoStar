@@ -6,12 +6,6 @@ import edu.fiuba.algo3.modelo.Inventario;
 import edu.fiuba.algo3.modelo.unidades.moviles.UnidadMovil;
 
 public class PuertoEstelar extends EdificioProtoss {
-
-<<<<<<< Updated upstream
-    public PuertoEstelar(Casillero casillero, Inventario inventario) {
-        super(casillero, inventario, 600, 600);
-        casillero.ocupar(this);
-=======
     private static int COSTO_GASEOSO = 150;
     private static int COSTO_MINERAL = 150;
     private static final int NIVEL_DE_CONSTRUCCION = 0;
@@ -20,7 +14,6 @@ public class PuertoEstelar extends EdificioProtoss {
         casillero.ocupar(this);
         inventario.pagarMateriales(COSTO_GASEOSO,COSTO_MINERAL);
         inventario.subirNivelConstruccion(NIVEL_DE_CONSTRUCCION);
->>>>>>> Stashed changes
     }
 
     public void pasarTurno() {
@@ -50,4 +43,7 @@ public class PuertoEstelar extends EdificioProtoss {
         return new EdificioEnConstruccion(puertoEstelar, casillero, inventario);
     }
 
+    public static int getNivelDeConstruccion(){
+        return NIVEL_DE_CONSTRUCCION;
+    }
 }

@@ -3,21 +3,22 @@ title Modelado de Casilleros
 
 
 class Casillero {
- - TipoCasillero: tipoCasillero
  - int: energia
  - int: coordenadaX
  - int: coordenadaY
  - boolean: estaOcupado
+ - boolean: quitarInvisibilidad
  - int: turno
- + Casillero(coordX, coordY)
+
+ + <u>Casillero(coordX, coordY)
  + void: setTipoCasillero(TipoCasillero: unTipoDeCasilleroNuevo)
- + boolean: sonDelMismoTipoDeCasillero(Casillero: unCasillero)
- + String: suTipoDeCasillero()
- + boolean: esDelTipo(TipoCasillero: unTipoCasillero)
  + boolean: tieneEnergia()
  + void: energizar()
  + void: desenergizar()
- + void: pasarTurno(int: turnoActual, Mapa: mapa)
+ + boolean: casilleroQuitaInvisibilidad()
+ + void: quitarInvisibilidad()
+ + void: quitarInvisibilidadEnRango()
+ + void: pasarTurno(int: turnoActual)
  + int: extraerMineral(int: cant)
  + int: extraerGas(int: cant)
  + boolean: estaOcupado()
@@ -28,48 +29,63 @@ class Casillero {
  + int: posicionY()
 }
 
-class CasilleroEspacial {
- + String: nombreDelCasillero()
-}
 
-class CasilleroVacio{
- + String: nombreDelCasillero()
-}
 
-abstract class TipoCasillero{
- + {abstract}String: nombreDelCasillero();
- + int: extraerMineral(int:cantidad)
- + int: extraerGas(int cantidad)
- + void: expandirMoho(List<Casillero> casillasAContagiar)
-}
 
+
+Casillero "1" --> "1"Mapa
+Mapa "1"--> "1...*" Casillero
 Casillero *-- TipoCasillero
 CasilleroVacio --|> TipoCasillero
 Moho --|> TipoCasillero
 NodoGas --|> TipoCasillero
 NodoMineral --|> TipoCasillero
 CasilleroEspacial --|> TipoCasillero
+class TipoCasillero{
+
+ + int: extraerMineral(int:cantidad)
+ + int: extraerGas(int cantidad)
+ + void: expandirMoho(List<Casillero> casillasAContagiar)
+ + void: ocupar(Unidad unidad)
+ + void: ocupar(UnidadMovil unidad)
+ + void: ocupar(Extractor extractor)
+ + void: ocupar(Asimilador asimilador)
+ + void: ocupar(NexoMineral nexo)
+ + void: ocupar(Criadero criadero)
+}
+
 
 class Moho{
- + Moho()
- + String: nombreDelCasillero()
  + void: expandirMoho(List<Casillero>: casillasAContagiar)
+ + void: ocupar((Unidad unidad)
+ + void: ocupar(Criadero criadero)
 }
 
 class NodoGas{
  - int: unidadesRestantes
- + NodoGas()
- + String: nombreDelCasillero()
+ + <u>NodoGas()
+ + boolean: agotado()
  + int: extraerGas(int: cant)
- + boolean: agotado(
+ + void: ocupar(Extractor extractor)
+ + void: ocupar(Asimilador asimilador)
 }
 
 class NodoMineral{
  - int: unidadesRestantes
- + NodoMineral()
- + String: nombreDelCasillero()
+ + <u>NodoMineral()
  + int: extraerMineral(int: cant)
  + boolean: agotado()
+ + void: ocupar(NexoMineral nexo)
 }
 
+class CasilleroEspacial {
+ + void ocupar(UnidadMovil unidad)
+}
+
+class CasilleroVacio{
++ int extraerMineral(int cantidad)
++ int extraerGas(int cantidad)
++ void expandirMoho()
++ void: ocupar(Unidad unidad)
+}
 @enduml

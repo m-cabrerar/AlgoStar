@@ -14,19 +14,16 @@ public class Criadero extends EdificioZerg{
     private static int VIDA_MAXIMA = 500;
     private int cantidadZanganos;
     private static int SUMINISTRA = 5;
+    private static final int NIVEL_DE_CONSTRUCCION = 0;
     
     public Criadero(Casillero casillero, Inventario inventario) {
         super(casillero, inventario, VIDA_MAXIMA);
         this.cantidadLarvas = 3;
         this.cantidadZanganos = 0;
         casillero.ocupar(this);
-<<<<<<< Updated upstream
-        inventario.subirNivelConstruccion(0);
-=======
         inventario.pagarMateriales(COSTO_GASEOSO, COSTO_MINERAL);
         inventario.subirNivelConstruccion(NIVEL_DE_CONSTRUCCION);
         inventario.agregarSuministro(SUMINISTRA);
->>>>>>> Stashed changes
     }
     
     public void pasarTurno() {
@@ -79,5 +76,8 @@ public class Criadero extends EdificioZerg{
             this.inventario.perderSuministro(SUMINISTRA);
             throw new EstaDestruido("Unidad destruida");
         }
+    }
+    public static int getNivelDeConstruccion(){
+        return NIVEL_DE_CONSTRUCCION;
     }
 }

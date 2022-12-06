@@ -6,7 +6,6 @@ import edu.fiuba.algo3.modelo.unidades.Unidad;
 import java.util.List;
 
 public class Moho extends TipoCasillero {
-    public Moho(){}
     @Override
     public void expandirMoho(List<Casillero> casillasAContagiar) {
         for (Casillero casilla : casillasAContagiar) {
@@ -18,11 +17,11 @@ public class Moho extends TipoCasillero {
     }
 
     @Override
-    public boolean ocupar (Unidad unidad){
-        return true;
+    public void ocupar (Unidad unidad){
+        return;
     }
     @Override
-    public boolean ocupar (Criadero criadero){
-        return true;
+    public void ocupar (Criadero criadero){
+        return;
     }
 }

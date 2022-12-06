@@ -18,10 +18,6 @@ abstract class EdificioConcreto implements Unidad, Construible {
     
     public EdificioConcreto(Casillero unCasillero, Inventario unInventario) throws UbicacionInvalida {
         this.casillero = unCasillero;
-<<<<<<< Updated upstream
-        unInventario.agregar(this);
-=======
->>>>>>> Stashed changes
         this.inventario = unInventario;
         superficie = new Tierra();
     }
@@ -62,6 +58,13 @@ abstract class EdificioConcreto implements Unidad, Construible {
 
     public UnidadMovil crearEvolucion(Inventario inventario) {
         return null;
+    }
+
+    public Integer[] obtenerPosicion(){
+        Integer[] posicion = new Integer[2];
+        posicion[0] = casillero.posicionX();
+        posicion[1] = casillero.posicionY();
+        return posicion;
     }
 
 }
