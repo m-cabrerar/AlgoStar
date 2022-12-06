@@ -45,7 +45,7 @@ public class Criadero extends EdificioZerg{
         return 4;
     }
     
-    public static EdificioEnConstruccion construir(Casillero casillero, Inventario inventario) throws UbicacionInvalida, RecursosInsuficientes {
+    public static EdificioEnConstruccion construir(Casillero casillero, Inventario inventario) throws UbicacionInvalida, RecursosInsuficientes, CorrelativasInsuficientes {
         if(!inventario.tieneRecursos(COSTO_GASEOSO, COSTO_MINERAL)){
             throw new RecursosInsuficientes("No tiene recursos");
         }
