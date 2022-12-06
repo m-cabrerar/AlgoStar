@@ -13,12 +13,15 @@ public class EdificioEnConstruccion implements Unidad {
     private Casillero casillero;
     private int turnosRestantes;
     private boolean destruido;
+    private Inventario inventario;
 
     public EdificioEnConstruccion(EdificioConcreto vaASer, Casillero casillero, Inventario inventario) {
         this.vaASer = vaASer;
         this.casillero = casillero;
         this.turnosRestantes = vaASer.turnosParaConstruir();
         this.destruido = false;
+        inventario.agregarEdificio(this);
+        this.inventario = inventario;
     }
 
     private boolean estaListo() {
@@ -39,8 +42,10 @@ public class EdificioEnConstruccion implements Unidad {
         if (!estaListo()) {
             casillero.desocupar();
             destruido = true;
-        } else {
+        } else try {
             vaASer.recibirDanio(danio);
+        } catch (Exception EstaDestruido){
+            inventario.eliminarEdificio(this);
         }
     }
 

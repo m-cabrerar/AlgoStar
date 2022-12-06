@@ -4,6 +4,9 @@ import edu.fiuba.algo3.modelo.casillero.Casillero;
 import edu.fiuba.algo3.modelo.Inventario;
 
 public class Extractor extends EdificioZerg {
+
+    private static int COSTO_GASEOSO = 100;
+    private static int COSTO_MINERAL = 0;
     private static final int NIVEL_DE_CONSTRUCCION = 0;
     private int zanganosTrabajando;
     private static int VIDA_MAXIMA = 750;
@@ -11,8 +14,11 @@ public class Extractor extends EdificioZerg {
         super(casillero, inventario, VIDA_MAXIMA);
         this.zanganosTrabajando = 0;
         casillero.ocupar(this);
+        inventario.pagarMateriales(COSTO_GASEOSO,COSTO_MINERAL);
         inventario.subirNivelConstruccion(NIVEL_DE_CONSTRUCCION);
+
     }
+
     public void pasarTurno(){
         super.pasarTurno();
     }

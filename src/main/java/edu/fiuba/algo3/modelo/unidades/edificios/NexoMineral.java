@@ -5,10 +5,14 @@ import edu.fiuba.algo3.modelo.casillero.Casillero;
 import edu.fiuba.algo3.modelo.Inventario;
 
 public class NexoMineral extends EdificioProtoss {
+
+    private static int COSTO_GASEOSO = 0;
+    private static int COSTO_MINERAL = 50;
     private static final int NIVEL_DE_CONSTRUCCION = 0;
     public NexoMineral(Casillero casillero, Inventario inventario) {
         super(casillero, inventario, 250, 250);
         casillero.ocupar(this);
+        inventario.pagarMateriales(COSTO_GASEOSO,COSTO_MINERAL);
         inventario.subirNivelConstruccion(NIVEL_DE_CONSTRUCCION);
     }
 
@@ -21,14 +25,13 @@ public class NexoMineral extends EdificioProtoss {
     }
 
     public static EdificioEnConstruccion construir(Casillero casillero, Inventario inventario) {
-        NexoMineral nexoMineral = new NexoMineral(casillero, inventario);
-        if(!inventario.tieneRecursos(0, 50)){
+        if(!inventario.tieneRecursos(COSTO_GASEOSO, COSTO_MINERAL)){
             throw new RecursosInsuficientes("No tiene recursos");
         }
         if(!inventario.puedeConstruir(0)){
             throw new CorrelativasInsuficientes("Aún no se puede contruir este edificio");
         }
-
+        NexoMineral nexoMineral = new NexoMineral(casillero, inventario);
         System.out.println("Nexo Mineral creado");
         return new EdificioEnConstruccion(nexoMineral, casillero, inventario);
     }

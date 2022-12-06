@@ -45,10 +45,11 @@ public class NexoMineralTest {
         // Arrange
         Casillero casillero = new Casillero(0,0,mock(Mapa.class));
         casillero.setTipoCasillero(new CasilleroVacio());
-        Inventario mockedInventario = mock(Inventario.class);
-        when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
+        Inventario inventario = new Inventario();
+        inventario.agregarGas(300);
+        inventario.agregarMineral(300);
         // Act & Assert
-        assertThrows(UbicacionInvalida.class, () -> NexoMineral.construir(casillero, mockedInventario));
+        assertThrows(UbicacionInvalida.class, () -> NexoMineral.construir(casillero, inventario));
     }
 
     @Test

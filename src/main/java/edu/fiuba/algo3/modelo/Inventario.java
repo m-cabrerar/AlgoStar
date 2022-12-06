@@ -2,8 +2,10 @@ package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.exceptions.PoblacionMaximaAlcanzada;
 import edu.fiuba.algo3.exceptions.RecursosInsuficientes;
+import edu.fiuba.algo3.modelo.unidades.edificios.EdificioEnConstruccion;
 import edu.fiuba.algo3.modelo.unidades.moviles.AmoSupremo;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
+import edu.fiuba.algo3.modelo.unidades.moviles.UnidadMovil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,14 +94,42 @@ public class Inventario {
             unidad.pasarTurno();
         }
     }
-    public List<AmoSupremo> obtenerAmosSupremos(){
-        List<AmoSupremo> amosSupremos = new ArrayList<>();
-        for (Unidad unidad : this.unidades) {
-            if (unidad instanceof AmoSupremo) {
-                amosSupremos.add((AmoSupremo) unidad);
-            }
-        }
-        return amosSupremos;
+    public List<Unidad> getUnidades(){
+        return this.unidades;
+    }
+    public List<EdificioEnConstruccion> getEdificios(){
+        return this.edificios;
+    }
+    public void agregarEdificio(EdificioEnConstruccion edificio){
+        this.edificios.add(edificio);
+    }
+    public void agregarUnidad(Unidad unidad) {
+        this.unidades.add(unidad);
+    }
+    public void eliminarEdificio(EdificioEnConstruccion edificio){
+        this.edificios.remove(edificio);
+    }
+    public void eliminarUnidadMovil(UnidadMovil unidad){
+        this.unidades.remove(unidad);
+    }
+    public int getGas(){
+        return this.cantidadGas;
+    }
+    public int getMineral(){
+        return this.cantidadMineral;
+    }
+
+    public int getSuministros(){
+        return this.suministrosDisponibles;
+    }
+    public int getSuministrosMaximos(){
+        return SUMINISTROS_MAXIMOS;
+    }
+    public int getSuministrosEmpleados(){
+        return this.suministrosEmpleados;
+    }
+    public int getPoblacionMaxima(){
+        return POBLACION_MAXIMA;
     }
     public List<Unidad> getUnidades(){
         return this.unidades;
