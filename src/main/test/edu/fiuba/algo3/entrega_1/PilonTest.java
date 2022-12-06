@@ -39,10 +39,11 @@ public class PilonTest {
         // Arrange
         Casillero casillero = new Casillero(0,0,mock(Mapa.class));
         casillero.setTipoCasillero(new NodoGas());
-        Inventario mockedInventario = mock(Inventario.class);
-        when(mockedInventario.tieneRecursos(anyInt(), anyInt())).thenReturn(true);
+        Inventario inventario = new Inventario();
+        inventario.agregarGas(300);
+        inventario.agregarMineral(300);
         // Act & Assert
-        assertThrows(UbicacionInvalida.class, () -> Pilon.construir(casillero, mockedInventario));
+        assertThrows(UbicacionInvalida.class, () -> Pilon.construir(casillero, inventario));
     }
 
     @Test

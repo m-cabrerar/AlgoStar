@@ -18,7 +18,10 @@ abstract class EdificioConcreto implements Unidad, Construible {
     
     public EdificioConcreto(Casillero unCasillero, Inventario unInventario) throws UbicacionInvalida {
         this.casillero = unCasillero;
+<<<<<<< Updated upstream
         unInventario.agregar(this);
+=======
+>>>>>>> Stashed changes
         this.inventario = unInventario;
         superficie = new Tierra();
     }

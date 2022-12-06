@@ -7,11 +7,22 @@ import edu.fiuba.algo3.modelo.unidades.moviles.UnidadMovil;
 
 public class Guarida extends EdificioZerg {
 
+<<<<<<< Updated upstream
+=======
+    private static int COSTO_GASEOSO = 200;
+    private static int COSTO_MINERAL = 100;
+    private static final int NIVEL_DE_CONSTRUCCION = 2;
+>>>>>>> Stashed changes
     private static int VIDA_MAXIMA = 1250;
     public Guarida(Casillero casillero, Inventario inventario){
     super(casillero, inventario, VIDA_MAXIMA);
         casillero.ocupar(this);
+<<<<<<< Updated upstream
         inventario.subirNivelConstruccion(2);
+=======
+        inventario.pagarMateriales(COSTO_GASEOSO,COSTO_MINERAL);
+        inventario.subirNivelConstruccion(NIVEL_DE_CONSTRUCCION);
+>>>>>>> Stashed changes
     }
     public void pasarTurno(){
         super.pasarTurno();

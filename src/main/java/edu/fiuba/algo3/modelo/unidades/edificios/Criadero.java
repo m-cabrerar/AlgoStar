@@ -7,6 +7,9 @@ import edu.fiuba.algo3.modelo.unidades.Danio;
 import edu.fiuba.algo3.modelo.unidades.moviles.UnidadMovil;
 
 public class Criadero extends EdificioZerg{
+
+    private static int COSTO_GASEOSO = 50;
+    private static int COSTO_MINERAL = 0;
     private int cantidadLarvas;
     private static int VIDA_MAXIMA = 500;
     private int cantidadZanganos;
@@ -16,9 +19,14 @@ public class Criadero extends EdificioZerg{
         super(casillero, inventario, VIDA_MAXIMA);
         this.cantidadLarvas = 3;
         this.cantidadZanganos = 0;
-        inventario.agregarSuministro(SUMINISTRA);
         casillero.ocupar(this);
+<<<<<<< Updated upstream
         inventario.subirNivelConstruccion(0);
+=======
+        inventario.pagarMateriales(COSTO_GASEOSO, COSTO_MINERAL);
+        inventario.subirNivelConstruccion(NIVEL_DE_CONSTRUCCION);
+        inventario.agregarSuministro(SUMINISTRA);
+>>>>>>> Stashed changes
     }
     
     public void pasarTurno() {

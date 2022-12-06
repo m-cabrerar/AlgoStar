@@ -47,8 +47,8 @@ public class CasoUso31{
         //ARRANGE
         Danio danio = new Danio(600,600);
         Inventario inventario = new Inventario();
-        inventario.agregarGas(300);
-        inventario.agregarMineral(300);
+        inventario.agregarGas(600);
+        inventario.agregarMineral(600);
 
         Casillero casilleroMock = mock(Casillero.class);
         new Pilon(casilleroMock, inventario);

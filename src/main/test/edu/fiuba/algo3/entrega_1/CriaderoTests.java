@@ -24,6 +24,7 @@ public class CriaderoTests {
         String mensaje = "Ya no quedan larvas disponibles";
         Casillero casillero = mock(Casillero.class);
         Inventario inventario =new Inventario();
+        inventario.agregarGas(200);
 
         Criadero criadero = new Criadero(casillero, inventario);
         //ACT
@@ -50,6 +51,7 @@ public class CriaderoTests {
         String mensaje = "Ya no quedan larvas disponibles";
         Casillero casillero = mock(Casillero.class);
         Inventario inventario =new Inventario();
+        inventario.agregarGas(200);
         Criadero criadero = new Criadero(casillero, inventario);
         //ACT
         try {
@@ -75,6 +77,7 @@ public class CriaderoTests {
         String mensaje = "Ya no quedan larvas disponibles";
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventario =new Inventario();
+        inventario.agregarGas(200);
         Criadero criadero = new Criadero(casilleroMock, inventario);
         //ACT
         try {
@@ -101,6 +104,7 @@ public class CriaderoTests {
         //ARRANGE
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventario =new Inventario();
+        inventario.agregarGas(200);
         Danio danio = new Danio(0,5);
         Criadero criadero = new Criadero(casilleroMock, inventario);
 
