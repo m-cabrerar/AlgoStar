@@ -147,7 +147,8 @@ public class BotonCrearJugadorEventHandler implements EventHandler<ActionEvent> 
         if (juego.cantidadDeJugadores() == juego.cantidadDeJugadoresMaxima()) {
             stage.setScene(proximaEscena);
             stage.setFullScreen(true);
-            juego.crearBases();
+            juego.crearTerreno();
+            juego.crearBases(4);
 
             contenedorPrincipal.iniciarJuego();
         }

@@ -23,6 +23,18 @@ public class Mapa {
         this.tiempoVida = 0;
     }
 
+    public Mapa mapaChico(){
+        return new Mapa(30,30);
+    }
+
+    public Mapa mapaMediano(){
+        return new Mapa(50,50);
+    }
+
+    public Mapa mapaGrande(){
+        return new Mapa(60,60);
+    }
+
     public void cambiarTipoCasilla(int x, int y, TipoCasillero tipoCasillero){
         obtenerCasillero(x,y).setTipoCasillero(tipoCasillero);
     }
@@ -88,7 +100,7 @@ public class Mapa {
             casillero.desenergizar();
         }
     }
-    public List<List<Integer>> posicionesExtremo(){
+    public List<List<Integer>> equidistantesPares(int cantidad){
         //int[][] posiciones = {{0,0},{this.anchoMapa-1,this.altoMapa-1}};
         List<List<Integer>> posiciones = new ArrayList<>();
         posiciones.add(new ArrayList<>());
@@ -97,6 +109,25 @@ public class Mapa {
         posiciones.get(0).add(0);
         posiciones.get(1).add(this.anchoMapa-1);
         posiciones.get(1).add(this.altoMapa-1);
+
+        int ultima_pos = 1;
+        int pos1X= 0;
+        int pos2X = this.anchoMapa - 1;
+        int equidistantes = (cantidad/2 - 1);
+        for (int i = 0; i < equidistantes; i++) {
+            //Calculo un equidistante para la primera fila:
+            pos1X += ((this.anchoMapa-1)/ equidistantes);
+            posiciones.add(new ArrayList<>());
+            posiciones.get(ultima_pos+1).add(pos1X);
+            posiciones.get(ultima_pos+1).add(0);
+
+            //Calculo un equidistante  para la ultima fila:
+            pos2X -= ((this.anchoMapa-1) / equidistantes);
+            posiciones.add(new ArrayList<>());
+            posiciones.get(ultima_pos+2).add(pos2X);
+            posiciones.get(ultima_pos+2).add(this.altoMapa - 1);
+            ultima_pos += 2;
+        }
         return posiciones;
     }
 
