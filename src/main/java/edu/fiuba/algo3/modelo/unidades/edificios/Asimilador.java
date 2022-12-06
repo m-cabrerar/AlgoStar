@@ -14,6 +14,8 @@ public class Asimilador extends EdificioProtoss {
         super(unCasillero, unInventario, 450, 450);
         casillero.ocupar(this);
         inventario.pagarMateriales(COSTO_GASEOSO,COSTO_MINERAL);
+    }
+    public void ubicarEnInventario(){
         inventario.subirNivelConstruccion(NIVEL_DE_CONSTRUCCION);
     }
 

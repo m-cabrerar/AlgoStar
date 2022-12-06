@@ -84,8 +84,10 @@ public class EspiralTests {
         Casillero casillero3 = mock(Casillero.class);
 
         //ACT
-            new ReservaDeReproduccion(casillero3,inventario);
-            new Guarida(casillero2,inventario);
+            ReservaDeReproduccion reserva = new ReservaDeReproduccion(casillero3,inventario);
+            reserva.ubicarEnInventario();
+            Guarida guarida = new Guarida(casillero2,inventario);
+            guarida.ubicarEnInventario();
         //ASSERT
             assertDoesNotThrow(() -> Espiral.construir(casilleroMock, inventario));
 

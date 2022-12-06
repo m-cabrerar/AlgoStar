@@ -18,8 +18,9 @@ public class Espiral extends EdificioZerg {
         super(casillero, inventario, VIDA_MAXIMA);
         casillero.ocupar(this);
         inventario.pagarMateriales(COSTO_GASEOSO,COSTO_MINERAL);
+    }
+    public void ubicarEnInventario(){
         inventario.subirNivelConstruccion(NIVEL_DE_CONSTRUCCION);
-
     }
     public void pasarTurno(){
         super.pasarTurno();
