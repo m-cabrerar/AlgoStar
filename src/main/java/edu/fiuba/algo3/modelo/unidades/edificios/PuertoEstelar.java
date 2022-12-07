@@ -16,13 +16,13 @@ public class PuertoEstelar extends EdificioProtoss {
     private static final int NIVEL_DE_CONSTRUCCION = 0;
     private static final int NIVEL_DE_CONSTRUCCION_REQUERIDO = 1;
     private boolean estaEvolucionando;
-    private UnidadEnEvolucion unidadEnEvolucion;
+    private Engendradora engendradora;
     public PuertoEstelar(Casillero casillero, Inventario inventario) {
         super(casillero, inventario, VIDA, ESCUDO);
         casillero.ocupar(this);
         inventario.pagarMateriales(COSTO_GASEOSO,COSTO_MINERAL);
         this.estaEvolucionando = false;
-        this.unidadEnEvolucion = null;
+        this.engendradora = null;
     }
     public void ubicarEnInventario(){
         inventario.subirNivelConstruccion(NIVEL_DE_CONSTRUCCION);
@@ -31,8 +31,8 @@ public class PuertoEstelar extends EdificioProtoss {
     public void pasarTurno() {
         super.pasarTurno();
         if(estaEvolucionando){
-            unidadEnEvolucion.pasarTurno();
-            this.estaEvolucionando = unidadEnEvolucion.estaListo();
+            engendradora.pasarTurno();
+            this.estaEvolucionando = engendradora.estaListo();
             //acaba habria que chequear que si el casillero que da al obtener adyacentes es nulo (porque no hay ninguno libre)
         }
     }
@@ -61,7 +61,7 @@ public class PuertoEstelar extends EdificioProtoss {
 
     public void engendrarScout(){
         Scout scout = new Scout(inventario);
-        this.unidadEnEvolucion = new UnidadEnEvolucion(this.casillero.obtenerAdyacente(), this.inventario, scout);
+        this.engendradora = new Engendradora(this.casillero.obtenerAdyacente(), this.inventario, scout);
         this.estaEvolucionando = true;
     }
 }

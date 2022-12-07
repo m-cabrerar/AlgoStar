@@ -21,8 +21,7 @@ public class Criadero extends EdificioZerg{
     private static int VIDA_MAXIMA = 500;
     private static int SUMINISTRA = 5;
     private static final int NIVEL_DE_CONSTRUCCION = 0;
-    private static final int NIVEL_DE_CONSTRUCCION_REQUERIDO = 0;
-    private List<UnidadEnEvolucion> unidadesEnEvolucion;
+    private List<Engendradora> unidadesEnEvolucion;
     
     public Criadero(Casillero casillero, Inventario inventario) {
         super(casillero, inventario, VIDA_MAXIMA);
@@ -43,14 +42,14 @@ public class Criadero extends EdificioZerg{
             this.cantidadLarvas += 1;
         }
         if(!unidadesEnEvolucion.isEmpty()){
-            List<UnidadEnEvolucion> aEliminar = new ArrayList<>();
-            for(UnidadEnEvolucion unidadEnEvolucion : unidadesEnEvolucion){
-                unidadEnEvolucion.pasarTurno();
-                if(unidadEnEvolucion.estaListo()){
-                    aEliminar.add(unidadEnEvolucion);
+            List<Engendradora> aEliminar = new ArrayList<>();
+            for(Engendradora engendradora : unidadesEnEvolucion){
+                engendradora.pasarTurno();
+                if(engendradora.estaListo()){
+                    aEliminar.add(engendradora);
                 }
             }
-            for(UnidadEnEvolucion unidadAEliminar: aEliminar){
+            for(Engendradora unidadAEliminar: aEliminar){
                 unidadesEnEvolucion.remove(unidadAEliminar);
             }
 
@@ -148,7 +147,7 @@ public class Criadero extends EdificioZerg{
     }
 
     private void iniciarEvolucion(UnidadMovil unidad){
-        this.unidadesEnEvolucion.add(new UnidadEnEvolucion(this.casillero.obtenerAdyacente(), this.inventario, unidad));
+        this.unidadesEnEvolucion.add(new Engendradora(this.casillero.obtenerAdyacente(), this.inventario, unidad));
         this.cantidadLarvas -= 1;
     }
 

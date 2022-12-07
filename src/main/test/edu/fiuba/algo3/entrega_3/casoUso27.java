@@ -22,7 +22,7 @@ public class casoUso27 {
         assertThrows(RecursosInsuficientes.class, () -> muta.evolucionarADevorador());
     }
 
-    @Test
+    /*@Test
     public void Test02SePuedeEvolucionarDevoradorConRecursosSuficientes(){
         //ARRANGE
         Inventario inventario = new Inventario();
@@ -60,5 +60,5 @@ public class casoUso27 {
         muta.pasarTurno();
         //ASSERT
         assertThrows(UnidadYaEvolucionada.class, () -> muta.evolucionarAGuardian());
-    }
+    }*/
 }
