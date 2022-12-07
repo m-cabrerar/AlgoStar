@@ -27,10 +27,8 @@ public class VistaJuego {
     private final GridPane tableroDeBotones;
     private final Botonera botonera;
     private final ContenedorPrincipal contenedorPrincipal;
-    private boolean[][] casilleroOcupadoPorEdificioAliado;
-    private boolean[][] casilleroOcupadoPorEdificioEnemigo;
-    private boolean[][] casilleroOcupadoPorUnidadAliada;
-    private boolean[][] casilleroOcupadoPorUnidadEnemiga;
+    private boolean[][][] casillerosOcupadosUnidades;
+    private boolean[][][] casillerosOcupadosEdificios;
     private Inventario[] inventarios;
     private int alto;
     private int ancho;
@@ -50,10 +48,8 @@ public class VistaJuego {
         inventarios = juego.getInventarios();
         this.alto = mapa.getAlto();
         this.ancho = mapa.getAncho();
-        this.casilleroOcupadoPorEdificioAliado = new boolean[alto][ancho];
-        this.casilleroOcupadoPorEdificioEnemigo = new boolean[alto][ancho];
-        this.casilleroOcupadoPorUnidadAliada = new boolean[alto][ancho];
-        this.casilleroOcupadoPorUnidadEnemiga = new boolean[alto][ancho];
+        casillerosOcupadosUnidades = new boolean[juego.cantidadDeJugadores()][ancho][alto];
+        casillerosOcupadosEdificios = new boolean[juego.cantidadDeJugadores()][ancho][alto];
         update();
     }
 
@@ -93,7 +89,7 @@ public class VistaJuego {
                 boton.opacityProperty().setValue(0);
                 List<Casillero> casillero = new java.util.ArrayList<>();
                 casillero.add(mapa.obtenerCasillero(i, j));
-                if (casilleroOcupadoPorEdificioAliado[i][j]) {
+                if (casillerosOcupadosEdificios[juego.getTurnos() % juego.cantidadDeJugadores()][i][j]) {
                     boton.setOnAction(e -> {
                         Inventario inventario = inventarios[juego.getTurnos()%juego.cantidadDeJugadores()];
                         for (EdificioEnConstruccion edificio : inventario.getEdificios()) {
@@ -102,9 +98,7 @@ public class VistaJuego {
                             }
                         }
                     });
-                }else if (casilleroOcupadoPorEdificioEnemigo[i][j]) {
-                    int fila = i;
-                    int columna = j;
+                }else if (casillerosOcupadosEdificios[(juego.getTurnos()+1) % juego.cantidadDeJugadores()][i][j]) {
                     boton.setOnAction(e -> {
                         Inventario inventario = inventarios[(juego.getTurnos()+1)%juego.cantidadDeJugadores()];
                         for (EdificioEnConstruccion edificio : inventario.getEdificios()) {
@@ -113,9 +107,7 @@ public class VistaJuego {
                             }
                         }
                     });
-                } else if (casilleroOcupadoPorUnidadAliada[i][j]) {
-                    int fila = i;
-                    int columna = j;
+                } else if (casillerosOcupadosUnidades[juego.getTurnos() % juego.cantidadDeJugadores()][i][j]) {
                     boton.setOnAction(e -> {
                         Inventario inventario = inventarios[juego.getTurnos()%juego.cantidadDeJugadores()];
                         for (Unidad unidad : inventario.getUnidades()) {
@@ -124,9 +116,7 @@ public class VistaJuego {
                             }
                         }
                     });
-                } else if (casilleroOcupadoPorUnidadEnemiga[i][j]) {
-                    int fila = i;
-                    int columna = j;
+                } else if (casillerosOcupadosUnidades[(juego.getTurnos()+1) % juego.cantidadDeJugadores()][i][j]) {
                     boton.setOnAction(e -> {
                         Inventario inventario = inventarios[(juego.getTurnos()+1)%juego.cantidadDeJugadores()];
                         for (Unidad unidad : inventario.getUnidades()) {
@@ -160,7 +150,7 @@ public class VistaJuego {
                     centerPane.heightProperty().divide(mapa.getAlto())));
             Integer[] posicion = unidad.obtenerPosicion();
             tablero.add(vistaUnidad, posicion[0], posicion[1]);
-            casilleroOcupadoPorUnidadAliada[posicion[0]][posicion[1]] = true;
+            casillerosOcupadosUnidades[juego.getTurnos() % juego.cantidadDeJugadores()][posicion[0]][posicion[1]] = true;
         }
         List<EdificioEnConstruccion> edificiosAliados = jugadorActual.getEdificios();
         for (EdificioEnConstruccion edificio : edificiosAliados) {
@@ -174,7 +164,7 @@ public class VistaJuego {
                     centerPane.heightProperty().divide(mapa.getAlto())));
             Integer[] posicion = edificio.obtenerPosicion();
             tablero.add(vistaEdificio, posicion[0], posicion[1]);
-            casilleroOcupadoPorEdificioAliado[posicion[0]][posicion[1]] = true;
+            casillerosOcupadosEdificios[juego.getTurnos() % juego.cantidadDeJugadores()][posicion[0]][posicion[1]] = true;
         }
 
         List<Unidad> unidadesEnemigas = jugadorEnemigo.getUnidades();
@@ -186,7 +176,7 @@ public class VistaJuego {
                     centerPane.heightProperty().divide(mapa.getAlto())));
             Integer[] posicion = unidad.obtenerPosicion();
             tablero.add(vistaUnidad, posicion[0], posicion[1]);
-            casilleroOcupadoPorUnidadEnemiga[posicion[0]][posicion[1]] = true;
+            casillerosOcupadosUnidades[(juego.getTurnos()+1) % juego.cantidadDeJugadores()][posicion[0]][posicion[1]] = true;
         }
         List<EdificioEnConstruccion> edificiosEnemigos = jugadorEnemigo.getEdificios();
         for (EdificioEnConstruccion edificio : edificiosEnemigos) {
@@ -200,7 +190,7 @@ public class VistaJuego {
                     centerPane.heightProperty().divide(mapa.getAlto())));
             Integer[] posicion = edificio.obtenerPosicion();
             tablero.add(vistaEdificio, posicion[0], posicion[1]);
-            casilleroOcupadoPorEdificioEnemigo[posicion[0]][posicion[1]] = true;
+            casillerosOcupadosEdificios[(juego.getTurnos()+1) % juego.cantidadDeJugadores()][posicion[0]][posicion[1]] = true;
         }
     }
 
