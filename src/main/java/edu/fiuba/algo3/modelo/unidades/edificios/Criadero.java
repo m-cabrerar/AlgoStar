@@ -73,16 +73,9 @@ public class Criadero extends EdificioZerg{
         casillero.setTipoCasillero(moho);
         List<Casillero> casillerosAdyacentes = casillero.obtenerAdyacentes();
         List<Casillero> casillerosAdyacentesYAdyacentes = casillero.obtenerAdyacentes();
-        System.out.println("Adyacentes" + casillerosAdyacentes.size());
         for (Casillero casilleroAdyacente : casillerosAdyacentes) {
-            System.out.println(casilleroAdyacente.posicionX() + " " + casilleroAdyacente.posicionY());
             casillerosAdyacentesYAdyacentes.addAll(casilleroAdyacente.obtenerAdyacentes());
         }
-        System.out.println("Adyacentes y adyacentes" + casillerosAdyacentesYAdyacentes.size());
-        for (Casillero casilleroAdyacenteYAdyacente : casillerosAdyacentesYAdyacentes) {
-            System.out.println(casilleroAdyacenteYAdyacente.posicionX() + " " + casilleroAdyacenteYAdyacente.posicionY());
-        }
-
         moho.expandirMoho(casillerosAdyacentesYAdyacentes);
         return new EdificioEnConstruccion(criadero, casillero, inventario);
     }
