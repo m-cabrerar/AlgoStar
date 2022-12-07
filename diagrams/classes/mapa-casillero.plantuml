@@ -23,6 +23,7 @@ Mapa "1" <-- "1" Casillero
 Casillero "*" <-- "1" Mapa
 Casillero "1" *-- "1" TipoCasillero
 
+
 class Casillero {
  - int: energia
  - int: coordenadaX
@@ -42,20 +43,22 @@ class Casillero {
  + void: pasarTurno(int: turnoActual)
  + int: extraerMineral(int: cant)
  + int: extraerGas(int: cant)
+ + void: volverseMoho()
  + boolean: estaOcupado()
+ + void: ocupar()
  + void: desocupar()
  + List<Casillero>: visitarAdyacentes(int turnoActual, Mapa mapa)
+ + boolean: tieneEnRango(Unidad unidadAAtacar, int rango)
  + int: posicionX()
  + int: posicionY()
-
- + void: ocupar()
 }
 
 class TipoCasillero{
+
  + int: extraerMineral(int:cantidad)
  + int: extraerGas(int cantidad)
  + void: expandirMoho(List<Casillero> casillasAContagiar)
-
+ + void: volverseMoho(Casillero casillero)
  + void: ocupar(Unidad unidad)
  + void: ocupar(UnidadMovil unidad)
  + void: ocupar(Extractor extractor)
