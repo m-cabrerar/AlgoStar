@@ -2,35 +2,32 @@ package edu.fiuba.algo3.modelo.unidades.edificios;
 
 import edu.fiuba.algo3.modelo.casillero.Casillero;
 import edu.fiuba.algo3.modelo.Inventario;
-import edu.fiuba.algo3.modelo.unidades.moviles.UnidadMovilZerg;
+import edu.fiuba.algo3.modelo.unidades.moviles.UnidadMovil;
 
-public class UnidadEnEvolucion extends EdificioZerg {
-    private final int turnosParaEvolucionar;
-    private int turnosTranscurridos;
-    private final UnidadMovilZerg unidad;
+public class UnidadEnEvolucion {
 
-    public UnidadEnEvolucion(Casillero casillero, Inventario inventario, UnidadMovilZerg unidad){
-        super(casillero, inventario, 1);
+    private Casillero casilleroDondeSeUbicara;
+    private Inventario inventario;
+    private int turnosParaEvolucionar;
+    private final UnidadMovil unidad;
+
+    public UnidadEnEvolucion(Casillero casillero, Inventario inventario, UnidadMovil unidad){
+        this.inventario = inventario;
         this.turnosParaEvolucionar = unidad.turnosParaConstruir();
-        this.turnosTranscurridos = 0;
+        this.casilleroDondeSeUbicara = casillero.obtenerAdyacente();
         this.unidad = unidad;
     }
 
     public void pasarTurno(){
-        super.pasarTurno();
-        turnosTranscurridos++;
-        if (turnosTranscurridos == turnosParaConstruir){
-            casillero.desocupar();
+        turnosParaEvolucionar--;
+        if (turnosParaEvolucionar <= 0){
             inventario.agregarUnidad(unidad);
-            unidad.ubicarEn(casillero);
+            unidad.ubicarEn(casilleroDondeSeUbicara);
         }
     }
-    @Override
-    public int turnosParaConstruir() {
-        return 0;
+
+    public boolean estaListo(){
+        return turnosParaEvolucionar <= 0;
     }
 
-    public void ubicarEnInventario(){
-
-    }
 }

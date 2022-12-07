@@ -5,7 +5,10 @@ import edu.fiuba.algo3.modelo.casillero.Casillero;
 import edu.fiuba.algo3.modelo.Inventario;
 import edu.fiuba.algo3.modelo.casillero.Moho;
 import edu.fiuba.algo3.modelo.unidades.Danio;
-import edu.fiuba.algo3.modelo.unidades.moviles.UnidadMovil;
+import edu.fiuba.algo3.modelo.unidades.moviles.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import java.util.Collection;
 import java.util.List;
@@ -16,17 +19,17 @@ public class Criadero extends EdificioZerg{
     private static int COSTO_MINERAL = 200;
     private int cantidadLarvas;
     private static int VIDA_MAXIMA = 500;
-    private int cantidadZanganos;
     private static int SUMINISTRA = 5;
     private static final int NIVEL_DE_CONSTRUCCION = 0;
+    private List<UnidadEnEvolucion> unidadesEnEvolucion;
     
     public Criadero(Casillero casillero, Inventario inventario) {
         super(casillero, inventario, VIDA_MAXIMA);
         this.cantidadLarvas = 3;
-        this.cantidadZanganos = 0;
         casillero.ocupar(this);
         inventario.pagarMateriales(COSTO_GASEOSO, COSTO_MINERAL);
         inventario.agregarSuministro(SUMINISTRA);
+        this.unidadesEnEvolucion = new ArrayList<>();
     }
     public void ubicarEnInventario(){
         inventario.subirNivelConstruccion(NIVEL_DE_CONSTRUCCION);
@@ -38,10 +41,18 @@ public class Criadero extends EdificioZerg{
         if(!estaEnCapacidadMaxima()) {
             this.cantidadLarvas += 1;
         }
-        if(obtenerUnidad()!=null){
-            UnidadMovil unidad = obtenerUnidad();
-            unidad.ubicarEn(casillero.obtenerAdyacente());
-            //acaba habria que chequear que si el casillero que da al obtener adyacentes es nulo (porque no hay ninguno libre)
+        if(!unidadesEnEvolucion.isEmpty()){
+            List<UnidadEnEvolucion> aEliminar = new ArrayList<>();
+            for(UnidadEnEvolucion unidadEnEvolucion : unidadesEnEvolucion){
+                unidadEnEvolucion.pasarTurno();
+                if(unidadEnEvolucion.estaListo()){
+                    aEliminar.add(unidadEnEvolucion);
+                }
+            }
+            for(UnidadEnEvolucion unidadAEliminar: aEliminar){
+                unidadesEnEvolucion.remove(unidadAEliminar);
+            }
+
         }
     }
     
@@ -76,14 +87,6 @@ public class Criadero extends EdificioZerg{
         return new EdificioEnConstruccion(criadero, casillero, inventario);
     }
     
-    public void engendrarZangano() throws Exception {
-        if(!this.tieneLarvas()){
-            throw new Exception("Ya no quedan larvas disponibles");
-        }
-        this.cantidadLarvas -= 1;
-        this.cantidadZanganos += 1;
-    }
-    
     private boolean tieneLarvas(){
         return cantidadLarvas > 0;
     }
@@ -103,4 +106,54 @@ public class Criadero extends EdificioZerg{
     public static int getNivelDeConstruccion(){
         return NIVEL_DE_CONSTRUCCION;
     }
+
+    public void engendrarZangano(){
+        if(tieneLarvas()){
+            Zangano zangano = new Zangano(inventario);
+            this.iniciarEvolucion(zangano);
+        } else {
+            throw new YaNoQuedanLarvas("No quedan larvas");
+        }
+    }
+    public void engendrarZerling() {
+        if (tieneLarvas() && inventario.puedeConstruir(1)) {
+            Zerling zerling = new Zerling(inventario);
+            this.iniciarEvolucion(zerling);
+        } else {
+            throw new YaNoQuedanLarvas("No quedan larvas");
+        }
+    }
+    public void engendrarAmoSupremo(){
+        if(tieneLarvas()){
+            AmoSupremo amo = new AmoSupremo(inventario);
+            this.iniciarEvolucion(amo);
+        } else {
+            throw new YaNoQuedanLarvas("No quedan larvas");
+        }
+    }
+    public void engendrarHidralisco(){
+        if(tieneLarvas() && inventario.puedeConstruir(2)){
+            Hidralisco hidra = new Hidralisco(inventario);
+            this.iniciarEvolucion(hidra);
+        } else {
+            throw new YaNoQuedanLarvas("No quedan larvas");
+        }
+    }
+    public void engendrarMutalisco(){
+        if(tieneLarvas() && inventario.puedeConstruir(3)){
+            Mutalisco muta = new Mutalisco(inventario);
+            this.iniciarEvolucion(muta);
+        } else {
+            throw new YaNoQuedanLarvas("No quedan larvas");
+        }
+    }
+
+    private void iniciarEvolucion(UnidadMovil unidad){
+        this.unidadesEnEvolucion.add(new UnidadEnEvolucion(this.casillero, this.inventario, unidad));
+        this.cantidadLarvas -= 1;
+    }
+
+
+
+
 }
