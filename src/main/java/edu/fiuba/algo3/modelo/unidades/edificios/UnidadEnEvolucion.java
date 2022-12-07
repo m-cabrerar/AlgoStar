@@ -20,7 +20,7 @@ public class UnidadEnEvolucion {
 
     public void pasarTurno(){
         turnosParaEvolucionar--;
-        if (turnosParaEvolucionar <= 0){
+        if (estaListo()){
             inventario.agregarUnidad(unidad);
             unidad.ubicarEn(casilleroDondeSeUbicara);
         }
