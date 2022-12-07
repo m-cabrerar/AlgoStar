@@ -166,7 +166,7 @@ public class Botonera extends VBox {
 
     public void mostrarEdificio(EdificioEnConstruccion edificio, VBox opciones, Label error) {
         if (edificio.estaListo()) {
-            mostrarEdificioListo(edificio.getConstruido(), opciones);
+            mostrarEdificioListo(edificio.getConstruido(), opciones, error);
             return;
         }
         VistaUnidad vistaUnidad = new VistaUnidad(edificio);
@@ -179,8 +179,6 @@ public class Botonera extends VBox {
             contenedorPrincipal.update();
         });
 
-        error.styleProperty().setValue("-fx-text-fill: red");
-
         this.getChildren().clear();
         this.getChildren().addAll(nombre, vistaUnidad, turnosRestantes, opciones, botonAtras, error);
     }
@@ -190,7 +188,9 @@ public class Botonera extends VBox {
             mostrarEdificio(edificio, new VBox(), new Label());
         }
         VBox opciones = new VBox();
+        opciones.setSpacing(10);
         Label error = new Label();
+        error.styleProperty().setValue("-fx-text-fill: red");
         Unidad edificioListo = edificio.getConstruido();
         if (edificioListo instanceof Criadero) {
             Button botonZangano = new Button("Engendrar Zangano");
@@ -242,13 +242,44 @@ public class Botonera extends VBox {
                     error.setText(ex.getMessage());
                 }
             });
+            opciones.getChildren().addAll(botonZangano, botonZerling, botonAmo, botonHidralisco, botonMutalisco);
+        } else if (edificioListo instanceof Acceso) {
+            Button botonZealot = new Button("Engendrar Zealot");
+            botonZealot.setOnAction(e -> {
+                try {
+                    ((Acceso) edificioListo).engendrarZealot();
+                    contenedorPrincipal.finalizarTurno();
+                } catch (Exception ex) {
+                    error.setText(ex.getMessage());
+                }
+            });
 
+            Button botonDragon = new Button("Engendrar Dragon");
+            botonDragon.setOnAction(e -> {
+                try {
+                    ((Acceso) edificioListo).engendrarDragon();
+                    contenedorPrincipal.finalizarTurno();
+                } catch (Exception ex) {
+                    error.setText(ex.getMessage());
+                }
+            });
+            opciones.getChildren().addAll(botonZealot, botonDragon);
+        } else if (edificioListo instanceof PuertoEstelar) {
+            Button botonScout = new Button("Engendrar Scout");
+            botonScout.setOnAction(e -> {
+                try {
+                    ((PuertoEstelar) edificioListo).engendrarScout();
+                    contenedorPrincipal.finalizarTurno();
+                } catch (Exception ex) {
+                    error.setText(ex.getMessage());
+                }
+            });
+            opciones.getChildren().add(botonScout);
         }
-
         mostrarEdificio(edificio, opciones, error);
     }
 
-    public void mostrarEdificioListo(Unidad edificio, VBox opciones) {
+    public void mostrarEdificioListo(Unidad edificio, VBox opciones, Label error) {
         VistaUnidad vistaUnidad = new VistaUnidad(edificio);
         vistaUnidad.setPrefSize(150, 150);
         Label nombre = new Label(edificio.getClass().getSimpleName());
@@ -266,7 +297,7 @@ public class Botonera extends VBox {
         });
 
         this.getChildren().clear();
-        this.getChildren().addAll(nombre, vistaUnidad, contenedorVida, botonAtras);
+        this.getChildren().addAll(nombre, vistaUnidad, contenedorVida, opciones, botonAtras, error);
     }
 
     public void mostrarInfoUnidad(Unidad unidad) {
