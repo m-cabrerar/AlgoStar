@@ -23,6 +23,7 @@ public class NexoMineral extends EdificioProtoss {
 
     public void pasarTurno() {
         super.pasarTurno();
+        extraerMineral();
     }
 
     public int turnosParaConstruir() {
@@ -41,9 +42,9 @@ public class NexoMineral extends EdificioProtoss {
         return new EdificioEnConstruccion(nexoMineral, casillero, inventario);
     }
 
-    public int extraerMineral(Inventario inventario) { // TODO: hacer privado y que se llame desde pasarTurno
+    public int extraerMineral() { // TODO: hacer privado y que se llame desde pasarTurno
         int cantidad = casillero.extraerMineral(20);
-        inventario.agregarMineral(cantidad);
+        this.inventario.agregarMineral(cantidad);
         return cantidad;
     }
     public static int getNivelDeConstruccion(){

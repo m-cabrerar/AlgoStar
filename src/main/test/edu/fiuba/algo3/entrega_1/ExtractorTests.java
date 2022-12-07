@@ -93,18 +93,15 @@ public class ExtractorTests {
     @Test
     public void Test05UnExtractorSinZanganosNoGeneraGas() {
         //ARRANGE
-        String mensaje = "El extractor no tiene zanganos trabajando";
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);
         try {
             Extractor extractor = new Extractor(casilleroMock, inventarioMock);
             //ACT
-            Exception exception = assertThrows(Exception.class, () -> {
-                extractor.extraerGas(inventarioMock); //esto creo que habria que mandarselo a una metodo del inventario para agregar
-            });
+            int gas = extractor.extraerGas();
             //ASSERT
-            assertEquals(mensaje, exception.getMessage());
+            assertEquals(0, gas);
         } catch (Exception e){
             fail();
         }
@@ -120,7 +117,7 @@ public class ExtractorTests {
             Extractor extractor = new Extractor(casilleroMock, inventarioMock);
             //ACT
             extractor.agregarZangano();
-            extractor.extraerGas(inventarioMock);
+            extractor.extraerGas();
             //ASSERT
             verify(inventarioMock, times(1)).agregarGas(cantidadGasEsperado);
         } catch (Exception e){
@@ -139,7 +136,7 @@ public class ExtractorTests {
             //ACT
             extractor.agregarZangano();
             extractor.agregarZangano();
-            extractor.extraerGas(inventarioMock);
+            extractor.extraerGas();
             //ASSERT
             verify(inventarioMock, times(1)).agregarGas(cantidadGasEsperado);
         } catch (Exception e){
@@ -159,7 +156,7 @@ public class ExtractorTests {
             extractor.agregarZangano();
             extractor.agregarZangano();
             extractor.agregarZangano();
-            extractor.extraerGas(inventarioMock);
+            extractor.extraerGas();
             //ASSERT
             verify(inventarioMock, times(1)).agregarGas(cantidadGasEsperado);
         } catch (Exception e){
