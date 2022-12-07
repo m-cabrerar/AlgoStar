@@ -19,10 +19,6 @@ class Mapa {
     +Casillero: obtenerCasillero(int:x, int:y)
 }
 
-Mapa "1" <-- "1" Casillero
-Casillero "*" <-- "1" Mapa
-Casillero "1" *-- "1" TipoCasillero
-
 
 class Casillero {
  - int: energia
@@ -38,33 +34,17 @@ class Casillero {
  + void: energizar()
  + void: desenergizar()
  + boolean: casilleroQuitaInvisibilidad()
- + void: quitarInvisibilidad()
  + void: quitarInvisibilidadEnRango()
  + void: pasarTurno(int: turnoActual)
  + int: extraerMineral(int: cant)
  + int: extraerGas(int: cant)
  + void: volverseMoho()
- + boolean: estaOcupado()
  + void: ocupar()
  + void: desocupar()
  + List<Casillero>: visitarAdyacentes(int turnoActual, Mapa mapa)
  + boolean: tieneEnRango(Unidad unidadAAtacar, int rango)
- + int: posicionX()
- + int: posicionY()
 }
 
-class TipoCasillero{
 
- + int: extraerMineral(int:cantidad)
- + int: extraerGas(int cantidad)
- + void: expandirMoho(List<Casillero> casillasAContagiar)
- + void: volverseMoho(Casillero casillero)
- + void: ocupar(Unidad unidad)
- + void: ocupar(UnidadMovil unidad)
- + void: ocupar(Extractor extractor)
- + void: ocupar(Asimilador asimilador)
- + void: ocupar(NexoMineral nexo)
- + void: ocupar(Criadero criadero)
-}
 
 @enduml
