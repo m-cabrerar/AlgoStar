@@ -18,18 +18,8 @@ class Juego {
 + int: cantidadJugadoresMaxima()
 }
 
-interface Unidad{}
-note left: Se utiliza la interfaz para representar \n sus implementaciones
 
 Juego"1" *-- "2"Jugador
 Juego"1" *-- "1"Mapa
-Jugador *-- Inventario
-Inventario "1" --> " *" Unidad
 
-Unidad --> Casillero
-Unidad "1"--> "1" Inventario
-
-Mapa "1" <-- "1" Casillero
-Casillero "*" <-- "1" Mapa
-Casillero "1" *-- "1" TipoCasillero
 @enduml
