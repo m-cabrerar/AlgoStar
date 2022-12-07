@@ -5,7 +5,7 @@ import edu.fiuba.algo3.modelo.Inventario;
 import edu.fiuba.algo3.modelo.unidades.Aire;
 import edu.fiuba.algo3.modelo.unidades.Danio;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
-import edu.fiuba.algo3.modelo.unidades.edificios.UnidadEnEvolucion;
+import edu.fiuba.algo3.modelo.unidades.edificios.UnidadEnCreacion;
 
 public class Mutalisco extends UnidadMovilZerg {
     private static int VIDA_MAXIMA = 120;
@@ -20,7 +20,7 @@ public class Mutalisco extends UnidadMovilZerg {
 
     private Danio danio;
     private boolean evoluciono;
-    private UnidadEnEvolucion unidadEnEvolucion;
+    private UnidadEnCreacion unidadEnCreacion;
 
     public Mutalisco(Inventario inventario){
         super(inventario, COSTO_MINERAL, COSTO_GASEOSO, VIDA_MAXIMA, COSTO_SUMINISTRO);
@@ -28,7 +28,7 @@ public class Mutalisco extends UnidadMovilZerg {
         inventario.pagarMateriales(COSTO_GASEOSO,COSTO_MINERAL);
         superficie = new Aire();
         this.evoluciono = false;
-        this.unidadEnEvolucion = null;
+        this.unidadEnCreacion = null;
     }
     public int turnosParaConstruir(){
         return TURNOS_PARA_CONSTRUIR;
@@ -44,8 +44,8 @@ public class Mutalisco extends UnidadMovilZerg {
     public void pasarTurno(){
         super.pasarTurno();
         if (evoluciono){
-            unidadEnEvolucion.pasarTurno();
-            if(unidadEnEvolucion.estaListo()){
+            unidadEnCreacion.pasarTurno();
+            if(unidadEnCreacion.estaListo()){
                 this.inventario.eliminarUnidad(this);
             }
         }
@@ -54,7 +54,7 @@ public class Mutalisco extends UnidadMovilZerg {
     public void evolucionarAGuardian(){
         if (!evoluciono) {
             Guardian guardian = new Guardian(inventario);
-            this.unidadEnEvolucion = new UnidadEnEvolucion(this.casillero, this.inventario, guardian);
+            this.unidadEnCreacion = new UnidadEnCreacion(this.casillero, this.inventario, guardian);
             this.evoluciono = true;
         }
         else {
@@ -64,7 +64,7 @@ public class Mutalisco extends UnidadMovilZerg {
     public void evolucionarADevorador() throws RecursosInsuficientes, SuministrosInsuficientes, PoblacionMaximaAlcanzada {
         if (!evoluciono) {
             Devorador devorador = new Devorador(inventario);
-            this.unidadEnEvolucion = new UnidadEnEvolucion(this.casillero, this.inventario, devorador);
+            this.unidadEnCreacion = new UnidadEnCreacion(this.casillero, this.inventario, devorador);
             this.evoluciono = true;
         } else {
             throw new UnidadYaEvolucionada("Esta unidad ya evoluciono a Devorador");
