@@ -3,6 +3,7 @@ package edu.fiuba.algo3.vistas;
 import edu.fiuba.algo3.modelo.Inventario;
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Jugador;
+import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.edificios.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -10,12 +11,10 @@ import javafx.scene.layout.VBox;
 
 public class Botonera extends VBox {
     private final Juego juego;
-    private final VistaJuego vistaJuego;
     private Jugador[] jugadores;
     private final ContenedorPrincipal contenedorPrincipal;
-    public Botonera(Juego juego, VistaJuego vistaJuego, ContenedorPrincipal contenedorPrincipal) {
+    public Botonera(Juego juego, ContenedorPrincipal contenedorPrincipal) {
         this.juego = juego;
-        this.vistaJuego = vistaJuego;
         this.contenedorPrincipal = contenedorPrincipal;
     }
 
@@ -42,7 +41,7 @@ public class Botonera extends VBox {
         Button botonNexoMineral = new Button("Nexo Mineral");
         Label labelNexoMineral = new Label("Costo: 50 Mineral");
         botonNexoMineral.setOnAction(e -> {
-            vistaJuego.crearNexoMineral(error);
+            contenedorPrincipal.crearNexoMineral(error);
         });
         if (!inventario.tieneRecursos(0,50) || !inventario.puedeConstruir(NexoMineral.getNivelDeConstruccion())) {
             botonNexoMineral.setDisable(true);
@@ -52,7 +51,7 @@ public class Botonera extends VBox {
         Button botonPilon = new Button("Pilon");
         Label labelPilon = new Label("Costo: 100 Mineral");
         botonPilon.setOnAction(e -> {
-            vistaJuego.crearPilon(error);
+            contenedorPrincipal.crearPilon(error);
         });
         if (!inventario.tieneRecursos(0,100) || !inventario.puedeConstruir(Pilon.getNivelDeConstruccion())) {
             botonPilon.setDisable(true);
@@ -62,7 +61,7 @@ public class Botonera extends VBox {
         Button botonAsimilador = new Button("Asimilador");
         Label labelAsimilador = new Label("Costo: 100 Mineral");
         botonAsimilador.setOnAction(e -> {
-            vistaJuego.crearAsimilador(error);
+            contenedorPrincipal.crearAsimilador(error);
         });
         if (!inventario.tieneRecursos(0,100) || !inventario.puedeConstruir(Asimilador.getNivelDeConstruccion())) {
             botonAsimilador.setDisable(true);
@@ -72,7 +71,7 @@ public class Botonera extends VBox {
         Button botonAcceso = new Button("Acceso");
         Label labelAcceso = new Label("Costo: 150 Mineral");
         botonAcceso.setOnAction(e -> {
-            vistaJuego.crearAcceso(error);
+            contenedorPrincipal.crearAcceso(error);
         });
         if (!inventario.tieneRecursos(0,150) || !inventario.puedeConstruir(Acceso.getNivelDeConstruccion())) {
             botonAcceso.setDisable(true);
@@ -82,7 +81,7 @@ public class Botonera extends VBox {
         Button botonPuertoEstelar = new Button("Puerto Estelar");
         Label labelPuertoEstelar = new Label("Costo: 150 Mineral, 150 Gas");
         botonPuertoEstelar.setOnAction(e -> {
-            vistaJuego.crearPuertoEstelar(error);
+            contenedorPrincipal.crearPuertoEstelar(error);
         });
         if (!inventario.tieneRecursos(150,150) || !inventario.puedeConstruir(PuertoEstelar.getNivelDeConstruccion())) {
             botonPuertoEstelar.setDisable(true);
@@ -105,7 +104,7 @@ public class Botonera extends VBox {
         Button botonExtractor = new Button("Extractor");
         Label labelExtractor = new Label("Costo: 100 Mineral");
         botonExtractor.setOnAction(e -> {
-            vistaJuego.crearExtractor(error);
+            contenedorPrincipal.crearExtractor(error);
         });
         if (!inventario.tieneRecursos(0,100) || !inventario.puedeConstruir(Extractor.getNivelDeConstruccion())) {
             botonExtractor.setDisable(true);
@@ -115,7 +114,7 @@ public class Botonera extends VBox {
         Button botonCriadero = new Button("Criadero");
         Label labelCriadero = new Label("Costo: 200 Mineral");
         botonCriadero.setOnAction(e -> {
-            vistaJuego.crearCriadero(error);
+            contenedorPrincipal.crearCriadero(error);
         });
         if (!inventario.tieneRecursos(0,200) || !inventario.puedeConstruir(Criadero.getNivelDeConstruccion())) {
             botonCriadero.setDisable(true);
@@ -125,7 +124,7 @@ public class Botonera extends VBox {
         Button botonReservaDeReproduccion = new Button("Reserva De Reproduccion");
         Label labelReservaDeReproduccion = new Label("Costo: 150 Mineral");
         botonReservaDeReproduccion.setOnAction(e -> {
-            vistaJuego.crearReservaDeReproduccion(error);
+            contenedorPrincipal.crearReservaDeReproduccion(error);
         });
         if (!inventario.tieneRecursos(0,150) || !inventario.puedeConstruir(ReservaDeReproduccion.getNivelDeConstruccion())) {
             botonReservaDeReproduccion.setDisable(true);
@@ -135,7 +134,7 @@ public class Botonera extends VBox {
         Button botonGuarida = new Button("Guarida");
         Label labelGuarida = new Label("Costo: 200 Mineral, 100 Gas");
         botonGuarida.setOnAction(e -> {
-            vistaJuego.crearGuarida(error);
+            contenedorPrincipal.crearGuarida(error);
         });
         if (!inventario.tieneRecursos(200,100) || !inventario.puedeConstruir(Guarida.getNivelDeConstruccion())) {
             botonGuarida.setDisable(true);
@@ -145,7 +144,7 @@ public class Botonera extends VBox {
         Button botonEspiral = new Button("Espiral");
         Label labelEspiral = new Label("Costo: 150 Mineral, 100 Gas");
         botonEspiral.setOnAction(e -> {
-            vistaJuego.crearEspiral(error);
+            contenedorPrincipal.crearEspiral(error);
         });
         if (!inventario.tieneRecursos(150,100) || !inventario.puedeConstruir(Espiral.getNivelDeConstruccion())) {
             botonEspiral.setDisable(true);
@@ -157,7 +156,61 @@ public class Botonera extends VBox {
             contenedorPrincipal.finalizarTurno();
         });
 
-        this.getChildren().addAll(new VBox(), contenedorExtractor, contenedorCriadero, contenedorReservaDeReproduccion, contenedorGuarida, contenedorEspiral, botonPasarTurno, error);
+        this.getChildren().addAll(new VBox(), contenedorExtractor, contenedorCriadero, contenedorReservaDeReproduccion, contenedorGuarida, contenedorEspiral, botonPasarTurno,    error);
         this.setSpacing(15);
     }
+
+    public void mostrarInfoEdificio(EdificioEnConstruccion edificio) {
+        if (edificio.estaListo()) {
+            mostrarEdificioListo(edificio.getConstruido());
+            return;
+        }
+        VistaUnidad vistaUnidad = new VistaUnidad(edificio);
+        vistaUnidad.setPrefSize(150, 150);
+        Label nombre = new Label("Edificio en construccion");
+        Label turnosRestantes = new Label("Turnos restantes: " + edificio.turnosParaConstruir());
+
+        Button botonAtras = new Button("Atras");
+        botonAtras.setOnAction(e -> {
+            contenedorPrincipal.update();
+        });
+
+        this.getChildren().clear();
+        this.getChildren().addAll(nombre, vistaUnidad, turnosRestantes, botonAtras);
+    }
+
+    public void mostrarBotonesEdificio(EdificioEnConstruccion edificio) {
+        mostrarInfoEdificio(edificio);
+    }
+
+    public void mostrarEdificioListo(Unidad edificio) {
+        VistaUnidad vistaUnidad = new VistaUnidad(edificio);
+        vistaUnidad.setPrefSize(150, 150);
+        Label nombre = new Label(edificio.getClass().getSimpleName());
+        Label vida = new Label("Vida: " + edificio.getVida() + "/" + edificio.getVidaMaxima());
+        VBox contenedorVida = new VBox(vida);
+        if (jugadores[juego.getTurnos() % juego.cantidadDeJugadores()].getRaza().equals("Protoss")) {
+            Label escudo = new Label("Escudo: " + ((EdificioProtoss) edificio).getEscudo() + "/" + ((EdificioProtoss) edificio).getEscudoMaximo());
+            contenedorVida.getChildren().add(escudo);
+        }
+
+        Button botonAtras = new Button("Atras");
+        botonAtras.setOnAction(e -> {
+            contenedorPrincipal.update();
+        });
+
+        this.getChildren().clear();
+        this.getChildren().addAll(nombre, vistaUnidad, contenedorVida, botonAtras);
+    }
+
+    public void mostrarInfoUnidad(Unidad unidad) {
+    }
+
+    public void mostrarInfoUnidadLista(Unidad unidad) {
+    }
+
+    public void mostrarBotonesUnidad(Unidad unidad) {
+        mostrarInfoUnidad(unidad);
+    }
+
 }
