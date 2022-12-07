@@ -31,27 +31,27 @@ interface Regenerativo{
 }
 
 interface Atacable {
-+void sufrirAtaque(int danio)
++void: sufrirAtaque(int danio)
 }
 
 class Escudo{
--int escudo
--int escudoMaximo
+-int: escudo
+-int: escudoMaximo
 
 +<u>Escudo(int escudo)
-+ void regenerar()
-+ void sufrirAtaque(int danio)
-+ void chequeoDeEscudo()
-+ boolean quedaEscudo()
++ void: regenerar()
++ void: sufrirAtaque(int danio)
++ void: chequeoDeEscudo()
++ boolean: quedaEscudo()
 }
 
 class Danio{
--int danioAereo
--int danioTerrestre
+-int: danioAereo
+-int: danioTerrestre
 
 +<u>Danio(int danioAereo, int danioTerrestre)
-+int ataqueAereo()
-+int ataqueTerrestre()
++int: ataqueAereo()
++int: ataqueTerrestre()
 }
 
 VidaProtoss *-- "1"Escudo

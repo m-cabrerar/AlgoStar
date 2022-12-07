@@ -4,52 +4,91 @@ note "Inventario y Casillero se explican en sus respectivos UMLs" as N1
 
 
 class EdificioZerg{
- - int:vidaMaxima
- + EdificioZerg(Casillero casillero, Inventario inventario, int vidaInicial)
- + void:recibirDanio(Danio danio)
+ + <u>EdificioZerg(Casillero casillero, Inventario inventario, int vidaInicial)
  + void:pasarTurno()
 }
 
 class Criadero{
- - int cantidadLarvas
- - int cantidadZanganos
- + Criadero(casillero, inventario)
- + void pasarTurno()
- + int turnosParaConstruir()
+-{static} int: CostoGaseoso
+-{static} int: CostoMineral
+-{static} int: NivelDeConstruccion
+-{static} int: VidaMaxima
+-{static} int: Suministra
+ - int: cantidadLarvas
+ - int: cantidadZanganos
+
+
+ + <u>Criadero(casillero, inventario)
+ + void: pasarTurno()
+ + int: turnosParaConstruir()
+ + void: ubicarEnInventario()
  {static} EdificioEnConstruccion construir(casillero, inventario)
- + void engendrarZangano()
- - boolean tieneLarvas()
- - boolean estaEnCapacidadMaxima()
+ + void: engendrarZangano()
+ - boolean: tieneLarvas()
+ - boolean: estaEnCapacidadMaxima()
+  + void: recibirDanio(Danio danio)
 }
 
 class Espiral{
- + Espiral(casillero, inventario)
- + void pasarTurno()
- + int turnosParaConstruir()
- {static} EdificioEnConstruccion construir(casillero, inventario)
+-{static} int: CostoGaseoso
+-{static} int: CostoMineral
+-{static} int: NivelDeConstruccion
+-{static} int: VidaMaxima
+
+ + <u>Espiral(casillero, inventario)
+ + void: ubicarEnInventario()
+ + void: pasarTurno()
+ + int: turnosParaConstruir()
+ {static} EdificioEnConstruccion: construir(casillero, inventario)
+ + UnidadMovil: crearEvolucion(Inventario)
+ + void: engendrarMutalisco(UnidadMovil unidad, Inventario inventario)
 }
 
 class Extractor {
- + Exctractor(casillero, inventario)
- + void pasarTurno()
- + int turnosParaConstruir()
+-{static} int: CostoGaseoso
+-{static} int: CostoMineral
+-{static} int: NivelDeConstruccion
+-{static} int: VidaMaxima
+-int: zanganosTrabajando
+
+ + <u>Exctractor(casillero, inventario)
+ + void: ubicarEnInventario()
+ + void: pasarTurno()
+ + int: turnosParaConstruir()
  {static} EdificioEnConstruccion construir(casillero, inventario)
- + void extraerGas(inventario)
- + void agregarZangano()
+ + void: extraerGas(inventario)
+ + void: agregarZangano()
 }
 
 class Guarida{
- + Guarida(casillero, inventario)
- + void pasarTurno()
- + int turnosParaConstruir()
- {static} EdificioEnConstruccion construir(casillero, inventario)
+-{static} int: CostoGaseoso
+-{static} int: CostoMineral
+-{static} int: NivelDeConstruccion
+-{static} int: VidaMaxima
+
+ + <u>Guarida(casillero, inventario)
+ + void: ubicarEnInventario()
+ + void: pasarTurno()
+ + int: turnosParaConstruir()
+ {static} EdificioEnConstruccion: construir(casillero, inventario)
+ + UnidadMovil: crearEvolucion(Inventario)
+ + void: engendrarHidralisco(UnidadMovil unidad, Inventario inventario)
 }
 
 class ReservaDeReproduccion {
- + ReservaDeReproduccion(casillero, inventario)
+-{static} int: CostoGaseoso
+-{static} int: CostoMineral
+-{static} int: NivelDeConstruccion
+-{static} int: VidaMaxima
+
+ + <u>ReservaDeReproduccion(casillero, inventario)
+ + void: ubicarEnInventario()
  + void pasarTurno()
  + int turnosParaConstruir()
  {static} EdificioEnConstruccion construir(casillero, inventario)
+ + UnidadMovil: crearEvolucion(Inventario)
+ + void: engendrarZerling(UnidadMovil unidad, Inventario inventario)
+
 }
 
 EdificioZerg <|-- ReservaDeReproduccion

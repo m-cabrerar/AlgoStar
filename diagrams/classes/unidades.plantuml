@@ -3,22 +3,22 @@ title Modelado de Unidades
 note "Inventario y Casillero se explican en sus respectivos UMLs" as N1
 
 interface Superficie{
-+ int danio(Danio danio)
-+ boolean puedeVolar()
++ int: danio(Danio danio)
++ boolean: puedeVolar()
 }
 class Tierra{
- int danio(Danio danio)
- boolean puedeVolar()
+ int: danio(Danio danio)
+ boolean: puedeVolar()
 }
 class Aire{
-int danio(Danio danio)
-boolean puedeVolar()
+int: danio(Danio danio)
+boolean: puedeVolar()
 }
 
 
 
 interface Construible {
-+int turnosParaConstruir()
++int: turnosParaConstruir()
 }
 
 abstract class  UnidadMovil {
@@ -26,13 +26,13 @@ abstract class  UnidadMovil {
  - Inventario: inventario
 
  +<u>UnidadMovil(inventario, costoMineral, costoGas,int costoSuministro)
- +void ubicarEn(Casillero casillero)
- + boolean tieneEnRangoA(Unidad unidadAAtacar, int rango)
- +boolean estaPorAca(List<Casillero> casilleros)
- +boolean esVoladora()
- +void recibirDanio(Danio danio)
- +void atacar(Unidad unidadAAtacar, int rango, Danio danio)
- +Integer[] obtenerPosicion()
+ +void: ubicarEn(Casillero casillero)
+ + boolean: tieneEnRangoA(Unidad unidadAAtacar, int rango)
+ +boolean: estaPorAca(List<Casillero> casilleros)
+ +boolean: esVoladora()
+ +void: recibirDanio(Danio danio)
+ +void. atacar(Unidad unidadAAtacar, int rango, Danio danio)
+ +Integer[]: obtenerPosicion()
 }
 
 abstract class UnidadMovilProtoss {
@@ -48,8 +48,8 @@ abstract class UnidadMovilZerg{
 interface Unidad {
  + void:pasarTurno()
  + void:recibirDanio(int cantidad)
- +boolean estaPorAca(List<Casillero> casilleros)
- +Integer[] obtenerPosicion()
+ +boolean: estaPorAca(List<Casillero> casilleros)
+ +Integer[]: obtenerPosicion()
 }
 
 abstract class Vida{
@@ -62,12 +62,12 @@ abstract class Vida{
 note bottom: Explicado en su propio UML
 
 class Danio{
--int danioAereo
--int danioTerrestre
+-int: danioAereo
+-int: danioTerrestre
 
 +<u>Danio(int danioAereo, int danioTerrestre)
-+int ataqueAereo()
-+int ataqueTerrestre()
++int: ataqueAereo()
++int: ataqueTerrestre()
 }
 
 class Dragon{}

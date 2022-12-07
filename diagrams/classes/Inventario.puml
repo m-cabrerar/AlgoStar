@@ -3,15 +3,15 @@
 title Inventario
 
 class Inventario {
--int cantidadGas
--int cantidadMineral
--List<UnidadMovil>UnidadesMoviles
--List<Edificios>Edificios
--<u>int PoblacionMaxima
--<u>int SuministrosMaximos
--int suministrosDisponibles
--int suministrosEmpleados
--int nivelConstruccion
+-int: cantidadGas
+-int: cantidadMineral
+-List<UnidadMovil>: UnidadesMoviles
+-List<Edificios>: Edificios
+-<u>int: PoblacionMaxima
+-<u>int: SuministrosMaximos
+-int: suministrosDisponibles
+-int: suministrosEmpleados
+-int: nivelConstruccion
 
 +<u>void: Inventario()
 +boolean: puedeConstruir(int nivelDificultadConstruccion)

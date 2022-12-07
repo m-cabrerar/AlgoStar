@@ -56,12 +56,12 @@ class EdificioEnConstruccion{
 }
 
 class EdificioZerg{
- + EdificioZerg(TipoCasillero casillero, Inventario inventario, int vida_)
+ + EdificioZerg(Casillero, Inventario, int vida)
  + void:pasarTurno()
 }
 
 class EdificioProtoss{
- + <u>EdificioProtoss(Casillero casillero, Inventario inventario, int vidaInicial, int escudoInicial)
+ + <u>EdificioProtoss(Casillero, Inventario, int vidaInicial, int escudoInicial)
  + void:pasarTurno()
 }
 
@@ -89,33 +89,6 @@ boolean puedeVolar()
 }
 
 class UnidadMovil{}
-
-class Criadero{}
-class ReservaDeReproduccion{}
-class Extractor{}
-class Guarida{}
-class Espiral{}
-
-class NexoMineral{}
-class Pilon{}
-class Asimilador{}
-class Acceso{}
-class PuertoEstelar{}
-
-
-EdificioZerg <|-- Criadero
-EdificioZerg <|-- ReservaDeReproduccion
-EdificioZerg <|-- Extractor
-EdificioZerg <|-- Guarida
-EdificioZerg <|-- Espiral
-
-EdificioProtoss <|-- NexoMineral
-EdificioProtoss <|-- Pilon
-EdificioProtoss <|-- Asimilador
-EdificioProtoss <|-- Acceso
-EdificioProtoss <|-- PuertoEstelar
-
-
 
 
 Superficie <|.. Tierra

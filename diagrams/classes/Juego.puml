@@ -4,7 +4,7 @@ title Modelado de  Juego
 note "Las clases se explican\n en sus respectivos UMLs" as N1
 
 class Juego {
-- <u> int: cantidadJugadores
+- <u>int: cantidadJugadores
 - int: cantidadJugadores
 - int: turnos
 
