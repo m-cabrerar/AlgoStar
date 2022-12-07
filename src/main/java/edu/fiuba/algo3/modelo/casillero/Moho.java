@@ -37,8 +37,4 @@ public class Moho extends TipoCasillero {
         return;
     }
 
-    @Override
-    public void ocupar (Extractor extractor){
-        return;
-    }
 }
