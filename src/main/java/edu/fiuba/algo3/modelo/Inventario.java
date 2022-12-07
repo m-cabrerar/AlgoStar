@@ -71,6 +71,7 @@ public class Inventario {
     public boolean tieneEdificios(){
         return !(edificios.isEmpty());
     }
+
     //MANEJO DE LOS RECURSOS
     public int getGas(){
         return this.cantidadGas;
@@ -123,6 +124,10 @@ public class Inventario {
             this.suministrosEmpleados += cantidad;
             perderSuministro(cantidad);
         }
+    }
+    public void devolverSuministrosUnidad(int cantidad){
+        this.suministrosEmpleados -= cantidad;
+        this.agregarSuministro(cantidad);
     }
 
     //POBLACION
