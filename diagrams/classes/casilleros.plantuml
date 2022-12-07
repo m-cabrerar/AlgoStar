@@ -38,11 +38,7 @@ class Casillero {
 Casillero "1" --> "1"Mapa
 Mapa "1"--> "1...*" Casillero
 Casillero *-- TipoCasillero
-CasilleroVacio --|> TipoCasillero
-Moho --|> TipoCasillero
-NodoGas --|> TipoCasillero
-NodoMineral --|> TipoCasillero
-CasilleroEspacial --|> TipoCasillero
+
 
 class TipoCasillero{
 
@@ -58,39 +54,4 @@ class TipoCasillero{
  + void: ocupar(Criadero criadero)
 }
 
-
-class Moho{
- + void: expandirMoho(List<Casillero>: casillasAContagiar)
- + void: ocupar((Unidad unidad)
- + void: ocupar(Criadero criadero)
-}
-
-class NodoGas{
- - int: unidadesRestantes
- + <u>NodoGas()
- + boolean: agotado()
- + int: extraerGas(int: cant)
- + void: ocupar(Extractor extractor)
- + void: ocupar(Asimilador asimilador)
-}
-
-class NodoMineral{
- - int: unidadesRestantes
- + <u>NodoMineral()
- + int: extraerMineral(int: cant)
- + boolean: agotado()
- + void: ocupar(NexoMineral nexo)
-}
-
-class CasilleroEspacial {
- + void: ocupar(UnidadMovil unidad)
-}
-
-class CasilleroVacio{
-+ int: extraerMineral(int cantidad)
-+ int: extraerGas(int cantidad)
-+ void: expandirMoho()
-+ void: ocupar(Unidad unidad)
-+ void: volverseMoho(Casillero casillero)
-}
 @enduml
