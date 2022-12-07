@@ -5,6 +5,8 @@ import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.edificios.*;
+import edu.fiuba.algo3.modelo.unidades.moviles.UnidadMovil;
+import edu.fiuba.algo3.modelo.unidades.moviles.UnidadMovilProtoss;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
@@ -166,7 +168,7 @@ public class Botonera extends VBox {
 
     public void mostrarEdificio(EdificioEnConstruccion edificio, VBox opciones, Label error) {
         if (edificio.estaListo()) {
-            mostrarEdificioListo(edificio.getConstruido(), opciones, error);
+            mostrarUnidadListo(edificio.getConstruido(), opciones, error);
             return;
         }
         VistaUnidad vistaUnidad = new VistaUnidad(edificio);
@@ -197,7 +199,8 @@ public class Botonera extends VBox {
             botonZangano.setOnAction(e -> {
                 try {
                     ((Criadero) edificioListo).engendrarZangano();
-                    contenedorPrincipal.finalizarTurno();
+                    error.setText("Creando zangano");
+                    error.styleProperty().setValue("-fx-text-fill: green");
                 } catch (Exception ex) {
                     error.setText(ex.getMessage());
                 }
@@ -207,7 +210,8 @@ public class Botonera extends VBox {
             botonZerling.setOnAction(e -> {
                 try {
                     ((Criadero) edificioListo).engendrarZerling();
-                    contenedorPrincipal.finalizarTurno();
+                    error.setText("Creando zerling");
+                    error.styleProperty().setValue("-fx-text-fill: green");
                 } catch (Exception ex) {
                     error.setText(ex.getMessage());
                 }
@@ -217,7 +221,8 @@ public class Botonera extends VBox {
             botonAmo.setOnAction(e -> {
                 try {
                     ((Criadero) edificioListo).engendrarAmoSupremo();
-                    contenedorPrincipal.finalizarTurno();
+                    error.setText("Creando amo supremo");
+                    error.styleProperty().setValue("-fx-text-fill: green");
                 } catch (Exception ex) {
                     error.setText(ex.getMessage());
                 }
@@ -227,7 +232,8 @@ public class Botonera extends VBox {
             botonHidralisco.setOnAction(e -> {
                 try {
                     ((Criadero) edificioListo).engendrarHidralisco();
-                    contenedorPrincipal.finalizarTurno();
+                    error.setText("Creando hidralisco");
+                    error.styleProperty().setValue("-fx-text-fill: green");
                 } catch (Exception ex) {
                     error.setText(ex.getMessage());
                 }
@@ -237,7 +243,8 @@ public class Botonera extends VBox {
             botonMutalisco.setOnAction(e -> {
                 try {
                     ((Criadero) edificioListo).engendrarMutalisco();
-                    contenedorPrincipal.finalizarTurno();
+                    error.setText("Creando mutalisco");
+                    error.styleProperty().setValue("-fx-text-fill: green");
                 } catch (Exception ex) {
                     error.setText(ex.getMessage());
                 }
@@ -248,7 +255,8 @@ public class Botonera extends VBox {
             botonZealot.setOnAction(e -> {
                 try {
                     ((Acceso) edificioListo).engendrarZealot();
-                    contenedorPrincipal.finalizarTurno();
+                    error.setText("Creando zealot");
+                    error.styleProperty().setValue("-fx-text-fill: green");
                 } catch (Exception ex) {
                     error.setText(ex.getMessage());
                 }
@@ -258,7 +266,8 @@ public class Botonera extends VBox {
             botonDragon.setOnAction(e -> {
                 try {
                     ((Acceso) edificioListo).engendrarDragon();
-                    contenedorPrincipal.finalizarTurno();
+                    error.setText("Creando dragon");
+                    error.styleProperty().setValue("-fx-text-fill: green");
                 } catch (Exception ex) {
                     error.setText(ex.getMessage());
                 }
@@ -269,7 +278,8 @@ public class Botonera extends VBox {
             botonScout.setOnAction(e -> {
                 try {
                     ((PuertoEstelar) edificioListo).engendrarScout();
-                    contenedorPrincipal.finalizarTurno();
+                    error.setText("Creando scout");
+                    error.styleProperty().setValue("-fx-text-fill: green");
                 } catch (Exception ex) {
                     error.setText(ex.getMessage());
                 }
@@ -279,16 +289,21 @@ public class Botonera extends VBox {
         mostrarEdificio(edificio, opciones, error);
     }
 
-    public void mostrarEdificioListo(Unidad edificio, VBox opciones, Label error) {
-        VistaUnidad vistaUnidad = new VistaUnidad(edificio);
+    public void mostrarUnidadListo(Unidad unidad, VBox opciones, Label error) {
+        VistaUnidad vistaUnidad = new VistaUnidad(unidad);
         vistaUnidad.setPrefSize(150, 150);
-        Label nombre = new Label(edificio.getClass().getSimpleName());
-        Label vida = new Label("Vida: " + edificio.getVida() + "/" + edificio.getVidaMaxima());
+        Label nombre = new Label(unidad.getClass().getSimpleName());
+        Label vida = new Label("Vida: " + unidad.getVida() + "/" + unidad.getVidaMaxima());
         VBox contenedorVida = new VBox(vida);
         try {
-            Label escudo = new Label("Escudo: " + ((EdificioProtoss) edificio).getEscudo() + "/" + ((EdificioProtoss) edificio).getEscudoMaximo());
+            Label escudo = new Label("Escudo: " + ((EdificioProtoss) unidad).getEscudo() + "/" + ((EdificioProtoss) unidad).getEscudoMaximo());
             contenedorVida.getChildren().add(escudo);
         } catch (Exception e) {
+        }
+        try {
+            Label escudo = new Label("Escudo: " + ((UnidadMovilProtoss) unidad).getEscudo() + "/" + ((UnidadMovilProtoss) unidad).getEscudoMaximo());
+        }
+        catch (Exception e) {
         }
 
         Button botonAtras = new Button("Atras");
@@ -301,13 +316,16 @@ public class Botonera extends VBox {
     }
 
     public void mostrarInfoUnidad(Unidad unidad) {
-    }
-
-    public void mostrarInfoUnidadLista(Unidad unidad) {
+        mostrarUnidadListo(unidad, new VBox(), new Label());
     }
 
     public void mostrarBotonesUnidad(Unidad unidad) {
         mostrarInfoUnidad(unidad);
+        VBox opciones = new VBox();
+        opciones.setSpacing(10);
+        Label error = new Label();
+        error.styleProperty().setValue("-fx-text-fill: red");
+
     }
 
 }
