@@ -1,7 +1,5 @@
 @startuml
-title Modelado de Unidades
-note "Inventario y Casillero se explican en sus respectivos UMLs" as N1
-
+title Modelado de Unidades Moviles
 interface Superficie{}
 
 interface Construible {
@@ -23,12 +21,12 @@ abstract class  UnidadMovil {
 }
 
 abstract class UnidadMovilProtoss {
- + <u> UnidadMovilProtoss(inventario,costoM,costoG,vida,escudo,costoSuministro)
+ + <u> UnidadMovilProtoss(inv,costoM,costoG,vida,escudo,suministro)
  + void: pasarTurno()
 }
 
 abstract class UnidadMovilZerg{
- + <u>UnidadMovilZerg(inventario,costoM,costoG,,costoSuministro)
+ + <u>UnidadMovilZerg(inv,costoM,costoG,,suministro)
  + void: pasarTurno()
 }
 
@@ -40,13 +38,8 @@ interface Unidad {
 }
 
 abstract class Vida{
-#int:vida
 
-+<u>Vida(int vida)
-+void: chequeoDeVida()
-+boolean: quedaVida()
 }
-note bottom: Explicado en su propio UML
 
 Unidad <|.. UnidadMovil
 

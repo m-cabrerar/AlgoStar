@@ -46,12 +46,7 @@ class Escudo{
 }
 
 class Danio{
--int: danioAereo
--int: danioTerrestre
 
-+<u>Danio(int danioAereo, int danioTerrestre)
-+int: ataqueAereo()
-+int: ataqueTerrestre()
 }
 
 VidaProtoss *-- "1"Escudo
