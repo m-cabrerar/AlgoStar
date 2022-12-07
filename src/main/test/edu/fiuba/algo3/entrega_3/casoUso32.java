@@ -30,6 +30,7 @@ contrario.
         Casillero mockedCasillero = mock(Casillero.class);
 
         Pilon.construir(mockedCasillero, jugador1.getInventario());
+        juego.pasarTurno();
         juego.verificar_ganador();
         //ACT
         String ganador = juego.verificar_ganador();
