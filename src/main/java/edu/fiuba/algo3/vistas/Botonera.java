@@ -43,7 +43,7 @@ public class Botonera extends VBox {
         botonNexoMineral.setOnAction(e -> {
             contenedorPrincipal.crearNexoMineral(error);
         });
-        if (!inventario.tieneRecursos(0,50) || !inventario.puedeConstruir(NexoMineral.getNivelDeConstruccion())) {
+        if (!inventario.tieneRecursos(0,50) || !inventario.puedeConstruir(NexoMineral.getNivelDeConstruccionRequerido())) {
             botonNexoMineral.setDisable(true);
         }
         VBox contenedorNexoMineral = new VBox(botonNexoMineral, labelNexoMineral);
@@ -53,7 +53,7 @@ public class Botonera extends VBox {
         botonPilon.setOnAction(e -> {
             contenedorPrincipal.crearPilon(error);
         });
-        if (!inventario.tieneRecursos(0,100) || !inventario.puedeConstruir(Pilon.getNivelDeConstruccion())) {
+        if (!inventario.tieneRecursos(0,100) || !inventario.puedeConstruir(Pilon.getNivelDeConstruccionRequerido())) {
             botonPilon.setDisable(true);
         }
         VBox contenedorPilon = new VBox(botonPilon, labelPilon);
@@ -63,7 +63,7 @@ public class Botonera extends VBox {
         botonAsimilador.setOnAction(e -> {
             contenedorPrincipal.crearAsimilador(error);
         });
-        if (!inventario.tieneRecursos(0,100) || !inventario.puedeConstruir(Asimilador.getNivelDeConstruccion())) {
+        if (!inventario.tieneRecursos(0,100) || !inventario.puedeConstruir(Asimilador.getNivelDeConstruccionRequerido())) {
             botonAsimilador.setDisable(true);
         }
         VBox contenedorAsimilador = new VBox(botonAsimilador, labelAsimilador);
@@ -73,7 +73,7 @@ public class Botonera extends VBox {
         botonAcceso.setOnAction(e -> {
             contenedorPrincipal.crearAcceso(error);
         });
-        if (!inventario.tieneRecursos(0,150) || !inventario.puedeConstruir(Acceso.getNivelDeConstruccion())) {
+        if (!inventario.tieneRecursos(0,150) || !inventario.puedeConstruir(Acceso.getNivelDeConstruccionRequerido())) {
             botonAcceso.setDisable(true);
         }
         VBox contenedorAcceso = new VBox(botonAcceso, labelAcceso);
@@ -83,7 +83,7 @@ public class Botonera extends VBox {
         botonPuertoEstelar.setOnAction(e -> {
             contenedorPrincipal.crearPuertoEstelar(error);
         });
-        if (!inventario.tieneRecursos(150,150) || !inventario.puedeConstruir(PuertoEstelar.getNivelDeConstruccion())) {
+        if (!inventario.tieneRecursos(150,150) || !inventario.puedeConstruir(PuertoEstelar.getNivelDeConstruccionRequerido())) {
             botonPuertoEstelar.setDisable(true);
         }
         VBox contenedorPuertoEstelar = new VBox(botonPuertoEstelar, labelPuertoEstelar);
@@ -106,7 +106,7 @@ public class Botonera extends VBox {
         botonExtractor.setOnAction(e -> {
             contenedorPrincipal.crearExtractor(error);
         });
-        if (!inventario.tieneRecursos(0,100) || !inventario.puedeConstruir(Extractor.getNivelDeConstruccion())) {
+        if (!inventario.tieneRecursos(0,100) || !inventario.puedeConstruir(Extractor.getNivelDeConstruccionRequerido())) {
             botonExtractor.setDisable(true);
         }
         VBox contenedorExtractor = new VBox(botonExtractor, labelExtractor);
@@ -116,7 +116,7 @@ public class Botonera extends VBox {
         botonCriadero.setOnAction(e -> {
             contenedorPrincipal.crearCriadero(error);
         });
-        if (!inventario.tieneRecursos(0,200) || !inventario.puedeConstruir(Criadero.getNivelDeConstruccion())) {
+        if (!inventario.tieneRecursos(0,200) || !inventario.puedeConstruir(Criadero.getNivelDeConstruccionRequerido())) {
             botonCriadero.setDisable(true);
         }
         VBox contenedorCriadero = new VBox(botonCriadero, labelCriadero);
@@ -126,7 +126,7 @@ public class Botonera extends VBox {
         botonReservaDeReproduccion.setOnAction(e -> {
             contenedorPrincipal.crearReservaDeReproduccion(error);
         });
-        if (!inventario.tieneRecursos(0,150) || !inventario.puedeConstruir(ReservaDeReproduccion.getNivelDeConstruccion())) {
+        if (!inventario.tieneRecursos(0,150) || !inventario.puedeConstruir(ReservaDeReproduccion.getNivelDeConstruccionRequerido())) {
             botonReservaDeReproduccion.setDisable(true);
         }
         VBox contenedorReservaDeReproduccion = new VBox(botonReservaDeReproduccion, labelReservaDeReproduccion);
@@ -136,7 +136,7 @@ public class Botonera extends VBox {
         botonGuarida.setOnAction(e -> {
             contenedorPrincipal.crearGuarida(error);
         });
-        if (!inventario.tieneRecursos(200,100) || !inventario.puedeConstruir(Guarida.getNivelDeConstruccion())) {
+        if (!inventario.tieneRecursos(200,100) || !inventario.puedeConstruir(Guarida.getNivelDeConstruccionRequerido())) {
             botonGuarida.setDisable(true);
         }
         VBox contenedorGuarida = new VBox(botonGuarida, labelGuarida);
@@ -146,7 +146,7 @@ public class Botonera extends VBox {
         botonEspiral.setOnAction(e -> {
             contenedorPrincipal.crearEspiral(error);
         });
-        if (!inventario.tieneRecursos(150,100) || !inventario.puedeConstruir(Espiral.getNivelDeConstruccion())) {
+        if (!inventario.tieneRecursos(150,100) || !inventario.puedeConstruir(Espiral.getNivelDeConstruccionRequerido())) {
             botonEspiral.setDisable(true);
         }
         VBox contenedorEspiral = new VBox(botonEspiral, labelEspiral);
