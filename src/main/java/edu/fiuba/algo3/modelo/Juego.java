@@ -92,6 +92,7 @@ public class Juego {
 
     public void pasarTurno(){
         turnos++;
+        mapa.pasarTurno();
         for (Jugador jugador : jugadores) {
             jugador.pasarTurno();
         }
