@@ -1,12 +1,11 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-title Jugador
+title Modelado de  Jugador
 
 class Jugador {
     -String: nombre
     -String: raza
-    -Inventario: inventario
 
     +<u>Jugador()
     +void: setDatos(String nombre, String color, String raza)
@@ -16,5 +15,7 @@ class Jugador {
     +boolean: tieneEdificios()
 
 }
+
+Jugador *-- Inventario
 
 @enduml

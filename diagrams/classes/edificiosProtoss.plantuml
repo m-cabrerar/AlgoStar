@@ -1,15 +1,13 @@
 @startuml
 title Modelado de los Edificios Protoss
-
+note "Inventario y Casillero se explican en sus respectivos UMLs" as N1
 
 
 class EdificioProtoss{
- - int:escudo
- - int:escudoMaximo
- + EdificioProtoss(Casillero casillero, Inventario inventario, int vidaInicial, int escudoInicial)
- + void:recibirDanio(Danio danio)
+ + <u>EdificioProtoss(Casillero casillero, Inventario inventario, int vidaInicial, int escudoInicial)
  + void:pasarTurno()
 }
+
 
 class Acceso {
  + Acceso(unCasillero, unInventario)

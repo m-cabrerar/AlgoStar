@@ -1,15 +1,24 @@
 @startuml
 title Modelado de los Edificios
-
+note "Inventario y Casillero se explican en sus respectivos UMLs" as N1
 interface Unidad {
  + void:pasarTurno()
  + void:recibirDanio(int cantidad)
 }
 
+class Danio{
+-int danioAereo
+-int danioTerrestre
 
-interface Construibles {
++<u>Danio(int danioAereo, int danioTerrestre)
++int ataqueAereo()
++int ataqueTerrestre()
+}
+
+interface Construible {
 +int turnosParaConstruir()
 }
+
 abstract class  EdificioConcreto{
 # Vida: vida
 # Casillero: casillero
@@ -39,7 +48,7 @@ class EdificioEnConstruccion{
  -boolean: enInventario
 
  + <u>EdificioEnConstruccion(EdificioConcreto vaASer, Casillero casillero,Inventario inventario)
- - boolean:estaListo()
+ + boolean:estaListo()
  + void:pasarTurno()
  + void:recibirDanio(Danio danio)
  + boolean: estaPorAca(List<Casillero> casilleros)
@@ -63,39 +72,8 @@ abstract class Vida{
 +void: chequeoDeVida()
 +boolean: quedaVida()
 }
-class VidaZerg{
--int:vidaMaxima
+note bottom: Explicado en su propio UML
 
-+<u> VidaZerg(int cantidadVida)
-+ void: sufrirAtaque(int danio)
-+ void: regenerar()
-+ void: pasarTurno()
-}
-
-class VidaProtoss{
--Escudo: escudo
-
-+<u> VidaProtoss(int vida, int escudo)
-+ void: sufrirAtaque(int danio)
-+ void: pasarTurno()
-
-}
-
-
-interface Regenerativo{
-+void: regenerar()
-}
-
-class Escudo{
--int escudo
--int escudoMaximo
-
-+<u>Escudo(int escudo)
-+ void regenerar()
-+ void sufrirAtaque(int danio)
-+ void chequeoDeEscudo()
-+ boolean quedaEscudo()
-}
 
 interface Superficie{
 + int danio(Danio danio)
@@ -110,32 +88,45 @@ int danio(Danio danio)
 boolean puedeVolar()
 }
 
-
-class ModificablePorTurno{
-+void: pasarTurno()
-}
-
-
 class UnidadMovil{}
+
+class Criadero{}
+class ReservaDeReproduccion{}
+class Extractor{}
+class Guarida{}
+class Espiral{}
+
+class NexoMineral{}
+class Pilon{}
+class Asimilador{}
+class Acceso{}
+class PuertoEstelar{}
+
+
+EdificioZerg <|-- Criadero
+EdificioZerg <|-- ReservaDeReproduccion
+EdificioZerg <|-- Extractor
+EdificioZerg <|-- Guarida
+EdificioZerg <|-- Espiral
+
+EdificioProtoss <|-- NexoMineral
+EdificioProtoss <|-- Pilon
+EdificioProtoss <|-- Asimilador
+EdificioProtoss <|-- Acceso
+EdificioProtoss <|-- PuertoEstelar
+
+
+
 
 Superficie <|.. Tierra
 Superficie <|.. Aire
 
+Danio <.. Superficie
 
-Vida <|-- VidaProtoss
-Vida <|-- VidaZerg
-Regenerativo <|.. VidaZerg
-Atacable <|.. Vida
-ModificablePorTurno <|.. Vida
+EdificioConcreto "1" *-- "1"Vida
 
-VidaProtoss *-- "0..1"Escudo
-Regenerativo <|.. Escudo
-Atacable <|.. Escudo
 
-EdificioProtoss "1" *-- "1"Vida
-EdificioZerg "1"*-- "1"Vida
-
-Construibles <|.. EdificioConcreto
+Construible <|.. EdificioConcreto
 Unidad <|.. EdificioConcreto
 Unidad <|.. EdificioEnConstruccion
 EdificioConcreto <|-- EdificioZerg

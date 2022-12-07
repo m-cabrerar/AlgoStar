@@ -1,5 +1,6 @@
 @startuml
 title Modelado de los Edificios Protoss
+note "Inventario y Casillero se explican en sus respectivos UMLs" as N1
 
 
 class EdificioZerg{
