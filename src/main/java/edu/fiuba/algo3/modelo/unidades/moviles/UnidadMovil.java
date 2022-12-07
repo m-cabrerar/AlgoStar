@@ -15,7 +15,7 @@ public abstract class UnidadMovil implements Unidad, Construible {
     protected Vida vida;
 
     UnidadMovil(Inventario inventario, int costoMineral, int costoGas, int costoSuministro){
-        if(!inventario.tieneRecursos(costoMineral, costoGas)){
+        if(!inventario.tieneRecursos(costoGas, costoMineral)){
             throw new RecursosInsuficientes("No tiene recursos");
         }
         if(!inventario.tieneSuministros(costoSuministro)){

@@ -22,6 +22,7 @@ public class Devorador extends UnidadMovilZerg {
     public Devorador(Inventario inventario) {
         super(inventario, COSTO_MINERAL, COSTO_GASEOSO, VIDA, COSTO_SUMINISTRO);
         danio = new Danio(DANIO_AIRE,DANIO_TIERRA);
+        inventario.pagarMateriales(COSTO_GASEOSO,COSTO_MINERAL);
         superficie = new Aire();
     }
     @Override

@@ -14,11 +14,11 @@ public class CasoUso30 {
 
         //ARRANGE
         Inventario inventario = new Inventario();
-        inventario.agregarGas(5025);
+        inventario.agregarMineral(5025);
         inventario.agregarSuministro(200);
 
         for (int i = 0; i < 200; i++) {
-            Zerling zerling = new Zerling(inventario);
+            new Zerling(inventario);
         }
         inventario.agregarSuministro(2); //recargo el inventario para tener los suministros para el 201.
 

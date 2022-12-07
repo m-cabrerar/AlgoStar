@@ -26,6 +26,7 @@ public class Zealot extends UnidadMovilProtoss {
     public Zealot(Inventario inventario){
         super(inventario, COSTO_MINERAL, COSTO_GASEOSO, VIDA_MAXIMA, ESCUDO_MAXIMO, COSTO_SUMINISTRO);
         danio = new Danio(DANIO_AIRE, DANIO_TIERRA);
+        inventario.pagarMateriales(COSTO_GASEOSO,COSTO_MINERAL);
         superficie = new Tierra();
         visibilidad = new Visible();
         unidadesDestruidas = 0;
