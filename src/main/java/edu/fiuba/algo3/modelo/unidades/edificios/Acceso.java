@@ -54,8 +54,8 @@ public class Acceso extends EdificioProtoss {
         Acceso acceso = new Acceso(casillero, inventario);
         return new EdificioEnConstruccion(acceso, casillero, inventario);
     }
-    public static int getNivelDeConstruccion(){
-        return NIVEL_DE_CONSTRUCCION;
+    public static int getNivelDeConstruccionRequerido(){
+        return NIVEL_DE_CONSTRUCCION_REQUERIDO;
     }
 
     public void engendrarZealot(){

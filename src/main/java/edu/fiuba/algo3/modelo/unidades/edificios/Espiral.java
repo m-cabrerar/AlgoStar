@@ -10,7 +10,8 @@ public class Espiral extends EdificioZerg {
 
     private static int COSTO_GASEOSO = 100;
     private static int COSTO_MINERAL = 150;
-    private static final int NIVEL_DE_CONSTRUCCION = 3;
+    private static final int NIVEL_DE_CONSTRUCCION = 0;
+    private static final int NIVEL_DE_CONSTRUCCION_REQUERIDO = 2;
     private static int TURNOS_PARA_CONSTRUIR = 10;
     private static int VIDA_MAXIMA = 1300;
     public Espiral(Casillero casillero, Inventario inventario){
@@ -37,7 +38,7 @@ public class Espiral extends EdificioZerg {
         if(!inventario.tieneRecursos(COSTO_GASEOSO,COSTO_MINERAL)){
             throw new RecursosInsuficientes("No tiene recursos");
         }
-        if(!inventario.puedeConstruir(2)){
+        if(!inventario.puedeConstruir(NIVEL_DE_CONSTRUCCION_REQUERIDO)){
             throw new CorrelativasInsuficientes("Aún no se puede construir este edificio");
         }
         Espiral espiral = new Espiral(casillero, inventario);
@@ -54,7 +55,7 @@ public class Espiral extends EdificioZerg {
         unidadEnConstruccion = crearEvolucion(inventario);
         turnosParaConstruir = unidadEnConstruccion.turnosParaConstruir();
     }
-    public static int getNivelDeConstruccion(){
-        return NIVEL_DE_CONSTRUCCION;
+    public static int getNivelDeConstruccionRequerido() {
+        return NIVEL_DE_CONSTRUCCION_REQUERIDO;
     }
 }

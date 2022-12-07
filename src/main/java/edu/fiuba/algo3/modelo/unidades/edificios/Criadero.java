@@ -21,6 +21,7 @@ public class Criadero extends EdificioZerg{
     private static int VIDA_MAXIMA = 500;
     private static int SUMINISTRA = 5;
     private static final int NIVEL_DE_CONSTRUCCION = 0;
+    private static final int NIVEL_DE_CONSTRUCCION_REQUERIDO = 0;
     private List<UnidadEnEvolucion> unidadesEnEvolucion;
     
     public Criadero(Casillero casillero, Inventario inventario) {
@@ -64,7 +65,7 @@ public class Criadero extends EdificioZerg{
         if(!inventario.tieneRecursos(COSTO_GASEOSO, COSTO_MINERAL)){
             throw new RecursosInsuficientes("No tiene recursos");
         }
-        if(!inventario.puedeConstruir(0)){
+        if(!inventario.puedeConstruir(NIVEL_DE_CONSTRUCCION_REQUERIDO)){
             throw new CorrelativasInsuficientes("Aún no se puede contruir este edificio");
         }
         Criadero criadero = new Criadero(casillero, inventario);
@@ -95,8 +96,8 @@ public class Criadero extends EdificioZerg{
             throw new EstaDestruido("Unidad destruida");
         }
     }
-    public static int getNivelDeConstruccion(){
-        return NIVEL_DE_CONSTRUCCION;
+    public static int getNivelDeConstruccionRequerido() {
+        return NIVEL_DE_CONSTRUCCION_REQUERIDO;
     }
 
     public void engendrarZangano(){
