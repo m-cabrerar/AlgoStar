@@ -75,7 +75,7 @@ public class Mutalisco extends UnidadMovilZerg {
             super.recibirDanio(danio);
         } catch (Exception EstaDestruido){
             this.inventario.eliminarUnidad(this);
-            this.inventario.agregarSuministro(COSTO_SUMINISTRO);
+            this.inventario.devolverSuministrosUnidad(COSTO_SUMINISTRO);
             throw new EstaDestruido("Unidad destruida");
         }
     }
