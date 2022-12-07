@@ -69,4 +69,12 @@ abstract class EdificioConcreto implements Unidad, Construible {
 
     public abstract void ubicarEnInventario();
 
+    public int getVida() {
+        return vida.getVida();
+    }
+
+    public int getVidaMaxima() {
+        return vida.getVidaMaxima();
+    }
+
 }

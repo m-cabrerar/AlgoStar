@@ -3,12 +3,8 @@ package edu.fiuba.algo3.modelo.unidades;
 import edu.fiuba.algo3.exceptions.EstaDestruido;
 
 public class VidaZerg extends Vida implements Regenerativo{
-    
-    private int vidaMaxima;
-
     public VidaZerg(int cantidadVida){
         super(cantidadVida);
-        this.vidaMaxima = cantidadVida;
     }
 
     public void sufrirAtaque(int danio) throws EstaDestruido {
@@ -18,8 +14,8 @@ public class VidaZerg extends Vida implements Regenerativo{
 
     public void regenerar(){
         this.vida += 10;
-        if (vida > vidaMaxima){
-            this.vida = vidaMaxima;
+        if (vida > this.vidaMaxima){
+            this.vida = this.vidaMaxima;
         }
         if (vida < 0){
             this.vida = 0;
@@ -28,5 +24,12 @@ public class VidaZerg extends Vida implements Regenerativo{
 
     public void pasarTurno(){
         this.regenerar();
+    }
+
+    public int getEscudo(){
+        return 0;
+    }
+    public int getEscudoMaximo(){
+        return 0;
     }
 }
