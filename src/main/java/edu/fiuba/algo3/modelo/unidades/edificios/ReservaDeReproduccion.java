@@ -9,6 +9,7 @@ public class ReservaDeReproduccion extends EdificioZerg {
     private static int COSTO_GASEOSO = 0;
     private static int COSTO_MINERAL = 150;
     private static final int NIVEL_DE_CONSTRUCCION = 1;
+    private static final int NIVEL_DE_CONSTRUCCION_REQUERIDO = 0;
     private static int TURNOS_PARA_CONSTRUIR = 12;
     private static int VIDA_MAXIMA = 1000;
     public ReservaDeReproduccion(Casillero casillero, Inventario inventario){
@@ -52,8 +53,8 @@ public class ReservaDeReproduccion extends EdificioZerg {
         unidadEnConstruccion = crearEvolucion(inventario);
         turnosParaConstruir = unidadEnConstruccion.turnosParaConstruir();
     }
-    public static int getNivelDeConstruccion(){
-        return NIVEL_DE_CONSTRUCCION;
+    public static int getNivelDeConstruccionRequerido(){
+        return NIVEL_DE_CONSTRUCCION_REQUERIDO;
     }
 
 }

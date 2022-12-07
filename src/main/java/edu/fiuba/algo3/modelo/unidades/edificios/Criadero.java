@@ -64,7 +64,7 @@ public class Criadero extends EdificioZerg{
         if(!inventario.tieneRecursos(COSTO_GASEOSO, COSTO_MINERAL)){
             throw new RecursosInsuficientes("No tiene recursos");
         }
-        if(!inventario.puedeConstruir(0)){
+        if(!inventario.puedeConstruir(NIVEL_DE_CONSTRUCCION_REQUERIDO)){
             throw new CorrelativasInsuficientes("Aún no se puede contruir este edificio");
         }
         Criadero criadero = new Criadero(casillero, inventario);
@@ -95,8 +95,8 @@ public class Criadero extends EdificioZerg{
             throw new EstaDestruido("Unidad destruida");
         }
     }
-    public static int getNivelDeConstruccion(){
-        return NIVEL_DE_CONSTRUCCION;
+    public static int getNivelDeConstruccionRequerido() {
+        return NIVEL_DE_CONSTRUCCION_REQUERIDO;
     }
 
     public void engendrarZangano(){
@@ -111,6 +111,8 @@ public class Criadero extends EdificioZerg{
         if (tieneLarvas() && inventario.puedeConstruir(1)) {
             Zerling zerling = new Zerling(inventario);
             this.iniciarEvolucion(zerling);
+        } else if (!inventario.puedeConstruir(1)) {
+            throw new CorrelativasInsuficientes("No se puede construir este edificio");
         } else {
             throw new YaNoQuedanLarvas("No quedan larvas");
         }
@@ -127,6 +129,8 @@ public class Criadero extends EdificioZerg{
         if(tieneLarvas() && inventario.puedeConstruir(2)){
             Hidralisco hidra = new Hidralisco(inventario);
             this.iniciarEvolucion(hidra);
+        } else if (!inventario.puedeConstruir(2)) {
+            throw new CorrelativasInsuficientes("No se puede construir este edificio");
         } else {
             throw new YaNoQuedanLarvas("No quedan larvas");
         }
@@ -135,6 +139,8 @@ public class Criadero extends EdificioZerg{
         if(tieneLarvas() && inventario.puedeConstruir(3)){
             Mutalisco muta = new Mutalisco(inventario);
             this.iniciarEvolucion(muta);
+        } else if (!inventario.puedeConstruir(3)) {
+            throw new CorrelativasInsuficientes("No se puede construir este edificio");
         } else {
             throw new YaNoQuedanLarvas("No quedan larvas");
         }

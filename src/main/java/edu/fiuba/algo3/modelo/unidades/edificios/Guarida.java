@@ -9,6 +9,7 @@ public class Guarida extends EdificioZerg {
     private static int COSTO_GASEOSO = 100;
     private static int COSTO_MINERAL = 200;
     private static final int NIVEL_DE_CONSTRUCCION = 2;
+    private static final int NIVEL_DE_CONSTRUCCION_REQUERIDO = 1;
     private static int VIDA_MAXIMA = 1250;
     private static int TURNOS_PARA_CONSTRUIR = 12;
     public Guarida(Casillero casillero, Inventario inventario){
@@ -35,7 +36,7 @@ public class Guarida extends EdificioZerg {
         if(!inventario.tieneRecursos(COSTO_GASEOSO, COSTO_MINERAL)){
             throw new RecursosInsuficientes("No tiene recursos");
         }
-        if(!inventario.puedeConstruir(1)){
+        if(!inventario.puedeConstruir(NIVEL_DE_CONSTRUCCION_REQUERIDO)){
             throw new CorrelativasInsuficientes("Aún no se puede construir este edificio");
         }
         Guarida guarida = new Guarida(casillero, inventario);
@@ -51,7 +52,7 @@ public class Guarida extends EdificioZerg {
         unidadEnConstruccion = crearEvolucion(inventario);
         turnosParaConstruir = unidadEnConstruccion.turnosParaConstruir();
     }
-    public static int getNivelDeConstruccion(){
-        return NIVEL_DE_CONSTRUCCION;
+    public static int getNivelDeConstruccionRequerido() {
+        return NIVEL_DE_CONSTRUCCION_REQUERIDO;
     }
 }

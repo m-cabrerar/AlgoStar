@@ -9,6 +9,7 @@ public class Extractor extends EdificioZerg {
     private static int COSTO_MINERAL = 100;
     private static int TURNOS_PARA_CONSTRUIR = 6;
     private static final int NIVEL_DE_CONSTRUCCION = 0;
+    private static final int NIVEL_DE_CONSTRUCCION_REQUERIDO = 0;
     private int zanganosTrabajando;
     private static int VIDA = 750;
     public Extractor(Casillero casillero, Inventario inventario){
@@ -52,7 +53,7 @@ public class Extractor extends EdificioZerg {
             throw new ExtractorError("El extractor ya tiene 3 zanganos trabajando");
         }
     }
-    public static int getNivelDeConstruccion(){
-        return NIVEL_DE_CONSTRUCCION;
+    public static int getNivelDeConstruccionRequerido() {
+        return NIVEL_DE_CONSTRUCCION_REQUERIDO;
     }
 }

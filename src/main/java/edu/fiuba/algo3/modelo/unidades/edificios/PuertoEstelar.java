@@ -14,6 +14,7 @@ public class PuertoEstelar extends EdificioProtoss {
     private static int ESCUDO = 600;
     private static int TURNOS_PARA_CONSTRUIR = 10;
     private static final int NIVEL_DE_CONSTRUCCION = 0;
+    private static final int NIVEL_DE_CONSTRUCCION_REQUERIDO = 1;
     private boolean estaEvolucionando;
     private Engendradora engendradora;
     public PuertoEstelar(Casillero casillero, Inventario inventario) {
@@ -47,15 +48,15 @@ public class PuertoEstelar extends EdificioProtoss {
         if(!inventario.tieneRecursos(COSTO_GASEOSO, COSTO_MINERAL)){
             throw new RecursosInsuficientes("No tiene recursos");
         }
-        if(!inventario.puedeConstruir(1)){
+        if(!inventario.puedeConstruir(NIVEL_DE_CONSTRUCCION_REQUERIDO)){
             throw new CorrelativasInsuficientes("Aún no se puede contruir este edificio");
         }
         PuertoEstelar puertoEstelar = new PuertoEstelar(casillero, inventario);
         return new EdificioEnConstruccion(puertoEstelar, casillero, inventario);
     }
 
-    public static int getNivelDeConstruccion(){
-        return NIVEL_DE_CONSTRUCCION;
+    public static int getNivelDeConstruccionRequerido() {
+        return NIVEL_DE_CONSTRUCCION_REQUERIDO;
     }
 
     public void engendrarScout(){
