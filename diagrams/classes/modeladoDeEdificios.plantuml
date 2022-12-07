@@ -6,14 +6,6 @@ interface Unidad {
  + void:recibirDanio(int cantidad)
 }
 
-class Danio{
--int danioAereo
--int danioTerrestre
-
-+<u>Danio(int danioAereo, int danioTerrestre)
-+int ataqueAereo()
-+int ataqueTerrestre()
-}
 
 interface Construible {
 +int turnosParaConstruir()
@@ -72,29 +64,20 @@ abstract class Vida{
 +void: chequeoDeVida()
 +boolean: quedaVida()
 }
-note bottom: Explicado en su propio UML
+
 
 
 interface Superficie{
 + int danio(Danio danio)
 + boolean puedeVolar()
 }
-class Tierra{
- int danio(Danio danio)
- boolean puedeVolar()
-}
-class Aire{
-int danio(Danio danio)
-boolean puedeVolar()
-}
+
 
 class UnidadMovil{}
 
 
-Superficie <|.. Tierra
-Superficie <|.. Aire
 
-Danio <.. Superficie
+
 
 EdificioConcreto "1" *-- "1"Vida
 
