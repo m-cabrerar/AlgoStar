@@ -92,6 +92,9 @@ public class Inventario {
         for(Unidad unidad :unidades){
             unidad.pasarTurno();
         }
+        for(EdificioEnConstruccion edificio : edificios){
+            edificio.pasarTurno();
+        }
     }
     public void agregarEdificio(EdificioEnConstruccion edificio){
         this.edificios.add(edificio);
