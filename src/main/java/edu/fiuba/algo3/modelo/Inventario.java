@@ -50,9 +50,6 @@ public class Inventario {
     public void agregarUnidad(Unidad unidad) {
         this.unidades.add(unidad);
     }
-    public void agregarEdifico(EdificioEnConstruccion edificio) {
-        this.edificios.add(edificio);
-    }
 
     public void agregarSuministro(int cantidad){
         this.suministrosDisponibles += cantidad;
