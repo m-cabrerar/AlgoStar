@@ -6,10 +6,11 @@ import edu.fiuba.algo3.modelo.unidades.moviles.Hidralisco;
 import edu.fiuba.algo3.modelo.unidades.moviles.UnidadMovil;
 
 public class Guarida extends EdificioZerg {
-    private static int COSTO_GASEOSO = 200;
-    private static int COSTO_MINERAL = 100;
+    private static int COSTO_GASEOSO = 100;
+    private static int COSTO_MINERAL = 200;
     private static final int NIVEL_DE_CONSTRUCCION = 2;
     private static int VIDA_MAXIMA = 1250;
+    private static int TURNOS_PARA_CONSTRUIR = 12;
     public Guarida(Casillero casillero, Inventario inventario){
     super(casillero, inventario, VIDA_MAXIMA);
         casillero.ocupar(this);
@@ -27,11 +28,11 @@ public class Guarida extends EdificioZerg {
         }
     }
     public int turnosParaConstruir(){
-        return 12;
+        return TURNOS_PARA_CONSTRUIR;
     }
     public static EdificioEnConstruccion construir(Casillero casillero, Inventario inventario) throws UbicacionInvalida, RecursosInsuficientes {
         // hacer checkeos de casilla y materiales
-        if(!inventario.tieneRecursos(200, 100)){
+        if(!inventario.tieneRecursos(COSTO_GASEOSO, COSTO_MINERAL)){
             throw new RecursosInsuficientes("No tiene recursos");
         }
         if(!inventario.puedeConstruir(1)){

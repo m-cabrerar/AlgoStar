@@ -8,9 +8,12 @@ import edu.fiuba.algo3.modelo.unidades.moviles.UnidadMovil;
 public class PuertoEstelar extends EdificioProtoss {
     private static int COSTO_GASEOSO = 150;
     private static int COSTO_MINERAL = 150;
+    private static int VIDA = 600;
+    private static int ESCUDO = 600;
+    private static int TURNOS_PARA_CONSTRUIR = 10;
     private static final int NIVEL_DE_CONSTRUCCION = 0;
     public PuertoEstelar(Casillero casillero, Inventario inventario) {
-        super(casillero, inventario, 600, 600);
+        super(casillero, inventario, VIDA, ESCUDO);
         casillero.ocupar(this);
         inventario.pagarMateriales(COSTO_GASEOSO,COSTO_MINERAL);
     }
@@ -28,14 +31,14 @@ public class PuertoEstelar extends EdificioProtoss {
     }
 
     public int turnosParaConstruir() {
-        return 10;
+        return TURNOS_PARA_CONSTRUIR;
     }
 
     public static EdificioEnConstruccion construir(Casillero casillero, Inventario inventario) {
         if(!casillero.tieneEnergia()){
             throw new UbicacionInvalida("Ubicacion invalida");
         }
-        if(!inventario.tieneRecursos(150, 150)){
+        if(!inventario.tieneRecursos(COSTO_GASEOSO, COSTO_MINERAL)){
             throw new RecursosInsuficientes("No tiene recursos");
         }
         if(!inventario.puedeConstruir(1)){
