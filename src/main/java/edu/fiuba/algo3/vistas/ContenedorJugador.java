@@ -19,7 +19,6 @@ public class ContenedorJugador extends HBox {
     }
 
     public void update() {
-        System.out.println("update jugador");
         this.getChildren().clear();
         Jugador jugadorActual = jugadores[juego.getTurnos()%juego.cantidadDeJugadores()];
         String color = jugadorActual.getColor();

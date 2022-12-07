@@ -19,9 +19,11 @@ public class AmoSupremo extends UnidadMovilZerg {
 
         public AmoSupremo(Inventario inventario){
             super(inventario, COSTO_MINERAL, COSTO_GASEOSO, VIDA_MAXIMA, COSTO_SUMINISTRO);
-            inventario.agregarSuministro(SUMINISTRA);
+            inventario.pagarMateriales(COSTO_GASEOSO,COSTO_MINERAL);
             superficie = new Aire();
+            inventario.agregarSuministro(SUMINISTRA);
         }
+
         public int turnosParaConstruir(){
             return TURNOS_PARA_CONSTRUIR;
         }

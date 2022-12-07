@@ -8,7 +8,6 @@ public class VistaUnidad extends StackPane {
     public VistaUnidad(Unidad unidad) {
         this.setPrefSize(50, 50);
         Image image;
-        System.out.println(unidad.getClass().getSimpleName());
         switch (unidad.getClass().getSimpleName()) {
             case "EdificioEnConstruccion":
                 image = new Image("file:src/main/java/edu/fiuba/algo3/vistas/img/edificios/edificioEnConstruccion.gif");

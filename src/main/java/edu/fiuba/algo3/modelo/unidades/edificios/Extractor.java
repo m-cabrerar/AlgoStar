@@ -23,6 +23,7 @@ public class Extractor extends EdificioZerg {
 
     public void pasarTurno(){
         super.pasarTurno();
+        extraerGas();
     }
     public int turnosParaConstruir(){
         return TURNOS_PARA_CONSTRUIR;
@@ -38,12 +39,11 @@ public class Extractor extends EdificioZerg {
         Extractor extractor = new Extractor(casillero, inventario);
         return new EdificioEnConstruccion(extractor, casillero, inventario);
     }
-    public void extraerGas(Inventario inventario) throws ExtractorError {
-        if (zanganosTrabajando > 0) {
-            inventario.agregarGas(10 * zanganosTrabajando);
-        } else {
-            throw new ExtractorError("El extractor no tiene zanganos trabajando");
-        }
+    public int extraerGas() {
+        int cantidad = zanganosTrabajando * 10;
+        casillero.extraerGas(cantidad);
+        this.inventario.agregarGas(cantidad);
+        return cantidad;
     }
     public void agregarZangano() throws ExtractorError {
         if(zanganosTrabajando < 3) {

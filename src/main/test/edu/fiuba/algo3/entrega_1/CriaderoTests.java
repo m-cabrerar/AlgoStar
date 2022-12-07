@@ -5,7 +5,6 @@ import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.exceptions.*;
 import edu.fiuba.algo3.modelo.casillero.Casillero;
 import edu.fiuba.algo3.modelo.casillero.NodoGas;
-import edu.fiuba.algo3.modelo.unidades.edificios.Acceso;
 import edu.fiuba.algo3.modelo.unidades.edificios.Criadero;
 import edu.fiuba.algo3.modelo.unidades.Danio;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
@@ -22,9 +21,11 @@ public class CriaderoTests {
     public void test01ConsumoLaLarvaDeUnCriaderoParaEngendrarZanganoYCuandoPasaElTurnoTengo3OtraVez() {
         
         //ARRANGE
-        String mensaje = "Ya no quedan larvas disponibles";
         Casillero casillero = mock(Casillero.class);
+        when(casillero.obtenerAdyacente()).thenReturn(casillero);
         Inventario inventario =new Inventario();
+        inventario.agregarSuministro(20);
+        inventario.agregarMineral(400);
         inventario.agregarGas(200);
 
         Criadero criadero = new Criadero(casillero, inventario);
@@ -35,24 +36,22 @@ public class CriaderoTests {
             fail();
         }
         criadero.pasarTurno();
-        Exception exception = assertThrows(Exception.class, () -> {
-            criadero.engendrarZangano();
-            criadero.engendrarZangano();
-            criadero.engendrarZangano();
-            criadero.engendrarZangano();
-        });
         //ASSERT
-        assertEquals(mensaje, exception.getMessage());
+        criadero.engendrarZangano();
+        criadero.engendrarZangano();
+        assertDoesNotThrow(() -> criadero.engendrarZangano());
  
     }
 
     @Test
     public void test02Consumo2LarvasDeUnCriaderoParaEngendrarZanganosYCuandoPasan2TurnosTengo3OtraVez() {
         //ARRANGE
-        String mensaje = "Ya no quedan larvas disponibles";
         Casillero casillero = mock(Casillero.class);
-        Inventario inventario =new Inventario();
+        when(casillero.obtenerAdyacente()).thenReturn(casillero);
+        Inventario inventario = new Inventario();
+        inventario.agregarSuministro(20);
         inventario.agregarGas(200);
+        inventario.agregarMineral(400);
         Criadero criadero = new Criadero(casillero, inventario);
         //ACT
         try {
@@ -63,22 +62,23 @@ public class CriaderoTests {
         }
         criadero.pasarTurno();
         criadero.pasarTurno();
-        Exception exception = assertThrows(Exception.class, () -> {
-            criadero.engendrarZangano();
+
+        assertDoesNotThrow(() -> {
             criadero.engendrarZangano();
             criadero.engendrarZangano();
             criadero.engendrarZangano();
         });
         //ASSERT
-        assertEquals(mensaje, exception.getMessage());
     }
     @Test
     public void test03Consumo3LarvasDeUnCriaderoParaEngendrarZanganosYCuandoPasan3TurnosTengo3OtraVez() {
         //ARRANGE
-        String mensaje = "Ya no quedan larvas disponibles";
         Casillero casilleroMock = mock(Casillero.class);
+        when(casilleroMock.obtenerAdyacente()).thenReturn(casilleroMock);
         Inventario inventario =new Inventario();
+        inventario.agregarMineral(400);
         inventario.agregarGas(200);
+        inventario.agregarSuministro(20);
         Criadero criadero = new Criadero(casilleroMock, inventario);
         //ACT
         try {
@@ -91,14 +91,17 @@ public class CriaderoTests {
         criadero.pasarTurno();
         criadero.pasarTurno();
         criadero.pasarTurno();
-        Exception exception = assertThrows(Exception.class, () -> {
+        //ASSERT
+        try {
             criadero.engendrarZangano();
             criadero.engendrarZangano();
             criadero.engendrarZangano();
+        } catch (Exception e) {
+            fail();
+        }
+        assertThrows(Exception.class, () -> {
             criadero.engendrarZangano();
         });
-        //ASSERT
-        assertEquals(mensaje, exception.getMessage());
     }
     @Test
     public void test04ConstruyoUnCriaderoQueEstaraListoEn4Turnos() {

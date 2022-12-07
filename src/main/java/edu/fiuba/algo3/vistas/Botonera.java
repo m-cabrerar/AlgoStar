@@ -161,8 +161,12 @@ public class Botonera extends VBox {
     }
 
     public void mostrarInfoEdificio(EdificioEnConstruccion edificio) {
+        mostrarEdificio(edificio, new VBox(), new Label());
+    }
+
+    public void mostrarEdificio(EdificioEnConstruccion edificio, VBox opciones, Label error) {
         if (edificio.estaListo()) {
-            mostrarEdificioListo(edificio.getConstruido());
+            mostrarEdificioListo(edificio.getConstruido(), opciones);
             return;
         }
         VistaUnidad vistaUnidad = new VistaUnidad(edificio);
@@ -175,23 +179,85 @@ public class Botonera extends VBox {
             contenedorPrincipal.update();
         });
 
+        error.styleProperty().setValue("-fx-text-fill: red");
+
         this.getChildren().clear();
-        this.getChildren().addAll(nombre, vistaUnidad, turnosRestantes, botonAtras);
+        this.getChildren().addAll(nombre, vistaUnidad, turnosRestantes, opciones, botonAtras, error);
     }
 
     public void mostrarBotonesEdificio(EdificioEnConstruccion edificio) {
-        mostrarInfoEdificio(edificio);
+        if (!edificio.estaListo()) {
+            mostrarEdificio(edificio, new VBox(), new Label());
+        }
+        VBox opciones = new VBox();
+        Label error = new Label();
+        Unidad edificioListo = edificio.getConstruido();
+        if (edificioListo instanceof Criadero) {
+            Button botonZangano = new Button("Engendrar Zangano");
+            botonZangano.setOnAction(e -> {
+                try {
+                    ((Criadero) edificioListo).engendrarZangano();
+                    contenedorPrincipal.finalizarTurno();
+                } catch (Exception ex) {
+                    error.setText(ex.getMessage());
+                }
+            });
+
+            Button botonZerling = new Button("Engendrar Zerling");
+            botonZerling.setOnAction(e -> {
+                try {
+                    ((Criadero) edificioListo).engendrarZerling();
+                    contenedorPrincipal.finalizarTurno();
+                } catch (Exception ex) {
+                    error.setText(ex.getMessage());
+                }
+            });
+
+            Button botonAmo = new Button("Engendrar Amo Supremo");
+            botonAmo.setOnAction(e -> {
+                try {
+                    ((Criadero) edificioListo).engendrarAmoSupremo();
+                    contenedorPrincipal.finalizarTurno();
+                } catch (Exception ex) {
+                    error.setText(ex.getMessage());
+                }
+            });
+
+            Button botonHidralisco = new Button("Engendrar Hidralisco");
+            botonHidralisco.setOnAction(e -> {
+                try {
+                    ((Criadero) edificioListo).engendrarHidralisco();
+                    contenedorPrincipal.finalizarTurno();
+                } catch (Exception ex) {
+                    error.setText(ex.getMessage());
+                }
+            });
+
+            Button botonMutalisco = new Button("Engendrar Mutalisco");
+            botonMutalisco.setOnAction(e -> {
+                try {
+                    ((Criadero) edificioListo).engendrarMutalisco();
+                    contenedorPrincipal.finalizarTurno();
+                } catch (Exception ex) {
+                    error.setText(ex.getMessage());
+                }
+            });
+
+        }
+
+        mostrarEdificio(edificio, opciones, error);
     }
 
-    public void mostrarEdificioListo(Unidad edificio) {
+    public void mostrarEdificioListo(Unidad edificio, VBox opciones) {
         VistaUnidad vistaUnidad = new VistaUnidad(edificio);
         vistaUnidad.setPrefSize(150, 150);
         Label nombre = new Label(edificio.getClass().getSimpleName());
         Label vida = new Label("Vida: " + edificio.getVida() + "/" + edificio.getVidaMaxima());
         VBox contenedorVida = new VBox(vida);
-        if (jugadores[juego.getTurnos() % juego.cantidadDeJugadores()].getRaza().equals("Protoss")) {
+        try {
             Label escudo = new Label("Escudo: " + ((EdificioProtoss) edificio).getEscudo() + "/" + ((EdificioProtoss) edificio).getEscudoMaximo());
             contenedorVida.getChildren().add(escudo);
+        } catch (Exception e) {
         }
 
         Button botonAtras = new Button("Atras");
