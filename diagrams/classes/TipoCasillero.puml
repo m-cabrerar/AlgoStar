@@ -11,6 +11,9 @@ class Moho{
  + void: expandirMoho(List<Casillero>: casillasAContagiar)
  + void: ocupar((Unidad unidad)
  + void: ocupar(Criadero criadero)
+  + void: ocupar(ReservaDeReproduccion reserva)
+   + void: ocupar(Guarida guarida)
+    + void: ocupar(Espiral espiral)
 }
 
 class NodoGas{
