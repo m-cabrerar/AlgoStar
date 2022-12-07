@@ -14,6 +14,11 @@ public class CasilleroVacio extends TipoCasillero{
     public void ocupar (Criadero criadero){
         return;
     }
+
+    @Override
+    public void volverseMoho(Casillero casillero){
+        casillero.setTipoCasillero(new Moho());
+    }
 }
 
 
