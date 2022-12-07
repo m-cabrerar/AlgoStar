@@ -94,6 +94,7 @@ public class Casillero{
         tipoCasillero.volverseMoho(this);
     }
 
+    //PARA CONOCER RANGO DE ATAQUES
     public boolean tieneEnRango(Unidad unidadAAtacar, int rango){
         List<Casillero> casilleros = mapa.casillerosEnRango(coordenadaX,coordenadaY,rango);
         //si el casillero de unidadAAtacar esta en la lista de casilleros, entonces esta en rango
@@ -105,8 +106,9 @@ public class Casillero{
         return false;
     }
 
+    //PARA LA UBICACION DE UNIDADES CREADAS
     public Casillero obtenerAdyacente(){
-        List<Casillero> casilleros = mapa.CasillerosAdyacentes(coordenadaX, coordenadaY);
+        List<Casillero> casilleros = mapa.casillerosEnRango(coordenadaX, coordenadaY,3);
         for(Casillero casillero : casilleros){
             if(!casillero.estaOcupado()){
                 return casillero;
@@ -114,6 +116,8 @@ public class Casillero{
         }
         return null;
     }
+
+    //MANEJO DE UNIDAD INVISIBLE
     public List<Casillero> obtenerAdyacentes(){
         return mapa.CasillerosAdyacentes(coordenadaX, coordenadaY);
     }
