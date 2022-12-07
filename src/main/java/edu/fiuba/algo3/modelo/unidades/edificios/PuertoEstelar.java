@@ -3,7 +3,9 @@ package edu.fiuba.algo3.modelo.unidades.edificios;
 import edu.fiuba.algo3.exceptions.*;
 import edu.fiuba.algo3.modelo.casillero.Casillero;
 import edu.fiuba.algo3.modelo.Inventario;
+import edu.fiuba.algo3.modelo.unidades.moviles.Dragon;
 import edu.fiuba.algo3.modelo.unidades.moviles.Scout;
+import edu.fiuba.algo3.modelo.unidades.moviles.UnidadMovil;
 
 public class PuertoEstelar extends EdificioProtoss {
     private static int COSTO_GASEOSO = 150;
@@ -14,13 +16,13 @@ public class PuertoEstelar extends EdificioProtoss {
     private static final int NIVEL_DE_CONSTRUCCION = 0;
     private static final int NIVEL_DE_CONSTRUCCION_REQUERIDO = 1;
     private boolean estaEvolucionando;
-    private UnidadEnCreacion unidadEnCreacion;
+    private UnidadEnEvolucion unidadEnEvolucion;
     public PuertoEstelar(Casillero casillero, Inventario inventario) {
         super(casillero, inventario, VIDA, ESCUDO);
         casillero.ocupar(this);
         inventario.pagarMateriales(COSTO_GASEOSO,COSTO_MINERAL);
         this.estaEvolucionando = false;
-        this.unidadEnCreacion = null;
+        this.unidadEnEvolucion = null;
     }
     public void ubicarEnInventario(){
         inventario.subirNivelConstruccion(NIVEL_DE_CONSTRUCCION);
@@ -29,8 +31,8 @@ public class PuertoEstelar extends EdificioProtoss {
     public void pasarTurno() {
         super.pasarTurno();
         if(estaEvolucionando){
-            unidadEnCreacion.pasarTurno();
-            this.estaEvolucionando = unidadEnCreacion.estaListo();
+            unidadEnEvolucion.pasarTurno();
+            this.estaEvolucionando = unidadEnEvolucion.estaListo();
             //acaba habria que chequear que si el casillero que da al obtener adyacentes es nulo (porque no hay ninguno libre)
         }
     }
@@ -59,7 +61,7 @@ public class PuertoEstelar extends EdificioProtoss {
 
     public void engendrarScout(){
         Scout scout = new Scout(inventario);
-        this.unidadEnCreacion = new UnidadEnCreacion(this.casillero.obtenerAdyacente(), this.inventario, scout);
+        this.unidadEnEvolucion = new UnidadEnEvolucion(this.casillero.obtenerAdyacente(), this.inventario, scout);
         this.estaEvolucionando = true;
     }
 }

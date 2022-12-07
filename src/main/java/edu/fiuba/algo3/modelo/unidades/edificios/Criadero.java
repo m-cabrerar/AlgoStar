@@ -10,6 +10,9 @@ import edu.fiuba.algo3.modelo.unidades.moviles.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.util.Collection;
+import java.util.List;
+
 public class Criadero extends EdificioZerg{
 
     private static int COSTO_GASEOSO = 0;
@@ -19,7 +22,7 @@ public class Criadero extends EdificioZerg{
     private static int SUMINISTRA = 5;
     private static final int NIVEL_DE_CONSTRUCCION = 0;
     private static final int NIVEL_DE_CONSTRUCCION_REQUERIDO = 0;
-    private List<UnidadEnCreacion> unidadesEnEvolucion;
+    private List<UnidadEnEvolucion> unidadesEnEvolucion;
     
     public Criadero(Casillero casillero, Inventario inventario) {
         super(casillero, inventario, VIDA_MAXIMA);
@@ -40,14 +43,14 @@ public class Criadero extends EdificioZerg{
             this.cantidadLarvas += 1;
         }
         if(!unidadesEnEvolucion.isEmpty()){
-            List<UnidadEnCreacion> aEliminar = new ArrayList<>();
-            for(UnidadEnCreacion unidadEnCreacion : unidadesEnEvolucion){
-                unidadEnCreacion.pasarTurno();
-                if(unidadEnCreacion.estaListo()){
-                    aEliminar.add(unidadEnCreacion);
+            List<UnidadEnEvolucion> aEliminar = new ArrayList<>();
+            for(UnidadEnEvolucion unidadEnEvolucion : unidadesEnEvolucion){
+                unidadEnEvolucion.pasarTurno();
+                if(unidadEnEvolucion.estaListo()){
+                    aEliminar.add(unidadEnEvolucion);
                 }
             }
-            for(UnidadEnCreacion unidadAEliminar: aEliminar){
+            for(UnidadEnEvolucion unidadAEliminar: aEliminar){
                 unidadesEnEvolucion.remove(unidadAEliminar);
             }
 
@@ -145,7 +148,7 @@ public class Criadero extends EdificioZerg{
     }
 
     private void iniciarEvolucion(UnidadMovil unidad){
-        this.unidadesEnEvolucion.add(new UnidadEnCreacion(this.casillero.obtenerAdyacente(), this.inventario, unidad));
+        this.unidadesEnEvolucion.add(new UnidadEnEvolucion(this.casillero.obtenerAdyacente(), this.inventario, unidad));
         this.cantidadLarvas -= 1;
     }
 
