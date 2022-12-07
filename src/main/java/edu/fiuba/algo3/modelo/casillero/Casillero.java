@@ -2,10 +2,7 @@ package edu.fiuba.algo3.modelo.casillero;
 import edu.fiuba.algo3.exceptions.*;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.unidades.*;
-import edu.fiuba.algo3.modelo.unidades.edificios.Asimilador;
-import edu.fiuba.algo3.modelo.unidades.edificios.Criadero;
-import edu.fiuba.algo3.modelo.unidades.edificios.Extractor;
-import edu.fiuba.algo3.modelo.unidades.edificios.NexoMineral;
+import edu.fiuba.algo3.modelo.unidades.edificios.*;
 import edu.fiuba.algo3.modelo.unidades.moviles.UnidadMovil;
 
 import java.util.*;
@@ -183,4 +180,29 @@ public class Casillero{
         this.tipoCasillero.ocupar(criadero);
         this.estaOcupado = true;
     }
+
+    public void ocupar(ReservaDeReproduccion reserva){
+        if (this.estaOcupado()) {
+            throw new UbicacionInvalida("Casillero Ocupado");
+        }
+        this.tipoCasillero.ocupar(reserva);
+        this.estaOcupado = true;
+    }
+
+    public void ocupar(Guarida guarida){
+        if (this.estaOcupado()) {
+            throw new UbicacionInvalida("Casillero Ocupado");
+        }
+        this.tipoCasillero.ocupar(guarida);
+        this.estaOcupado = true;
+    }
+
+    public void ocupar(Espiral espiral){
+        if (this.estaOcupado()) {
+            throw new UbicacionInvalida("Casillero Ocupado");
+        }
+        this.tipoCasillero.ocupar(espiral);
+        this.estaOcupado = true;
+    }
+
 }

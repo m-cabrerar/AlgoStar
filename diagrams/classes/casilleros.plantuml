@@ -21,6 +21,7 @@ class Casillero {
  + void: pasarTurno(int: turnoActual)
  + int: extraerMineral(int: cant)
  + int: extraerGas(int: cant)
+ + void: volverseMoho()
  + boolean: estaOcupado()
  + void: ocupar()
  + void: desocupar()
@@ -48,6 +49,7 @@ class TipoCasillero{
  + int: extraerMineral(int:cantidad)
  + int: extraerGas(int cantidad)
  + void: expandirMoho(List<Casillero> casillasAContagiar)
+ + void: volverseMoho(Casillero casillero)
  + void: ocupar(Unidad unidad)
  + void: ocupar(UnidadMovil unidad)
  + void: ocupar(Extractor extractor)
@@ -89,5 +91,6 @@ class CasilleroVacio{
 + int: extraerGas(int cantidad)
 + void: expandirMoho()
 + void: ocupar(Unidad unidad)
++ void: volverseMoho(Casillero casillero)
 }
 @enduml
