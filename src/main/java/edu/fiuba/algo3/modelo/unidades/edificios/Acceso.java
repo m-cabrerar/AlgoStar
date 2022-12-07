@@ -60,13 +60,13 @@ public class Acceso extends EdificioProtoss {
 
     public void engendrarZealot(){
         Zealot zealot = new Zealot(inventario);
-        this.unidadEnEvolucion = new UnidadEnEvolucion(this.casillero, this.inventario, zealot);
+        this.unidadEnEvolucion = new UnidadEnEvolucion(this.casillero.obtenerAdyacente(), this.inventario, zealot);
         this.estaEvolucionando = true;
     }
 
     public void engendrarDragon(){
         Dragon dragon = new Dragon(inventario);
-        this.unidadEnEvolucion = new UnidadEnEvolucion(this.casillero, this.inventario, dragon);
+        this.unidadEnEvolucion = new UnidadEnEvolucion(this.casillero.obtenerAdyacente(), this.inventario, dragon);
         this.estaEvolucionando = true;
     }
 

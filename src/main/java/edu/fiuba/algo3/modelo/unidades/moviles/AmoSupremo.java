@@ -35,6 +35,8 @@ public class AmoSupremo extends UnidadMovilZerg {
                 super.recibirDanio(danio);
             } catch (Exception EstaDestruido){
                 this.inventario.perderSuministro(SUMINISTRA);
+                this.inventario.eliminarUnidad(this);
+                this.inventario.agregarSuministro(COSTO_SUMINISTRO);
                 throw new EstaDestruido("Unidad destruida");
             }
         }

@@ -141,7 +141,7 @@ public class Criadero extends EdificioZerg{
     }
 
     private void iniciarEvolucion(UnidadMovil unidad){
-        this.unidadesEnEvolucion.add(new UnidadEnEvolucion(this.casillero, this.inventario, unidad));
+        this.unidadesEnEvolucion.add(new UnidadEnEvolucion(this.casillero.obtenerAdyacente(), this.inventario, unidad));
         this.cantidadLarvas -= 1;
     }
 

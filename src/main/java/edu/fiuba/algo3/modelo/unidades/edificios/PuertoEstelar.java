@@ -60,7 +60,7 @@ public class PuertoEstelar extends EdificioProtoss {
 
     public void engendrarScout(){
         Scout scout = new Scout(inventario);
-        this.unidadEnEvolucion = new UnidadEnEvolucion(this.casillero, this.inventario, scout);
+        this.unidadEnEvolucion = new UnidadEnEvolucion(this.casillero.obtenerAdyacente(), this.inventario, scout);
         this.estaEvolucionando = true;
     }
 }

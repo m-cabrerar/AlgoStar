@@ -11,10 +11,10 @@ public class UnidadEnEvolucion {
     private int turnosParaEvolucionar;
     private final UnidadMovil unidad;
 
-    public UnidadEnEvolucion(Casillero casillero, Inventario inventario, UnidadMovil unidad){
+    public UnidadEnEvolucion(Casillero casilleroDondeSeUbicara, Inventario inventario, UnidadMovil unidad){
         this.inventario = inventario;
         this.turnosParaEvolucionar = unidad.turnosParaConstruir();
-        this.casilleroDondeSeUbicara = casillero.obtenerAdyacente();
+        this.casilleroDondeSeUbicara = casilleroDondeSeUbicara;
         this.unidad = unidad;
     }
 
