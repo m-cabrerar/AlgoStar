@@ -8,18 +8,21 @@ import javafx.stage.Stage;
 
 public class ContenedorPrincipal extends BorderPane {
 
-    BarraMenu barraMenu;
-    VistaJuego vistaJuego;
-    GridPane tablero;
-    GridPane tableroUnidades;
-    VBox contenedorCentral;
-    ContenedorJugador contenedorJugador;
-    Botonera botonera;
+    private BarraMenu barraMenu;
+    private VistaJuego vistaJuego;
+    private GridPane tablero;
+    private GridPane tableroUnidades;
+    private GridPane tableroDeBotones;
+    private VBox contenedorCentral;
+    private ContenedorJugador contenedorJugador;
+    private Botonera botonera;
+    private final Juego juego;
     public ContenedorPrincipal(Stage stage, Juego juego) {
         this.setMenu(stage);
         this.setCentro(juego);
         this.setJugador(juego);
         this.setBotonera(juego);
+        this.juego = juego;
     }
 
     private void setMenu(Stage stage) {
@@ -32,8 +35,10 @@ public class ContenedorPrincipal extends BorderPane {
         tablero.setAlignment(Pos.CENTER);
         tableroUnidades = new GridPane();
         tableroUnidades.setAlignment(Pos.CENTER);
-        StackPane centerPane = new StackPane(tablero, tableroUnidades);
-        vistaJuego = new VistaJuego(juego, tablero, tableroUnidades, centerPane);
+        tableroDeBotones = new GridPane();
+        tableroDeBotones.setAlignment(Pos.CENTER);
+        StackPane centerPane = new StackPane(tablero, tableroUnidades, tableroDeBotones);
+        vistaJuego = new VistaJuego(juego, tablero, tableroUnidades, tableroDeBotones, centerPane, this);
         contenedorCentral = new VBox(centerPane);
         contenedorCentral.setAlignment(Pos.CENTER);
         contenedorCentral.setSpacing(10);
@@ -51,11 +56,11 @@ public class ContenedorPrincipal extends BorderPane {
     }
 
     private void setBotonera(Juego juego) {
-        botonera = new Botonera(juego, this);
+        botonera = new Botonera(juego, vistaJuego, this);
         this.setLeft(botonera);
     }
 
-    public void actualizar() {
+    public void update() {
         vistaJuego.update();
         contenedorJugador.update();
         botonera.update();
@@ -66,4 +71,8 @@ public class ContenedorPrincipal extends BorderPane {
         botonera.iniciarJuego();
     }
 
+    public void finalizarTurno() {
+        juego.pasarTurno();
+        update();
+    }
 }
