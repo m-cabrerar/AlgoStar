@@ -92,6 +92,11 @@ public class Casillero{
         this.mapa.energizar(this.coordenadaX,this.coordenadaY,i);
     }
 
+
+    public void volverseMoho(){
+        tipoCasillero.volverseMoho(this);
+    }
+
     public boolean tieneEnRango(Unidad unidadAAtacar, int rango){
         List<Casillero> casilleros = mapa.casillerosEnRango(coordenadaX,coordenadaY,rango);
         //si el casillero de unidadAAtacar esta en la lista de casilleros, entonces esta en rango

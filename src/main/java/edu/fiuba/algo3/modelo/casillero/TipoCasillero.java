@@ -20,6 +20,8 @@ public class TipoCasillero{
     }
     public void expandirMoho(List<Casillero> casillasAContagiar){}
 
+    public void volverseMoho(Casillero casillero){return;}
+
     //METODOS PARA DOUBLE DISPATCH ---------------------------------------------------------------
     public void ocupar(UnidadMovil unidad){}
     public void ocupar(Extractor extractor){throw new UbicacionInvalida("Ubicacion invalida");}
