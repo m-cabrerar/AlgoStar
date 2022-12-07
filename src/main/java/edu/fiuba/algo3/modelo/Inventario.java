@@ -87,7 +87,6 @@ public class Inventario {
 
     public boolean tieneEdificios(){
         return !(edificios.isEmpty());
-        //TODO cuando esten separados los edificios se manda a edificios
     }
     public void pasarTurno(){
         for(Unidad unidad :unidades){

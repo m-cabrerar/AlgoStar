@@ -1,13 +1,19 @@
 @startuml
 title Modelado de Unidades
 
+
+interface Atacables {
++void sufrirAtaque(int danio)
+}
+
+
 class UnidadMovil {
  - Casillero: casilleroActual
  UnidadMovil(inventario, costoMineral, costoGas)
  {sbstract} void: atacar(Unidad unidad)
 }
 
-class UnidadMovilProtoss {
+abstract class UnidadMovilProtoss {
  - int: escucoMaximo
  - int: escudo
  - int: vida
@@ -27,6 +33,8 @@ class UnidadMovilZerg{
 interface Unidad {
  + void:pasarTurno()
  + void:recibirDanio(int cantidad)
+ +boolean estaPorAca(List<Casillero> casilleros)
+ +Integer[] obtenerPosicion()
 }
 class Dragon{}
 class Zealot{}
@@ -38,6 +46,7 @@ class Hidralisco{}
 class Guardian{}
 
 Unidad <|.. UnidadMovil
+
 UnidadMovil <|-- UnidadMovilProtoss
 UnidadMovil <|-- UnidadMovilZerg
 UnidadMovilProtoss <|-- Dragon

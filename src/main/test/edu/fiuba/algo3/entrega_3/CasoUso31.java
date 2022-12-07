@@ -23,7 +23,7 @@ public class CasoUso31{
         Inventario inventario = new Inventario();
         inventario.agregarMineral(200);
         inventario.agregarGas(150);
-        
+
         Casillero casilleroMock = mock(Casillero.class);
         new Criadero(casilleroMock, inventario);
         Criadero criadero = new Criadero(casilleroMock, inventario);
