@@ -1,0 +1,68 @@
+@startuml
+'https://plantuml.com/class-diagram
+title Modelado de la vida
+abstract class Vida{
+#int:vida
+
++<u>Vida(int vida)
++void: chequeoDeVida()
++boolean: quedaVida()
+}
+class VidaZerg{
+-int:vidaMaxima
+
++<u> VidaZerg(int cantidadVida)
++ void: sufrirAtaque(int danio)
++ void: regenerar()
++ void: pasarTurno()
+}
+
+class VidaProtoss{
+-Escudo: escudo
+
++<u> VidaProtoss(int vida, int escudo)
++ void: sufrirAtaque(int danio)
++ void: pasarTurno()
+
+}
+
+interface Regenerativo{
++void: regenerar()
+}
+
+interface Atacable {
++void: sufrirAtaque(int danio)
+}
+
+class Escudo{
+-int: escudo
+-int: escudoMaximo
+
++<u>Escudo(int escudo)
++ void: regenerar()
++ void: sufrirAtaque(int danio)
++ void: chequeoDeEscudo()
++ boolean: quedaEscudo()
+}
+
+class Danio{
+-int: danioAereo
+-int: danioTerrestre
+
++<u>Danio(int danioAereo, int danioTerrestre)
++int: ataqueAereo()
++int: ataqueTerrestre()
+}
+
+VidaProtoss *-- "1"Escudo
+Regenerativo <|.. Escudo
+Atacable <|.. Escudo
+
+Danio <.. Atacable
+Vida <|-- VidaProtoss
+Vida <|-- VidaZerg
+Regenerativo <|.. VidaZerg
+Atacable <|.. Vida
+ModificablePorTurno <|.. Vida
+
+@enduml

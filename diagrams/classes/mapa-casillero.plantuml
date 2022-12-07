@@ -2,8 +2,8 @@
 title Modelado de Mapa con Casillero
 
 class Mapa {
-    -int:anchoMapa
-    -int:altoMapa
+    -int: anchoMapa
+    -int: altoMapa
     -List<List<Casillero>>: tableroActual
     -int: tiempoVida
 
@@ -11,7 +11,7 @@ class Mapa {
     +void: cambiarTipoCasilla(int: x, int: y, TipoCasillero: tipo)
     +List<Casillero>: casillerosAdyacentes(int:x, int:y)
     +List<Casillero>: casillerosEnRango(int:xInicial, int:yInicial, int:rango)
-    +List<List<Integer>> equidistantesPares(int cantidad)
+    +List<List<Integer>>: equidistantesPares(int cantidad)
     +boolean: enRango(int:x, int:y)
     +void: pasarTurno()
     +void: energizar(int:x,int:y,int:rango)
@@ -43,17 +43,19 @@ class Casillero {
  + int: extraerMineral(int: cant)
  + int: extraerGas(int: cant)
  + boolean: estaOcupado()
- + void: ocupar()
  + void: desocupar()
  + List<Casillero>: visitarAdyacentes(int turnoActual, Mapa mapa)
  + int: posicionX()
  + int: posicionY()
+
+ + void: ocupar()
 }
 
 class TipoCasillero{
  + int: extraerMineral(int:cantidad)
  + int: extraerGas(int cantidad)
  + void: expandirMoho(List<Casillero> casillasAContagiar)
+
  + void: ocupar(Unidad unidad)
  + void: ocupar(UnidadMovil unidad)
  + void: ocupar(Extractor extractor)

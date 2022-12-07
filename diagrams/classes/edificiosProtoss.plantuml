@@ -1,25 +1,33 @@
 @startuml
 title Modelado de los Edificios Protoss
-
+note "Inventario y Casillero se explican en sus respectivos UMLs" as N1
 
 
 class EdificioProtoss{
- - int:escudo
- - int:escudoMaximo
- + EdificioProtoss(Casillero casillero, Inventario inventario, int vidaInicial, int escudoInicial)
- + void:recibirDanio(Danio danio)
+ + <u>EdificioProtoss(Casillero casillero, Inventario inventario, int vidaInicial, int escudoInicial)
  + void:pasarTurno()
 }
 
+
 class Acceso {
- + Acceso(unCasillero, unInventario)
+-{static} int: CostoGaseoso
+-{static} int: CostoMineral
+-{static} int: NivelDeConstruccion
+
+ + <u>Acceso(unCasillero, unInventario)
+ + void: ubicarEnInventario()
  + void: pasarTurno()
  + int: turnosParaConstruir()
  + {static} EdificioEnConstruccion:construir(casillero, inventario)
 }
 
 class Asimilador {
- + Asimilador(unCasillero, unInventario)
+-{static} int: CostoGaseoso
+-{static} int: CostoMineral
+-{static} int: NivelDeConstruccion
+
+ + <u>Asimilador(unCasillero, unInventario)
+ + void: ubicarEnInventario()
  + void: pasarTurno()
  + int: turnosParaConstruir()
  + {static} EdificioEnConstruccion:construir(casillero, inventario)
@@ -27,7 +35,12 @@ class Asimilador {
 }
 
 class NexoMineral {
- + NexoMineral(unCasillero, unInventario)
+-{static} int: CostoGaseoso
+-{static} int: CostoMineral
+-{static} int: NivelDeConstruccion
+
+ + <u>NexoMineral(unCasillero, unInventario)
+ + void: ubicarEnInventario()
  + void: pasarTurno()
  + int: turnosParaConstruir()
  + {static} EdificioEnConstruccion:construir(casillero, inventario)
@@ -35,14 +48,27 @@ class NexoMineral {
 }
 
 class Pilon {
- + Pilon(unCasillero, unInventario)
+-{static} int: CostoGaseoso
+-{static} int: CostoMineral
+-{static} int: NivelDeConstruccion
+-{static} int: Suministra
+
+ + <u>Pilon(unCasillero, unInventario)
+ + void: ubicarEnInventario()
  + void: pasarTurno()
  + int: turnosParaConstruir()
+ + void: recibirDanio(Danio danio)
  + {static} EdificioEnConstruccion:construir(casillero, inventario)
 }
 
 class PuertoEstelar {
+-{static} int: CostoGaseoso
+-{static} int: CostoMineral
+-{static} int: NivelDeConstruccion
+
+
  + PuertoEstelar(unCasillero, unInventario)
+ + void: ubicarEnInventario()
  + void: pasarTurno()
  + int: turnosParaConstruir()
  + {static} EdificioEnConstruccion:construir(casillero, inventario)

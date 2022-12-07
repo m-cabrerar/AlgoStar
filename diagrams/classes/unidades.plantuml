@@ -1,61 +1,111 @@
 @startuml
 title Modelado de Unidades
+note "Inventario y Casillero se explican en sus respectivos UMLs" as N1
 
-
-interface Atacables {
-+void sufrirAtaque(int danio)
+interface Superficie{
++ int: danio(Danio danio)
++ boolean: puedeVolar()
+}
+class Tierra{
+ int: danio(Danio danio)
+ boolean: puedeVolar()
+}
+class Aire{
+int: danio(Danio danio)
+boolean: puedeVolar()
 }
 
 
-class UnidadMovil {
+
+interface Construible {
++int: turnosParaConstruir()
+}
+
+abstract class  UnidadMovil {
  - Casillero: casilleroActual
- UnidadMovil(inventario, costoMineral, costoGas)
- {sbstract} void: atacar(Unidad unidad)
+ - Inventario: inventario
+
+ +<u>UnidadMovil(inventario, costoMineral, costoGas,int costoSuministro)
+ +void: ubicarEn(Casillero casillero)
+ + boolean: tieneEnRangoA(Unidad unidadAAtacar, int rango)
+ +boolean: estaPorAca(List<Casillero> casilleros)
+ +boolean: esVoladora()
+ +void: recibirDanio(Danio danio)
+ +void. atacar(Unidad unidadAAtacar, int rango, Danio danio)
+ +Integer[]: obtenerPosicion()
 }
 
 abstract class UnidadMovilProtoss {
- - int: escucoMaximo
- - int: escudo
- - int: vida
- + UnidadMovilProtoss(inventario,costoM,costoG,vida,escudo)
+ + <u> UnidadMovilProtoss(inventario,costoM,costoG,vida,escudo,costoSuministro)
  + void: pasarTurno()
- {abstract}void: atacar(Unidad unidad)
 }
 
-class UnidadMovilZerg{
- - int: vidaMaxima
- - int: vida
- + UnidadMovilZerg(inventario,costoM,costoG,vida)
+abstract class UnidadMovilZerg{
+ + <u>UnidadMovilZerg(inventario,costoM,costoG,,costoSuministro)
  + void: pasarTurno()
- {abstract}void: atacar(Unidad unidad)
 }
 
 interface Unidad {
  + void:pasarTurno()
  + void:recibirDanio(int cantidad)
- +boolean estaPorAca(List<Casillero> casilleros)
- +Integer[] obtenerPosicion()
+ +boolean: estaPorAca(List<Casillero> casilleros)
+ +Integer[]: obtenerPosicion()
 }
+
+abstract class Vida{
+#int:vida
+
++<u>Vida(int vida)
++void: chequeoDeVida()
++boolean: quedaVida()
+}
+note bottom: Explicado en su propio UML
+
+class Danio{
+-int: danioAereo
+-int: danioTerrestre
+
++<u>Danio(int danioAereo, int danioTerrestre)
++int: ataqueAereo()
++int: ataqueTerrestre()
+}
+
 class Dragon{}
 class Zealot{}
 class Scout{}
 
 class Mutalisco{}
 class Zerling{}
+class Zangano{}
 class Hidralisco{}
 class Guardian{}
+class Devorador{}
 
 Unidad <|.. UnidadMovil
 
+Construible <|.. UnidadMovil
+
 UnidadMovil <|-- UnidadMovilProtoss
 UnidadMovil <|-- UnidadMovilZerg
+
 UnidadMovilProtoss <|-- Dragon
 UnidadMovilProtoss <|-- Zealot
 UnidadMovilProtoss <|-- Scout
+
 UnidadMovilZerg <|-- Mutalisco
 UnidadMovilZerg <|-- Zerling
 UnidadMovilZerg <|-- Hidralisco
 UnidadMovilZerg <|-- Guardian
+UnidadMovilZerg <|-- Devorador
+UnidadMovilZerg <|-- Zangano
+
+UnidadMovil *-- Superficie
+Superficie <|.. Tierra
+Superficie <|.. Aire
+Danio <.. Superficie
+
+UnidadMovil *-- "1"Vida
+
 
 
 @enduml
