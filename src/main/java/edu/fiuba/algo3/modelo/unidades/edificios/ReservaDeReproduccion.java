@@ -6,9 +6,10 @@ import edu.fiuba.algo3.modelo.unidades.moviles.UnidadMovil;
 import edu.fiuba.algo3.modelo.unidades.moviles.Zerling;
 
 public class ReservaDeReproduccion extends EdificioZerg {
-    private static int COSTO_GASEOSO = 150;
-    private static int COSTO_MINERAL = 0;
+    private static int COSTO_GASEOSO = 0;
+    private static int COSTO_MINERAL = 150;
     private static final int NIVEL_DE_CONSTRUCCION = 1;
+    private static int TURNOS_PARA_CONSTRUIR = 12;
     private static int VIDA_MAXIMA = 1000;
     public ReservaDeReproduccion(Casillero casillero, Inventario inventario){
         super(casillero, inventario,VIDA_MAXIMA);
@@ -27,11 +28,11 @@ public class ReservaDeReproduccion extends EdificioZerg {
         }
     }
     public int turnosParaConstruir(){
-        return 12;
+        return TURNOS_PARA_CONSTRUIR;
     }
     public static EdificioEnConstruccion construir(Casillero casillero, Inventario inventario) throws UbicacionInvalida, RecursosInsuficientes {
         // hacer checkeos de casilla y materiales
-        if(!inventario.tieneRecursos(150,0)){
+        if(!inventario.tieneRecursos(COSTO_GASEOSO,COSTO_MINERAL)){
             throw new RecursosInsuficientes("No tiene recursos");
         }
         if(!inventario.puedeConstruir(0)){

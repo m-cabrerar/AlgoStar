@@ -74,4 +74,10 @@ public abstract class UnidadMovil implements Unidad, Construible {
         return posicion;
     }
 
+    public int getVida() {
+        return vida.getVida();
+    }
+    public int getVidaMaxima() {
+        return vida.getVidaMaxima();
+    }
 }

@@ -9,5 +9,7 @@ public interface Unidad {
     void recibirDanio(Danio danio) throws EstaDestruido;
     boolean estaPorAca(List<Casillero> casilleros);
     public Integer[] obtenerPosicion();
+    public int getVida();
+    public int getVidaMaxima();
     
 }

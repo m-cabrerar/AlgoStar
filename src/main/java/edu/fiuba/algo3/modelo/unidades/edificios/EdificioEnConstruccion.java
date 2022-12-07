@@ -66,4 +66,22 @@ public class EdificioEnConstruccion implements Unidad {
     public Unidad getConstruido() {
         return vaASer;
     }
+    public int turnosParaConstruir() {
+        return turnosRestantes;
+    }
+
+    public int getVida() {
+        if (estaListo()) {
+            return vaASer.getVida();
+        } else {
+            return 1;
+        }
+    }
+    public int getVidaMaxima() {
+        if (estaListo()) {
+            return vaASer.getVidaMaxima();
+        } else {
+            return 1;
+        }
+    }
 }

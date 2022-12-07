@@ -25,6 +25,7 @@ public class VistaJuego {
     private final GridPane tablero;
     private final GridPane tableroUnidades;
     private final GridPane tableroDeBotones;
+    private final Botonera botonera;
     private final ContenedorPrincipal contenedorPrincipal;
     private boolean[][] casilleroOcupadoPorEdificioAliado;
     private boolean[][] casilleroOcupadoPorEdificioEnemigo;
@@ -34,12 +35,13 @@ public class VistaJuego {
     private int alto;
     private int ancho;
     private StackPane centerPane;
-    public VistaJuego(Juego juego, GridPane tablero, GridPane tableroUnidades, GridPane tableroDeBotones, StackPane centerPane, ContenedorPrincipal contenedorPrincipal) {
+    public VistaJuego(Juego juego, GridPane tablero, GridPane tableroUnidades, GridPane tableroDeBotones, Botonera botonera, StackPane centerPane, ContenedorPrincipal contenedorPrincipal) {
         this.juego = juego;
         this.mapa = juego.getMapa();
         this.tablero = tablero;
         this.tableroUnidades = tableroUnidades;
         this.tableroDeBotones = tableroDeBotones;
+        this.botonera = botonera;
         this.centerPane = centerPane;
         this.contenedorPrincipal = contenedorPrincipal;
     }
@@ -89,27 +91,55 @@ public class VistaJuego {
                 boton.prefHeightProperty().bind(Bindings.min(centerPane.widthProperty().divide(alto),
                         centerPane.heightProperty().divide(alto)));
                 boton.opacityProperty().setValue(0);
-/*                if (casilleroOcupadoPorEdificioAliado[i][j]) {
+                List<Casillero> casillero = new java.util.ArrayList<>();
+                casillero.add(mapa.obtenerCasillero(i, j));
+                if (casilleroOcupadoPorEdificioAliado[i][j]) {
                     boton.setOnAction(e -> {
-                        System.out.println("Edificio aliado");
+                        Inventario inventario = inventarios[juego.getTurnos()%juego.cantidadDeJugadores()];
+                        for (EdificioEnConstruccion edificio : inventario.getEdificios()) {
+                            if (edificio.estaPorAca(casillero)) {
+                                botonera.mostrarBotonesEdificio(edificio);
+                            }
+                        }
                     });
                 }else if (casilleroOcupadoPorEdificioEnemigo[i][j]) {
+                    int fila = i;
+                    int columna = j;
                     boton.setOnAction(e -> {
-                        System.out.println("Edificio enemigo");
+                        Inventario inventario = inventarios[(juego.getTurnos()+1)%juego.cantidadDeJugadores()];
+                        for (EdificioEnConstruccion edificio : inventario.getEdificios()) {
+                            if (edificio.estaPorAca(casillero)) {
+                                botonera.mostrarInfoEdificio(edificio);
+                            }
+                        }
                     });
                 } else if (casilleroOcupadoPorUnidadAliada[i][j]) {
+                    int fila = i;
+                    int columna = j;
                     boton.setOnAction(e -> {
-                        System.out.println("Unidad aliada");
+                        Inventario inventario = inventarios[juego.getTurnos()%juego.cantidadDeJugadores()];
+                        for (Unidad unidad : inventario.getUnidades()) {
+                            if (unidad.estaPorAca(casillero)) {
+                                botonera.mostrarBotonesUnidad(unidad);
+                            }
+                        }
                     });
                 } else if (casilleroOcupadoPorUnidadEnemiga[i][j]) {
+                    int fila = i;
+                    int columna = j;
                     boton.setOnAction(e -> {
-                        System.out.println("Unidad enemiga");
+                        Inventario inventario = inventarios[(juego.getTurnos()+1)%juego.cantidadDeJugadores()];
+                        for (Unidad unidad : inventario.getUnidades()) {
+                            if (unidad.estaPorAca(casillero)) {
+                                botonera.mostrarInfoUnidad(unidad);
+                            }
+                        }
                     });
                 } else {
                     boton.setOnAction(e -> {
-                        System.out.println("Casillero vacio");
+                        contenedorPrincipal.update();
                     });
-                }*/
+                }
             }
         }
     }
@@ -118,8 +148,8 @@ public class VistaJuego {
         tableroUnidades.setPrefSize(alto*50, alto*50);
 
 
-        Inventario jugadorActual = juego.getJugadores()[juego.getTurnos()%juego.cantidadDeJugadores()].getInventario();
-        Inventario jugadorEnemigo = juego.getJugadores()[(juego.getTurnos()+1)%juego.cantidadDeJugadores()].getInventario();
+        Inventario jugadorActual = inventarios[juego.getTurnos()%juego.cantidadDeJugadores()];
+        Inventario jugadorEnemigo = inventarios[(juego.getTurnos()+1)%juego.cantidadDeJugadores()];
 
         List<Unidad> unidadesAliadas = jugadorActual.getUnidades();
         for (Unidad unidad : unidadesAliadas) {
@@ -176,7 +206,7 @@ public class VistaJuego {
 
     public void crearNexoMineral(Label label) {
         tableroDeBotones.getChildren().clear();
-        Inventario inventario = juego.getJugadores()[juego.getTurnos()%juego.cantidadDeJugadores()].getInventario();
+        Inventario inventario = inventarios[juego.getTurnos()%juego.cantidadDeJugadores()];
         for (int i = 0; i<alto; i++) {
             for (int j = 0; j<ancho; j++) {
                 Button boton = new Button();
@@ -203,7 +233,7 @@ public class VistaJuego {
 
     public void crearPilon(Label label) {
         tableroDeBotones.getChildren().clear();
-        Inventario inventario = juego.getJugadores()[juego.getTurnos()%juego.cantidadDeJugadores()].getInventario();
+        Inventario inventario = inventarios[juego.getTurnos()%juego.cantidadDeJugadores()];
         for (int i = 0; i<alto; i++) {
             for (int j = 0; j<ancho; j++) {
                 Button boton = new Button();
@@ -229,7 +259,7 @@ public class VistaJuego {
 
     public void crearAsimilador(Label label) {
         tableroDeBotones.getChildren().clear();
-        Inventario inventario = juego.getJugadores()[juego.getTurnos()%juego.cantidadDeJugadores()].getInventario();
+        Inventario inventario = inventarios[juego.getTurnos()%juego.cantidadDeJugadores()];
         for (int i = 0; i<alto; i++) {
             for (int j = 0; j<ancho; j++) {
                 Button boton = new Button();
@@ -255,7 +285,7 @@ public class VistaJuego {
 
     public void crearPuertoEstelar(Label label) {
         tableroDeBotones.getChildren().clear();
-        Inventario inventario = juego.getJugadores()[juego.getTurnos()%juego.cantidadDeJugadores()].getInventario();
+        Inventario inventario = inventarios[juego.getTurnos()%juego.cantidadDeJugadores()];
         for (int i = 0; i<alto; i++) {
             for (int j = 0; j<ancho; j++) {
                 Button boton = new Button();
@@ -281,7 +311,7 @@ public class VistaJuego {
 
     public void crearAcceso(Label label) {
         tableroDeBotones.getChildren().clear();
-        Inventario inventario = juego.getJugadores()[juego.getTurnos()%juego.cantidadDeJugadores()].getInventario();
+        Inventario inventario = inventarios[juego.getTurnos()%juego.cantidadDeJugadores()];
         for (int i = 0; i<alto; i++) {
             for (int j = 0; j<ancho; j++) {
                 Button boton = new Button();
@@ -307,7 +337,7 @@ public class VistaJuego {
 
     public void crearExtractor(Label label) {
         tableroDeBotones.getChildren().clear();
-        Inventario inventario = juego.getJugadores()[juego.getTurnos()%juego.cantidadDeJugadores()].getInventario();
+        Inventario inventario = inventarios[juego.getTurnos()%juego.cantidadDeJugadores()];
         for (int i = 0; i<alto; i++) {
             for (int j = 0; j<ancho; j++) {
                 Button boton = new Button();
@@ -333,7 +363,7 @@ public class VistaJuego {
 
     public void crearCriadero(Label label) {
         tableroDeBotones.getChildren().clear();
-        Inventario inventario = juego.getJugadores()[juego.getTurnos()%juego.cantidadDeJugadores()].getInventario();
+        Inventario inventario = inventarios[juego.getTurnos()%juego.cantidadDeJugadores()];
         for (int i = 0; i<alto; i++) {
             for (int j = 0; j<ancho; j++) {
                 Button boton = new Button();
@@ -359,7 +389,7 @@ public class VistaJuego {
 
     public void crearReservaDeReproduccion(Label label) {
         tableroDeBotones.getChildren().clear();
-        Inventario inventario = juego.getJugadores()[juego.getTurnos()%juego.cantidadDeJugadores()].getInventario();
+        Inventario inventario = inventarios[juego.getTurnos()%juego.cantidadDeJugadores()];
         for (int i = 0; i<alto; i++) {
             for (int j = 0; j<ancho; j++) {
                 Button boton = new Button();
@@ -385,7 +415,7 @@ public class VistaJuego {
 
     public void crearGuarida(Label label) {
         tableroDeBotones.getChildren().clear();
-        Inventario inventario = juego.getJugadores()[juego.getTurnos()%juego.cantidadDeJugadores()].getInventario();
+        Inventario inventario = inventarios[juego.getTurnos()%juego.cantidadDeJugadores()];
         for (int i = 0; i<alto; i++) {
             for (int j = 0; j<ancho; j++) {
                 Button boton = new Button();
@@ -411,7 +441,7 @@ public class VistaJuego {
 
     public void crearEspiral(Label label) {
         tableroDeBotones.getChildren().clear();
-        Inventario inventario = juego.getJugadores()[juego.getTurnos()%juego.cantidadDeJugadores()].getInventario();
+        Inventario inventario = inventarios[juego.getTurnos()%juego.cantidadDeJugadores()];
         for (int i = 0; i<alto; i++) {
             for (int j = 0; j<ancho; j++) {
                 Button boton = new Button();

@@ -8,9 +8,12 @@ public class NexoMineral extends EdificioProtoss {
 
     private static int COSTO_GASEOSO = 0;
     private static int COSTO_MINERAL = 50;
+    private static int VIDA = 250;
+    private static int ESCUDO = 250;
+    private static int TURNOS_PARA_CONSTRUIR = 4;
     private static final int NIVEL_DE_CONSTRUCCION = 0;
     public NexoMineral(Casillero casillero, Inventario inventario) {
-        super(casillero, inventario, 250, 250);
+        super(casillero, inventario, VIDA, ESCUDO);
         casillero.ocupar(this);
         inventario.pagarMateriales(COSTO_GASEOSO,COSTO_MINERAL);
     }
@@ -23,7 +26,7 @@ public class NexoMineral extends EdificioProtoss {
     }
 
     public int turnosParaConstruir() {
-        return 4;
+        return TURNOS_PARA_CONSTRUIR;
     }
 
     public static EdificioEnConstruccion construir(Casillero casillero, Inventario inventario) {

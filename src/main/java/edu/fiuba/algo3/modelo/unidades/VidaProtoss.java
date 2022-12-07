@@ -22,5 +22,10 @@ public class VidaProtoss extends Vida {
         this.escudo.regenerar();
     }
 
-    
+    public int getEscudo(){
+        return this.escudo.getEscudo();
+    }
+    public int getEscudoMaximo(){
+        return this.escudo.getEscudoMaximo();
+    }
 }
