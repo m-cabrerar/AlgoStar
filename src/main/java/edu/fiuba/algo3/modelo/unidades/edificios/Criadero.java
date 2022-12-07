@@ -3,8 +3,12 @@ package edu.fiuba.algo3.modelo.unidades.edificios;
 import edu.fiuba.algo3.exceptions.*;
 import edu.fiuba.algo3.modelo.casillero.Casillero;
 import edu.fiuba.algo3.modelo.Inventario;
+import edu.fiuba.algo3.modelo.casillero.Moho;
 import edu.fiuba.algo3.modelo.unidades.Danio;
 import edu.fiuba.algo3.modelo.unidades.moviles.UnidadMovil;
+
+import java.util.Collection;
+import java.util.List;
 
 public class Criadero extends EdificioZerg{
 
@@ -53,6 +57,22 @@ public class Criadero extends EdificioZerg{
             throw new CorrelativasInsuficientes("Aún no se puede contruir este edificio");
         }
         Criadero criadero = new Criadero(casillero, inventario);
+        System.out.println(casillero.posicionX() + " " + casillero.posicionY());
+        Moho moho = new Moho();
+        casillero.setTipoCasillero(moho);
+        List<Casillero> casillerosAdyacentes = casillero.obtenerAdyacentes();
+        List<Casillero> casillerosAdyacentesYAdyacentes = casillero.obtenerAdyacentes();
+        System.out.println("Adyacentes" + casillerosAdyacentes.size());
+        for (Casillero casilleroAdyacente : casillerosAdyacentes) {
+            System.out.println(casilleroAdyacente.posicionX() + " " + casilleroAdyacente.posicionY());
+            casillerosAdyacentesYAdyacentes.addAll(casilleroAdyacente.obtenerAdyacentes());
+        }
+        System.out.println("Adyacentes y adyacentes" + casillerosAdyacentesYAdyacentes.size());
+        for (Casillero casilleroAdyacenteYAdyacente : casillerosAdyacentesYAdyacentes) {
+            System.out.println(casilleroAdyacenteYAdyacente.posicionX() + " " + casilleroAdyacenteYAdyacente.posicionY());
+        }
+
+        moho.expandirMoho(casillerosAdyacentesYAdyacentes);
         return new EdificioEnConstruccion(criadero, casillero, inventario);
     }
     

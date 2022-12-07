@@ -112,6 +112,9 @@ public class Casillero{
         }
         return null;
     }
+    public List<Casillero> obtenerAdyacentes(){
+        return mapa.CasillerosAdyacentes(coordenadaX, coordenadaY);
+    }
     public void quitarInvisibilidadEnRango(int rango){
         List<Casillero> casilleros = mapa.casillerosEnRango(coordenadaX,coordenadaY,rango);
         //si el casillero de unidadAAtacar esta en la lista de casilleros, entonces esta en rango
