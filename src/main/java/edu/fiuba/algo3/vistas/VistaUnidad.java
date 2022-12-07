@@ -42,8 +42,8 @@ public class VistaUnidad extends StackPane {
             case "ReservaDeReproduccion":
                 image = new Image("file:src/main/java/edu/fiuba/algo3/vistas/img/edificios/reservaDeReproduccion.gif");
                 break;
-            case "UnidadEnEvolucion":
-                image = new Image("file:src/main/java/edu/fiuba/algo3/vistas/img/unidades/unidadEnEvolucion.gif");
+            case "Engendradora":
+                image = new Image("file:src/main/java/edu/fiuba/algo3/vistas/img/unidades/engendradora.gif");
                 break;
             case "AmoSupremo":
                 image = new Image("file:src/main/java/edu/fiuba/algo3/vistas/img/unidades/amoSupremo.gif");
