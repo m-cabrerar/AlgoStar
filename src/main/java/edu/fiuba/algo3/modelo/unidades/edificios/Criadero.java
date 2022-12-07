@@ -21,6 +21,7 @@ public class Criadero extends EdificioZerg{
     private static int VIDA_MAXIMA = 500;
     private static int SUMINISTRA = 5;
     private static final int NIVEL_DE_CONSTRUCCION = 0;
+    private static final int NIVEL_DE_CONSTRUCCION_REQUERIDO = 0;
     private List<Engendradora> unidadesEnEvolucion;
     
     public Criadero(Casillero casillero, Inventario inventario) {
