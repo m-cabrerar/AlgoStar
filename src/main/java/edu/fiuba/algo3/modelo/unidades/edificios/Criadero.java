@@ -68,7 +68,6 @@ public class Criadero extends EdificioZerg{
             throw new CorrelativasInsuficientes("Aún no se puede contruir este edificio");
         }
         Criadero criadero = new Criadero(casillero, inventario);
-        System.out.println(casillero.posicionX() + " " + casillero.posicionY());
         Moho moho = new Moho();
         casillero.setTipoCasillero(moho);
         List<Casillero> casillerosAdyacentes = casillero.obtenerAdyacentes();
