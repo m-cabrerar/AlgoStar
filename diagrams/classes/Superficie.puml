@@ -1,0 +1,31 @@
+@startuml
+'https://plantuml.com/class-diagram
+title Modelado de Superficie
+
+class Danio{
+-int: danioAereo
+-int: danioTerrestre
+
++<u>Danio(int danioAereo, int danioTerrestre)
++int: ataqueAereo()
++int: ataqueTerrestre()
+
+}
+
+interface Superficie{
++ int: danio(Danio danio)
++ boolean: puedeVolar()
+}
+class Tierra{
+ int: danio(Danio danio)
+ boolean: puedeVolar()
+}
+class Aire{
+int: danio(Danio danio)
+boolean: puedeVolar()
+}
+
+Superficie <|.. Tierra
+Superficie <|.. Aire
+Danio <.. Superficie
+@enduml

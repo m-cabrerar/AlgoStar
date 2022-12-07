@@ -1,0 +1,38 @@
+@startuml
+'https://plantuml.com/class-diagram
+title Modelado de Unidades Moviles Zerg
+
+class Mutalisco{}
+class Zerling{}
+class Zangano{}
+class Hidralisco{}
+class Guardian{}
+class Devorador{}
+
+abstract class  UnidadMovil {
+
+}
+
+
+abstract class UnidadMovilZerg{
+ + <u>UnidadMovilZerg(inventario,costoM,costoG,,costoSuministro)
+ + void: pasarTurno()
+}
+
+
+UnidadMovilZerg <|-- Mutalisco
+UnidadMovilZerg <|-- Zerling
+UnidadMovilZerg <|-- Hidralisco
+UnidadMovilZerg <|-- Guardian
+UnidadMovilZerg <|-- Devorador
+UnidadMovilZerg <|-- Zangano
+
+UnidadMovil <|-- UnidadMovilZerg
+
+Mutalisco *-- Danio
+Zangano *-- Danio
+Zerling *-- Danio
+Hidralisco *-- Danio
+Guardian *-- Danio
+Devorador *-- Danio
+@enduml
