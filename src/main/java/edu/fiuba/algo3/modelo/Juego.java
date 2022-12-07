@@ -106,7 +106,6 @@ public class Juego {
                 return "Ganador " + jugadores[0].getNombreYRaza();
             }
         }
-        turnos ++; //esto tampoco se hará aca
         return null;
     }
 
