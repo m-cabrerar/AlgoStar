@@ -25,6 +25,7 @@ class Casillero {
  + void: ocupar()
  + void: desocupar()
  + List<Casillero>: visitarAdyacentes(int turnoActual, Mapa mapa)
+ + boolean: tieneEnRango(Unidad unidadAAtacar, int rango)
  + int: posicionX()
  + int: posicionY()
 }

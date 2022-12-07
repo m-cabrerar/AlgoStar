@@ -28,6 +28,8 @@ class Inventario {
 +boolean: tieneSuministros(int cantidad)
 +boolean: puedeCrecerPoblacion(int cantidad)
 +boolean: tieneEdificios()
++void: agregarEdificio(EdificioEnConstruccion edificio)
++void: eliminarEdificio(EdificioEnConstruccion edificio)
 +void: pasarTurno()
 }
 @enduml
