@@ -1,10 +1,8 @@
 package edu.fiuba.algo3.modelo.casillero;
 import edu.fiuba.algo3.exceptions.UbicacionInvalida;
 import edu.fiuba.algo3.modelo.unidades.*;
-import edu.fiuba.algo3.modelo.unidades.edificios.Asimilador;
-import edu.fiuba.algo3.modelo.unidades.edificios.Criadero;
-import edu.fiuba.algo3.modelo.unidades.edificios.Extractor;
-import edu.fiuba.algo3.modelo.unidades.edificios.NexoMineral;
+import edu.fiuba.algo3.modelo.unidades.edificios.*;
+import edu.fiuba.algo3.modelo.unidades.moviles.Guardian;
 import edu.fiuba.algo3.modelo.unidades.moviles.UnidadMovil;
 
 import java.util.List;
@@ -33,5 +31,11 @@ public class TipoCasillero{
         throw new UbicacionInvalida("Ubicacion invalida");
     }
     public void ocupar (Unidad unidad) throws UbicacionInvalida { throw new UbicacionInvalida("Ubicacion invalida");
+    }
+    public void ocupar (ReservaDeReproduccion reservaDeReproduccion) throws UbicacionInvalida { throw new UbicacionInvalida("Ubicacion invalida");
+    }
+    public void ocupar (Guarida guarida) throws UbicacionInvalida { throw new UbicacionInvalida("Ubicacion invalida");
+    }
+    public void ocupar (Espiral espiral) throws UbicacionInvalida { throw new UbicacionInvalida("Ubicacion invalida");
     }
 }
