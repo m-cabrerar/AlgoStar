@@ -32,7 +32,7 @@ public class PuertoEstelar extends EdificioProtoss {
         super.pasarTurno();
         if(estaEvolucionando){
             engendradora.pasarTurno();
-            this.estaEvolucionando = engendradora.estaListo();
+            this.estaEvolucionando = (!engendradora.estaListo());
             //acaba habria que chequear que si el casillero que da al obtener adyacentes es nulo (porque no hay ninguno libre)
         }
     }
@@ -60,6 +60,9 @@ public class PuertoEstelar extends EdificioProtoss {
     }
 
     public void engendrarScout(){
+        if(this.estaEvolucionando){
+            throw new EdificioOcupado("Ya hay una unidad en creación.");
+        }
         Scout scout = new Scout(inventario);
         this.engendradora = new Engendradora(this.casillero.obtenerAdyacente(), this.inventario, scout);
         this.estaEvolucionando = true;

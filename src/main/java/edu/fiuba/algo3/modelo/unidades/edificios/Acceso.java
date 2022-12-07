@@ -32,7 +32,7 @@ public class Acceso extends EdificioProtoss {
         super.pasarTurno();
         if(estaEvolucionando){
             engendradora.pasarTurno();
-            this.estaEvolucionando = engendradora.estaListo();
+            this.estaEvolucionando = (!engendradora.estaListo());
             //acaba habria que chequear que si el casillero que da al obtener adyacentes es nulo (porque no hay ninguno libre)
         }
     }
@@ -59,12 +59,18 @@ public class Acceso extends EdificioProtoss {
     }
 
     public void engendrarZealot(){
+        if (this.estaEvolucionando){
+            throw new EdificioOcupado("Ya hay una unidad en creacion");
+        }
         Zealot zealot = new Zealot(inventario);
         this.engendradora = new Engendradora(this.casillero.obtenerAdyacente(), this.inventario, zealot);
         this.estaEvolucionando = true;
     }
 
     public void engendrarDragon(){
+        if (this.estaEvolucionando){
+            throw new EdificioOcupado("Ya hay una unidad en creacion");
+        }
         Dragon dragon = new Dragon(inventario);
         this.engendradora = new Engendradora(this.casillero.obtenerAdyacente(), this.inventario, dragon);
         this.estaEvolucionando = true;
