@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.exceptions.*;
 import edu.fiuba.algo3.modelo.casillero.*;
+import edu.fiuba.algo3.modelo.unidades.edificios.EdificioEnConstruccion;
 
 import java.util.List;
 import java.util.Random;
@@ -73,6 +74,16 @@ public class Juego {
             mapa.cambiarTipoCasilla(anchoRandom,altoRandom, new NodoGas());
         }
 
+        //Bases
+        mapa.obtenerCasillero(2,2).setTipoCasillero(new CasilleroVacio());
+        mapa.obtenerCasillero(mapa.getAncho()-3,mapa.getAlto()-3).setTipoCasillero(new CasilleroVacio());
+        for (int i = 0; i < jugadores.length; i++) {
+            Jugador jugador = jugadores[i];
+            EdificioEnConstruccion base = jugador.crearBase(mapa.obtenerCasillero(i==0?2:mapa.getAncho()-3, i==0?2:mapa.getAlto()-3));
+            for (int j = 0; j < 5; j++) {
+                base.pasarTurno();
+            }
+        }
     }
 
     public void crearBases(int cantBasesPares){

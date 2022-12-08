@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.casillero.Casillero;
+import edu.fiuba.algo3.modelo.unidades.edificios.Criadero;
+import edu.fiuba.algo3.modelo.unidades.edificios.EdificioEnConstruccion;
 import edu.fiuba.algo3.modelo.unidades.edificios.Extractor;
 import edu.fiuba.algo3.modelo.unidades.moviles.Hidralisco;
 import edu.fiuba.algo3.modelo.unidades.edificios.Pilon;
@@ -95,5 +97,14 @@ public class Jugador {
     }
     public String getRaza() {
         return raza;
+    }
+
+    public EdificioEnConstruccion crearBase(Casillero casillero) {
+        if (raza.equals("Protoss")){
+            inventario.agregarMineral(200);
+            return Pilon.construir(casillero, inventario);
+        }
+        inventario.agregarMineral(100);
+        return Criadero.construir(casillero, inventario);
     }
 }
