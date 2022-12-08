@@ -69,7 +69,7 @@ public class Zealot extends UnidadMovilProtoss {
 
     @Override
     public void atacar(Unidad unidadAAtacar) {
-        this.esVisible();
+        this.visibilizar();
         super.atacar(unidadAAtacar);
         if (unidadAAtacar.estaDestruido()){
             unidadesDestruidas++;
