@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class caso3 {
 
     @Test
-    public void test01EdificioZergSeConstruyeSobreCasilleroEnergizado() {
+    public void test01EdificioZergSolosSeConstruyeSobreCasilleroEnergizado() {
         //ARRANGE
         Inventario inventario = new Inventario();
         inventario.agregarMineral(50);
