@@ -15,9 +15,8 @@ public class Hidralisco extends UnidadMovilZerg {
     private static int COSTO_MINERAL = 75;
     private static int COSTO_GASEOSO = 25;
     private static int TURNOS_PARA_CONSTRUIR = 4;
-
     private static int COSTO_SUMINISTRO = 2;
-
+    private static final int NIVEL_DE_CONSTRUCCION_REQUERIDO = 2;
 
     public Hidralisco(Inventario inventario){
         super(inventario, COSTO_MINERAL, COSTO_GASEOSO, VIDA_MAXIMA, COSTO_SUMINISTRO);
@@ -38,5 +37,9 @@ public class Hidralisco extends UnidadMovilZerg {
             this.inventario.devolverSuministrosUnidad(COSTO_SUMINISTRO);
             throw new EstaDestruido("Unidad destruida");
         }
+    }
+
+    public static boolean puedeConstruirseEn(Inventario inventario){
+        return inventario.puedeConstruir(NIVEL_DE_CONSTRUCCION_REQUERIDO);
     }
 }

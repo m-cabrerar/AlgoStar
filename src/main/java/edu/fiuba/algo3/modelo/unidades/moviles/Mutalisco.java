@@ -15,6 +15,7 @@ public class Mutalisco extends UnidadMovilZerg {
     private static int COSTO_GASEOSO = 100;
     private static int TURNOS_PARA_CONSTRUIR = 7;
     private static int COSTO_SUMINISTRO = 4;
+    private static final int NIVEL_DE_CONSTRUCCION_REQUERIDO = 3;
 
     public Mutalisco(Inventario inventario){
         super(inventario, COSTO_MINERAL, COSTO_GASEOSO, VIDA_MAXIMA, COSTO_SUMINISTRO);
@@ -51,5 +52,8 @@ public class Mutalisco extends UnidadMovilZerg {
             this.inventario.devolverSuministrosUnidad(COSTO_SUMINISTRO);
             throw new EstaDestruido("Unidad destruida");
         }
+    }
+    public static boolean puedeConstruirseEn(Inventario inventario){
+        return inventario.puedeConstruir(NIVEL_DE_CONSTRUCCION_REQUERIDO);
     }
 }

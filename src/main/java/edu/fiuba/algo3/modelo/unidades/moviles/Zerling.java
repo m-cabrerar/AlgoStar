@@ -15,9 +15,8 @@ public class Zerling extends UnidadMovilZerg {
     private static int COSTO_MINERAL = 25;
     private static int COSTO_GASEOSO = 0;
     private static int TURNOS_PARA_CONSTRUIR = 2;
-
     private static int COSTO_SUMINISTRO = 1;
-
+    private static final int NIVEL_DE_CONSTRUCCION_REQUERIDO = 1;
 
     public Zerling(Inventario inventario){
         super(inventario, COSTO_MINERAL, COSTO_GASEOSO, VIDA_MAXIMA, COSTO_SUMINISTRO);
@@ -37,5 +36,9 @@ public class Zerling extends UnidadMovilZerg {
             this.inventario.devolverSuministrosUnidad(COSTO_SUMINISTRO);
             throw new EstaDestruido("Unidad destruida");
         }
+    }
+
+    public static boolean puedeConstruirseEn(Inventario inventario){
+        return inventario.puedeConstruir(NIVEL_DE_CONSTRUCCION_REQUERIDO);
     }
 }

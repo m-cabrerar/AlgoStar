@@ -10,7 +10,7 @@ public class Espiral extends EdificioZerg {
 
     private static int COSTO_GASEOSO = 100;
     private static int COSTO_MINERAL = 150;
-    private static final int NIVEL_DE_CONSTRUCCION = 0;
+    private static final int NIVEL_DE_CONSTRUCCION = 3;
     private static final int NIVEL_DE_CONSTRUCCION_REQUERIDO = 2;
     private static int TURNOS_PARA_CONSTRUIR = 10;
     private static int VIDA_MAXIMA = 1300;
