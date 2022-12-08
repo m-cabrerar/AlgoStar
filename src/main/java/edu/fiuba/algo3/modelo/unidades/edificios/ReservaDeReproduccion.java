@@ -37,21 +37,13 @@ public class ReservaDeReproduccion extends EdificioZerg {
             throw new RecursosInsuficientes("No tiene recursos");
         }
         if(!inventario.puedeConstruir(0)){
-            throw new CorrelativasInsuficientes("Aún no se puede contruir este edificio");
+            throw new CorrelativasInsuficientes("Aún no se puede contruir \neste edificio,\n requiere Guarida");
         }
         ReservaDeReproduccion reserva = new ReservaDeReproduccion(casillero, inventario);
         return new EdificioEnConstruccion(reserva, casillero, inventario);
     }
     public UnidadMovil crearEvolucion(Inventario inventario) throws RecursosInsuficientes {
         return new Zerling(inventario);
-    }
-
-    public void engendrarZerling(UnidadMovil unidad, Inventario inventario) throws RecursosInsuficientes, EdificioOcupado {
-        if (unidadEnConstruccion()) {
-            throw new EdificioOcupado("El edificio está ocupado");
-        }
-        unidadEnConstruccion = crearEvolucion(inventario);
-        turnosParaConstruir = unidadEnConstruccion.turnosParaConstruir();
     }
     public static int getNivelDeConstruccionRequerido(){
         return NIVEL_DE_CONSTRUCCION_REQUERIDO;
