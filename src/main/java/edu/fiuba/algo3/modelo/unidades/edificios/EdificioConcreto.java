@@ -76,5 +76,8 @@ abstract class EdificioConcreto implements Unidad, Construible {
     public int getVidaMaxima() {
         return vida.getVidaMaxima();
     }
+    public boolean estaDestruido(){
+        return vida.getVida() <= 0;
+    }
 
 }

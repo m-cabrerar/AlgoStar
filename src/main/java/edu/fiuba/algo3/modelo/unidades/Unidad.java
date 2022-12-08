@@ -11,5 +11,6 @@ public interface Unidad {
     public Integer[] obtenerPosicion();
     public int getVida();
     public int getVidaMaxima();
+    public boolean estaDestruido();
     
 }

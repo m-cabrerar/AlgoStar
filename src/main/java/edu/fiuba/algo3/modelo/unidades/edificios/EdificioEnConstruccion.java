@@ -84,4 +84,7 @@ public class EdificioEnConstruccion implements Unidad {
             return 1;
         }
     }
+    public boolean estaDestruido() {
+        return destruido;
+    }
 }
