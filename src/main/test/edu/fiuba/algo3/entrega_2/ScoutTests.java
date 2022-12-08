@@ -31,6 +31,7 @@ public class ScoutTests {
             muta.ubicarEn(casilleroMock);
             for(int i=0; i<9; i++){
                 scout.atacar(muta);
+                scout.pasarTurno();
             }
         } catch (Exception e) {
             fail();
@@ -58,6 +59,7 @@ public class ScoutTests {
             hidra.ubicarEn(casilleroMock);
             for(int i=0; i<10; i++){
                 scout.atacar(hidra);
+                scout.pasarTurno();
             }
         } catch (Exception e) {
             fail();

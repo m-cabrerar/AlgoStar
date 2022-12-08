@@ -35,6 +35,7 @@ public class DragonTests {
             mutalisco.ubicarEn(casilleroMock);
             for(int i=0; i<6; i++){
                 dragon.atacar(mutalisco);
+                dragon.pasarTurno();
             }
         } catch (Exception e) {
             fail();
@@ -64,6 +65,7 @@ public class DragonTests {
             hidra.ubicarEn(casilleroMock);
             for(int i=0; i<4; i++){
                 dragon.atacar(hidra);
+                dragon.pasarTurno();
             }
         } catch (Exception e) {
             fail();

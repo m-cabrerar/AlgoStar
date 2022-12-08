@@ -32,6 +32,7 @@ public class GuardianTests {
             guardian.ubicarEn(casilleroMock);
             for(int i=0; i<30; i++){
                 guardian.atacar(mutalisco);
+                guardian.pasarTurno();
             }
         } catch (Exception e) {
             fail();
@@ -59,6 +60,7 @@ public class GuardianTests {
             hidra.ubicarEn(casilleroMock);
             for(int i=0; i<4; i++){
                 guardian.atacar(hidra);
+                guardian.pasarTurno();
             }
         } catch (Exception e) {
             fail();

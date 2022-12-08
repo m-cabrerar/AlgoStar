@@ -44,14 +44,18 @@ public class casoUso28 {
         //ACT
         for (int i = 0; i < 63; i++) {
             zealot.atacar(cria1);
+            zealot.pasarTurno();
             zealot.atacar(cria2);
+            zealot.pasarTurno();
             zealot.atacar(cria3);
+            zealot.pasarTurno();
         }
         zealot.pasarTurno();
 
         //ASSERT
         for (int i = 0; i < 42; i++) {
             zerling.atacar(zealot);
+            zerling.pasarTurno();
         }
         verify(casilleroMockZealot, times(0)).desocupar();
     }
@@ -84,8 +88,11 @@ public class casoUso28 {
         Criadero cria3 = new Criadero(casilleroMock1, inventarioMock);
         for (int i = 0; i < 63; i++) {
             zealot.atacar(cria1);
+            zealot.pasarTurno();
             zealot.atacar(cria2);
+            zealot.pasarTurno();
             zealot.atacar(cria3);
+            zealot.pasarTurno();
         }
 
         zealot.pasarTurno();
@@ -94,6 +101,7 @@ public class casoUso28 {
         try{
             for (int i = 0; i < 40; i++) {
                 zerling.atacar(zealot);
+                zerling.pasarTurno();
             }
         } catch (Exception e){}
 

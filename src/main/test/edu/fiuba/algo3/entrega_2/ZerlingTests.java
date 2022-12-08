@@ -31,6 +31,7 @@ public class ZerlingTests {
             muta.ubicarEn(casilleroMock);
             for(int i=0; i<20; i++){
                 zerling.atacar(muta);
+                zerling.pasarTurno();
             }
         } catch (Exception e) {
             fail();
@@ -57,6 +58,7 @@ public class ZerlingTests {
             hidra.ubicarEn(casilleroMock);
             for(int i=0; i<20; i++){
                 zerling.atacar(hidra);
+                zerling.pasarTurno();
             }
         } catch (Exception e) {
             fail();

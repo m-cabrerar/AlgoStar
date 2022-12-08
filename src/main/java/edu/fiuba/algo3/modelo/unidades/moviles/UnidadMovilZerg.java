@@ -10,6 +10,7 @@ public abstract class UnidadMovilZerg extends UnidadMovil{
         this.vida = new VidaZerg(vidaInicial);
     }
     public void pasarTurno() {
+        super.pasarTurno();
         vida.pasarTurno();
     }
 

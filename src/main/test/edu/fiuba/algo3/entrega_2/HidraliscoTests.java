@@ -32,6 +32,7 @@ public class HidraliscoTests {
             mutalisco.ubicarEn(casilleroMock);
             for(int i=0; i<12; i++){
                 hidra.atacar(mutalisco);
+                hidra.pasarTurno();
             }
         } catch (Exception e) {
             fail();
@@ -59,6 +60,7 @@ public class HidraliscoTests {
             hidra2.ubicarEn(casilleroMock);
             for(int i=0; i<8; i++){
                 hidralisco.atacar(hidra2);
+                hidralisco.pasarTurno();
             }
         } catch (Exception e) {
             fail();

@@ -52,6 +52,7 @@ public class Zealot extends UnidadMovilProtoss {
         visibilidad = new Visible();
     }
     public void pasarTurno(){
+        super.pasarTurno();
         if(unidadesDestruidas>=3){
             this.invisibilizar();
         }

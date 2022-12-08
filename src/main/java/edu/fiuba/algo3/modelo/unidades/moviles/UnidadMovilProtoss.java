@@ -12,6 +12,7 @@ public abstract class UnidadMovilProtoss extends UnidadMovil {
     }
 
     public void pasarTurno() {
+        super.pasarTurno();
         vida.pasarTurno();
     }
     public int getEscudo(){

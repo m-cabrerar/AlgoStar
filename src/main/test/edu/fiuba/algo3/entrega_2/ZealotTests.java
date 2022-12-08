@@ -31,6 +31,7 @@ public class ZealotTests {
             muta.ubicarEn(casilleroMock);
             for(int i=0; i<30; i++){
                 zealot.atacar(muta);
+                zealot.pasarTurno();
             }
         } catch (Exception e) {
             fail();
@@ -58,6 +59,7 @@ public class ZealotTests {
             hidra.ubicarEn(casilleroMock);
             for(int i=0; i<10; i++){
                 zealot.atacar(hidra);
+                zealot.pasarTurno();
             }
         } catch (Exception e) {
             fail();
