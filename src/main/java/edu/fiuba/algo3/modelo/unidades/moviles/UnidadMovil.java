@@ -37,15 +37,18 @@ public abstract class UnidadMovil implements Unidad, Construible {
         casillero.quitarInvisibilidadEnRango(1);
     }
     public void moverA(Casillero casillero) {
-        if (estaOcupada) {
+        if(casillero.estaOcupado()) {
+            throw new UbicacionInvalida("El casillero esta ocupado");
+        } else if (estaOcupada) {
             throw new UnidadOcupada("Unidad ya se movió o atacó este turno");
         }
         if(!this.estaPorAca(casillero.obtenerAdyacentes())){
             throw new UbicacionInvalida("Fuera de rango");
+        } else {
+            this.casillero.desocupar();
+            estaOcupada = true;
+            ubicarEn(casillero);
         }
-        this.casillero.desocupar();
-        estaOcupada = true;
-        ubicarEn(casillero);
     }
     public boolean tieneEnRangoA(Unidad unidadAAtacar) {
         return (casillero.tieneEnRango(unidadAAtacar, rangoDeAtaque));
