@@ -15,14 +15,12 @@ public class Casillero{
     private int coordenadaX;
     private int coordenadaY;
     private boolean estaOcupado;
-    private int turno;
     private Mapa mapa;
 
     public Casillero(int unaCoordenadaX, int unaCoordenadaY,Mapa mapa) {
         this.energia = 0;
         this.coordenadaX = unaCoordenadaX;
         this.coordenadaY = unaCoordenadaY;
-        this.turno = 0;
         this.estaOcupado = false;
         this.tipoCasillero = new CasilleroVacio();
         this.mapa = mapa;
@@ -46,27 +44,19 @@ public class Casillero{
         this.energia -= 1;
     }
 
-    public void pasarTurno(int turnoActual){
-        if(this.turno == turnoActual){ //ya la visite en este turno
-            return;
-        }
-        this.turno = turnoActual;
-        List<Casillero> adyacentesVisitados = this.visitarAdyacentes(turnoActual,this.mapa);
-        this.tipoCasillero.expandirMoho(adyacentesVisitados);
+    public void pasarTurno(){
+        List<Casillero> adyacentesVisitados = mapa.CasillerosAdyacentes(this.coordenadaX,this.coordenadaY);
+        (this.tipoCasillero).expandirMoho(adyacentesVisitados);
         this.quitarInvisibilidad = false;
     }
 
-    public List<Casillero> visitarAdyacentes(int turnoActual, Mapa mapa){
-        //Devuelve una lista con los adyacentes a la casilla que visita.
-        List<Casillero> adyacentes = mapa.CasillerosAdyacentes(this.coordenadaX,this.coordenadaY);
-        for (Casillero casillero : adyacentes) {
-            casillero.turno = turnoActual;
-        }
-        return adyacentes;
+    public void volverseMoho(){
+        (this.tipoCasillero).volverseMoho(this);
     }
     public int extraerMineral(int cantidad) {
         return this.tipoCasillero.extraerMineral(cantidad);
     }
+
     public int extraerGas(int cantidad) {
         return this.tipoCasillero.extraerGas(cantidad);
     }
@@ -74,7 +64,6 @@ public class Casillero{
     public boolean estaOcupado(){
         return this.estaOcupado;
     }
-
     public void desocupar() {
         this.estaOcupado = false;
     }
@@ -85,14 +74,11 @@ public class Casillero{
     public int posicionY(){
         return this.coordenadaY;
     }
+
     public void energizarEnRango(int i) {
         this.mapa.energizar(this.coordenadaX,this.coordenadaY,i);
     }
 
-
-    public void volverseMoho(){
-        tipoCasillero.volverseMoho(this);
-    }
 
     //PARA CONOCER RANGO DE ATAQUES
     public boolean tieneEnRango(Unidad unidadAAtacar, int rango){

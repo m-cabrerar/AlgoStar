@@ -70,11 +70,12 @@ public class Mapa {
     public void pasarTurno(){
         this.tiempoVida += 1;
         System.out.println("turno: " + this.tiempoVida);
-
         //Solo se puede expandir moho cada dos turnos
-        for (List<Casillero> listaCasilleros : this.tableroActual){
-            for (Casillero casillero : listaCasilleros){
-                casillero.pasarTurno(this.tiempoVida );
+        if(this.tiempoVida % 2 == 0){
+            for (List<Casillero> listaCasilleros : this.tableroActual){
+                for (Casillero casillero : listaCasilleros){
+                    casillero.pasarTurno();
+                }
             }
         }
     }
