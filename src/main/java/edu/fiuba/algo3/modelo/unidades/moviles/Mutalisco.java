@@ -4,8 +4,6 @@ import edu.fiuba.algo3.exceptions.*;
 import edu.fiuba.algo3.modelo.Inventario;
 import edu.fiuba.algo3.modelo.unidades.Aire;
 import edu.fiuba.algo3.modelo.unidades.Danio;
-import edu.fiuba.algo3.modelo.unidades.Unidad;
-import edu.fiuba.algo3.modelo.unidades.edificios.Engendradora;
 import edu.fiuba.algo3.modelo.unidades.edificios.UnidadEnEvolucion;
 
 public class Mutalisco extends UnidadMovilZerg {
@@ -16,9 +14,7 @@ public class Mutalisco extends UnidadMovilZerg {
     private static int COSTO_MINERAL = 100;
     private static int COSTO_GASEOSO = 100;
     private static int TURNOS_PARA_CONSTRUIR = 7;
-
     private static int COSTO_SUMINISTRO = 4;
-
 
     public Mutalisco(Inventario inventario){
         super(inventario, COSTO_MINERAL, COSTO_GASEOSO, VIDA_MAXIMA, COSTO_SUMINISTRO);
