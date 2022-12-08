@@ -1,0 +1,56 @@
+@startuml
+title test01DragonRompeUnEdificio
+
+activate ":TestCase"
+":TestCase" -> "i:Inventario": <<create>>
+":TestCase" -> "i:Inventario": agregarMineral(125)
+":TestCase" -> "i:Inventario": agregarGas(50)
+":TestCase" -> "i:Inventario": agregarSuministro(3)
+
+":TestCase" -> "m:Mapa": Mapa(10,10)
+
+":TestCase" -> "m:Mapa": cambiarTipoCasilla(1,1,<<create>> NodoGas)
+":TestCase" -> "m:Mapa": obtenerCasillero(1,1)
+"m:Mapa" --> ":TestCase": casillero
+
+":TestCase" -> "m:Mapa": cambiarTipoCasilla(2,2,<<create>> Moho)
+":TestCase" -> "m:Mapa": obtenerCasillero(2,2)
+"m:Mapa" --> ":TestCase": casilleroD
+
+
+":TestCase" -> "d:Dragon": Dragon(i)
+note left: Al crearse guarda una instancia\n de Danio con 20 de danio\n aereo y 20 de danio en tierra
+":TestCase" -> "e:Extractor": Extractor(casilleroE,i)
+":TestCase" -> "d:Dragon": ubicarEn(casilleroD)
+":TestCase" -> "e:Extractor": ubicarEnInventario()
+
+loop#Gold 37 veces
+":TestCase" -> "d:Dragon": atacar(e)
+"d:Dragon" -> "d:Dragon": estaOcupada()
+"d:Dragon" --> "d:Dragon": false
+"d:Dragon" -> "d:Dragon": tieneEnRango(e)
+"d:Dragon" -> "casilleroD:Casillero": tieneEnRango(e,rango:4)
+"casilleroD:Casillero" --> "d:Dragon": true
+"d:Dragon" -> "e:Extractor": recibirDanio(danio)
+":TestCase" -> "d:Dragon": pasarTurno()
+end
+
+":TestCase" -> "d:Dragon": atacar(e)
+"d:Dragon" -> "d:Dragon": estaOcupada()
+"d:Dragon" --> "d:Dragon": false
+"d:Dragon" -> "d:Dragon": tieneEnRango(e)
+"d:Dragon" -> "casilleroD:Casillero": tieneEnRango(e,rango:4)
+"casilleroD:Casillero" --> "d:Dragon": true
+"d:Dragon" -> "e:Extractor": recibirDanio(danio)
+group#LightBlue Eliminacion del edificio
+"e:Extractor" -> "casilleroE:Casillero": desocupar()
+"e:Extractor" -> "i:Inventario": eliminarUnidad(this)
+"e:Extractor" -> "i:Inventario": devolverSuministrosUnidad(3)
+end
+":TestCase" -> "d:Dragon": pasarTurno()
+
+":TestCase" -> "casilleroE:Casillero": estaOcupado()
+"casilleroE:Casillero" --> ":TestCase": true
+
+deactivate ":TestCase"
+@enduml
