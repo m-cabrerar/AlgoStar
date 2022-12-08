@@ -322,7 +322,6 @@ public class Botonera extends VBox {
     }
 
     public void mostrarBotonesUnidad(Unidad unidad) {
-        System.out.println("Mostrando botones de unidad");
         mostrarInfoUnidad(unidad);
         VBox opciones = new VBox();
         opciones.setSpacing(10);
@@ -339,7 +338,7 @@ public class Botonera extends VBox {
         Button botonAtacar = new Button("Atacar");
         botonAtacar.setOnAction(e -> {
             try {
-                contenedorPrincipal.unidadAtacar((UnidadMovil) unidad);
+                contenedorPrincipal.unidadAtacar((UnidadMovil) unidad, error);
             } catch (Exception ex) {
                 error.setText(ex.getMessage());
             }

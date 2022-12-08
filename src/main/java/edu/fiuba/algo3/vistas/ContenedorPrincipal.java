@@ -1,8 +1,10 @@
 package edu.fiuba.algo3.vistas;
 
 import edu.fiuba.algo3.modelo.Juego;
+import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.unidades.moviles.UnidadMovil;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
@@ -76,6 +78,14 @@ public class ContenedorPrincipal extends BorderPane {
     public void finalizarTurno() {
         juego.pasarTurno();
         update();
+        if(juego.juegoTerminado()) {
+            Jugador ganador = juego.getGanador();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Fin del juego");
+            alert.setHeaderText("El juego ha terminado");
+            alert.setContentText("El ganador es " + ganador.getNombre());
+            alert.showAndWait();
+        }
     }
     public void crearNexoMineral(Label label) {
         vistaJuego.crearNexoMineral(label);
@@ -111,8 +121,8 @@ public class ContenedorPrincipal extends BorderPane {
     public void moverUnidad(UnidadMovil unidad, Label label) {
         vistaJuego.moverUnidad(unidad, label);
     }
-    public void unidadAtacar(UnidadMovil unidad) {
-        vistaJuego.unidadAtacar(unidad);
+    public void unidadAtacar(UnidadMovil unidad, Label label) {
+        vistaJuego.unidadAtacar(unidad, label);
     }
     public void updateEdificios() {
         vistaJuego.updateEdificios();

@@ -101,10 +101,10 @@ public class Jugador {
 
     public EdificioEnConstruccion crearBase(Casillero casillero) {
         if (raza.equals("Protoss")){
-            inventario.agregarMineral(200);
+            inventario.agregarMineral(100);
             return Pilon.construir(casillero, inventario);
         }
-        inventario.agregarMineral(100);
+        inventario.agregarMineral(200);
         return Criadero.construir(casillero, inventario);
     }
 }

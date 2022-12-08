@@ -1,9 +1,6 @@
 package edu.fiuba.algo3.vistas;
 
-import edu.fiuba.algo3.exceptions.CasilleroNoCompatible;
-import edu.fiuba.algo3.exceptions.CorrelativasInsuficientes;
-import edu.fiuba.algo3.exceptions.RecursosInsuficientes;
-import edu.fiuba.algo3.exceptions.UbicacionInvalida;
+import edu.fiuba.algo3.exceptions.*;
 import edu.fiuba.algo3.modelo.Inventario;
 import edu.fiuba.algo3.modelo.casillero.Casillero;
 import edu.fiuba.algo3.modelo.Juego;
@@ -520,6 +517,43 @@ public class VistaJuego {
         }
     }
 
-    public void unidadAtacar(UnidadMovil unidad) {
+    public void unidadAtacar(UnidadMovil unidad, Label label) {
+        tableroDeBotones.getChildren().clear();
+        Inventario inventarioEnemigo = inventarios[(juego.getTurnos()+1)%juego.cantidadDeJugadores()];
+        for (int i = 0; i<alto; i++) {
+            for (int j = 0; j<ancho; j++) {
+                Button boton = new Button();
+                boton.setPrefSize(50, 50);
+                tableroDeBotones.add(boton, i, j);
+                boton.prefWidthProperty().bind(Bindings.min(centerPane.widthProperty().divide(alto),
+                        centerPane.heightProperty().divide(alto)));
+                boton.prefHeightProperty().bind(Bindings.min(centerPane.widthProperty().divide(alto),
+                        centerPane.heightProperty().divide(alto)));
+                boton.opacityProperty().setValue(0);
+                Casillero casillero = mapa.obtenerCasillero(i, j);
+                boton.setOnAction(e -> {
+                    try {
+                        for (Unidad unidadEnemiga : inventarioEnemigo.getUnidades()) {
+                            Integer[] posicion = unidadEnemiga.obtenerPosicion();
+                            if (mapa.obtenerCasillero(posicion[0], posicion[1]).equals(casillero)) {
+                                System.out.println("atacando" + posicion[0] + ", " + posicion[1]);
+                                unidad.atacar(unidadEnemiga);
+                            }
+                        }
+                        for (Unidad edificioEnemigo : inventarioEnemigo.getEdificios()) {
+                            Integer[] posicion = edificioEnemigo.obtenerPosicion();
+                            if (mapa.obtenerCasillero(posicion[0], posicion[1]).equals(casillero)) {
+                                System.out.println("atacando" + posicion[0] + ", " + posicion[1]);
+                                unidad.atacar(edificioEnemigo);
+                            }
+                        }
+                        botonera.update();
+                        updateBotones();
+                    } catch (CasilleroNoCompatible | UbicacionInvalida | UnidadOcupada ex) {
+                        label.setText(ex.getMessage());
+                    }
+                });
+            }
+        }
     }
 }

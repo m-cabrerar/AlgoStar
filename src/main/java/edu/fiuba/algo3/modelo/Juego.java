@@ -109,17 +109,6 @@ public class Juego {
         }
     }
 
-    public String verificar_ganador(){ //todo:despues lo hará en pasarTurno
-        if(turnos!=0){
-            if(!jugadores[0].tieneEdificios()){
-                return "Ganador " + jugadores[1].getNombreYRaza();
-            }else if(!jugadores[1].tieneEdificios()){
-                return "Ganador " + jugadores[0].getNombreYRaza();
-            }
-        }
-        return null;
-    }
-
     public int cantidadDeJugadores(){
         return cantidadDeJugadores;
     }
@@ -141,5 +130,27 @@ public class Juego {
     }
     public int getTurnos(){
         return turnos;
+    }
+
+    public boolean juegoTerminado() {
+        if(turnos!=0){
+            if(!jugadores[0].tieneEdificios()){
+                return true;
+            }else if(!jugadores[1].tieneEdificios()){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Jugador getGanador(){
+        if (!juegoTerminado()) {
+            throw new ParametrosInvalidos("El juego no ha terminado");
+        }
+        if (jugadores[0].tieneEdificios()) {
+            return jugadores[0];
+        } else {
+            return jugadores[1];
+        }
     }
 }
