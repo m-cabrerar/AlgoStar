@@ -35,6 +35,14 @@ public class Criadero extends EdificioZerg{
     public void ubicarEnInventario(){
         inventario.subirNivelConstruccion(NIVEL_DE_CONSTRUCCION);
         inventario.agregarSuministro(SUMINISTRA);
+        Moho moho = new Moho();
+        casillero.setTipoCasillero(moho);
+        List<Casillero> casillerosAdyacentes = casillero.obtenerAdyacentes();
+        List<Casillero> casillerosAdyacentesYAdyacentes = casillero.obtenerAdyacentes();
+        for (Casillero casilleroAdyacente : casillerosAdyacentes) {
+            casillerosAdyacentesYAdyacentes.addAll(casilleroAdyacente.obtenerAdyacentes());
+        }
+        moho.expandirMoho(casillerosAdyacentesYAdyacentes,0);
     }
     
     public void pasarTurno() {
@@ -66,14 +74,6 @@ public class Criadero extends EdificioZerg{
             throw new RecursosInsuficientes("No tiene recursos");
         }
         Criadero criadero = new Criadero(casillero, inventario);
-        Moho moho = new Moho();
-        casillero.setTipoCasillero(moho);
-        List<Casillero> casillerosAdyacentes = casillero.obtenerAdyacentes();
-        List<Casillero> casillerosAdyacentesYAdyacentes = casillero.obtenerAdyacentes();
-        for (Casillero casilleroAdyacente : casillerosAdyacentes) {
-            casillerosAdyacentesYAdyacentes.addAll(casilleroAdyacente.obtenerAdyacentes());
-        }
-        moho.expandirMoho(casillerosAdyacentesYAdyacentes,0);
         return new EdificioEnConstruccion(criadero, casillero, inventario);
     }
     
