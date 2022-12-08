@@ -43,6 +43,7 @@ public class Casillero{
     public void desenergizar(){
         this.energia -= 1;
     }
+    public void dejarSinEnergia(){this.energia = 0;}
 
     public void pasarTurno(){
         List<Casillero> adyacentesVisitados = mapa.CasillerosAdyacentes(this.coordenadaX,this.coordenadaY);
