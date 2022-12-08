@@ -13,24 +13,12 @@ public class Jugador {
     private  String color;
     private  String raza;
     private final Inventario inventario;
-
-    public void setDatos(String nombre_,String color_,String raza_){
-        nombre = nombre_;
-        color = color_;
-        raza = raza_;
+    public Jugador(String nombre, String color, String raza) {
+        this.inventario = new Inventario();
+        this.nombre = nombre;
+        this.color = color;
+        this.raza = raza;
     }
-    public Jugador(){
-        inventario = new Inventario();
-    }
-
-    /*
-    public Jugador(String nombre_, String color_ , String raza_){
-        nombre = nombre_;
-        color = color_;
-        raza = raza_;
-        inventario = new Inventario();
-    }
-*/
     public static boolean nombreValido(String nombre_, Jugador[] jugadores){
         if (nombre_.length() < 6){
             return false;

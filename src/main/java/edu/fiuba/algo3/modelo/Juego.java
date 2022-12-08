@@ -20,10 +20,9 @@ public class Juego {
         this.turnos = 0;
     }
 
-    public void registrarJugador(String nombre, String color, String raza, Jugador jugador) throws ParametrosInvalidos {
+    public void registrarJugador(String nombre, String color, String raza) throws ParametrosInvalidos {
         if (Jugador.nombreValido(nombre, jugadores) && Jugador.colorValido(color, jugadores) && Jugador.razaValida(raza, jugadores)) {
-            jugador.setDatos(nombre, color, raza);
-            jugadores[cantidadDeJugadores] = jugador;//new Jugador(nombre, color, raza);
+            jugadores[cantidadDeJugadores] = new Jugador(nombre, color, raza);
             cantidadDeJugadores++;
         } else {
             throw new ParametrosInvalidos("Los parametros ingresados no son validos");

@@ -14,7 +14,7 @@ public class JugadorTest {
     public void Test01JugadorConstruyePilonSuInventarioTieneUnidades(){
         //ARRANGE
         Casillero mockedCasillero = mock(Casillero.class);
-        Jugador unJugador = new Jugador();
+        Jugador unJugador = new Jugador("Jugador 1", "rojo", "Protoss");
         //ACT
         Pilon.construir(mockedCasillero, unJugador.getInventario());
         //ASSERT
