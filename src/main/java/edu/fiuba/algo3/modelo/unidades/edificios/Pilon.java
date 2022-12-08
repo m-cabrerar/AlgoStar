@@ -13,7 +13,7 @@ public class Pilon extends EdificioProtoss {
     private static int ESCUDO = 300;
     private static int TURNOS_PARA_CONSTRUIR = 5;
     private static final int NIVEL_DE_CONSTRUCCION = 0;
-
+    private static final int NIVEL_DE_CONSTRUCCION_REQUERIDO = 0;
     private static int SUMINISTRA = 5;
     public Pilon(Casillero casillero, Inventario inventario) {
         super(casillero, inventario, VIDA, ESCUDO);
@@ -53,8 +53,8 @@ public class Pilon extends EdificioProtoss {
             throw new EstaDestruido("unidad destruida");
         }
     }
-    public static int getNivelDeConstruccion(){
-        return NIVEL_DE_CONSTRUCCION;
+    public static int getNivelDeConstruccionRequerido() {
+        return NIVEL_DE_CONSTRUCCION_REQUERIDO;
     }
 
 }

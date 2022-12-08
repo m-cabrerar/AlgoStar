@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.unidades.moviles;
 
+import edu.fiuba.algo3.exceptions.EstaDestruido;
 import edu.fiuba.algo3.modelo.Inventario;
 import edu.fiuba.algo3.modelo.unidades.Danio;
 import edu.fiuba.algo3.modelo.unidades.Tierra;
@@ -28,6 +29,15 @@ public class Zangano extends UnidadMovilZerg{
     }
 
     public void atacar(Unidad unidadAAtacar){
+    }
+    public void recibirDanio(Danio danio) throws EstaDestruido {
+        try {
+            super.recibirDanio(danio);
+        } catch (Exception EstaDestruido){
+            this.inventario.eliminarUnidad(this);
+            this.inventario.devolverSuministrosUnidad(COSTO_SUMINISTRO);
+            throw new EstaDestruido("Unidad destruida");
+        }
     }
 
 }

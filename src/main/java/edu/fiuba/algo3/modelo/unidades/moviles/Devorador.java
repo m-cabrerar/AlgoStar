@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.unidades.moviles;
 
+import edu.fiuba.algo3.exceptions.EstaDestruido;
 import edu.fiuba.algo3.modelo.Inventario;
 import edu.fiuba.algo3.modelo.unidades.Aire;
 import edu.fiuba.algo3.modelo.unidades.Danio;
@@ -34,6 +35,15 @@ public class Devorador extends UnidadMovilZerg {
             super.atacar(unidadAAtacar, RANGO_DE_ATAQUE, danio);
         } catch (Exception EstaDestruido){
             //no tiene comportamiento si mata una unidad
+        }
+    }
+    public void recibirDanio(Danio danio) throws EstaDestruido {
+        try {
+            super.recibirDanio(danio);
+        } catch (Exception EstaDestruido){
+            this.inventario.eliminarUnidad(this);
+            this.inventario.devolverSuministrosUnidad(COSTO_SUMINISTRO);
+            throw new EstaDestruido("Unidad destruida");
         }
     }
 

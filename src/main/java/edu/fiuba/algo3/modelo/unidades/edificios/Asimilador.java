@@ -29,6 +29,7 @@ public class Asimilador extends EdificioProtoss {
 
     public void pasarTurno() {
         super.pasarTurno();
+        extraerGas();
     }
 
     public static EdificioEnConstruccion construir(Casillero casillero, Inventario inventario) {
@@ -42,11 +43,12 @@ public class Asimilador extends EdificioProtoss {
         return new EdificioEnConstruccion(asimilador, casillero, inventario);
     }
 
-    public int extraerGas() { //TODO: hacer privado y que se llame desde pasarTurno
+    public int extraerGas() {
+        inventario.agregarGas(20);
         return casillero.extraerGas(20);
     }
 
-    public static int getNivelDeConstruccion() {
-        return NIVEL_DE_CONSTRUCCION;
+    public static int getNivelDeConstruccionRequerido() {
+        return NIVEL_DE_CONSTRUCCION_REQUERIDO;
     }
 }

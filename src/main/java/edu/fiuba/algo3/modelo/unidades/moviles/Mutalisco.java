@@ -1,11 +1,11 @@
 package edu.fiuba.algo3.modelo.unidades.moviles;
 
-
 import edu.fiuba.algo3.exceptions.*;
 import edu.fiuba.algo3.modelo.Inventario;
 import edu.fiuba.algo3.modelo.unidades.Aire;
 import edu.fiuba.algo3.modelo.unidades.Danio;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
+import edu.fiuba.algo3.modelo.unidades.edificios.Engendradora;
 import edu.fiuba.algo3.modelo.unidades.edificios.UnidadEnEvolucion;
 
 public class Mutalisco extends UnidadMovilZerg {
@@ -38,11 +38,29 @@ public class Mutalisco extends UnidadMovilZerg {
             //no tiene comportamiento si mata una unidad
         }
     }
+    public void pasarTurno(){
+        super.pasarTurno();
+    }
 
-    public void evolucionarADevorador (Inventario inventario) throws RecursosInsuficientes {
+    public void evolucionarAGuardian(){
+        Guardian guardian = new Guardian(inventario);
+        this.casillero.desocupar();
+        this.inventario.eliminarUnidad(this);
+        new UnidadEnEvolucion(this.casillero, inventario, guardian);
+    }
+    public void evolucionarADevorador() throws RecursosInsuficientes, SuministrosInsuficientes, PoblacionMaximaAlcanzada {
         Devorador devorador = new Devorador(inventario);
         this.casillero.desocupar();
-        //sacar del inventario
+        this.inventario.eliminarUnidad(this);
         new UnidadEnEvolucion(this.casillero, inventario, devorador);
+    }
+    public void recibirDanio(Danio danio) throws EstaDestruido {
+        try {
+            super.recibirDanio(danio);
+        } catch (Exception EstaDestruido){
+            this.inventario.eliminarUnidad(this);
+            this.inventario.devolverSuministrosUnidad(COSTO_SUMINISTRO);
+            throw new EstaDestruido("Unidad destruida");
+        }
     }
 }

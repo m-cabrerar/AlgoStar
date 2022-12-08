@@ -16,13 +16,13 @@ public class Acceso extends EdificioProtoss {
     private static final int NIVEL_DE_CONSTRUCCION = 1;
     private static final int NIVEL_DE_CONSTRUCCION_REQUERIDO = 0;
     private boolean estaEvolucionando;
-    private UnidadEnEvolucion unidadEnEvolucion;
+    private Engendradora engendradora;
     public Acceso(Casillero unCasillero, Inventario unInventario) {
         super(unCasillero, unInventario, VIDA, ESCUDO);
         casillero.ocupar(this);
         inventario.pagarMateriales(COSTO_GASEOSO, COSTO_MINERAL);
         this.estaEvolucionando = false;
-        this.unidadEnEvolucion = null;
+        this.engendradora = null;
     }
     public void ubicarEnInventario(){
         inventario.subirNivelConstruccion(NIVEL_DE_CONSTRUCCION);
@@ -31,8 +31,8 @@ public class Acceso extends EdificioProtoss {
     public void pasarTurno() {
         super.pasarTurno();
         if(estaEvolucionando){
-            unidadEnEvolucion.pasarTurno();
-            this.estaEvolucionando = unidadEnEvolucion.estaListo();
+            engendradora.pasarTurno();
+            this.estaEvolucionando = (!engendradora.estaListo());
             //acaba habria que chequear que si el casillero que da al obtener adyacentes es nulo (porque no hay ninguno libre)
         }
     }
@@ -54,19 +54,25 @@ public class Acceso extends EdificioProtoss {
         Acceso acceso = new Acceso(casillero, inventario);
         return new EdificioEnConstruccion(acceso, casillero, inventario);
     }
-    public static int getNivelDeConstruccion(){
-        return NIVEL_DE_CONSTRUCCION;
+    public static int getNivelDeConstruccionRequerido(){
+        return NIVEL_DE_CONSTRUCCION_REQUERIDO;
     }
 
     public void engendrarZealot(){
+        if (this.estaEvolucionando){
+            throw new EdificioOcupado("Ya hay una unidad en creacion");
+        }
         Zealot zealot = new Zealot(inventario);
-        this.unidadEnEvolucion = new UnidadEnEvolucion(this.casillero, this.inventario, zealot);
+        this.engendradora = new Engendradora(this.casillero.obtenerAdyacente(), this.inventario, zealot);
         this.estaEvolucionando = true;
     }
 
     public void engendrarDragon(){
+        if (this.estaEvolucionando){
+            throw new EdificioOcupado("Ya hay una unidad en creacion");
+        }
         Dragon dragon = new Dragon(inventario);
-        this.unidadEnEvolucion = new UnidadEnEvolucion(this.casillero, this.inventario, dragon);
+        this.engendradora = new Engendradora(this.casillero.obtenerAdyacente(), this.inventario, dragon);
         this.estaEvolucionando = true;
     }
 

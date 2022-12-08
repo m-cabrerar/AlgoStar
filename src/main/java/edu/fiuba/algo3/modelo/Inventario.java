@@ -35,11 +35,49 @@ public class Inventario {
         return (nivelDificultadConstruccion <= this.nivelConstruccion);
     }
 
-    public void subirNivelConstruccion(int nivelOtorga){
+    public void subirNivelConstruccion(int nivelOtorga) {
         //Si puedo construir algo que otorga mayor nivel al mio, sube mi nivel de construccion
-        if(nivelOtorga > this.nivelConstruccion){
+        if (nivelOtorga > this.nivelConstruccion) {
             this.nivelConstruccion = nivelOtorga;
         }
+    }
+
+    public void pasarTurno(){
+        for(Unidad unidad :unidades){
+            unidad.pasarTurno();
+        }
+        for(EdificioEnConstruccion edificio : edificios){
+            edificio.pasarTurno();
+        }
+    }
+
+    //MANEJO DE LISTAS DE UNIDADES
+    public void agregarEdificio(EdificioEnConstruccion edificio){
+        this.edificios.add(edificio);
+    }
+    public void eliminarEdificio(EdificioEnConstruccion edificio){
+        this.edificios.remove(edificio);
+    }
+    public void agregarUnidad(Unidad unidad) {
+        this.unidades.add(unidad);
+    }
+    public void eliminarUnidad(Unidad unidad){this.unidades.remove(unidad);}
+    public List<Unidad> getUnidades(){
+        return this.unidades;
+    }
+    public List<EdificioEnConstruccion> getEdificios(){
+        return this.edificios;
+    }
+    public boolean tieneEdificios(){
+        return !(edificios.isEmpty());
+    }
+
+    //MANEJO DE LOS RECURSOS
+    public int getGas(){
+        return this.cantidadGas;
+    }
+    public int getMineral(){
+        return this.cantidadMineral;
     }
     public void agregarGas(int i) {
         this.cantidadGas += i;
@@ -47,10 +85,27 @@ public class Inventario {
     public void agregarMineral(int i) {
         this.cantidadMineral += i;
     }
-    public void agregarUnidad(Unidad unidad) {
-        this.unidades.add(unidad);
+    public boolean tieneRecursos(int cantidadGas, int cantMineral) {
+        return ((this.cantidadMineral >= cantMineral) && (this.cantidadGas >= cantidadGas));
+    }
+    public void pagarMateriales(int cantidadGas, int cantidadMineral){
+        if(!this.tieneRecursos(cantidadGas,cantidadMineral)){
+            throw new RecursosInsuficientes("Recursos insuficientes");
+        }
+        this.cantidadMineral -= cantidadMineral;
+        this.cantidadGas -= cantidadGas;
     }
 
+    //MANEJO DE SUMINISTROS
+    public int getSuministros(){
+        return this.suministrosDisponibles;
+    }
+    public int getSuministrosMaximos(){
+        return SUMINISTROS_MAXIMOS;
+    }
+    public int getSuministrosEmpleados(){
+        return this.suministrosEmpleados;
+    }
     public void agregarSuministro(int cantidad){
         this.suministrosDisponibles += cantidad;
         if(this.suministrosDisponibles > SUMINISTROS_MAXIMOS){this.suministrosDisponibles = 200;}
@@ -70,57 +125,12 @@ public class Inventario {
             perderSuministro(cantidad);
         }
     }
-
-    public boolean tieneRecursos(int cantidadGas, int cantMineral) {
-        return ((this.cantidadMineral >= cantMineral) && (this.cantidadGas >= cantidadGas));
-    }
-    public void pagarMateriales(int cantidadGas, int cantidadMineral){
-        if(!this.tieneRecursos(cantidadGas,cantidadMineral)){
-            throw new RecursosInsuficientes("Recursos insuficientes");
-        }
-        this.cantidadMineral -= cantidadMineral;
-        this.cantidadGas -= cantidadGas;
+    public void devolverSuministrosUnidad(int cantidad){
+        this.suministrosEmpleados -= cantidad;
+        this.agregarSuministro(cantidad);
     }
 
-    public boolean tieneEdificios(){
-        return !(edificios.isEmpty());
-    }
-    public void pasarTurno(){
-        for(Unidad unidad :unidades){
-            unidad.pasarTurno();
-        }
-        for(EdificioEnConstruccion edificio : edificios){
-            edificio.pasarTurno();
-        }
-    }
-    public void agregarEdificio(EdificioEnConstruccion edificio){
-        this.edificios.add(edificio);
-    }
-    public void eliminarEdificio(EdificioEnConstruccion edificio){
-        this.edificios.remove(edificio);
-    }
-    public List<Unidad> getUnidades(){
-        return this.unidades;
-    }
-    public List<EdificioEnConstruccion> getEdificios(){
-        return this.edificios;
-    }
-    public int getGas(){
-        return this.cantidadGas;
-    }
-    public int getMineral(){
-        return this.cantidadMineral;
-    }
-
-    public int getSuministros(){
-        return this.suministrosDisponibles;
-    }
-    public int getSuministrosMaximos(){
-        return SUMINISTROS_MAXIMOS;
-    }
-    public int getSuministrosEmpleados(){
-        return this.suministrosEmpleados;
-    }
+    //POBLACION
     public int getPoblacionMaxima(){
         return POBLACION_MAXIMA;
     }

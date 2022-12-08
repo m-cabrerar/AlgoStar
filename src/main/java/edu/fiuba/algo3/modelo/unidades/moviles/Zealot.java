@@ -31,11 +31,13 @@ public class Zealot extends UnidadMovilProtoss {
         visibilidad = new Visible();
         unidadesDestruidas = 0;
     }
-    public void recibirDanio(Danio danioRecibido) throws EstaDestruido {
-        Danio danioARecibir = visibilidad.danioARecibir(danioRecibido);
+    public void recibirDanio(Danio danio) throws EstaDestruido {
+        visibilidad.danioARecibir(danio);
         try {
-            super.recibirDanio(danioARecibir);
+            super.recibirDanio(danio);
         } catch (Exception EstaDestruido){
+            this.inventario.eliminarUnidad(this);
+            this.inventario.devolverSuministrosUnidad(COSTO_SUMINISTRO);
             throw new EstaDestruido("Unidad destruida");
         }
     }
