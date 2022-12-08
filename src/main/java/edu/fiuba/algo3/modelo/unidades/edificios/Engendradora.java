@@ -15,13 +15,11 @@ public class Engendradora {
         this.inventario = inventario;
         this.turnosParaEvolucionar = unidad.turnosParaConstruir();
         this.casillero = casillero;
-        System.out.println("Casillero: " + casillero.posicionX() + ", " + casillero.posicionY());
         this.unidad = unidad;
     }
 
     public void pasarTurno(){
         turnosParaEvolucionar--;
-        System.out.println("Turnos para evolucionar: " + turnosParaEvolucionar);
         if (turnosParaEvolucionar <= 0){
             inventario.agregarUnidad(unidad);
             unidad.ubicarEn(casillero.obtenerAdyacente());
