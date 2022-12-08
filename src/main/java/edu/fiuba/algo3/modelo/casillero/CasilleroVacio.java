@@ -16,9 +16,10 @@ public class CasilleroVacio extends TipoCasillero{
     }
 
     @Override
-    public void volverseMoho(Casillero casillero){
+    public void volverseMoho(Casillero casillero, int turnoDeExpansion){
         casillero.dejarSinEnergia();
         casillero.setTipoCasillero(new Moho());
+        casillero.turno = turnoDeExpansion;
     }
 }
 

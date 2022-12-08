@@ -7,9 +7,9 @@ import java.util.List;
 
 public class Moho extends TipoCasillero {
     @Override
-    public void expandirMoho(List<Casillero> casillasAContagiar) {
+    public void expandirMoho(List<Casillero> casillasAContagiar, int turnoDeExpansion) {
         for (Casillero casilla : casillasAContagiar) {
-            casilla.volverseMoho();
+            casilla.volverseMoho(turnoDeExpansion);
         }
     }
 

@@ -16,9 +16,9 @@ public class TipoCasillero{
     public int extraerGas(int cantidad){
         return 0;
     }
-    public void expandirMoho(List<Casillero> casillasAContagiar){}
+    public void expandirMoho(List<Casillero> casillasAContagiar, int turnoDeExpansion){}
 
-    public void volverseMoho(Casillero casillero){return;}
+    public void volverseMoho(Casillero casillero, int turnoDeExpansion){return;}
 
     //METODOS PARA DOUBLE DISPATCH ---------------------------------------------------------------
     public void ocupar(UnidadMovil unidad){}

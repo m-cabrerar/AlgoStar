@@ -76,7 +76,7 @@ public class Criadero extends EdificioZerg{
         for (Casillero casilleroAdyacente : casillerosAdyacentes) {
             casillerosAdyacentesYAdyacentes.addAll(casilleroAdyacente.obtenerAdyacentes());
         }
-        moho.expandirMoho(casillerosAdyacentesYAdyacentes);
+        moho.expandirMoho(casillerosAdyacentesYAdyacentes,0);
         return new EdificioEnConstruccion(criadero, casillero, inventario);
     }
     

@@ -15,6 +15,7 @@ public class Casillero{
     private int coordenadaX;
     private int coordenadaY;
     private boolean estaOcupado;
+    int turno;
     private Mapa mapa;
 
     public Casillero(int unaCoordenadaX, int unaCoordenadaY,Mapa mapa) {
@@ -24,6 +25,7 @@ public class Casillero{
         this.estaOcupado = false;
         this.tipoCasillero = new CasilleroVacio();
         this.mapa = mapa;
+        this.turno = 0;
         this.quitarInvisibilidad = false;
     }
 
@@ -45,14 +47,19 @@ public class Casillero{
     }
     public void dejarSinEnergia(){this.energia = 0;}
 
-    public void pasarTurno(){
+    public void pasarTurno(int turnoActual){
+        System.out.println("turnoCas: " + this.turno);
+        if(this.turno == turnoActual){
+            return;
+        }
         List<Casillero> adyacentesVisitados = mapa.CasillerosAdyacentes(this.coordenadaX,this.coordenadaY);
-        (this.tipoCasillero).expandirMoho(adyacentesVisitados);
+        (this.tipoCasillero).expandirMoho(adyacentesVisitados, turnoActual);
         this.quitarInvisibilidad = false;
     }
 
-    public void volverseMoho(){
-        (this.tipoCasillero).volverseMoho(this);
+
+    public void volverseMoho(int turnoDeExpansion){
+        (this.tipoCasillero).volverseMoho(this, turnoDeExpansion);
     }
     public int extraerMineral(int cantidad) {
         return this.tipoCasillero.extraerMineral(cantidad);
