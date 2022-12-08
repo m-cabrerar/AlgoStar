@@ -17,6 +17,7 @@ public abstract class UnidadMovilZerg extends UnidadMovil{
     }
     public void pasarTurno() {
         super.pasarTurno();
+        this.casillero.quitarInvisibilidadEnRango(1);
         vida.pasarTurno();
     }
 

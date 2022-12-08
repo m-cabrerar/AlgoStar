@@ -51,4 +51,9 @@ public class AmoSupremo extends UnidadMovilZerg {
             casillero.quitarInvisibilidadEnRango(4);
         }
 
+    @Override
+    public void pasarTurno() {
+        super.pasarTurno();
+        casillero.quitarInvisibilidadEnRango(4);
+    }
 }

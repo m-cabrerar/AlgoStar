@@ -102,11 +102,10 @@ public class Juego {
 
     public void pasarTurno(){
         turnos++;
-        //mapa.pasarTurno();
+        mapa.pasarTurno();
         for (Jugador jugador : jugadores) {
             jugador.pasarTurno();
         }
-        mapa.pasarTurno();
     }
 
     public int cantidadDeJugadores(){
