@@ -9,9 +9,6 @@ public class Moho extends TipoCasillero {
     @Override
     public void expandirMoho(List<Casillero> casillasAContagiar) {
         for (Casillero casilla : casillasAContagiar) {
-            if (casilla.estaOcupado()) {
-                continue;
-            }
             casilla.volverseMoho();
         }
     }
