@@ -382,7 +382,15 @@ public class Botonera extends VBox {
                     error.setText(ex.getMessage());
                 }
             });
-            opciones.getChildren().add(botonExtraccion);
+            Button botonExtractor = new Button("Trabajar en Extractor");
+            botonExtractor.setOnAction(e -> {
+                try {
+                    contenedorPrincipal.trabajarEnExtractor((Zangano) unidad, error);
+                } catch (Exception ex) {
+                    error.setText(ex.getMessage());
+                }
+            });
+            opciones.getChildren().addAll(botonExtraccion, botonExtractor);
         }
 
         mostrarUnidadListo(unidad, opciones, error);

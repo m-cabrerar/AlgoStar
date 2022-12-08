@@ -3,6 +3,7 @@ package edu.fiuba.algo3.vistas;
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.unidades.moviles.UnidadMovil;
+import edu.fiuba.algo3.modelo.unidades.moviles.Zangano;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -132,4 +133,7 @@ public class ContenedorPrincipal extends BorderPane {
         contenedorJugador.update();
     }
 
+    public void trabajarEnExtractor(Zangano unidad, Label error) {
+        vistaJuego.trabajarEnExtractor(unidad, error);
+    }
 }
