@@ -56,6 +56,7 @@ public class VistaJuego {
         updateMapa();
         updateUnidades();
         updateBotones();
+        System.out.println("");
     }
     public void updateMapa() {
         tablero.getChildren().clear();
@@ -89,6 +90,7 @@ public class VistaJuego {
                 List<Casillero> casillero = new java.util.ArrayList<>();
                 casillero.add(mapa.obtenerCasillero(i, j));
                 if (casillerosOcupadosEdificios[juego.getTurnos() % juego.cantidadDeJugadores()][i][j]) {
+                    System.out.println("Casillero " + i + " " + j + " ocupado por edificio aliado");
                     boton.setOnAction(e -> {
                         Inventario inventario = inventarios[juego.getTurnos()%juego.cantidadDeJugadores()];
                         for (EdificioEnConstruccion edificio : inventario.getEdificios()) {
@@ -98,6 +100,7 @@ public class VistaJuego {
                         }
                     });
                 }else if (casillerosOcupadosEdificios[(juego.getTurnos()+1) % juego.cantidadDeJugadores()][i][j]) {
+                    System.out.println("Casillero " + i + " " + j + " ocupado por edificio enemigo");
                     boton.setOnAction(e -> {
                         Inventario inventario = inventarios[(juego.getTurnos()+1)%juego.cantidadDeJugadores()];
                         for (EdificioEnConstruccion edificio : inventario.getEdificios()) {
@@ -107,15 +110,20 @@ public class VistaJuego {
                         }
                     });
                 } else if (casillerosOcupadosUnidades[juego.getTurnos() % juego.cantidadDeJugadores()][i][j]) {
+                    System.out.println("Casillero " + i + " " + j + " ocupado por unidad aliada");
                     boton.setOnAction(e -> {
                         Inventario inventario = inventarios[juego.getTurnos()%juego.cantidadDeJugadores()];
                         for (Unidad unidad : inventario.getUnidades()) {
+                            System.out.println("a");
+                            System.out.println(unidad.getClass().getSimpleName());
                             if (unidad.estaPorAca(casillero)) {
+                                System.out.println("Unidad");
                                 botonera.mostrarBotonesUnidad(unidad);
                             }
                         }
                     });
                 } else if (casillerosOcupadosUnidades[(juego.getTurnos()+1) % juego.cantidadDeJugadores()][i][j]) {
+                    System.out.println("Casillero " + i + " " + j + " ocupado por unidad enemiga");
                     boton.setOnAction(e -> {
                         Inventario inventario = inventarios[(juego.getTurnos()+1)%juego.cantidadDeJugadores()];
                         for (Unidad unidad : inventario.getUnidades()) {
@@ -142,6 +150,7 @@ public class VistaJuego {
         tableroUnidades.setPrefSize(alto*50, alto*50);
         Inventario jugadorActual = inventarios[juego.getTurnos()%juego.cantidadDeJugadores()];
         Inventario jugadorEnemigo = inventarios[(juego.getTurnos()+1)%juego.cantidadDeJugadores()];
+        casillerosOcupadosUnidades = new boolean[juego.cantidadDeJugadores()][alto][ancho];
 
         List<Unidad> unidadesAliadas = jugadorActual.getUnidades();
         for (Unidad unidad : unidadesAliadas) {
@@ -171,6 +180,7 @@ public class VistaJuego {
         tableroUnidades.setPrefSize(alto * 50, alto * 50);
         Inventario jugadorActual = inventarios[juego.getTurnos() % juego.cantidadDeJugadores()];
         Inventario jugadorEnemigo = inventarios[(juego.getTurnos() + 1) % juego.cantidadDeJugadores()];
+        casillerosOcupadosEdificios = new boolean[juego.cantidadDeJugadores()][alto][ancho];
 
         List<EdificioEnConstruccion> edificiosAliados = jugadorActual.getEdificios();
         for (EdificioEnConstruccion edificio : edificiosAliados) {

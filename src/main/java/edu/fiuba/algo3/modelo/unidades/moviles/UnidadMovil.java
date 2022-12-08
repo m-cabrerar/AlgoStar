@@ -28,7 +28,6 @@ public abstract class UnidadMovil implements Unidad, Construible {
             throw new PoblacionMaximaAlcanzada("No se pueden crear mas unidades.");
         }
         inventario.suministrarUnidad(costoSuministro);
-        casillero = null;
         this.inventario = inventario;
     }
 

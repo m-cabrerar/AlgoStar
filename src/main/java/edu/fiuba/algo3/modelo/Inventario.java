@@ -15,6 +15,7 @@ public class Inventario {
     private int cantidadMineral;
     List<Unidad> unidades;
     List<EdificioEnConstruccion> edificios;
+    List<EdificioEnConstruccion> edificiosAEliminar;
 
     private static int POBLACION_MAXIMA =200;
     private static int SUMINISTROS_MAXIMOS = 200;
@@ -29,6 +30,7 @@ public class Inventario {
         this.suministrosEmpleados = 0;
         this.unidades = new ArrayList<>();
         this.edificios = new ArrayList<>();
+        this.edificiosAEliminar = new ArrayList<>();
         this.nivelConstruccion = 0;
     }
     public boolean puedeConstruir(int nivelDificultadConstruccion) {
@@ -49,6 +51,13 @@ public class Inventario {
         for(EdificioEnConstruccion edificio : edificios){
             edificio.pasarTurno();
         }
+        for(EdificioEnConstruccion edificio : edificiosAEliminar){
+            edificios.remove(edificio);
+        }
+    }
+
+    public void edificioAEliminar(EdificioEnConstruccion edificio){
+        edificiosAEliminar.add(edificio);
     }
 
     //MANEJO DE LISTAS DE UNIDADES

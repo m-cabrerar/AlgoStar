@@ -9,12 +9,15 @@ public class UnidadEnEvolucion extends EdificioZerg{
     private final int turnosParaEvolucionar;
     private int turnosTranscurridos;
     private final UnidadMovilZerg unidad;
+    private EdificioEnConstruccion edificio;
 
     public UnidadEnEvolucion(Casillero casillero, Inventario inventario, UnidadMovilZerg unidad){
         super(casillero, inventario, 1);
         this.turnosParaEvolucionar = unidad.turnosParaConstruir();
         this.turnosTranscurridos = 0;
         this.unidad = unidad;
+        casillero.ocupar(this);
+        edificio = new EdificioEnConstruccion(this, casillero, inventario);
     }
 
     public void ubicarEnInventario(){
@@ -24,11 +27,11 @@ public class UnidadEnEvolucion extends EdificioZerg{
     public void pasarTurno(){
         super.pasarTurno();
         turnosTranscurridos++;
-        if (turnosTranscurridos == turnosParaConstruir){
+        if (turnosTranscurridos == turnosParaEvolucionar){
+            inventario.edificioAEliminar(edificio);
             casillero.desocupar();
-            inventario.eliminarUnidad(this);
-            inventario.agregarUnidad(unidad);
             unidad.ubicarEn(casillero);
+            inventario.agregarUnidad(unidad);
         }
     }
     @Override
