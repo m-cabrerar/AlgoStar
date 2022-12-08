@@ -8,6 +8,7 @@ import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.edificios.*;
 import edu.fiuba.algo3.modelo.unidades.moviles.UnidadMovil;
+import edu.fiuba.algo3.modelo.unidades.moviles.Zangano;
 import javafx.beans.binding.Bindings;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -141,6 +142,7 @@ public class VistaJuego {
         tableroUnidades.setPrefSize(alto*50, alto*50);
         Inventario jugadorActual = inventarios[juego.getTurnos()%juego.cantidadDeJugadores()];
         Inventario jugadorEnemigo = inventarios[(juego.getTurnos()+1)%juego.cantidadDeJugadores()];
+        casillerosOcupadosUnidades = new boolean[juego.cantidadDeJugadores()][alto][ancho];
 
         List<Unidad> unidadesAliadas = jugadorActual.getUnidades();
         for (Unidad unidad : unidadesAliadas) {
@@ -170,6 +172,7 @@ public class VistaJuego {
         tableroUnidades.setPrefSize(alto * 50, alto * 50);
         Inventario jugadorActual = inventarios[juego.getTurnos() % juego.cantidadDeJugadores()];
         Inventario jugadorEnemigo = inventarios[(juego.getTurnos() + 1) % juego.cantidadDeJugadores()];
+        casillerosOcupadosEdificios = new boolean[juego.cantidadDeJugadores()][alto][ancho];
 
         List<EdificioEnConstruccion> edificiosAliados = jugadorActual.getEdificios();
         for (EdificioEnConstruccion edificio : edificiosAliados) {
@@ -536,14 +539,12 @@ public class VistaJuego {
                         for (Unidad unidadEnemiga : inventarioEnemigo.getUnidades()) {
                             Integer[] posicion = unidadEnemiga.obtenerPosicion();
                             if (mapa.obtenerCasillero(posicion[0], posicion[1]).equals(casillero)) {
-                                System.out.println("atacando" + posicion[0] + ", " + posicion[1]);
                                 unidad.atacar(unidadEnemiga);
                             }
                         }
                         for (Unidad edificioEnemigo : inventarioEnemigo.getEdificios()) {
                             Integer[] posicion = edificioEnemigo.obtenerPosicion();
                             if (mapa.obtenerCasillero(posicion[0], posicion[1]).equals(casillero)) {
-                                System.out.println("atacando" + posicion[0] + ", " + posicion[1]);
                                 unidad.atacar(edificioEnemigo);
                             }
                         }
@@ -551,6 +552,44 @@ public class VistaJuego {
                         updateBotones();
                     } catch (AtaqueFueraDeRango | UbicacionInvalida | UnidadOcupada ex) {
                         label.setText(ex.getMessage());
+                    }
+                });
+            }
+        }
+    }
+
+    public void trabajarEnExtractor(Zangano unidad, Label error) {
+        tableroDeBotones.getChildren().clear();
+        Inventario inventario = inventarios[juego.getTurnos()%juego.cantidadDeJugadores()];
+        for (int i = 0; i<alto; i++) {
+            for (int j = 0; j<ancho; j++) {
+                Button boton = new Button();
+                boton.setPrefSize(50, 50);
+                tableroDeBotones.add(boton, i, j);
+                boton.prefWidthProperty().bind(Bindings.min(centerPane.widthProperty().divide(alto),
+                        centerPane.heightProperty().divide(alto)));
+                boton.prefHeightProperty().bind(Bindings.min(centerPane.widthProperty().divide(alto),
+                        centerPane.heightProperty().divide(alto)));
+                boton.opacityProperty().setValue(0);
+                Casillero casillero = mapa.obtenerCasillero(i, j);
+                boton.setOnAction(e -> {
+                    try {
+                        for (EdificioEnConstruccion edificio : inventario.getEdificios()) {
+                            Integer[] posicion = edificio.obtenerPosicion();
+                            if (mapa.obtenerCasillero(posicion[0], posicion[1]).equals(casillero)) {
+                                if (!edificio.estaListo()) {
+                                    throw new UbicacionInvalida("El edificio no esta listo");
+                                }
+                                ((Extractor) edificio.getConstruido()).agregarZangano();
+                                inventario.eliminarUnidad(unidad);
+                            }
+                        }
+                        botonera.update();
+                        updateBotones();
+                    } catch (UbicacionInvalida | UnidadOcupada ex) {
+                        error.setText(ex.getMessage());
+                    } catch (ClassCastException ex) {
+                        error.setText("No es un extractor");
                     }
                 });
             }

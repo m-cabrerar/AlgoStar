@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.vistas;
 
 import edu.fiuba.algo3.modelo.unidades.Unidad;
+import edu.fiuba.algo3.modelo.unidades.moviles.Zealot;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 
@@ -42,8 +43,8 @@ public class VistaUnidad extends StackPane {
             case "ReservaDeReproduccion":
                 image = new Image("file:src/main/java/edu/fiuba/algo3/vistas/img/edificios/reservaDeReproduccion.gif");
                 break;
-            case "Engendradora":
-                image = new Image("file:src/main/java/edu/fiuba/algo3/vistas/img/unidades/engendradora.gif");
+            case "UnidadEnEvolucion":
+                image = new Image("file:src/main/java/edu/fiuba/algo3/vistas/img/unidades/unidadEnEvolucion.gif");
                 break;
             case "AmoSupremo":
                 image = new Image("file:src/main/java/edu/fiuba/algo3/vistas/img/unidades/amoSupremo.gif");
@@ -68,6 +69,9 @@ public class VistaUnidad extends StackPane {
                 break;
             case "Zealot":
                 image = new Image("file:src/main/java/edu/fiuba/algo3/vistas/img/unidades/zealot.gif");
+                if (!((Zealot)unidad).esVisible()) {
+                    this.setOpacity(0.5);
+                } 
                 break;
             case "Zerling":
                 image = new Image("file:src/main/java/edu/fiuba/algo3/vistas/img/unidades/zerling.gif");

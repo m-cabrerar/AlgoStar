@@ -48,7 +48,6 @@ public class Casillero{
     public void dejarSinEnergia(){this.energia = 0;}
 
     public void pasarTurno(int turnoActual){
-        System.out.println("turnoCas: " + this.turno);
         if(this.turno == turnoActual){
             return;
         }
@@ -92,10 +91,8 @@ public class Casillero{
     public boolean tieneEnRango(Unidad unidadAAtacar, int rango){
         List<Casillero> casilleros = mapa.casillerosEnRango(coordenadaX,coordenadaY,rango);
         //si el casillero de unidadAAtacar esta en la lista de casilleros, entonces esta en rango
-        for (Casillero casillero : casilleros) {
-            if(unidadAAtacar.estaPorAca(casilleros)){
-                return true;
-            }
+        if(unidadAAtacar.estaPorAca(casilleros)){
+            return true;
         }
         return false;
     }

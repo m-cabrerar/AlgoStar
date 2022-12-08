@@ -17,14 +17,14 @@ contrario.
 */
 
     @Test
-    public void Test01CuandoNoEsTurnoCeroYUnJugadorNoTieneEdificiosGanaElOtro(){
+    public void Test01CuandoNoEsTurnoCeroYUnJugadorNoTieneEdificiosGanaElOtro() {
         //ARRANGE
         Juego juego = new Juego();
-        Jugador jugador1 = new Jugador();
-        Jugador jugador2 = new Jugador();
 
-        juego.registrarJugador("Jugador 1", "rojo","Protoss", jugador1);
-        juego.registrarJugador("Jugador 2","azul","Zerg", jugador2);
+        juego.registrarJugador("Jugador 1", "rojo", "Protoss");
+        juego.registrarJugador("Jugador 2", "azul", "Zerg");
+
+        Jugador jugador1 =  juego.getJugadores()[0];
 
         Casillero mockedCasillero = mock(Casillero.class);
 

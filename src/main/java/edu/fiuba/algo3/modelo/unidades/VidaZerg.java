@@ -13,7 +13,7 @@ public class VidaZerg extends Vida implements Regenerativo{
     }
 
     public void regenerar(){
-        this.vida += 10;
+        this.vida += 1;
         if (vida > this.vidaMaxima){
             this.vida = this.vidaMaxima;
         }

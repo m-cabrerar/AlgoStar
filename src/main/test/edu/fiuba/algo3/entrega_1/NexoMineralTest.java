@@ -143,7 +143,7 @@ public class NexoMineralTest {
         // Act
         try{nexoMineral.recibirDanio(danio);}
         catch(Exception e){fail();}
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 250; i++) {
             nexoMineral.pasarTurno();
         }
         try {

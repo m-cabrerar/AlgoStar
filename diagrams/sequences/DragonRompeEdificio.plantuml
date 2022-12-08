@@ -1,0 +1,76 @@
+@startuml
+title test01DragonRompeUnEdificio
+
+activate ":TestCase"
+activate "i:Inventario"
+":TestCase" -> "i:Inventario": <<create>>
+":TestCase" -> "i:Inventario": agregarMineral(125)
+":TestCase" -> "i:Inventario": agregarGas(50)
+":TestCase" -> "i:Inventario": agregarSuministro(3)
+
+activate "m:Mapa"
+":TestCase" -> "m:Mapa": Mapa(10,10)
+
+":TestCase" -> "m:Mapa": cambiarTipoCasilla(1,1,<<create>> NodoGas)
+"m:Mapa" -> "m:Mapa": obtenerCasillero(1,1)
+"m:Mapa" --> "m:Mapa": casilleroE
+activate "casilleroE:Casillero"
+"m:Mapa" -> "casilleroE:Casillero": setTipoCasillero(NodoGas)
+":TestCase" -> "m:Mapa": obtenerCasillero(1,1)
+"m:Mapa" --> ":TestCase": casilleroE
+
+":TestCase" -> "m:Mapa": cambiarTipoCasilla(2,2,<<create>> Moho)
+"m:Mapa" -> "m:Mapa": obtenerCasillero(2,2)
+"m:Mapa" --> "m:Mapa": casilleroD
+activate "casilleroD:Casillero"
+"m:Mapa" -> "casilleroD:Casillero": setTipoCasillero(Moho)
+":TestCase" -> "m:Mapa": obtenerCasillero(2,2)
+"m:Mapa" --> ":TestCase": casilleroD
+deactivate "m:Mapa"
+
+activate "d:Dragon"
+":TestCase" -> "d:Dragon": Dragon(i)
+note left: Al crearse guarda una instancia\n de Danio con 20 de danio\n aereo y 20 de danio en tierra
+
+activate "e:Extractor"
+":TestCase" -> "e:Extractor": Extractor(casilleroE,i)
+":TestCase" -> "d:Dragon": ubicarEn(casilleroD)
+":TestCase" -> "e:Extractor": ubicarEnInventario()
+
+loop#Gold 37 veces
+":TestCase" -> "d:Dragon": atacar(e)
+"d:Dragon" -> "d:Dragon": estaOcupada()
+"d:Dragon" --> "d:Dragon": false
+"d:Dragon" -> "d:Dragon": tieneEnRango(e)
+"d:Dragon" -> "casilleroD:Casillero": tieneEnRango(e,rango:4)
+"casilleroD:Casillero" --> "d:Dragon": true
+"d:Dragon" -> "e:Extractor": recibirDanio(danio)
+":TestCase" -> "d:Dragon": pasarTurno()
+end
+
+":TestCase" -> "d:Dragon": atacar(e)
+"d:Dragon" -> "d:Dragon": estaOcupada()
+"d:Dragon" --> "d:Dragon": false
+"d:Dragon" -> "d:Dragon": tieneEnRango(e)
+"d:Dragon" -> "casilleroD:Casillero": tieneEnRango(e,rango:4)
+"casilleroD:Casillero" --> "d:Dragon": true
+deactivate "casilleroD:Casillero"
+"d:Dragon" -> "e:Extractor": recibirDanio(danio)
+
+group#LightBlue Eliminacion del edificio
+"e:Extractor" -> "casilleroE:Casillero": desocupar()
+"e:Extractor" -> "i:Inventario": eliminarUnidad(this)
+"e:Extractor" -> "i:Inventario": devolverSuministrosUnidad(3)
+deactivate "e:Extractor"
+deactivate "i:Inventario"
+end
+
+":TestCase" -> "d:Dragon": pasarTurno()
+deactivate "d:Dragon"
+
+":TestCase" -> "casilleroE:Casillero": estaOcupado()
+"casilleroE:Casillero" --> ":TestCase": true
+
+deactivate "casilleroE:Casillero"
+deactivate ":TestCase"
+@enduml

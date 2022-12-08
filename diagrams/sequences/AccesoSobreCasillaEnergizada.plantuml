@@ -1,0 +1,80 @@
+@startuml
+title test02EdificioZergSeConstruyeSoloSobreCasilleroEnergizado
+
+activate ":TestCase"
+activate "i:Inventario"
+":TestCase" -> "i:Inventario": <<create>>
+note left: Inventario empieza con 200 de mineral
+":TestCase" -> "i:Inventario": agregarMineral(50)
+
+activate "m:Mapa"
+":TestCase" -> "m:Mapa": Mapa(20,20)
+
+":TestCase" -> "m:Mapa": obtenerCasillero(2,2)
+"m:Mapa" --> ":TestCase": casilleroP
+
+":TestCase" -> "m:Mapa": obtenerCasillero(2,1)
+"m:Mapa" --> ":TestCase": casilleroCE
+
+":TestCase" -> "m:Mapa": obtenerCasillero(7,8)
+"m:Mapa" --> ":TestCase": casilleroSE
+
+deactivate "m:Mapa"
+
+group#Orange Construccion de un edificio
+
+activate "Pilon"
+":TestCase" -> "Pilon": construir(casilleroP,i)
+"Pilon" -> "i:Inventario": tieneRecursos(0,100)
+"i:Inventario" --> "Pilon": true
+"Pilon" --> "i:Inventario": puedeConstruir(0:nivelDeConstruccion)
+note right: El nivel de construccion varia segun las correlativas\n que precise el edificio para construirse
+"i:Inventario" --> "Pilon": true
+
+activate "p:Pilon"
+"Pilon" -> "p:Pilon": p:Pilon(casilleroP,i)
+"p:Pilon" -> "i:Inventario": agregarEdificio(this)
+activate "VidaProtoss"
+"p:Pilon" -> "VidaProtoss": VidaProtoss(300:vida,300:escudo)
+deactivate "VidaProtoss"
+note right: Si fuera un edificio zerg instancia VidaZerg(vida,escudo)
+
+activate "casilleroP:Casillero"
+"p:Pilon" -> "casilleroP:Casillero": ocupar(this)
+"p:Pilon" -> "i:Inventario": pagarMateriales(0:gas,100:mineral)
+"p:Pilon" --> "Pilon": p
+deactivate "p:Pilon"
+
+"Pilon" -> "casilleroP:Casillero": energizarEnRango(5)
+note left: La energizacion en rango es\n unicamente caracteristico del Pilon
+
+deactivate "casilleroP:Casillero"
+activate "EdificioEnConstruccion"
+"Pilon" -> "EdificioEnConstruccion": ed:EdificioEnConstruccion(pilon,casilleroP,i)
+deactivate "EdificioEnConstruccion"
+"Pilon" --> ":TestCase": ed
+end
+deactivate "Pilon"
+
+loop#LightGreen 5 veces
+":TestCase" -> "i:Inventario": pasarTurno();
+end
+deactivate "i:Inventario"
+
+
+":TestCase" -> "Acceso": construir(casilleroSE,i)
+note left: Se repite contruccion de edificio
+activate "Acceso"
+
+"Acceso" --> ":TestCase": UbicacionInvalida:Excepcion
+":TestCase" --> ":TestCase": true
+
+":TestCase" -> "Acceso": construir(casilleroCE,i)
+note left: Se repite contruccion de edificio
+
+deactivate "Acceso"
+
+":TestCase" --> ":TestCase": true
+
+deactivate ":TestCase"
+@enduml

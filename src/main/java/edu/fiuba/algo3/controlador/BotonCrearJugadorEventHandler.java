@@ -113,7 +113,7 @@ public class BotonCrearJugadorEventHandler implements EventHandler<ActionEvent> 
             return;
         }
         try {
-            juego.registrarJugador(nombre, color, raza, new Jugador());
+            juego.registrarJugador(nombre, color, raza);
             titulo.setText("Jugador " + (juego.cantidadDeJugadores() + 1));
             nombreJugador.setText("");
             botonRojo.styleProperty().set("-fx-background-color: #DA4728;");

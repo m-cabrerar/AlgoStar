@@ -151,7 +151,7 @@ public class AsimiladorTest {
             asimilador.recibirDanio(danio2); //con esto queda sin escudo y 50 de vida
         }
         catch(Exception EstaDestruido){fail();}
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 450; i++) {
             asimilador.pasarTurno();
         }
         try{asimilador.recibirDanio(danio);}

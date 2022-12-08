@@ -47,6 +47,7 @@ public class EdificioEnConstruccion implements Unidad {
         }
         if (!estaListo()) {
             casillero.desocupar();
+            inventario.edificioAEliminar(this);
             destruido = true;
         } else try {
             vaASer.recibirDanio(danio);

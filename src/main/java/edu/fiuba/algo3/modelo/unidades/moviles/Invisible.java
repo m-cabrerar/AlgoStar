@@ -9,5 +9,9 @@ public class Invisible implements Visibilidad{
     public Danio danioARecibir(Danio danioA) {
         return (new Danio(0, 0));
     }
+
+    public boolean esVisible(){
+        return false;
+    }
 }
 

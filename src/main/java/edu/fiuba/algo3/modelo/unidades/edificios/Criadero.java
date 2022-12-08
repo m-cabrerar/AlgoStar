@@ -65,9 +65,6 @@ public class Criadero extends EdificioZerg{
         if(!inventario.tieneRecursos(COSTO_GASEOSO, COSTO_MINERAL)){
             throw new RecursosInsuficientes("No tiene recursos");
         }
-        if(!inventario.puedeConstruir(NIVEL_DE_CONSTRUCCION_REQUERIDO)){
-            throw new CorrelativasInsuficientes("Aún no se puede contruir este edificio");
-        }
         Criadero criadero = new Criadero(casillero, inventario);
         Moho moho = new Moho();
         casillero.setTipoCasillero(moho);
@@ -109,13 +106,13 @@ public class Criadero extends EdificioZerg{
         }
     }
     public void engendrarZerling() {
-        if (tieneLarvas() && inventario.puedeConstruir(1)) {
+        if (!tieneLarvas()) {
+            throw new YaNoQuedanLarvas("No quedan larvas");
+        } else if (!Zerling.puedeConstruirseEn(inventario)) {
+            throw new CorrelativasInsuficientes("No se puede construir esta\nunidad aún, requiere\n Reserva");
+        } else {
             Zerling zerling = new Zerling(inventario);
             this.iniciarEvolucion(zerling);
-        } else if (!inventario.puedeConstruir(1)) {
-            throw new CorrelativasInsuficientes("No se puede construir este edificio");
-        } else {
-            throw new YaNoQuedanLarvas("No quedan larvas");
         }
     }
     public void engendrarAmoSupremo(){
@@ -127,23 +124,23 @@ public class Criadero extends EdificioZerg{
         }
     }
     public void engendrarHidralisco(){
-        if(tieneLarvas() && inventario.puedeConstruir(2)){
+        if (!tieneLarvas()) {
+            throw new YaNoQuedanLarvas("No quedan larvas");
+        } else if (!Hidralisco.puedeConstruirseEn(inventario)) {
+            throw new CorrelativasInsuficientes("No se puede construir esta\n unidad aún, requiere\n Guarida");
+        } else {
             Hidralisco hidra = new Hidralisco(inventario);
             this.iniciarEvolucion(hidra);
-        } else if (!inventario.puedeConstruir(2)) {
-            throw new CorrelativasInsuficientes("No se puede construir este edificio");
-        } else {
-            throw new YaNoQuedanLarvas("No quedan larvas");
         }
     }
     public void engendrarMutalisco(){
-        if(tieneLarvas() && inventario.puedeConstruir(3)){
+        if (!tieneLarvas()) {
+            throw new YaNoQuedanLarvas("No quedan larvas");
+        } else if (!Mutalisco.puedeConstruirseEn(inventario)) {
+            throw new CorrelativasInsuficientes("No se puede construir esta\n unidad aún, requiere\n Espiral");
+        } else {
             Mutalisco muta = new Mutalisco(inventario);
             this.iniciarEvolucion(muta);
-        } else if (!inventario.puedeConstruir(3)) {
-            throw new CorrelativasInsuficientes("No se puede construir este edificio");
-        } else {
-            throw new YaNoQuedanLarvas("No quedan larvas");
         }
     }
 
@@ -151,8 +148,4 @@ public class Criadero extends EdificioZerg{
         this.unidadesEnEvolucion.add(new Engendradora(this.casillero, this.inventario, unidad));
         this.cantidadLarvas -= 1;
     }
-
-
-
-
 }

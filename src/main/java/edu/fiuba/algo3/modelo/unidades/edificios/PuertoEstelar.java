@@ -49,7 +49,7 @@ public class PuertoEstelar extends EdificioProtoss {
             throw new RecursosInsuficientes("No tiene recursos");
         }
         if(!inventario.puedeConstruir(NIVEL_DE_CONSTRUCCION_REQUERIDO)){
-            throw new CorrelativasInsuficientes("Aún no se puede contruir este edificio");
+            throw new CorrelativasInsuficientes("Aún no se puede \ncontruir este edificio,\n requiere Acceso");
         }
         PuertoEstelar puertoEstelar = new PuertoEstelar(casillero, inventario);
         return new EdificioEnConstruccion(puertoEstelar, casillero, inventario);
@@ -59,7 +59,8 @@ public class PuertoEstelar extends EdificioProtoss {
         return NIVEL_DE_CONSTRUCCION_REQUERIDO;
     }
 
-    public void engendrarScout(){
+    public void engendrarScout() throws CasilleroNoCompatible{
+        this.chequeoCasillero();
         if(this.estaEvolucionando){
             throw new EdificioOcupado("Ya hay una unidad en creación.");
         }

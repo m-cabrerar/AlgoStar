@@ -68,7 +68,6 @@ public class Mapa {
         return ((0 <= x) && (x < this.anchoMapa)) && ((0 <= y) && (y < this.altoMapa));
     }
     public void pasarTurno(){
-        System.out.println("turno: " + this.tiempoVida);
         //Solo se puede expandir moho cada dos turnos
         if(this.tiempoVida % 2 == 0){
             for (List<Casillero> listaCasilleros : this.tableroActual){
