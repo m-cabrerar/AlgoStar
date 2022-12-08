@@ -549,7 +549,7 @@ public class VistaJuego {
                         }
                         botonera.update();
                         updateBotones();
-                    } catch (CasilleroNoCompatible | UbicacionInvalida | UnidadOcupada ex) {
+                    } catch (AtaqueFueraDeRango | UbicacionInvalida | UnidadOcupada ex) {
                         label.setText(ex.getMessage());
                     }
                 });

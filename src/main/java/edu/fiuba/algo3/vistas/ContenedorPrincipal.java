@@ -128,5 +128,8 @@ public class ContenedorPrincipal extends BorderPane {
     public void updateEdificios() {
         vistaJuego.updateEdificios();
     }
+    public void updateJugador() {
+        contenedorJugador.update();
+    }
 
 }
