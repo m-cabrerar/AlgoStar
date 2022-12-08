@@ -509,7 +509,7 @@ public class VistaJuego {
                         unidad.moverA(casillero);
                         botonera.update();
                         updateBotones();
-                    } catch (CasilleroNoCompatible | UbicacionInvalida ex) {
+                    } catch (CasilleroNoCompatible | UbicacionInvalida | UnidadOcupada ex) {
                         label.setText(ex.getMessage());
                     }
                 });
