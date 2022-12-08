@@ -102,7 +102,7 @@ public class Casillero{
         List<Casillero> casilleros = mapa.casillerosEnRango(coordenadaX, coordenadaY,3);
         List<Casillero> casillerosLibres = new ArrayList<>();
         for(Casillero casillero : casilleros){
-            if(!casillero.estaOcupado() && (casillero.getTipo() != new CasilleroEspacial())){
+            if(!casillero.estaOcupado() && (!(casillero.getTipo() instanceof CasilleroEspacial))){
                 casillerosLibres.add(casillero);
             }
         }
