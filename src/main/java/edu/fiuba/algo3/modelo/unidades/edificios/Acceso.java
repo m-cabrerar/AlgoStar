@@ -63,7 +63,7 @@ public class Acceso extends EdificioProtoss {
             throw new EdificioOcupado("Ya hay una unidad en creacion");
         }
         Zealot zealot = new Zealot(inventario);
-        this.engendradora = new Engendradora(this.casillero.obtenerAdyacente(), this.inventario, zealot);
+        this.engendradora = new Engendradora(this.casillero, this.inventario, zealot);
         this.estaEvolucionando = true;
     }
 
@@ -72,7 +72,7 @@ public class Acceso extends EdificioProtoss {
             throw new EdificioOcupado("Ya hay una unidad en creacion");
         }
         Dragon dragon = new Dragon(inventario);
-        this.engendradora = new Engendradora(this.casillero.obtenerAdyacente(), this.inventario, dragon);
+        this.engendradora = new Engendradora(this.casillero, this.inventario, dragon);
         this.estaEvolucionando = true;
     }
 

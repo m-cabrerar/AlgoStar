@@ -64,7 +64,7 @@ public class PuertoEstelar extends EdificioProtoss {
             throw new EdificioOcupado("Ya hay una unidad en creación.");
         }
         Scout scout = new Scout(inventario);
-        this.engendradora = new Engendradora(this.casillero.obtenerAdyacente(), this.inventario, scout);
+        this.engendradora = new Engendradora(this.casillero, this.inventario, scout);
         this.estaEvolucionando = true;
     }
 }
