@@ -48,13 +48,6 @@ public class Espiral extends EdificioZerg {
         return new Mutalisco(inventario);
     }
 
-    public void engendrarMutalisco(UnidadMovil unidad, Inventario inventario) throws RecursosInsuficientes, EdificioOcupado {
-        if (unidadEnConstruccion()) {
-            throw new EdificioOcupado("El edificio está ocupado");
-        }
-        unidadEnConstruccion = crearEvolucion(inventario);
-        turnosParaConstruir = unidadEnConstruccion.turnosParaConstruir();
-    }
     public static int getNivelDeConstruccionRequerido() {
         return NIVEL_DE_CONSTRUCCION_REQUERIDO;
     }

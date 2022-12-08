@@ -24,7 +24,7 @@ public abstract class EdificioProtoss extends EdificioConcreto {
 
     public void chequeoCasillero() throws CasilleroNoCompatible{
         if(!this.casillero.tieneEnergia()){
-            throw new CasilleroNoCompatible("El casillero no tiene mas energia");
+            throw new CasilleroNoCompatible("El casillero no tiene\n mas energia");
         }
     }
 }

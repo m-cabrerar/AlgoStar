@@ -49,7 +49,7 @@ public class PuertoEstelar extends EdificioProtoss {
             throw new RecursosInsuficientes("No tiene recursos");
         }
         if(!inventario.puedeConstruir(NIVEL_DE_CONSTRUCCION_REQUERIDO)){
-            throw new CorrelativasInsuficientes("Aún no se puede contruir este edificio");
+            throw new CorrelativasInsuficientes("Aún no se puede \ncontruir este edificio,\n requiere Acceso");
         }
         PuertoEstelar puertoEstelar = new PuertoEstelar(casillero, inventario);
         return new EdificioEnConstruccion(puertoEstelar, casillero, inventario);

@@ -50,7 +50,7 @@ public class Extractor extends EdificioZerg {
         if(zanganosTrabajando < 3) {
             this.zanganosTrabajando += 1;
         } else {
-            throw new ExtractorError("El extractor ya tiene 3 zanganos trabajando");
+            throw new ExtractorError("El extractor ya tiene 3\n zanganos trabajando");
         }
     }
     public static int getNivelDeConstruccionRequerido() {

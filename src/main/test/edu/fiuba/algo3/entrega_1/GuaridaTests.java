@@ -64,7 +64,7 @@ public class GuaridaTests {
     @Test
     public void test03NoSePuedeConstruirUnaGuaridaSinTenerUnaReservaDeReproduccion(){
         //ARRANGE
-        String mensaje = "Aún no se puede construir este edificio";
+        String mensaje = "Aún no se puede \nconstruir este edificio";
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventario = new Inventario();
         inventario.agregarMineral(1000);
