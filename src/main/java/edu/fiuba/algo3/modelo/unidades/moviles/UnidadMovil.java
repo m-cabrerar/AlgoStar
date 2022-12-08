@@ -13,6 +13,8 @@ public abstract class UnidadMovil implements Unidad, Construible {
     protected Inventario inventario;
     protected Superficie superficie;
     protected Vida vida;
+    protected int rangoDeAtaque;
+    protected Danio danio;
 
     UnidadMovil(Inventario inventario, int costoMineral, int costoGas, int costoSuministro){
         if(!inventario.tieneRecursos(costoGas, costoMineral)){
@@ -40,8 +42,8 @@ public abstract class UnidadMovil implements Unidad, Construible {
         }
         ubicarEn(casillero);
     }
-    public boolean tieneEnRangoA(Unidad unidadAAtacar, int rango) {
-        return (casillero.tieneEnRango(unidadAAtacar, rango));
+    public boolean tieneEnRangoA(Unidad unidadAAtacar) {
+        return (casillero.tieneEnRango(unidadAAtacar, rangoDeAtaque));
     }
 
     public boolean estaPorAca(List<Casillero> casilleros){
@@ -61,14 +63,13 @@ public abstract class UnidadMovil implements Unidad, Construible {
 
     }
 
-    public void atacar(Unidad unidadAAtacar, int rango, Danio danio){
-        if(!this.tieneEnRangoA(unidadAAtacar, rango)){
+    public void atacar(Unidad unidadAAtacar){
+        if(!this.tieneEnRangoA(unidadAAtacar)){
             throw new AtaqueFueraDeRango("El ataque está fuera de rango");
         }
         try{
             unidadAAtacar.recibirDanio(danio);
         } catch (Exception EstaDestruido){
-            throw new EstaDestruido("Unidad Destruida");
         }
     }
 
@@ -84,5 +85,8 @@ public abstract class UnidadMovil implements Unidad, Construible {
     }
     public int getVidaMaxima() {
         return vida.getVidaMaxima();
+    }
+    public boolean estaDestruido(){
+        return vida.getVida() <= 0;
     }
 }

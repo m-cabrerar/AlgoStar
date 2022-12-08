@@ -18,23 +18,16 @@ public class Zerling extends UnidadMovilZerg {
 
     private static int COSTO_SUMINISTRO = 1;
 
-    private Danio danio;
 
     public Zerling(Inventario inventario){
         super(inventario, COSTO_MINERAL, COSTO_GASEOSO, VIDA_MAXIMA, COSTO_SUMINISTRO);
-        danio = new Danio(DANIO_AIRE, DANIO_TIERRA);
         inventario.pagarMateriales(COSTO_GASEOSO,COSTO_MINERAL);
         superficie = new Tierra();
+        this.rangoDeAtaque = RANGO_DE_ATAQUE;
+        this.danio = new Danio(DANIO_AIRE,DANIO_TIERRA);
     }
     public int turnosParaConstruir(){
         return TURNOS_PARA_CONSTRUIR;
-    }
-    public void atacar(Unidad unidadAAtacar){
-        try{
-            super.atacar(unidadAAtacar, RANGO_DE_ATAQUE, danio);
-        } catch (Exception EstaDestruido){
-            //no tiene comportamiento si mata una unidad
-        }
     }
     public void recibirDanio(Danio danio) throws EstaDestruido {
         try {

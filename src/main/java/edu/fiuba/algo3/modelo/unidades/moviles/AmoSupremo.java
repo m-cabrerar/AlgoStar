@@ -9,7 +9,9 @@ import edu.fiuba.algo3.modelo.unidades.Danio;
 public class AmoSupremo extends UnidadMovilZerg {
 
         private static int VIDA_MAXIMA = 200;
-        //no tiene danio ni rango de ataque
+        private static int DANIO_AIRE = 0;
+        private static int DANIO_TIERRA = 0;
+        private static int RANGO_DE_ATAQUE = 0;
         private static int COSTO_MINERAL = 50;
         private static int COSTO_GASEOSO = 0;
         private static int TURNOS_PARA_CONSTRUIR = 5;
@@ -22,6 +24,8 @@ public class AmoSupremo extends UnidadMovilZerg {
             inventario.pagarMateriales(COSTO_GASEOSO,COSTO_MINERAL);
             superficie = new Aire();
             inventario.agregarSuministro(SUMINISTRA);
+            this.rangoDeAtaque = RANGO_DE_ATAQUE;
+            this.danio = new Danio(DANIO_AIRE,DANIO_TIERRA);
         }
 
         public int turnosParaConstruir(){

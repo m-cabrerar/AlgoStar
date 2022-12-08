@@ -19,13 +19,13 @@ public class Dragon extends UnidadMovilProtoss {
 
     private static int COSTO_SUMINISTRO = 3;
 
-    private Danio danio;
 
     public Dragon(Inventario inventario){
         super(inventario, COSTO_MINERAL, COSTO_GASEOSO, VIDA_MAXIMA, ESCUDO_MAXIMO, COSTO_SUMINISTRO);
-        danio = new Danio(DANIO_AIRE, DANIO_TIERRA);
         inventario.pagarMateriales(COSTO_GASEOSO,COSTO_MINERAL);
         superficie = new Tierra();
+        this.rangoDeAtaque = RANGO_DE_ATAQUE;
+        this.danio = new Danio(DANIO_AIRE,DANIO_TIERRA);
     }
 
     @Override
@@ -34,13 +34,7 @@ public class Dragon extends UnidadMovilProtoss {
     }
 
     // TODO: refactor
-    public void atacar(Unidad unidadAAtacar) {
-        try {
-            super.atacar(unidadAAtacar, RANGO_DE_ATAQUE, danio);
-        } catch (Exception EstaDestruido) {
-            //no tiene comportamiento si mata una unidad
-        }
-    }
+
     public void recibirDanio(Danio danio) throws EstaDestruido {
         try {
             super.recibirDanio(danio);
