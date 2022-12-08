@@ -34,7 +34,6 @@ public abstract class UnidadMovil implements Unidad, Construible {
     public void ubicarEn(Casillero casillero){
         this.casillero = casillero;
         casillero.ocupar(this);
-        casillero.quitarInvisibilidadEnRango(1);
     }
     public void moverA(Casillero casillero) {
         if(casillero.estaOcupado()) {
