@@ -48,7 +48,6 @@ public class Casillero{
     public void dejarSinEnergia(){this.energia = 0;}
 
     public void pasarTurno(int turnoActual){
-        System.out.println("turnoCas: " + this.turno);
         if(this.turno == turnoActual){
             return;
         }
