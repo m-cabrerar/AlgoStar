@@ -29,6 +29,9 @@ public class casoUso28 {
         Casillero casilleroMock = mock(Casillero.class);
         when(casilleroMock.tieneEnRango(any(Unidad.class), anyInt())).thenReturn(true);
 
+        Casillero casilleroMockZealot = mock(Casillero.class);
+        when(casilleroMockZealot.tieneEnRango(any(Unidad.class), anyInt())).thenReturn(true);
+
         Criadero cria1 = new Criadero(casilleroMock, inventarioMock);
         Criadero cria2 = new Criadero(casilleroMock, inventarioMock);
         Criadero cria3 = new Criadero(casilleroMock, inventarioMock);
@@ -36,6 +39,7 @@ public class casoUso28 {
         Zealot zealot = new Zealot(inventarioMock);
         Zerling zerling = new Zerling(inventarioMock);
         zerling.ubicarEn(casilleroMock);
+        zealot.ubicarEn(casilleroMockZealot);
 
         //ACT
         for (int i = 0; i < 63; i++) {
@@ -43,12 +47,13 @@ public class casoUso28 {
             zealot.atacar(cria2);
             zealot.atacar(cria3);
         }
+        zealot.pasarTurno();
 
         //ASSERT
         for (int i = 0; i < 42; i++) {
             zerling.atacar(zealot);
         }
-        verify(casilleroMock, times(0)).desocupar();
+        verify(casilleroMockZealot, times(0)).desocupar();
     }
 
     @Test

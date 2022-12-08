@@ -51,8 +51,8 @@ public class GuardianTests {
         Casillero casilleroMock = mock(Casillero.class);
         when(casilleroMock.tieneEnRango(any(), anyInt())).thenReturn(true);
 
-        Guardian guardian = new Guardian(inventarioMock);
-        Hidralisco hidra = new Hidralisco(inventarioMock);
+        UnidadMovil guardian = new Guardian(inventarioMock);
+        UnidadMovil hidra = new Hidralisco(inventarioMock);
         //ACT
         try {
             guardian.ubicarEn(casilleroMock);

@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.entrega_2;
 
+import edu.fiuba.algo3.exceptions.AtaqueFueraDeRango;
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.casillero.Casillero;
 import edu.fiuba.algo3.modelo.unidades.moviles.Devorador;
@@ -89,9 +90,6 @@ public class DragonTests {
         dragon.ubicarEn(casilleroMock);
         devorador.ubicarEn(casilleroMock);
         //ASSERT
-        for(int i=0; i<9; i++){
-            dragon.atacar(devorador);
-        }
-        verify(casilleroMock, times(0)).desocupar();
+        assertThrows(AtaqueFueraDeRango.class, () -> dragon.atacar(devorador));
     }
 }
