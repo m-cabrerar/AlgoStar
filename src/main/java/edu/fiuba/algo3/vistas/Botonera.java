@@ -355,6 +355,7 @@ public class Botonera extends VBox {
         }
         try {
             Label escudo = new Label("Escudo: " + ((UnidadMovilProtoss) unidad).getEscudo() + "/" + ((UnidadMovilProtoss) unidad).getEscudoMaximo());
+            contenedorVida.getChildren().add(escudo);
         }
         catch (Exception e) {
         }
