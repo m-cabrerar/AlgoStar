@@ -166,7 +166,7 @@ public class ExtractorTests {
     @Test
     public void Test09UnExtractorNoPuedeTener4ZanganosTrabajando() {
         //ARRANGE
-        String mensaje = "El extractor ya tiene 3 zanganos trabajando";
+        String mensaje = "El extractor ya tiene 3\n zanganos trabajando";
         Casillero casilleroMock = mock(Casillero.class);
         Inventario inventarioMock = mock(Inventario.class);
         when(inventarioMock.tieneRecursos(anyInt(),anyInt())).thenReturn(true);

@@ -65,9 +65,6 @@ public class Criadero extends EdificioZerg{
         if(!inventario.tieneRecursos(COSTO_GASEOSO, COSTO_MINERAL)){
             throw new RecursosInsuficientes("No tiene recursos");
         }
-        if(!inventario.puedeConstruir(NIVEL_DE_CONSTRUCCION_REQUERIDO)){
-            throw new CorrelativasInsuficientes("Aún no se puede contruir este edificio");
-        }
         Criadero criadero = new Criadero(casillero, inventario);
         Moho moho = new Moho();
         casillero.setTipoCasillero(moho);
@@ -112,7 +109,7 @@ public class Criadero extends EdificioZerg{
         if (!tieneLarvas()) {
             throw new YaNoQuedanLarvas("No quedan larvas");
         } else if (!Zerling.puedeConstruirseEn(inventario)) {
-            throw new CorrelativasInsuficientes("No se puede construir esta unidad aún");
+            throw new CorrelativasInsuficientes("No se puede construir esta\nunidad aún, requiere\n Reserva");
         } else {
             Zerling zerling = new Zerling(inventario);
             this.iniciarEvolucion(zerling);
@@ -130,7 +127,7 @@ public class Criadero extends EdificioZerg{
         if (!tieneLarvas()) {
             throw new YaNoQuedanLarvas("No quedan larvas");
         } else if (!Hidralisco.puedeConstruirseEn(inventario)) {
-            throw new CorrelativasInsuficientes("No se puede construir esta unidad aún");
+            throw new CorrelativasInsuficientes("No se puede construir esta\n unidad aún, requiere\n Guarida");
         } else {
             Hidralisco hidra = new Hidralisco(inventario);
             this.iniciarEvolucion(hidra);
@@ -140,7 +137,7 @@ public class Criadero extends EdificioZerg{
         if (!tieneLarvas()) {
             throw new YaNoQuedanLarvas("No quedan larvas");
         } else if (!Mutalisco.puedeConstruirseEn(inventario)) {
-            throw new CorrelativasInsuficientes("No se puede construir esta unidad aún");
+            throw new CorrelativasInsuficientes("No se puede construir esta\n unidad aún, requiere\n Espiral");
         } else {
             Mutalisco muta = new Mutalisco(inventario);
             this.iniciarEvolucion(muta);
