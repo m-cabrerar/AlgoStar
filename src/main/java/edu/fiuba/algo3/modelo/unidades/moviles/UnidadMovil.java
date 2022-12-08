@@ -74,7 +74,7 @@ public abstract class UnidadMovil implements Unidad, Construible {
             throw new UnidadOcupada("Unidad ya se movió o atacó este turno");
         }
         if(!this.tieneEnRangoA(unidadAAtacar)){
-            throw new AtaqueFueraDeRango("El ataque está fuera de rango");
+            throw new AtaqueFueraDeRango("El ataque está fuera de rango, rango de ataque: " + rangoDeAtaque);
         }
         estaOcupada = true;
         try{
