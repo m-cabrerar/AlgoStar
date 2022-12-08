@@ -85,6 +85,7 @@ public class ContenedorPrincipal extends BorderPane {
             alert.setHeaderText("El juego ha terminado");
             alert.setContentText("El ganador es " + ganador.getNombre());
             alert.showAndWait();
+            System.exit(0);
         }
     }
     public void crearNexoMineral(Label label) {
