@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UnidadMovil {
 
-    
+    @Test
     public void test01DragonRompeUnEdificio() {
         //ARRANGE
         Inventario inventario = new Inventario();
@@ -24,10 +24,11 @@ public class UnidadMovil {
 
         Mapa mapa = new Mapa(10,10);
 
-        Casillero casilleroEdificio = new Casillero(2,1,mapa);
-        casilleroEdificio.setTipoCasillero(new NodoGas());
-        Casillero casilleroDragon = new Casillero(1,1,mapa);
-        casilleroDragon.setTipoCasillero(new Moho());
+        mapa.cambiarTipoCasilla(1,1,new NodoGas());
+        Casillero casilleroEdificio = mapa.obtenerCasillero(1,1);
+
+        mapa.cambiarTipoCasilla(2,2,new Moho());
+        Casillero casilleroDragon = mapa.obtenerCasillero(2,2);
 
         Dragon dragon = new Dragon(inventario);
         Extractor edificio = new Extractor(casilleroEdificio,inventario);
@@ -37,8 +38,9 @@ public class UnidadMovil {
         edificio.ubicarEnInventario();
 
         //loop
-        for(int i=0; i<1; i++){ //dragon saca 20, pega 38
+        for(int i=0; i<38; i++){ //dragon saca 20, pega 38
             dragon.atacar(edificio);
+            dragon.pasarTurno();
         }
         //ASSERT
         //assert que el casillero esta vacio
