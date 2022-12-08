@@ -1,0 +1,38 @@
+@startuml
+'https://plantuml.com/class-diagram
+title Modelado de Unidades Moviles Protoss
+
+interface Visibilidad{
++Danio: danioARecibir(Danio danio)
+}
+
+class Invisible{
++Danio: danioARecibir(Danio danioA)
+}
+class Visible{
++Danio: danioARecibir(Danio danioA)
+}
+
+
+abstract class  UnidadMovil {
+}
+
+abstract class UnidadMovilProtoss {
+ + <u> UnidadMovilProtoss(inventario,costoM,costoG,vida,escudo,costoSuministro)
+ + void: pasarTurno()
+}
+UnidadMovil <|-- UnidadMovilProtoss
+
+Zealot *-- Visibilidad
+Visible --|> Visibilidad
+Invisible--|> Visibilidad
+
+UnidadMovilProtoss <|-- Dragon
+UnidadMovilProtoss <|-- Zealot
+UnidadMovilProtoss <|-- Scout
+
+Zealot *-- Danio
+Dragon *-- Danio
+Scout *-- Danio
+
+@enduml
