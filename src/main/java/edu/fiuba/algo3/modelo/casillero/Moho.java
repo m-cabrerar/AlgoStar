@@ -12,9 +12,6 @@ public class Moho extends TipoCasillero {
             if (casilla.estaOcupado()) {
                 continue;
             }
-            int posx = casilla.posicionX();
-            int posy = casilla.posicionY();
-            System.out.println("Se contagia: " + posx + posy);
             casilla.volverseMoho();
         }
     }
