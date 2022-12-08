@@ -52,7 +52,7 @@ public class EdificioEnConstruccion implements Unidad {
         } else try {
             vaASer.recibirDanio(danio);
         } catch (Exception EstaDestruido){
-            inventario.eliminarEdificio(this);
+            inventario.edificioAEliminar(this);
         }
     }
 
