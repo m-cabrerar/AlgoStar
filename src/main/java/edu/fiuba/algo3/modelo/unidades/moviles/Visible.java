@@ -9,5 +9,7 @@ public class Visible implements Visibilidad{
         return danioA;
     }
 
-
+    public boolean esVisible(){
+        return true;
+    }
 }

@@ -74,4 +74,8 @@ public class Zealot extends UnidadMovilProtoss {
             unidadesDestruidas++;
         }
     }
+
+    public boolean esVisible(){
+        return visibilidad.esVisible();
+    }
 }
