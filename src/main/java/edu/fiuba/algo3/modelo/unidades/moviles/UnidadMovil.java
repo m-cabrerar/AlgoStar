@@ -32,8 +32,8 @@ public abstract class UnidadMovil implements Unidad, Construible {
     }
 
     public void ubicarEn(Casillero casillero){
-        this.casillero = casillero;
         casillero.ocupar(this);
+        this.casillero = casillero;
     }
     public void moverA(Casillero casillero) {
         if(casillero.estaOcupado()) {
@@ -44,9 +44,9 @@ public abstract class UnidadMovil implements Unidad, Construible {
         if(!this.estaPorAca(casillero.obtenerAdyacentes())){
             throw new UbicacionInvalida("Fuera de rango");
         } else {
+            ubicarEn(casillero);
             this.casillero.desocupar();
             estaOcupada = true;
-            ubicarEn(casillero);
         }
     }
     public boolean tieneEnRangoA(Unidad unidadAAtacar) {

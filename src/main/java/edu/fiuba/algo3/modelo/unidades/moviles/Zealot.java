@@ -63,8 +63,7 @@ public class Zealot extends UnidadMovilProtoss {
 
     @Override
     public void ubicarEn(Casillero casillero){
-        this.casillero = casillero;
-        casillero.ocupar(this);
+        super.ubicarEn(casillero);
     }
 
     @Override

@@ -47,8 +47,7 @@ public class AmoSupremo extends UnidadMovilZerg {
 
         @Override
         public void ubicarEn(Casillero casillero){
-            this.casillero = casillero;
-            casillero.ocupar(this);
+            super.ubicarEn(casillero);
             casillero.quitarInvisibilidadEnRango(4);
         }
 
