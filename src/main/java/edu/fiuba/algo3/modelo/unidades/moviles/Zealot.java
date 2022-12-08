@@ -12,8 +12,8 @@ public class Zealot extends UnidadMovilProtoss {
     private static int VIDA_MAXIMA = 100;
     private static int ESCUDO_MAXIMO = 60;
     private static int DANIO_AIRE = 0;
-    private static int DANIO_TIERRA = 8;//8
-    private static int RANGO_DE_ATAQUE = 1;//1
+    private static int DANIO_TIERRA = 8;
+    private static int RANGO_DE_ATAQUE = 1;
     private static int COSTO_MINERAL = 100;
     private static int COSTO_GASEOSO = 0;
     private static int TURNOS_PARA_CONSTRUIR = 4;
@@ -49,7 +49,7 @@ public class Zealot extends UnidadMovilProtoss {
         this.visibilidad = new Invisible();
     }
     private void visibilizar(){
-        visibilidad = new Visible();
+        this.visibilidad = new Visible();
     }
     public void pasarTurno(){
         super.pasarTurno();
@@ -68,7 +68,10 @@ public class Zealot extends UnidadMovilProtoss {
 
     @Override
     public void atacar(Unidad unidadAAtacar) {
-        this.visibilizar();
+        if(!this.esVisible()){
+            this.visibilizar();
+            unidadesDestruidas=0;
+        }
         super.atacar(unidadAAtacar);
         if (unidadAAtacar.estaDestruido()){
             unidadesDestruidas++;
