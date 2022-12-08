@@ -138,7 +138,7 @@ public class PilonTest {
         // Act
         try{pilon.recibirDanio(danio);}
         catch(Exception e){}
-        for (int i = 0; i < 35; i++) {
+        for (int i = 0; i < 300; i++) {
             pilon.pasarTurno();
         }
         try{pilon.recibirDanio(danio2);}

@@ -12,12 +12,9 @@ public class Escudo implements Regenerativo, Atacable {
     }
 
     public void regenerar(){
-        this.escudo += 10;
+        this.escudo += 1;
         if (escudo > escudoMaximo){
             this.escudo = escudoMaximo;
-        }
-        if (escudo < 10){
-            this.escudo = 10;
         }
     }
 
