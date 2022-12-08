@@ -109,12 +109,13 @@ public class Casillero{
     //PARA LA UBICACION DE UNIDADES CREADAS
     public Casillero obtenerAdyacente(){
         List<Casillero> casilleros = mapa.casillerosEnRango(coordenadaX, coordenadaY,3);
+        List<Casillero> casillerosLibres = new ArrayList<>();
         for(Casillero casillero : casilleros){
-            if(!casillero.estaOcupado()){
-                return casillero;
+            if(!casillero.estaOcupado() && (casillero.getTipo() != new CasilleroEspacial())){
+                casillerosLibres.add(casillero);
             }
         }
-        return null;
+        return casillerosLibres.get(0);
     }
 
     //MANEJO DE UNIDAD INVISIBLE
