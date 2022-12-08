@@ -23,6 +23,7 @@ public class Pilon extends EdificioProtoss {
     public void ubicarEnInventario(){
         inventario.subirNivelConstruccion(NIVEL_DE_CONSTRUCCION);
         inventario.agregarSuministro(SUMINISTRA);
+        casillero.energizarEnRango(5);
     }
 
     public void pasarTurno() {
@@ -41,7 +42,6 @@ public class Pilon extends EdificioProtoss {
             throw new CorrelativasInsuficientes("Aún no se puede contruir este edificio");
         }
         Pilon pilon = new Pilon(casillero, inventario);
-        casillero.energizarEnRango(5);
         return new EdificioEnConstruccion(pilon, casillero, inventario);
     }
 
