@@ -58,7 +58,8 @@ public class Acceso extends EdificioProtoss {
         return NIVEL_DE_CONSTRUCCION_REQUERIDO;
     }
 
-    public void engendrarZealot(){
+    public void engendrarZealot() throws CasilleroNoCompatible{
+        this.chequeoCasillero();
         if (this.estaEvolucionando){
             throw new EdificioOcupado("Ya hay una unidad en creacion");
         }
@@ -67,7 +68,8 @@ public class Acceso extends EdificioProtoss {
         this.estaEvolucionando = true;
     }
 
-    public void engendrarDragon(){
+    public void engendrarDragon() throws CasilleroNoCompatible{
+        this.chequeoCasillero();
         if (this.estaEvolucionando){
             throw new EdificioOcupado("Ya hay una unidad en creacion");
         }
