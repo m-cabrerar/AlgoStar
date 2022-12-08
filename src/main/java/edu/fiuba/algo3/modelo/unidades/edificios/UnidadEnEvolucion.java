@@ -18,7 +18,7 @@ public class UnidadEnEvolucion extends EdificioZerg{
     }
 
     public void ubicarEnInventario(){
-        inventario.agregarUnidad(unidad);
+        inventario.subirNivelConstruccion(0);
     }
 
     public void pasarTurno(){
@@ -26,7 +26,8 @@ public class UnidadEnEvolucion extends EdificioZerg{
         turnosTranscurridos++;
         if (turnosTranscurridos == turnosParaConstruir){
             casillero.desocupar();
-            this.ubicarEnInventario();
+            inventario.eliminarUnidad(this);
+            inventario.agregarUnidad(unidad);
             unidad.ubicarEn(casillero);
         }
     }
