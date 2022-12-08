@@ -3,7 +3,6 @@ package edu.fiuba.algo3.integracion;
 import edu.fiuba.algo3.modelo.Inventario;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.casillero.Casillero;
-import edu.fiuba.algo3.modelo.casillero.CasilleroEspacial;
 import edu.fiuba.algo3.modelo.casillero.Moho;
 import edu.fiuba.algo3.modelo.casillero.NodoGas;
 import edu.fiuba.algo3.modelo.unidades.edificios.Extractor;
@@ -12,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class UnidadMovil {
+public class caso2 {
 
     @Test
     public void test01DragonRompeUnEdificio() {
