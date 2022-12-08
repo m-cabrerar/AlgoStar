@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.edificios.*;
+import edu.fiuba.algo3.modelo.unidades.moviles.Mutalisco;
 import edu.fiuba.algo3.modelo.unidades.moviles.UnidadMovil;
 import edu.fiuba.algo3.modelo.unidades.moviles.UnidadMovilProtoss;
 import javafx.scene.control.Button;
@@ -178,7 +179,7 @@ public class Botonera extends VBox {
 
         Button botonAtras = new Button("Atras");
         botonAtras.setOnAction(e -> {
-            contenedorPrincipal.update();
+            update();
         });
 
         this.getChildren().clear();
@@ -188,6 +189,7 @@ public class Botonera extends VBox {
     public void mostrarBotonesEdificio(EdificioEnConstruccion edificio) {
         if (!edificio.estaListo()) {
             mostrarEdificio(edificio, new VBox(), new Label());
+            return;
         }
         VBox opciones = new VBox();
         opciones.setSpacing(10);
@@ -308,7 +310,7 @@ public class Botonera extends VBox {
 
         Button botonAtras = new Button("Atras");
         botonAtras.setOnAction(e -> {
-            contenedorPrincipal.update();
+            update();
         });
 
         this.getChildren().clear();
@@ -320,12 +322,57 @@ public class Botonera extends VBox {
     }
 
     public void mostrarBotonesUnidad(Unidad unidad) {
+        System.out.println("Mostrando botones de unidad");
         mostrarInfoUnidad(unidad);
         VBox opciones = new VBox();
         opciones.setSpacing(10);
         Label error = new Label();
         error.styleProperty().setValue("-fx-text-fill: red");
 
+        Button botonMover = new Button("Mover");
+        botonMover.setOnAction(e -> {
+            try {
+                contenedorPrincipal.moverUnidad((UnidadMovil) unidad, error);
+            } catch (Exception ex) {
+            }
+        });
+        Button botonAtacar = new Button("Atacar");
+        botonAtacar.setOnAction(e -> {
+            try {
+                contenedorPrincipal.unidadAtacar((UnidadMovil) unidad);
+            } catch (Exception ex) {
+                error.setText(ex.getMessage());
+            }
+        });
+        opciones.getChildren().addAll(botonMover, botonAtacar);
+
+        if (unidad instanceof Mutalisco) {
+            Button botonGuardian = new Button("Evolucionar a Guardian");
+            botonGuardian.setOnAction(e -> {
+                try {
+                    ((Mutalisco) unidad).evolucionarAGuardian();
+                    error.setText("Evolucionando a guardian");
+                    error.styleProperty().setValue("-fx-text-fill: green");
+                    contenedorPrincipal.updateEdificios();
+                } catch (Exception ex) {
+                    error.setText(ex.getMessage());
+                }
+            });
+            Button botonDevorador = new Button("Evolucionar a Devorador");
+            botonDevorador.setOnAction(e -> {
+                try {
+                    ((Mutalisco) unidad).evolucionarADevorador();
+                    error.setText("Evolucionando a devorador");
+                    error.styleProperty().setValue("-fx-text-fill: green");
+                    contenedorPrincipal.updateEdificios();
+                } catch (Exception ex) {
+                    error.setText(ex.getMessage());
+                }
+            });
+            opciones.getChildren().addAll(botonGuardian, botonDevorador);
+        }
+
+        mostrarUnidadListo(unidad, opciones, error);
     }
 
 }

@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.vistas;
 
 import edu.fiuba.algo3.modelo.Juego;
+import edu.fiuba.algo3.modelo.unidades.moviles.UnidadMovil;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -106,4 +107,15 @@ public class ContenedorPrincipal extends BorderPane {
     public void crearEspiral(Label label) {
         vistaJuego.crearEspiral(label);
     }
+
+    public void moverUnidad(UnidadMovil unidad, Label label) {
+        vistaJuego.moverUnidad(unidad, label);
+    }
+    public void unidadAtacar(UnidadMovil unidad) {
+        vistaJuego.unidadAtacar(unidad);
+    }
+    public void updateEdificios() {
+        vistaJuego.updateEdificios();
+    }
+
 }

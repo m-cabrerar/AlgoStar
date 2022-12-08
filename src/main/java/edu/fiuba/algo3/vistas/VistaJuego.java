@@ -5,18 +5,19 @@ import edu.fiuba.algo3.exceptions.CorrelativasInsuficientes;
 import edu.fiuba.algo3.exceptions.RecursosInsuficientes;
 import edu.fiuba.algo3.exceptions.UbicacionInvalida;
 import edu.fiuba.algo3.modelo.Inventario;
-import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.casillero.Casillero;
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.edificios.*;
+import edu.fiuba.algo3.modelo.unidades.moviles.UnidadMovil;
 import javafx.beans.binding.Bindings;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class VistaJuego {
@@ -55,8 +56,8 @@ public class VistaJuego {
 
     public void update() {
         updateMapa();
-        actualizarUnidades();
-        actualizarBotones();
+        updateUnidades();
+        updateBotones();
     }
     public void updateMapa() {
         tablero.getChildren().clear();
@@ -74,7 +75,7 @@ public class VistaJuego {
         }
     }
 
-    public void actualizarBotones() {
+    public void updateBotones() {
         tableroDeBotones.getChildren().clear();
         tableroDeBotones.setPrefSize(ancho*50, alto*50);
         for (int i = 0; i < alto; i++) {
@@ -134,12 +135,12 @@ public class VistaJuego {
         }
     }
 
-    public void actualizarUnidades() {
-        actualizarUnidadesMoviles();
-        actualizarEdificios();
+    public void updateUnidades() {
+        updateUnidadesMoviles();
+        updateEdificios();
     }
 
-    public void actualizarUnidadesMoviles() {
+    public void updateUnidadesMoviles() {
         tableroUnidades.setPrefSize(alto*50, alto*50);
         Inventario jugadorActual = inventarios[juego.getTurnos()%juego.cantidadDeJugadores()];
         Inventario jugadorEnemigo = inventarios[(juego.getTurnos()+1)%juego.cantidadDeJugadores()];
@@ -168,7 +169,7 @@ public class VistaJuego {
         }
     }
 
-    public void actualizarEdificios() {
+    public void updateEdificios() {
         tableroUnidades.setPrefSize(alto * 50, alto * 50);
         Inventario jugadorActual = inventarios[juego.getTurnos() % juego.cantidadDeJugadores()];
         Inventario jugadorEnemigo = inventarios[(juego.getTurnos() + 1) % juego.cantidadDeJugadores()];
@@ -221,12 +222,12 @@ public class VistaJuego {
                     try {
                         NexoMineral.construir(casillero, inventario);
                         label.setText("Nexo mineral en construccion");
-                        actualizarEdificios();
+                        updateEdificios();
                         botonera.update();
                     } catch (CasilleroNoCompatible | CorrelativasInsuficientes | RecursosInsuficientes | UbicacionInvalida ex) {
                         label.setText(ex.getMessage());
                     }
-                    actualizarBotones();
+                    updateBotones();
                 });
             }
         }
@@ -250,12 +251,12 @@ public class VistaJuego {
                     try {
                         Pilon.construir(casillero, inventario);
                         label.setText("Pilon en construccion");
-                        actualizarEdificios();
+                        updateEdificios();
                         botonera.update();
                     } catch (CasilleroNoCompatible | CorrelativasInsuficientes | RecursosInsuficientes | UbicacionInvalida ex) {
                         label.setText(ex.getMessage());
                     }
-                    actualizarBotones();
+                    updateBotones();
                 });
             }
         }
@@ -279,12 +280,12 @@ public class VistaJuego {
                     try {
                         Asimilador.construir(casillero, inventario);
                         label.setText("Asimilador en construccion");
-                        actualizarEdificios();
+                        updateEdificios();
                         botonera.update();
                     } catch (CasilleroNoCompatible | CorrelativasInsuficientes | RecursosInsuficientes | UbicacionInvalida ex) {
                         label.setText(ex.getMessage());
                     }
-                    actualizarBotones();
+                    updateBotones();
                 });
             }
         }
@@ -308,12 +309,12 @@ public class VistaJuego {
                     try {
                         PuertoEstelar.construir(casillero, inventario);
                         label.setText("Puerto estelar en construccion");
-                        actualizarEdificios();
+                        updateEdificios();
                         botonera.update();
                     } catch (CasilleroNoCompatible | CorrelativasInsuficientes | RecursosInsuficientes | UbicacionInvalida ex) {
                         label.setText(ex.getMessage());
                     }
-                    actualizarBotones();
+                    updateBotones();
                 });
             }
         }
@@ -337,12 +338,12 @@ public class VistaJuego {
                     try {
                         Acceso.construir(casillero, inventario);
                         label.setText("Acceso en construccion");
-                        actualizarEdificios();
+                        updateEdificios();
                         botonera.update();
                     } catch (CasilleroNoCompatible | CorrelativasInsuficientes | RecursosInsuficientes | UbicacionInvalida ex) {
                         label.setText(ex.getMessage());
                     }
-                    actualizarBotones();
+                    updateBotones();
                 });
             }
         }
@@ -366,12 +367,12 @@ public class VistaJuego {
                     try {
                         Extractor.construir(casillero, inventario);
                         label.setText("Extractor en construccion");
-                        actualizarEdificios();
+                        updateEdificios();
                         botonera.update();
                     } catch (CasilleroNoCompatible | CorrelativasInsuficientes | RecursosInsuficientes | UbicacionInvalida ex) {
                         label.setText(ex.getMessage());
                     }
-                    actualizarBotones();
+                    updateBotones();
                 });
             }
         }
@@ -395,12 +396,12 @@ public class VistaJuego {
                     try {
                         Criadero.construir(casillero, inventario);
                         label.setText("Criadero en construccion");
-                        actualizarEdificios();
+                        updateEdificios();
                         botonera.update();
                     } catch (CasilleroNoCompatible | CorrelativasInsuficientes | RecursosInsuficientes | UbicacionInvalida ex) {
                         label.setText(ex.getMessage());
                     }
-                    actualizarBotones();
+                    updateBotones();
                 });
             }
         }
@@ -424,12 +425,12 @@ public class VistaJuego {
                     try {
                         ReservaDeReproduccion.construir(casillero, inventario);
                         label.setText("Reserva de reproduccion en construccion");
-                        actualizarEdificios();
+                        updateEdificios();
                         botonera.update();
                     } catch (CasilleroNoCompatible | CorrelativasInsuficientes | RecursosInsuficientes | UbicacionInvalida ex) {
                         label.setText(ex.getMessage());
                     }
-                    actualizarBotones();
+                    updateBotones();
                 });
             }
         }
@@ -453,12 +454,12 @@ public class VistaJuego {
                     try {
                         Guarida.construir(casillero, inventario);
                         label.setText("Guarida en construccion");
-                        actualizarEdificios();
+                        updateEdificios();
                         botonera.update();
                     } catch (CasilleroNoCompatible | CorrelativasInsuficientes | RecursosInsuficientes | UbicacionInvalida ex) {
                         label.setText(ex.getMessage());
                     }
-                    actualizarBotones();
+                    updateBotones();
                 });
             }
         }
@@ -482,14 +483,43 @@ public class VistaJuego {
                     try {
                         Espiral.construir(casillero, inventario);
                         label.setText("Espiral en construccion");
-                        actualizarEdificios();
+                        updateEdificios();
                         botonera.update();
                     } catch (CasilleroNoCompatible | CorrelativasInsuficientes | RecursosInsuficientes | UbicacionInvalida ex) {
                         label.setText(ex.getMessage());
                     }
-                    actualizarBotones();
+                    updateBotones();
                 });
             }
         }
+    }
+
+    public void moverUnidad(UnidadMovil unidad, Label label) {
+        tableroDeBotones.getChildren().clear();
+        for (int i = 0; i<alto; i++) {
+            for (int j = 0; j<ancho; j++) {
+                Button boton = new Button();
+                boton.setPrefSize(50, 50);
+                tableroDeBotones.add(boton, i, j);
+                boton.prefWidthProperty().bind(Bindings.min(centerPane.widthProperty().divide(alto),
+                        centerPane.heightProperty().divide(alto)));
+                boton.prefHeightProperty().bind(Bindings.min(centerPane.widthProperty().divide(alto),
+                        centerPane.heightProperty().divide(alto)));
+                boton.opacityProperty().setValue(0);
+                Casillero casillero = mapa.obtenerCasillero(i, j);
+                boton.setOnAction(e -> {
+                    try {
+                        unidad.moverA(casillero);
+                        botonera.update();
+                        updateBotones();
+                    } catch (CasilleroNoCompatible | UbicacionInvalida ex) {
+                        label.setText(ex.getMessage());
+                    }
+                });
+            }
+        }
+    }
+
+    public void unidadAtacar(UnidadMovil unidad) {
     }
 }
