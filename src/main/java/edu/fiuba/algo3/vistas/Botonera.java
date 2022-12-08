@@ -5,10 +5,7 @@ import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
 import edu.fiuba.algo3.modelo.unidades.edificios.*;
-import edu.fiuba.algo3.modelo.unidades.moviles.Mutalisco;
-import edu.fiuba.algo3.modelo.unidades.moviles.UnidadMovil;
-import edu.fiuba.algo3.modelo.unidades.moviles.UnidadMovilProtoss;
-import edu.fiuba.algo3.modelo.unidades.moviles.Zangano;
+import edu.fiuba.algo3.modelo.unidades.moviles.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
@@ -197,7 +194,9 @@ public class Botonera extends VBox {
         Label error = new Label();
         error.styleProperty().setValue("-fx-text-fill: red");
         Unidad edificioListo = edificio.getConstruido();
+        Inventario inventario = juego.getInventarios()[juego.getTurnos() % juego.cantidadDeJugadores()];
         if (edificioListo instanceof Criadero) {
+            VBox contenedorZangano = new VBox();
             Button botonZangano = new Button("Engendrar Zangano");
             botonZangano.setOnAction(e -> {
                 try {
@@ -208,18 +207,13 @@ public class Botonera extends VBox {
                     error.setText(ex.getMessage());
                 }
             });
+            Label labelZangano = new Label("Costo: 25 Mineral");
+            if (!inventario.tieneRecursos(0,25)) {
+                botonZangano.setDisable(true);
+            }
+            contenedorZangano.getChildren().addAll(botonZangano, labelZangano);
 
-            Button botonZerling = new Button("Engendrar Zerling");
-            botonZerling.setOnAction(e -> {
-                try {
-                    ((Criadero) edificioListo).engendrarZerling();
-                    error.setText("Creando zerling");
-                    error.styleProperty().setValue("-fx-text-fill: green");
-                } catch (Exception ex) {
-                    error.setText(ex.getMessage());
-                }
-            });
-
+            VBox contenedorAmo = new VBox();
             Button botonAmo = new Button("Engendrar Amo Supremo");
             botonAmo.setOnAction(e -> {
                 try {
@@ -230,7 +224,30 @@ public class Botonera extends VBox {
                     error.setText(ex.getMessage());
                 }
             });
+            Label labelAmo = new Label("Costo: 50 Mineral");
+            if (!inventario.tieneRecursos(0,50)) {
+                botonAmo.setDisable(true);
+            }
+            contenedorAmo.getChildren().addAll(botonAmo, labelAmo);
 
+            VBox contenedorZerling = new VBox();
+            Button botonZerling = new Button("Engendrar Zerling");
+            botonZerling.setOnAction(e -> {
+                try {
+                    ((Criadero) edificioListo).engendrarZerling();
+                    error.setText("Creando zerling");
+                    error.styleProperty().setValue("-fx-text-fill: green");
+                } catch (Exception ex) {
+                    error.setText(ex.getMessage());
+                }
+            });
+            Label labelZerling = new Label("Costo: 25 Mineral");
+            if (!(inventario.tieneRecursos(0,25) && Zerling.puedeConstruirseEn(inventario))) {
+                botonZerling.setDisable(true);
+            }
+            contenedorZerling.getChildren().addAll(botonZerling, labelZerling);
+
+            VBox contenedorHidralisco = new VBox();
             Button botonHidralisco = new Button("Engendrar Hidralisco");
             botonHidralisco.setOnAction(e -> {
                 try {
@@ -241,7 +258,13 @@ public class Botonera extends VBox {
                     error.setText(ex.getMessage());
                 }
             });
+            Label labelHidralisco = new Label("Costo: 75 Mineral, 25 Gas");
+            if (!(inventario.tieneRecursos(75,25) && Hidralisco.puedeConstruirseEn(inventario))) {
+                botonHidralisco.setDisable(true);
+            }
+            contenedorHidralisco.getChildren().addAll(botonHidralisco, labelHidralisco);
 
+            VBox contenedorMutalisco = new VBox();
             Button botonMutalisco = new Button("Engendrar Mutalisco");
             botonMutalisco.setOnAction(e -> {
                 try {
@@ -252,8 +275,16 @@ public class Botonera extends VBox {
                     error.setText(ex.getMessage());
                 }
             });
-            opciones.getChildren().addAll(botonZangano, botonZerling, botonAmo, botonHidralisco, botonMutalisco);
+            Label labelMutalisco = new Label("Costo: 100 Mineral, 100 Gas");
+            if (!(inventario.tieneRecursos(100,100) && Mutalisco.puedeConstruirseEn(inventario))) {
+                botonMutalisco.setDisable(true);
+            }
+            contenedorMutalisco.getChildren().addAll(botonMutalisco, labelMutalisco);
+
+            opciones.getChildren().addAll(contenedorZangano, contenedorAmo, contenedorZerling, contenedorHidralisco, contenedorMutalisco);
+
         } else if (edificioListo instanceof Acceso) {
+            VBox contenedorZealot = new VBox();
             Button botonZealot = new Button("Engendrar Zealot");
             botonZealot.setOnAction(e -> {
                 try {
@@ -264,7 +295,13 @@ public class Botonera extends VBox {
                     error.setText(ex.getMessage());
                 }
             });
+            Label labelZealot = new Label("Costo: 100 Mineral");
+            if (!inventario.tieneRecursos(0,100)) {
+                botonZealot.setDisable(true);
+            }
+            contenedorZealot.getChildren().addAll(botonZealot, labelZealot);
 
+            VBox contenedorDragon = new VBox();
             Button botonDragon = new Button("Engendrar Dragon");
             botonDragon.setOnAction(e -> {
                 try {
@@ -275,8 +312,15 @@ public class Botonera extends VBox {
                     error.setText(ex.getMessage());
                 }
             });
-            opciones.getChildren().addAll(botonZealot, botonDragon);
+            Label labelDragon = new Label("Costo: 125 Mineral, 50 Gas");
+            if (!inventario.tieneRecursos(125,50)) {
+                botonDragon.setDisable(true);
+            }
+            contenedorDragon.getChildren().addAll(botonDragon, labelDragon);
+
+            opciones.getChildren().addAll(contenedorZealot, contenedorDragon);
         } else if (edificioListo instanceof PuertoEstelar) {
+            VBox contenedorScout = new VBox();
             Button botonScout = new Button("Engendrar Scout");
             botonScout.setOnAction(e -> {
                 try {
@@ -287,7 +331,13 @@ public class Botonera extends VBox {
                     error.setText(ex.getMessage());
                 }
             });
-            opciones.getChildren().add(botonScout);
+            Label labelScout = new Label("Costo: 300 Mineral, 150 Gas");
+            if (!inventario.tieneRecursos(300,150)) {
+                botonScout.setDisable(true);
+            }
+            contenedorScout.getChildren().addAll(botonScout, labelScout);
+
+            opciones.getChildren().add(contenedorScout);
         }
         mostrarEdificio(edificio, opciones, error);
     }
@@ -328,6 +378,7 @@ public class Botonera extends VBox {
         opciones.setSpacing(10);
         Label error = new Label();
         error.styleProperty().setValue("-fx-text-fill: red");
+        Inventario inventario = juego.getInventarios()[juego.getTurnos() % juego.cantidadDeJugadores()];
 
         Button botonMover = new Button("Mover");
         botonMover.setOnAction(e -> {
@@ -347,6 +398,7 @@ public class Botonera extends VBox {
         opciones.getChildren().addAll(botonMover, botonAtacar);
 
         if (unidad instanceof Mutalisco) {
+            VBox contenedorGuardian = new VBox();
             Button botonGuardian = new Button("Evolucionar a Guardian");
             botonGuardian.setOnAction(e -> {
                 try {
@@ -358,6 +410,13 @@ public class Botonera extends VBox {
                     error.setText(ex.getMessage());
                 }
             });
+            Label labelGuardian = new Label("Costo: 50 Mineral, 100 Gas");
+            if (!inventario.tieneRecursos(50,100)) {
+                botonGuardian.setDisable(true);
+            }
+            contenedorGuardian.getChildren().addAll(botonGuardian, labelGuardian);
+
+            VBox contenedorDevorador = new VBox();
             Button botonDevorador = new Button("Evolucionar a Devorador");
             botonDevorador.setOnAction(e -> {
                 try {
@@ -369,7 +428,13 @@ public class Botonera extends VBox {
                     error.setText(ex.getMessage());
                 }
             });
-            opciones.getChildren().addAll(botonGuardian, botonDevorador);
+            Label labelDevorador = new Label("Costo: 150 Mineral, 50 Gas");
+            if (!inventario.tieneRecursos(150,50)) {
+                botonDevorador.setDisable(true);
+            }
+            contenedorDevorador.getChildren().addAll(botonDevorador, labelDevorador);
+
+            opciones.getChildren().addAll(contenedorGuardian, contenedorDevorador);
         } else if (unidad instanceof Zangano) {
             Button botonExtraccion = new Button("Extraer Mineral");
             botonExtraccion.setOnAction(e -> {
@@ -390,6 +455,7 @@ public class Botonera extends VBox {
                     error.setText(ex.getMessage());
                 }
             });
+            opciones.getChildren().remove(botonAtacar);
             opciones.getChildren().addAll(botonExtraccion, botonExtractor);
         }
 
