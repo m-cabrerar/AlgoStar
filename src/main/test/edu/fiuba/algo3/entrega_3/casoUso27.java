@@ -21,8 +21,7 @@ public class casoUso27 {
         //ACT && ASSERT
         assertThrows(RecursosInsuficientes.class, () -> muta.evolucionarADevorador());
     }
-
-    /*@Test
+    @Test
     public void Test02SePuedeEvolucionarDevoradorConRecursosSuficientes(){
         //ARRANGE
         Inventario inventario = new Inventario();
@@ -34,12 +33,8 @@ public class casoUso27 {
         muta.ubicarEn(casilleroMock);
         //ACT
         muta.evolucionarADevorador();
-        muta.pasarTurno();
-        muta.pasarTurno();
-        muta.pasarTurno();
-        muta.pasarTurno();
         //ASSERT
-        assertThrows(Exception.class, () -> muta.evolucionarADevorador());
+        verify(casilleroMock, times(1)).desocupar();
     }
 
     @Test
@@ -54,11 +49,7 @@ public class casoUso27 {
         muta.ubicarEn(casilleroMock);
         //ACT
         muta.evolucionarAGuardian();
-        muta.pasarTurno();
-        muta.pasarTurno();
-        muta.pasarTurno();
-        muta.pasarTurno();
         //ASSERT
-        assertThrows(UnidadYaEvolucionada.class, () -> muta.evolucionarAGuardian());
-    }*/
+        verify(casilleroMock, times(1)).desocupar();
+    }
 }
