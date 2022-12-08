@@ -15,7 +15,7 @@ public class casoUso32 {
 contrario.
      */
 
-    @Test
+    /*@Test
     public void Test01CuandoNoEsTurnoCeroYUnJugadorNoTieneEdificiosGanaElOtro(){
         //ARRANGE
         String mensaje = "Ganador Jugador 1 Protoss";
@@ -37,7 +37,7 @@ contrario.
         //ASSERT
         assertEquals(mensaje, ganador);
     }
-
+*/
     /*
     @Test
     public void Test02JugadorConSoloUnPilonSeLoDestruyenGanaElOtro(){

@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.casillero.Casillero;
 import edu.fiuba.algo3.modelo.casillero.Moho;
 import edu.fiuba.algo3.modelo.casillero.NodoMineral;
 import edu.fiuba.algo3.modelo.unidades.edificios.Criadero;
+import edu.fiuba.algo3.modelo.unidades.edificios.Guarida;
 import edu.fiuba.algo3.modelo.unidades.edificios.NexoMineral;
 import org.junit.jupiter.api.Test;
 
@@ -197,11 +198,11 @@ class MapaTest {
 
         //act
         mapa.pasarTurno();
-
+        mapa.pasarTurno();
         //
-        assertDoesNotThrow(()-> Criadero.construir((mapa.obtenerCasillero(0,1)),inventarioMock));
-        assertDoesNotThrow(()-> Criadero.construir((mapa.obtenerCasillero(1,0)),inventarioMock));
-        assertDoesNotThrow(()-> Criadero.construir((mapa.obtenerCasillero(0,0)),inventarioMock));
+        assertDoesNotThrow(()-> Guarida.construir((mapa.obtenerCasillero(0,1)),inventarioMock));
+        assertDoesNotThrow(()-> Guarida.construir((mapa.obtenerCasillero(1,0)),inventarioMock));
+        assertDoesNotThrow(()-> Guarida.construir((mapa.obtenerCasillero(0,0)),inventarioMock));
     }
     }
 

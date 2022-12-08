@@ -20,7 +20,7 @@ public class Mapa {
             }
         }
         this.tableroActual = tablero;
-        this.tiempoVida = 0;
+        this.tiempoVida = 1;
     }
 
     public void cambiarTipoCasilla(int x, int y, TipoCasillero tipoCasillero){
@@ -69,12 +69,12 @@ public class Mapa {
     }
     public void pasarTurno(){
         this.tiempoVida += 1;
+        System.out.println("turno: " + this.tiempoVida);
+
         //Solo se puede expandir moho cada dos turnos
-        if ((this.tiempoVida % 2) == 0){
-            for (List<Casillero> listaCasilleros : this.tableroActual){
-                for (Casillero casillero : listaCasilleros){
-                    casillero.pasarTurno(tiempoVida);
-                }
+        for (List<Casillero> listaCasilleros : this.tableroActual){
+            for (Casillero casillero : listaCasilleros){
+                casillero.pasarTurno(this.tiempoVida );
             }
         }
     }

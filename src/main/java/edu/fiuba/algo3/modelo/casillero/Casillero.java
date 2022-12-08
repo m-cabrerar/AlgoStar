@@ -56,20 +56,6 @@ public class Casillero{
         this.quitarInvisibilidad = false;
     }
 
-    public int extraerMineral(int cantidad) {
-        return this.tipoCasillero.extraerMineral(cantidad);
-    }
-    public int extraerGas(int cantidad) {
-        return this.tipoCasillero.extraerGas(cantidad);
-    }
-    public boolean estaOcupado(){
-        return this.estaOcupado;
-    }
-
-    public void desocupar() {
-        this.estaOcupado = false;
-    }
-
     public List<Casillero> visitarAdyacentes(int turnoActual, Mapa mapa){
         //Devuelve una lista con los adyacentes a la casilla que visita.
         List<Casillero> adyacentes = mapa.CasillerosAdyacentes(this.coordenadaX,this.coordenadaY);
@@ -77,6 +63,20 @@ public class Casillero{
             casillero.turno = turnoActual;
         }
         return adyacentes;
+    }
+    public int extraerMineral(int cantidad) {
+        return this.tipoCasillero.extraerMineral(cantidad);
+    }
+    public int extraerGas(int cantidad) {
+        return this.tipoCasillero.extraerGas(cantidad);
+    }
+
+    public boolean estaOcupado(){
+        return this.estaOcupado;
+    }
+
+    public void desocupar() {
+        this.estaOcupado = false;
     }
     //cosas para refactor------------------------------------
     public int posicionX(){
