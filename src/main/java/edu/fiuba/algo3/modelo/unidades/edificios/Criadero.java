@@ -113,7 +113,7 @@ public class Criadero extends EdificioZerg{
             Zerling zerling = new Zerling(inventario);
             this.iniciarEvolucion(zerling);
         } else if (!inventario.puedeConstruir(1)) {
-            throw new CorrelativasInsuficientes("No se puede construir este edificio");
+            throw new CorrelativasInsuficientes("No se puede construir esta unidad aún, requiere");
         } else {
             throw new YaNoQuedanLarvas("No quedan larvas");
         }

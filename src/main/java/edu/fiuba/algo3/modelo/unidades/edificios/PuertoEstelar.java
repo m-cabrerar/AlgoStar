@@ -59,7 +59,8 @@ public class PuertoEstelar extends EdificioProtoss {
         return NIVEL_DE_CONSTRUCCION_REQUERIDO;
     }
 
-    public void engendrarScout(){
+    public void engendrarScout() throws CasilleroNoCompatible{
+        this.chequeoCasillero();
         if(this.estaEvolucionando){
             throw new EdificioOcupado("Ya hay una unidad en creación.");
         }

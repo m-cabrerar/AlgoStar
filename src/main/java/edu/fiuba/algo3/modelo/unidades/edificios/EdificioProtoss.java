@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.unidades.edificios;
 
+import edu.fiuba.algo3.exceptions.CasilleroNoCompatible;
 import edu.fiuba.algo3.modelo.casillero.Casillero;
 import edu.fiuba.algo3.modelo.Inventario;
 import edu.fiuba.algo3.modelo.unidades.VidaProtoss;
@@ -10,7 +11,7 @@ public abstract class EdificioProtoss extends EdificioConcreto {
         this.vida = new VidaProtoss(vidaInicial, escudoInicial);
     }
 
-    public void pasarTurno(){
+    public void pasarTurno() throws CasilleroNoCompatible {
         super.pasarTurno();
         this.vida.pasarTurno();
     }
@@ -19,5 +20,11 @@ public abstract class EdificioProtoss extends EdificioConcreto {
     }
     public int getEscudoMaximo(){
         return this.vida.getEscudoMaximo();
+    }
+
+    public void chequeoCasillero() throws CasilleroNoCompatible{
+        if(!this.casillero.tieneEnergia()){
+            throw new CasilleroNoCompatible("El casillero no tiene mas energia");
+        }
     }
 }
