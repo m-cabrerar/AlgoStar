@@ -8,6 +8,7 @@ import edu.fiuba.algo3.modelo.unidades.edificios.*;
 import edu.fiuba.algo3.modelo.unidades.moviles.Mutalisco;
 import edu.fiuba.algo3.modelo.unidades.moviles.UnidadMovil;
 import edu.fiuba.algo3.modelo.unidades.moviles.UnidadMovilProtoss;
+import edu.fiuba.algo3.modelo.unidades.moviles.Zangano;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
@@ -369,6 +370,19 @@ public class Botonera extends VBox {
                 }
             });
             opciones.getChildren().addAll(botonGuardian, botonDevorador);
+        } else if (unidad instanceof Zangano) {
+            Button botonExtraccion = new Button("Extraer Mineral");
+            botonExtraccion.setOnAction(e -> {
+                try {
+                    ((Zangano) unidad).extraerMineral();
+                    error.setText("Extrayó mineral");
+                    error.styleProperty().setValue("-fx-text-fill: green");
+                    contenedorPrincipal.updateJugador();
+                } catch (Exception ex) {
+                    error.setText(ex.getMessage());
+                }
+            });
+            opciones.getChildren().add(botonExtraccion);
         }
 
         mostrarUnidadListo(unidad, opciones, error);
