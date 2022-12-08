@@ -72,6 +72,9 @@ public class VistaUnidad extends StackPane {
             case "Zerling":
                 image = new Image("file:src/main/java/edu/fiuba/algo3/vistas/img/unidades/zerling.gif");
                 break;
+            case "Zangano":
+                image = new Image("file:src/main/java/edu/fiuba/algo3/vistas/img/unidades/zangano.gif");
+                break;
             default:
                 image = new Image("file:src/main/java/edu/fiuba/algo3/vistas/img/unknown.gif");
                 break;
