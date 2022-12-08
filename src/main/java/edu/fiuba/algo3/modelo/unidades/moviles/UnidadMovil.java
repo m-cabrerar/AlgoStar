@@ -39,12 +39,12 @@ public abstract class UnidadMovil implements Unidad, Construible {
     }
     public void moverA(Casillero casillero) {
         if (estaOcupada) {
-            throw new UnidadOcupada("Unidad ocupada");
+            throw new UnidadOcupada("Unidad ya se movió este turno");
         }
-        estaOcupada = true;
         if(!this.estaPorAca(casillero.obtenerAdyacentes())){
             throw new UbicacionInvalida("Fuera de rango");
         }
+        estaOcupada = true;
         ubicarEn(casillero);
     }
     public boolean tieneEnRangoA(Unidad unidadAAtacar) {
@@ -70,12 +70,12 @@ public abstract class UnidadMovil implements Unidad, Construible {
 
     public void atacar(Unidad unidadAAtacar){
         if (estaOcupada) {
-            throw new UnidadOcupada("Unidad ocupada");
+            throw new UnidadOcupada("Unidad ya atacó este turno");
         }
-        estaOcupada = true;
         if(!this.tieneEnRangoA(unidadAAtacar)){
             throw new AtaqueFueraDeRango("El ataque está fuera de rango");
         }
+        estaOcupada = true;
         try{
             unidadAAtacar.recibirDanio(danio);
         } catch (Exception EstaDestruido){
