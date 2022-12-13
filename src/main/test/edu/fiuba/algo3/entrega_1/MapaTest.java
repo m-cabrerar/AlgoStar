@@ -188,7 +188,7 @@ class MapaTest {
     }
 
     @Test
-    public void Test10CreoUnMapaYPasoTurnoYElMohoSeExpande() {
+    public void Test10CreoUnMapaYPasoCincoTurnosYElMohoSeExpande() {
         //Arrange
         Mapa mapa = new Mapa(10, 10);
         mapa.cambiarTipoCasilla(0, 0, new Moho());
@@ -197,8 +197,9 @@ class MapaTest {
         when(inventarioMock.puedeConstruir(anyInt())).thenReturn(true);
 
         //act
-        mapa.pasarTurno();
-        mapa.pasarTurno();
+        for (int i = 0; i < 5; i++) {
+            mapa.pasarTurno();
+        }
         //
         assertDoesNotThrow(()-> Guarida.construir((mapa.obtenerCasillero(0,1)),inventarioMock));
         assertDoesNotThrow(()-> Guarida.construir((mapa.obtenerCasillero(1,0)),inventarioMock));
