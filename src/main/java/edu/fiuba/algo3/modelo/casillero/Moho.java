@@ -33,5 +33,9 @@ public class Moho extends TipoCasillero {
     public void ocupar (Espiral espiral){
         return;
     }
+    @Override
+    public void ocupar(UnidadEnEvolucion unidadEnEvolucion){
+        return;
+    }
 
 }

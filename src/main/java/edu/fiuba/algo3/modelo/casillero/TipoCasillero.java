@@ -38,4 +38,7 @@ public class TipoCasillero{
     }
     public void ocupar (Espiral espiral) throws UbicacionInvalida { throw new UbicacionInvalida("Ubicacion invalida");
     }
+    public void ocupar(UnidadEnEvolucion unidadEnEvolucion) throws UbicacionInvalida {
+        throw new UbicacionInvalida("Ubicacion invalida");
+    }
 }

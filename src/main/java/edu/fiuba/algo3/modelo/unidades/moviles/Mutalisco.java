@@ -35,14 +35,25 @@ public class Mutalisco extends UnidadMovilZerg {
     public void evolucionarAGuardian(){
         Guardian guardian = new Guardian(inventario);
         this.casillero.desocupar();
+        try {
+            new UnidadEnEvolucion(this.casillero, inventario, guardian);
+        } catch (UbicacionInvalida ubicacionInvalida) {
+            this.ubicarEn(this.casillero);
+            throw new UbicacionInvalida("No se puede evolucionar aquí");
+        }
         this.inventario.unidadAEliminar(this);
-        new UnidadEnEvolucion(this.casillero, inventario, guardian);
+
     }
     public void evolucionarADevorador() throws RecursosInsuficientes, SuministrosInsuficientes, PoblacionMaximaAlcanzada {
         Devorador devorador = new Devorador(inventario);
         this.casillero.desocupar();
+        try {
+            new UnidadEnEvolucion(this.casillero, inventario, devorador);
+        } catch (UbicacionInvalida ubicacionInvalida) {
+            this.ubicarEn(this.casillero);
+            throw new UbicacionInvalida("No se puede evolucionar aquí");
+        }
         this.inventario.unidadAEliminar(this);
-        new UnidadEnEvolucion(this.casillero, inventario, devorador);
     }
     public void recibirDanio(Danio danio) throws EstaDestruido {
         try {

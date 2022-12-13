@@ -23,8 +23,8 @@ public class Inventario {
 
     private int nivelConstruccion;
     public Inventario(){
-        this.cantidadGas = 0;
-        this.cantidadMineral = 200;
+        this.cantidadGas = 50000;
+        this.cantidadMineral = 50000;
         this.suministrosDisponibles = 0;
         this.suministrosEmpleados = 0;
         this.unidades = new ArrayList<>();

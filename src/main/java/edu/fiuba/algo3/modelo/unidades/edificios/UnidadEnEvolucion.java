@@ -13,10 +13,10 @@ public class UnidadEnEvolucion extends EdificioZerg{
 
     public UnidadEnEvolucion(Casillero casillero, Inventario inventario, UnidadMovilZerg unidad){
         super(casillero, inventario, 1);
+        casillero.ocupar(this);
         this.turnosParaEvolucionar = unidad.turnosParaConstruir();
         this.turnosTranscurridos = 0;
         this.unidad = unidad;
-        casillero.ocupar(this);
         edificio = new EdificioEnConstruccion(this, casillero, inventario);
     }
 
