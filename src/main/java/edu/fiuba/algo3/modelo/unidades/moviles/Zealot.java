@@ -36,7 +36,7 @@ public class Zealot extends UnidadMovilProtoss {
         try {
             super.recibirDanio(danioARecibir);
         } catch (Exception EstaDestruido){
-            this.inventario.eliminarUnidad(this);
+            this.inventario.unidadAEliminar(this);
             this.inventario.devolverSuministrosUnidad(COSTO_SUMINISTRO);
             throw new EstaDestruido("Unidad destruida");
         }

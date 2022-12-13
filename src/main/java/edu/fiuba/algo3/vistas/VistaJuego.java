@@ -15,7 +15,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class VistaJuego {
@@ -581,7 +580,7 @@ public class VistaJuego {
                                     throw new UbicacionInvalida("El edificio no esta listo");
                                 }
                                 ((Extractor) edificio.getConstruido()).agregarZangano();
-                                inventario.eliminarUnidad(unidad);
+                                inventario.unidadAEliminar(unidad);
                             }
                         }
                         botonera.update();

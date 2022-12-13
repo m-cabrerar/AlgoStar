@@ -35,20 +35,20 @@ public class Mutalisco extends UnidadMovilZerg {
     public void evolucionarAGuardian(){
         Guardian guardian = new Guardian(inventario);
         this.casillero.desocupar();
-        this.inventario.eliminarUnidad(this);
+        this.inventario.unidadAEliminar(this);
         new UnidadEnEvolucion(this.casillero, inventario, guardian);
     }
     public void evolucionarADevorador() throws RecursosInsuficientes, SuministrosInsuficientes, PoblacionMaximaAlcanzada {
         Devorador devorador = new Devorador(inventario);
         this.casillero.desocupar();
-        this.inventario.eliminarUnidad(this);
+        this.inventario.unidadAEliminar(this);
         new UnidadEnEvolucion(this.casillero, inventario, devorador);
     }
     public void recibirDanio(Danio danio) throws EstaDestruido {
         try {
             super.recibirDanio(danio);
         } catch (Exception EstaDestruido){
-            this.inventario.eliminarUnidad(this);
+            this.inventario.unidadAEliminar(this);
             this.inventario.devolverSuministrosUnidad(COSTO_SUMINISTRO);
             throw new EstaDestruido("Unidad destruida");
         }

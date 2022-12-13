@@ -6,7 +6,6 @@ import edu.fiuba.algo3.exceptions.UnidadOcupada;
 import edu.fiuba.algo3.modelo.Inventario;
 import edu.fiuba.algo3.modelo.unidades.Danio;
 import edu.fiuba.algo3.modelo.unidades.Tierra;
-import edu.fiuba.algo3.modelo.unidades.Unidad;
 
 public class Zangano extends UnidadMovilZerg{
     private static final int VIDA = 25;
@@ -36,7 +35,7 @@ public class Zangano extends UnidadMovilZerg{
         try {
             super.recibirDanio(danio);
         } catch (Exception EstaDestruido){
-            this.inventario.eliminarUnidad(this);
+            this.inventario.unidadAEliminar(this);
             this.inventario.devolverSuministrosUnidad(COSTO_SUMINISTRO);
             throw new EstaDestruido("Unidad destruida");
         }

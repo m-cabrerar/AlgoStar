@@ -4,7 +4,6 @@ import edu.fiuba.algo3.exceptions.EstaDestruido;
 import edu.fiuba.algo3.modelo.Inventario;
 import edu.fiuba.algo3.modelo.unidades.Danio;
 import edu.fiuba.algo3.modelo.unidades.Tierra;
-import edu.fiuba.algo3.modelo.unidades.Unidad;
 
 public class Hidralisco extends UnidadMovilZerg {
 
@@ -33,7 +32,7 @@ public class Hidralisco extends UnidadMovilZerg {
         try {
             super.recibirDanio(danio);
         } catch (Exception EstaDestruido){
-            this.inventario.eliminarUnidad(this);
+            this.inventario.unidadAEliminar(this);
             this.inventario.devolverSuministrosUnidad(COSTO_SUMINISTRO);
             throw new EstaDestruido("Unidad destruida");
         }

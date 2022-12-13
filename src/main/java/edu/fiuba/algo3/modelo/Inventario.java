@@ -3,9 +3,7 @@ package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.exceptions.PoblacionMaximaAlcanzada;
 import edu.fiuba.algo3.exceptions.RecursosInsuficientes;
 import edu.fiuba.algo3.modelo.unidades.edificios.EdificioEnConstruccion;
-import edu.fiuba.algo3.modelo.unidades.moviles.AmoSupremo;
 import edu.fiuba.algo3.modelo.unidades.Unidad;
-import edu.fiuba.algo3.modelo.unidades.moviles.UnidadMovil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +13,7 @@ public class Inventario {
     private int cantidadMineral;
     List<Unidad> unidades;
     List<EdificioEnConstruccion> edificios;
+    List<Unidad> unidadesAEliminar;
     List<EdificioEnConstruccion> edificiosAEliminar;
 
     private static int POBLACION_MAXIMA =200;
@@ -31,6 +30,7 @@ public class Inventario {
         this.unidades = new ArrayList<>();
         this.edificios = new ArrayList<>();
         this.edificiosAEliminar = new ArrayList<>();
+        this.unidadesAEliminar = new ArrayList<>();
         this.nivelConstruccion = 0;
     }
     public boolean puedeConstruir(int nivelDificultadConstruccion) {
@@ -54,23 +54,25 @@ public class Inventario {
         for(EdificioEnConstruccion edificio : edificiosAEliminar){
             edificios.remove(edificio);
         }
+        for(Unidad unidad : unidadesAEliminar){
+            unidades.remove(unidad);
+        }
     }
 
     public void edificioAEliminar(EdificioEnConstruccion edificio){
         edificiosAEliminar.add(edificio);
+    }
+    public void unidadAEliminar(Unidad unidad){
+        unidadesAEliminar.add(unidad);
     }
 
     //MANEJO DE LISTAS DE UNIDADES
     public void agregarEdificio(EdificioEnConstruccion edificio){
         this.edificios.add(edificio);
     }
-    public void eliminarEdificio(EdificioEnConstruccion edificio){
-        this.edificios.remove(edificio);
-    }
     public void agregarUnidad(Unidad unidad) {
         this.unidades.add(unidad);
     }
-    public void eliminarUnidad(Unidad unidad){this.unidades.remove(unidad);}
     public List<Unidad> getUnidades(){
         return this.unidades;
     }
