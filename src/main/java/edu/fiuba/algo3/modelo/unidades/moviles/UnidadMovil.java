@@ -105,4 +105,9 @@ public abstract class UnidadMovil implements Unidad, Construible {
     public void pasarTurno(){
         estaOcupada = false;
     }
+
+    public void eliminar() {
+        casillero.desocupar();
+        inventario.unidadAEliminar(this);
+    }
 }

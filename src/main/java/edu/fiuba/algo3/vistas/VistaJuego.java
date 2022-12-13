@@ -579,8 +579,14 @@ public class VistaJuego {
                                 if (!edificio.estaListo()) {
                                     throw new UbicacionInvalida("El edificio no esta listo");
                                 }
-                                ((Extractor) edificio.getConstruido()).agregarZangano();
-                                inventario.unidadAEliminar(unidad);
+                                try {
+                                    ((Extractor) edificio.getConstruido()).agregarZangano();
+                                    unidad.eliminar();
+                                } catch (ClassCastException ex) {
+                                    throw new UbicacionInvalida("El edificio no es un extractor");
+                                } catch (ExtractorError ex) {
+                                    throw new UbicacionInvalida("El extractor no puede \ntener mas zanganos");
+                                }
                             }
                         }
                         botonera.update();

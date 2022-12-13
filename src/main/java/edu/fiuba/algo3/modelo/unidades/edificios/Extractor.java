@@ -47,11 +47,10 @@ public class Extractor extends EdificioZerg {
         return cantidad;
     }
     public void agregarZangano() throws ExtractorError {
-        if(zanganosTrabajando < 3) {
-            this.zanganosTrabajando += 1;
-        } else {
+        if(zanganosTrabajando >= 3) {
             throw new ExtractorError("El extractor ya tiene 3\n zanganos trabajando");
         }
+        zanganosTrabajando++;
     }
     public static int getNivelDeConstruccionRequerido() {
         return NIVEL_DE_CONSTRUCCION_REQUERIDO;
