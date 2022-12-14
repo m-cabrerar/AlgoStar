@@ -1,49 +1,37 @@
 package edu.fiuba.algo3.integracion;
 
+import edu.fiuba.algo3.exceptions.UbicacionInvalida;
 import edu.fiuba.algo3.modelo.Inventario;
 import edu.fiuba.algo3.modelo.Mapa;
 import edu.fiuba.algo3.modelo.casillero.Casillero;
-import edu.fiuba.algo3.modelo.casillero.Moho;
-import edu.fiuba.algo3.modelo.casillero.NodoGas;
-import edu.fiuba.algo3.modelo.unidades.edificios.Extractor;
-import edu.fiuba.algo3.modelo.unidades.moviles.Dragon;
+import edu.fiuba.algo3.modelo.unidades.edificios.Acceso;
+import edu.fiuba.algo3.modelo.unidades.edificios.Pilon;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class caso2 {
 
     @Test
-    public void test01DragonRompeUnEdificio() {
+    public void test01EdificioZergSolosSeConstruyeSobreCasilleroEnergizado() {
         //ARRANGE
         Inventario inventario = new Inventario();
-        inventario.agregarMineral(125);
-        inventario.agregarGas(50);
-        inventario.agregarSuministro(3);
+        inventario.agregarMineral(50);
 
-        Mapa mapa = new Mapa(10,10);
+        Mapa mapa = new Mapa(20,20);
 
-        mapa.cambiarTipoCasilla(1,1,new NodoGas());
-        Casillero casilleroEdificio = mapa.obtenerCasillero(1,1);
-
-        mapa.cambiarTipoCasilla(2,2,new Moho());
-        Casillero casilleroDragon = mapa.obtenerCasillero(2,2);
-
-        Dragon dragon = new Dragon(inventario);
-        Extractor edificio = new Extractor(casilleroEdificio,inventario);
+        Casillero casilleroPilon = mapa.obtenerCasillero(2,2);
+        Casillero casilleroAccesoConEnergia = mapa.obtenerCasillero(2,1);
+        Casillero casilleroAccesoSinEnergia = mapa.obtenerCasillero(7,8);
 
         //ACT
-        dragon.ubicarEn(casilleroDragon);
-        edificio.ubicarEnInventario();
-
-        //loop
-        for(int i=0; i<38; i++){ //dragon saca 20, pega 38
-            dragon.atacar(edificio);
-            dragon.pasarTurno();
+        Pilon.construir(casilleroPilon,inventario);
+        for(int i=0; i<5; i++){
+            inventario.pasarTurno();
         }
         //ASSERT
-        //assert que el casillero esta vacio
-        assertEquals(casilleroEdificio.estaOcupado(),false);
+        assertThrows(UbicacionInvalida.class, () -> Acceso.construir(casilleroAccesoSinEnergia,inventario));
+        assertDoesNotThrow(() -> Acceso.construir(casilleroAccesoConEnergia,inventario));
     }
-
 }

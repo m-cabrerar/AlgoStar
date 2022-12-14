@@ -1,0 +1,105 @@
+@startuml
+title test03PeleaEntreHidraliscoYScoutHastaQueHidraliscoMuere
+
+activate ":TestCase"
+activate "i:Inventario"
+":TestCase" -> "i:Inventario": <<create>>
+":TestCase" -> "i:Inventario": agregarMineral(175)
+":TestCase" -> "i:Inventario": agregarGas(175)
+":TestCase" -> "i:Inventario": agregarSuministro(8)
+
+activate "m:Mapa"
+":TestCase" -> "m:Mapa": Mapa(10,10)
+
+":TestCase" -> "m:Mapa": cambiarTipoCasilla(1,1,<<create>> CasilleroVacio)
+"m:Mapa" -> "m:Mapa": obtenerCasillero(1,1)
+"m:Mapa" --> "m:Mapa": casilleroH
+activate "casilleroH:Casillero"
+"m:Mapa" -> "casilleroH:Casillero": setTipoCasillero(CasilleroVacio)
+":TestCase" -> "m:Mapa": obtenerCasillero(1,1)
+"m:Mapa" --> ":TestCase": casilleroH
+
+":TestCase" -> "m:Mapa": cambiarTipoCasilla(1,2,<<create>> CasilleroVacio)
+"m:Mapa" -> "m:Mapa": obtenerCasillero(1,2)
+"m:Mapa" --> "m:Mapa": casilleroS
+activate "casilleroS:Casillero"
+"m:Mapa" -> "casilleroS:Casillero": setTipoCasillero(CasilleroVacio)
+":TestCase" -> "m:Mapa": obtenerCasillero(1,2)
+"m:Mapa" --> ":TestCase": casilleroS
+deactivate "m:Mapa"
+
+activate "h:Hidralisco"
+":TestCase" -> "h:Hidralisco": Hidralisco(i)
+note left: Al crearse guarda una instancia\n de Danio con 10 de danio\n en aire. Es una unidad\n terrestre.
+":TestCase" -> "h:Hidralisco": ubicarEn(casilleroH)
+
+activate "s:Scout"
+":TestCase" -> "s:Scout": Scout(i)
+note left: Al crearse guarda una instancia\n de Danio con 8 de danio\n en tierra. Es una unidad\n aerea.
+":TestCase" -> "s:Scout": ubicarEn(casilleroS)
+
+loop#Pink 11 veces
+
+":TestCase" -> "h:Hidralisco": atacar(s)
+"h:Hidralisco" -> "h:Hidralisco": estaOcupada()
+"h:Hidralisco" --> "h:Hidralisco": false
+"h:Hidralisco" -> "h:Hidralisco": tieneEnRango(s)
+"h:Hidralisco" -> "casilleroH:Casillero": tieneEnRango(s,rango:4)
+"casilleroH:Casillero" --> "h:Hidralisco": true
+"h:Hidralisco" -> "s:Scout": recibirDanio(danio)
+
+":TestCase" -> "s:Scout": pasarTurno()
+
+":TestCase" -> "s:Scout": atacar(h)
+"s:Scout" -> "s:Scout": estaOcupada()
+"s:Scout" --> "s:Scout": false
+"s:Scout" -> "s:Scout": tieneEnRango(h)
+"s:Scout" -> "casilleroS:Casillero": tieneEnRango(h,rango:4)
+"casilleroS:Casillero" --> "s:Scout": true
+"s:Scout" -> "s:Scout": recibirDanio(danio)
+
+":TestCase" -> "h:Hidralisco": pasarTurno()
+end
+
+group#Pink Iteracion 12, Hidralisco muere
+
+":TestCase" -> "h:Hidralisco": atacar(s)
+"h:Hidralisco" -> "h:Hidralisco": estaOcupada()
+"h:Hidralisco" --> "h:Hidralisco": false
+"h:Hidralisco" -> "h:Hidralisco": tieneEnRango(s)
+"h:Hidralisco" -> "casilleroH:Casillero": tieneEnRango(s,rango:4)
+"casilleroH:Casillero" --> "h:Hidralisco": true
+"h:Hidralisco" -> "s:Scout": recibirDanio(danio)
+
+":TestCase" -> "s:Scout": pasarTurno()
+
+":TestCase" -> "s:Scout": atacar(h)
+"s:Scout" -> "s:Scout": estaOcupada()
+"s:Scout" --> "s:Scout": false
+"s:Scout" -> "s:Scout": tieneEnRango(h)
+"s:Scout" -> "casilleroS:Casillero": tieneEnRango(h,rango:4)
+"casilleroS:Casillero" --> "s:Scout": true
+"s:Scout" -> "s:Scout": recibirDanio(danio)
+
+group#LightBlue Eliminacion del Hidralisco
+
+"h:Hidralisco" -> "i:Inventario": unidadAEliminar(this)
+"h:Hidralisco" -> "i:Inventario": devolverSuministrosUnidad(2)
+"h:Hidralisco" -> "casilleroH:Casillero": desocupar()
+
+deactivate "h:Hidralisco"
+deactivate "i:Inventario"
+end
+
+":TestCase" -> "h:Hidralisco": pasarTurno()
+
+end
+
+deactivate "h:Hidralisco"
+
+":TestCase" -> "casilleroH:Casillero": estaOcupado()
+"casilleroH:Casillero" --> ":TestCase": false
+
+deactivate "casilleroH:Casillero"
+deactivate ":TestCase"
+@enduml
