@@ -1,37 +1,50 @@
 package edu.fiuba.algo3.integracion;
 
-import edu.fiuba.algo3.exceptions.UbicacionInvalida;
 import edu.fiuba.algo3.modelo.Inventario;
 import edu.fiuba.algo3.modelo.Mapa;
-import edu.fiuba.algo3.modelo.casillero.Casillero;
-import edu.fiuba.algo3.modelo.unidades.edificios.Acceso;
-import edu.fiuba.algo3.modelo.unidades.edificios.Pilon;
+import edu.fiuba.algo3.modelo.casillero.*;
+import edu.fiuba.algo3.modelo.unidades.moviles.Hidralisco;
+import edu.fiuba.algo3.modelo.unidades.moviles.Scout;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class caso3 {
 
     @Test
-    public void test01EdificioZergSolosSeConstruyeSobreCasilleroEnergizado() {
+    public void Test01PeleaEntreHidraliscoYScoutHastaQueHidraliscoMuere(){
+
         //ARRANGE
         Inventario inventario = new Inventario();
-        inventario.agregarMineral(50);
+        inventario.agregarMineral(175);
+        inventario.agregarGas(175);
+        inventario.agregarSuministro(8);
 
-        Mapa mapa = new Mapa(20,20);
+        Mapa mapa = new Mapa(10,10);
 
-        Casillero casilleroPilon = mapa.obtenerCasillero(2,2);
-        Casillero casilleroAccesoConEnergia = mapa.obtenerCasillero(2,1);
-        Casillero casilleroAccesoSinEnergia = mapa.obtenerCasillero(7,8);
+        mapa.cambiarTipoCasilla(1,1,new CasilleroVacio());
+        Casillero casilleroHidra = mapa.obtenerCasillero(1,1);
+
+        mapa.cambiarTipoCasilla(2,2,new CasilleroVacio());
+        Casillero casilleroScout = mapa.obtenerCasillero(1,2);
+
+        Hidralisco hidra = new Hidralisco(inventario); //terrestre, vida 80
+        Scout scout = new Scout(inventario); //aereo, escudo 100, vida 150
 
         //ACT
-        Pilon.construir(casilleroPilon,inventario);
-        for(int i=0; i<5; i++){
-            inventario.pasarTurno();
+        hidra.ubicarEn(casilleroHidra);
+        scout.ubicarEn(casilleroScout);
+
+        for(int i=0; i<12; i++){
+            hidra.atacar(scout); //hidra hace 10 de daño
+            scout.pasarTurno(); //regenera 1 de vida
+            scout.atacar(hidra); //scout hace 8 de daño
+            hidra.pasarTurno(); //regenera 1 de escudo
         }
+
         //ASSERT
-        assertThrows(UbicacionInvalida.class, () -> Acceso.construir(casilleroAccesoSinEnergia,inventario));
-        assertDoesNotThrow(() -> Acceso.construir(casilleroAccesoConEnergia,inventario));
+        //assert que el casillero esta vacio
+        assertEquals(casilleroHidra.estaOcupado(),false);
+
     }
 }
