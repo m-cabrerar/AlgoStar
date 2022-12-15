@@ -17,7 +17,7 @@ public class Zangano extends UnidadMovilZerg{
     private static final int COSTO_MINERAL = 25;
     private static final int NIVEL_DE_CONSTRUCCION = 0;
     private static int COSTO_SUMINISTRO = 1;
-    private boolean ocupada = false;
+    /*private boolean ocupada = false;*/
 
     public Zangano(Inventario inventario){
         super(inventario, COSTO_MINERAL, COSTO_GASEOSO, VIDA, COSTO_SUMINISTRO);
@@ -42,20 +42,21 @@ public class Zangano extends UnidadMovilZerg{
     }
 
     public void extraerMineral() {
-        if (ocupada) {
+        /*if (ocupada) {
             throw new UnidadOcupada("La unidad ya atacó, se movió o extrajo mineral este turno");
-        }
+        }*/
         int extraido = this.casillero.extraerMineral(10);
-        if (!(extraido > 0)) {
+        /*if (!(extraido > 0)) {
             throw new UbicacionInvalida("No hay mineral en este casillero");
         }
-        ocupada = true;
+        ocupada = true;*/
         this.inventario.agregarMineral(extraido);
     }
 
     public void pasarTurno() {
         super.pasarTurno();
-        ocupada = false;
+        this.extraerMineral();
+        /*ocupada = false;*/
     }
 
 }
