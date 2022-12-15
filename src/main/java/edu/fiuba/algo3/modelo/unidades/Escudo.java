@@ -19,8 +19,11 @@ public class Escudo implements Regenerativo, Atacable {
     }
 
     public void sufrirAtaque(int danio){
-        this.chequeoDeEscudo();
         this.escudo -= danio;
+        if (escudo < 0) {
+            escudo = 0;
+            this.chequeoDeEscudo();
+        }
     }
 
     private void chequeoDeEscudo(){

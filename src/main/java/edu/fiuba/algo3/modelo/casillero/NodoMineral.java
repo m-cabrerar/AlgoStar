@@ -14,7 +14,9 @@ public class NodoMineral extends TipoCasillero {
     public int extraerMineral(int cantidad) {
         unidadesRestantes -= cantidad;
         if (this.agotado()){
-            return cantidad + unidadesRestantes;
+            int cantidadADevolver = cantidad + unidadesRestantes;
+            unidadesRestantes = 0;
+            return cantidadADevolver;
         }
         return cantidad;
     }

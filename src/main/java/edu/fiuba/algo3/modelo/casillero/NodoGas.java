@@ -12,7 +12,9 @@ public class NodoGas extends TipoCasillero {
     public int extraerGas(int cantidad) {
         unidadesRestantes -= cantidad;
         if (this.agotado()){
-            return cantidad + unidadesRestantes;
+            int cantidadADevolver = cantidad + unidadesRestantes;
+            unidadesRestantes = 0;
+            return cantidadADevolver;
         }
         return cantidad;
     }

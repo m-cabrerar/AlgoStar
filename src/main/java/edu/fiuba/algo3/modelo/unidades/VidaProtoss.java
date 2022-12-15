@@ -11,10 +11,11 @@ public class VidaProtoss extends Vida {
         this.escudo = new Escudo(escudo);
     }
     public void sufrirAtaque(int danio) throws EstaDestruido {
+        int escudo = this.escudo.getEscudo();
         try{
             this.escudo.sufrirAtaque(danio);
         } catch (Exception EstaDestruido) {
-            this.vida -= danio;
+            this.vida -= danio-escudo;
             super.chequeoDeVida();
         }
     }
