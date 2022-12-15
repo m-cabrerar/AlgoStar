@@ -6,6 +6,7 @@ title Modelado de  Jugador
 class Jugador {
     -String: nombre
     -String: raza
+    -String color;
 
     +<u>Jugador()
     +void: setDatos(String nombre, String color, String raza)
@@ -13,6 +14,7 @@ class Jugador {
     +boolean: colorValido(String color, Jugador[] jugadores)
     +boolean: razaValida(String raza, Jugador[] jugadores)
     +boolean: tieneEdificios()
+    + EdificioEnConstruccion: crearBase(Casillero casillero)
 
 }
 
