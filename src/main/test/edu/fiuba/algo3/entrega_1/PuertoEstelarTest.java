@@ -135,11 +135,9 @@ public class PuertoEstelarTest {
         // Act
         try{puertoEstelar.recibirDanio(danio);}
         catch(Exception e){}
-        puertoEstelar.pasarTurno();
-        puertoEstelar.pasarTurno();
-        puertoEstelar.pasarTurno();
-        puertoEstelar.pasarTurno();
-        puertoEstelar.pasarTurno();
+        for (int i = 0; i < 500; i++) {
+            puertoEstelar.pasarTurno();
+        }
         try{puertoEstelar.recibirDanio(danio2);}
         catch(Exception e){}
         // Assert
@@ -157,14 +155,14 @@ public class PuertoEstelarTest {
         when(mockedInventario.puedeConstruir(anyInt())).thenReturn(true);
 
         Danio danio = new Danio(0,650);
-        Danio danio2 = new Danio(0,1150);
+        Danio danio2 = new Danio(0,1149);
 
         Unidad puertoEstelar = new PuertoEstelar(mockedCasillero, mockedInventario);
 
         // Act
         try{puertoEstelar.recibirDanio(danio);}
         catch(Exception e){}
-        for (int i = 0; i < 65; i++) {
+        for (int i = 0; i < 650; i++) {
             puertoEstelar.pasarTurno();
         }
         try{puertoEstelar.recibirDanio(danio2);}

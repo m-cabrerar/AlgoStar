@@ -60,16 +60,12 @@ public class CasoUso31{
         for (int i = 0; i < 5; i++) {
             new Zerling(inventario);
         }
-        pilon2.recibirDanio(danio);
         try {
             pilon2.recibirDanio(danio);
+            fail();
         } catch (Exception EstaDestruido){
-
+            assertFalse(inventario.tieneSuministros(1));
         }
-
-        //act & assert
-        assertFalse(inventario.tieneSuministros(1));
-
     }
 
     @Test

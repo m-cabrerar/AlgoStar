@@ -140,7 +140,8 @@ public class AsimiladorTest {
         casillero.setTipoCasillero(new NodoGas());
 
         Danio danio = new Danio(0,500);
-        Danio danio2 = new Danio(0,400);
+        Danio danio2 = new Danio(0,350);
+        Danio danio3 = new Danio(0,499);
 
         Inventario inventario = new Inventario();
 
@@ -151,10 +152,10 @@ public class AsimiladorTest {
             asimilador.recibirDanio(danio2); //con esto queda sin escudo y 50 de vida
         }
         catch(Exception EstaDestruido){fail();}
-        for (int i = 0; i < 450; i++) {
+        for (int i = 0; i < 4500; i++) {
             asimilador.pasarTurno();
         }
-        try{asimilador.recibirDanio(danio);}
+        try{asimilador.recibirDanio(danio3);}
         catch(Exception e){fail();}
         // Assert
         assertTrue(casillero.estaOcupado());

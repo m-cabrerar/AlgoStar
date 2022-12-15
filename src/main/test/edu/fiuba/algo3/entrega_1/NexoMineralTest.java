@@ -120,11 +120,9 @@ public class NexoMineralTest {
         // Act
         try{nexoMineral.recibirDanio(danio);}
         catch(Exception e){}
-        nexoMineral.pasarTurno();
-        nexoMineral.pasarTurno();
-        nexoMineral.pasarTurno();
-        nexoMineral.pasarTurno();
-        nexoMineral.pasarTurno();
+        for (int i = 0; i < 500; i++) {
+            nexoMineral.pasarTurno();
+        }
         try{nexoMineral.recibirDanio(danio2);}
         catch(Exception e){}
         // Assert

@@ -136,7 +136,7 @@ public class AccesoTest {
         casillero.energizar();
         
         Danio danio = new Danio(0,550);
-        Danio danio2 = new Danio(0,950);
+        Danio danio2 = new Danio(0,949);
 
         Inventario inventario = new Inventario();
     
@@ -145,7 +145,7 @@ public class AccesoTest {
         // Act
         try{acceso.recibirDanio(danio);}
         catch(Exception e){}
-        for(int i=0; i<55; i++){
+        for(int i=0; i<5000; i++){
             acceso.pasarTurno();
         }
         try{acceso.recibirDanio(danio2);}
@@ -166,13 +166,13 @@ public class AccesoTest {
         Danio danio = new Danio(0,5000);
 
         Unidad acceso = new Acceso(casillero, inventario);
-        // Act
-        acceso.recibirDanio(danio);
+        // Act & Assert
         try{
             acceso.recibirDanio(danio);
-        } catch (Exception e){}
-        //ASSERT
-        verify(casillero, times(1)).desocupar();
+            fail();
+        } catch (EstaDestruido e){
+            verify(casillero, times(1)).desocupar();
+        }
     }
 }
 
